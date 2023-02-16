@@ -23,6 +23,7 @@ import { StartPooledStacking } from "./pages/stacking/start-pooled-stacking/star
 import { StartDirectStacking } from "./pages/stacking/start-direct-stacking/start-direct-stacking";
 import { PooledStackingInfo } from "./pages/stacking/pooled-stacking-info/pooled-stacking-info";
 import { DirectStackingInfo } from "./pages/stacking/direct-stacking-info/direct-stacking-info";
+import { Collectibles } from "./pages/collectibles";
 
 function Layout() {
   const { isSignedIn, signOut } = useAuth();
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "sign-in",
         element: <SignIn />,
+      },
+      {
+        path: "collectibles/:payload",
+        element: <Collectibles />,
       },
       {
         element: <AuthGuard />,
