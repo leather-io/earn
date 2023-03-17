@@ -18,6 +18,7 @@ import { EditingFormValues } from "../types";
 import { Box, Flex, FlexProps, Text, Tooltip } from "@stacks/ui";
 import { Hr } from "@components/hr";
 import { IconQuestionCircle } from "@tabler/icons-react";
+import { pools } from "./preset-pools";
 
 export function PoolingInfoCard(props: FlexProps) {
   const f = useFormikContext<EditingFormValues>();
@@ -25,7 +26,10 @@ export function PoolingInfoCard(props: FlexProps) {
 
   const amount = f.values.amount;
   const delegationType = f.values.delegationDurationType;
-  const poolStxAddress = f.values.poolAddress;
+  const poolName = f.values.poolName;
+  const pool = pools.find((p) => p.name === poolName);
+  const poolStxAddress = pool?.poolAddress || f.values.poolAddress;
+  const poolContract = pool?.poxContract || poxInfoQuery.data?.contract_id;
   const durationInCycles =
     f.values.delegationDurationType === "limited"
       ? f.values.numberOfCycles
@@ -114,9 +118,7 @@ export function PoolingInfoCard(props: FlexProps) {
               </Row>
               <Row>
                 <Label>Contract</Label>
-                <Value>
-                  {truncateMiddle(poxInfoQuery.data?.contract_id ?? "")}
-                </Value>
+                <Value>{truncateMiddle(poolContract ?? "")}</Value>
               </Row>
             </Section>
           </Group>

@@ -15,7 +15,6 @@ import {
 } from "@components/stacking-client-provider/stacking-client-provider";
 
 import { StartStackingLayout } from "../components/stacking-layout";
-import { ChoosePoolAddress } from "./components/choose-pool-stx-address";
 import { ChoosePoolingAmount } from "./components/choose-pooling-amount";
 import { ChoosePoolingDuration } from "./components/choose-pooling-duration";
 import { ConfirmAndSubmit } from "./components/confirm-and-pool";
@@ -27,6 +26,9 @@ import { StackingFormInfoPanel } from "../components/stacking-form-info-panel";
 import { StackingFormContainer } from "../components/stacking-form-container";
 import { Spinner } from "@stacks/ui";
 import { ChoosePoolingRewardAddress } from "./components/choose-pooling-reward-address";
+import { ChoosePoolingPool } from "./components/choose-pooling-pool";
+import { PoolName } from "./types-preset-pools";
+import { pools } from "./components/preset-pools";
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: "",
@@ -92,11 +94,8 @@ function StartPooledStackingLayout({
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] =
     useState(false);
   const q1 = useGetSecondsUntilNextCycleQuery();
+  const [rewardAddressEditable, setRewardAddressEditable] = useState(true);
 
-  // TODO: move this inside ChoosePoolingAmount, not being used elsewhere
-  const queryGetAccountBalance = useQuery(["getAccountBalance", client], () =>
-    client.getAccountBalance()
-  );
   const navigate = useNavigate();
 
   const validationSchema = createValidationSchema({
@@ -108,7 +107,23 @@ function StartPooledStackingLayout({
     navigate,
     setIsContractCallExtensionPageOpen,
   });
+  
+  const onPoolChange = (poolName: PoolName) => {
+    if (poolName === "Custom Pool") {
+      setRewardAddressEditable(true);
+    } else {
+      const presetPool = pools.find((p) => p.name === poolName);
+      setRewardAddressEditable(
+        presetPool?.payoutMethod === "BTC" &&
+          presetPool?.allowCustomRewardAddress === true
+      );
+    }
+  };
 
+  // TODO: move this inside ChoosePoolingAmount, not being used elsewhere
+  const queryGetAccountBalance = useQuery(["getAccountBalance", client], () =>
+    client.getAccountBalance()
+  );
   if (q1.isLoading || queryGetAccountBalance.isLoading) return <Spinner />;
 
   if (
@@ -124,9 +139,15 @@ function StartPooledStackingLayout({
     return <ErrorAlert id={id}>{msg}</ErrorAlert>;
   }
 
+  console.log({ rewardAddress: currentAddresses.btcAddressP2wpkh });
   return (
     <Formik
-      initialValues={initialDelegatingFormValues as EditingFormValues}
+      initialValues={
+        {
+          ...initialDelegatingFormValues,
+          rewardAddress: currentAddresses.btcAddressP2wpkh,
+        } as EditingFormValues
+      }
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
@@ -141,14 +162,14 @@ function StartPooledStackingLayout({
           <>
             <Form>
               <StackingFormContainer>
-                <ChoosePool />
+                <ChoosePoolingPool onPoolChange={onPoolChange} />
                 <ChoosePoolingAmount
                   availableBalance={queryGetAccountBalance.data}
                 />
                 <ChoosePoolingDuration />
                 <ChoosePoolingRewardAddress
-                  btcAddress={currentAddresses.btcAddressP2tr}
-                  editable={true}
+                  btcAddress={currentAddresses.btcAddressP2wpkh}
+                  editable={rewardAddressEditable}
                 />
                 <ConfirmAndSubmit isLoading={isContractCallExtensionPageOpen} />
               </StackingFormContainer>
