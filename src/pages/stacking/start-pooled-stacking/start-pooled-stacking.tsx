@@ -26,6 +26,7 @@ import { createHandleSubmit, createValidationSchema } from "./utils";
 import { StackingFormInfoPanel } from "../components/stacking-form-info-panel";
 import { StackingFormContainer } from "../components/stacking-form-container";
 import { Spinner } from "@stacks/ui";
+import { ChoosePoolingRewardAddress } from "./components/choose-pooling-reward-address";
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: "",
@@ -36,11 +37,21 @@ const initialDelegatingFormValues: Partial<EditingFormValues> = {
 
 export function StartPooledStacking() {
   const { client } = useStackingClient();
-  const { address } = useAuth();
+  const { address, btcAddressP2tr, btcAddressP2wpkh } = useAuth();
   const { networkName } = useNetwork();
 
   if (!address) {
     const msg = "Expected `address` to be defined.";
+    console.error(msg);
+    return <ErrorAlert>{msg}</ErrorAlert>;
+  }
+  if (!btcAddressP2tr) {
+    const msg = "Expected `btcAddressP2tr` to be defined.";
+    console.error(msg);
+    return <ErrorAlert>{msg}</ErrorAlert>;
+  }
+  if (!btcAddressP2wpkh) {
+    const msg = "Expected `btcAddressP2wpkh` to be defined.";
     console.error(msg);
     return <ErrorAlert>{msg}</ErrorAlert>;
   }
@@ -58,7 +69,7 @@ export function StartPooledStacking() {
   return (
     <StartPooledStackingLayout
       client={client}
-      currentAccountAddress={address}
+      currentAddresses={{ address, btcAddressP2tr, btcAddressP2wpkh }}
       networkName={networkName}
     />
   );
@@ -66,13 +77,17 @@ export function StartPooledStacking() {
 
 interface StartPooledStackingProps {
   client: StackingClient;
-  currentAccountAddress: string;
+  currentAddresses: {
+    address: string;
+    btcAddressP2tr: string;
+    btcAddressP2wpkh: string;
+  };
   networkName: StacksNetworkName;
 }
 function StartPooledStackingLayout({
   client,
   networkName,
-  currentAccountAddress,
+  currentAddresses,
 }: StartPooledStackingProps) {
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] =
     useState(false);
@@ -85,7 +100,7 @@ function StartPooledStackingLayout({
   const navigate = useNavigate();
 
   const validationSchema = createValidationSchema({
-    currentAccountAddress,
+    currentAccountAddress: currentAddresses.address,
     networkName,
   });
   const handleSubmit = createHandleSubmit({
@@ -126,11 +141,15 @@ function StartPooledStackingLayout({
           <>
             <Form>
               <StackingFormContainer>
-                <ChoosePoolAddress />
+                <ChoosePool />
                 <ChoosePoolingAmount
                   availableBalance={queryGetAccountBalance.data}
                 />
                 <ChoosePoolingDuration />
+                <ChoosePoolingRewardAddress
+                  btcAddress={currentAddresses.btcAddressP2tr}
+                  editable={true}
+                />
                 <ConfirmAndSubmit isLoading={isContractCallExtensionPageOpen} />
               </StackingFormContainer>
             </Form>
