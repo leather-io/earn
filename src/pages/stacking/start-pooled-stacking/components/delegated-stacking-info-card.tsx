@@ -50,7 +50,7 @@ export function PoolingInfoCard(props: FlexProps) {
   return (
     <>
       <InfoCard {...props}>
-        <Box mx={["loose", "extra-loose"]} sx={{ border: "1px solid red" }}>
+        <Box mx={["loose", "extra-loose"]} sx={{ }}>
           <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
             <Text textStyle="body.large.medium">You&apos;re pooling</Text>
             <Text

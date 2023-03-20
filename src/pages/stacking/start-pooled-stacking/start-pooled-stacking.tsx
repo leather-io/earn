@@ -21,7 +21,11 @@ import { ConfirmAndSubmit } from "./components/confirm-and-pool";
 import { PoolingInfoCard } from "./components/delegated-stacking-info-card";
 import { PooledStackingIntro } from "./components/pooled-stacking-intro";
 import { EditingFormValues } from "./types";
-import { createHandleSubmit, createValidationSchema } from "./utils";
+import {
+  createHandleSubmit,
+  createValidationSchema,
+} from "./utils-delegate-stx";
+import { createHandleSubmit as createHandleAllowContractCallerSubmit } from "./utils-allow-contract-caller";
 import { StackingFormInfoPanel } from "../components/stacking-form-info-panel";
 import { StackingFormContainer } from "../components/stacking-form-container";
 import { Spinner } from "@stacks/ui";
@@ -107,9 +111,15 @@ function StartPooledStackingLayout({
     navigate,
     setIsContractCallExtensionPageOpen,
   });
-  
+
+  const handleAllowContractCallerSubmit = createHandleAllowContractCallerSubmit(
+    {
+      client,
+      setIsContractCallExtensionPageOpen,
+    }
+  );
   const onPoolChange = (poolName: PoolName) => {
-    if (poolName === "Custom Pool") {
+    if (poolName === PoolName.CustomPool) {
       setRewardAddressEditable(true);
     } else {
       const presetPool = pools.find((p) => p.name === poolName);
@@ -162,7 +172,12 @@ function StartPooledStackingLayout({
           <>
             <Form>
               <StackingFormContainer>
-                <ChoosePoolingPool onPoolChange={onPoolChange} />
+                <ChoosePoolingPool
+                  onPoolChange={onPoolChange}
+                  handleAllowContractCallerSubmit={
+                    handleAllowContractCallerSubmit
+                  }
+                />
                 <ChoosePoolingAmount
                   availableBalance={queryGetAccountBalance.data}
                 />
