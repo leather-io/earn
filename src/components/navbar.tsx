@@ -28,7 +28,7 @@ export function Navbar() {
             <Box pl="12px" pr="extra-tight">
               <Stacks />
             </Box>
-            <Text color={figmaTheme.text} fontWeight={500}>
+            <Text fontSize="18px" color={figmaTheme.text} fontWeight={500}>
               / Stacking
             </Text>
           </Flex>
