@@ -5,6 +5,8 @@ import { FinishedTxData } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
 import { Form, Formik } from 'formik';
 
+import { useAuth } from '@components/auth-provider/auth-provider';
+import { useBlockchainApiClient } from '@components/blockchain-api-client-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { FinishedTxResultInfo } from '@components/finished-tx-result-info';
@@ -19,13 +21,13 @@ import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
 
 import { StackingFormContainer } from '../../components/stacking-form-container';
 import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
-import { Amount } from '../components/choose-amount';
 import { Duration } from '../components/choose-duration';
-import { Stacker } from '../components/choose-stacker';
 import { StartBurnHeight } from '../components/choose-start-burn-height';
 import { PoolAdminIntro } from '../components/pool-admin-intro';
 import { PoolAdminLayout } from '../components/pool-admin-layout';
 import { PoxAddress } from '../components/pox-address';
+import { Amount } from './components/choose-amount';
+import { Stacker } from './components/choose-stacker';
 import { ConfirmAndSubmit } from './components/confirm-and-submit';
 import { InfoPanel } from './components/delegate-stack-stx-info-card';
 import { DelegateStackStxFormValues } from './types';
@@ -61,6 +63,8 @@ function DelegateStackStxLayout({ client }: DelegateStackStxLayoutProps) {
   const [txResult, setTxResult] = useState<FinishedTxData | undefined>();
 
   const { networkName, network } = useNetwork();
+  const { address } = useAuth();
+  const { accountsApi, transactionsApi, smartContractsApi } = useBlockchainApiClient();
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
   const getPoxInfoQuery = useGetPoxInfoQuery();
@@ -88,10 +92,14 @@ function DelegateStackStxLayout({ client }: DelegateStackStxLayoutProps) {
   }
 
   const validationSchema = createValidationSchema({
-    availableBalanceUStx: intToBigInt(UI_IMPOSED_MAX_STACKING_AMOUNT_USTX.toString(), false),
+    currentAccountAddress: address,
     // TODO why is current burnchain block height undefined?
     currentBurnHt: getPoxInfoQuery.data.current_burnchain_block_height || 0,
-    network: networkName,
+    network,
+    networkName,
+    accountsApi,
+    transactionsApi,
+    smartContractsApi,
   });
   const handleSubmit = createHandleSubmit({
     client,

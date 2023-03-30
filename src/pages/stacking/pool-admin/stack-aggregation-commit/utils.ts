@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import { ContractCallRegularOptions, FinishedTxData, openContractCall } from '@stacks/connect';
+import { StacksNetworkName } from '@stacks/network';
 import { StackingClient } from '@stacks/stacking';
 import * as yup from 'yup';
 
@@ -12,7 +13,7 @@ interface CreateValidationSchemaArgs {
   /**
    * The name of the network the app is live on, e.g., mainnet or testnet.
    */
-  network: string;
+  network: StacksNetworkName;
 }
 export function createValidationSchema({ network }: CreateValidationSchemaArgs) {
   return yup.object().shape({

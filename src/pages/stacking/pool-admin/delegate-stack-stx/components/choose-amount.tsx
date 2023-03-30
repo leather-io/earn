@@ -1,24 +1,23 @@
-import { Box, Input, Stack } from '@stacks/ui';
+import { Box, Input, Stack, Text } from '@stacks/ui';
 import { useField } from 'formik';
+import { Description, Step } from 'src/pages/stacking/components/stacking-form-step';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 
-import { Description, Step } from '../../components/stacking-form-step';
-
-export function Stacker() {
-  const [field, meta] = useField('stacker');
+export function Amount() {
+  const [field, meta] = useField('amount');
 
   return (
-    <Step title="Stacker">
+    <Step title="Choose amount">
       <Description>
         <Stack alignItems="flex-start" spacing="base">
-          The stacks address of your pool member.
+          <Text>Must be less than the delegated amount and the stacker&apos;s balance.</Text>
         </Stack>
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stacker" placeholder="Stacks address" mt="loose" {...field} />
+        <Input id="stxAmount" placeholder="Amount of STX to Stack" mt="loose" {...field} />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

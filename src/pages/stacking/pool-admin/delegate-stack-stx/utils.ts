@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { AccountsApi, SmartContractsApi, TransactionsApi } from '@stacks/blockchain-api-client';
 import { ContractCallRegularOptions, FinishedTxData, openContractCall } from '@stacks/connect';
-import { StacksNetwork } from '@stacks/network';
+import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { StackingClient } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
@@ -9,16 +10,15 @@ import * as yup from 'yup';
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
 import { stxToMicroStx } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
+import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
-import { stxBalanceValidator } from '@utils/validators/stx-balance-validator';
 
+import { getDelegationStatus } from '../../pooled-stacking-info/get-delegation-status';
+import { getAvailableAmountForLockingInSTX } from './components/choose-stacker';
 import { DelegateStackStxFormValues } from './types';
 
 interface CreateValidationSchemaArgs {
-  /**
-   * Available balance of the current account. Used to ensure users don't try to stack more than is available.
-   */
-  availableBalanceUStx: bigint;
+  currentAccountAddress: string | null;
 
   /**
    * The current burn height
@@ -28,29 +28,69 @@ interface CreateValidationSchemaArgs {
   /**
    * The name of the network the app is live on, e.g., mainnet or testnet.
    */
-  network: string;
+  networkName: StacksNetworkName;
+
+  network: StacksNetwork;
+  accountsApi: AccountsApi;
+  transactionsApi: TransactionsApi;
+  smartContractsApi: SmartContractsApi;
 }
 export function createValidationSchema({
-  availableBalanceUStx,
+  currentAccountAddress,
   currentBurnHt,
   network,
+  networkName,
+  accountsApi,
+  transactionsApi,
+  smartContractsApi,
 }: CreateValidationSchemaArgs) {
   return yup.object().shape({
+    stacker: stxPrincipalSchema(yup.string(), networkName).test(
+      'test-pool-membership',
+      'Stacker must be a pool member',
+      async value => {
+        const stackingClient = new StackingClient(value, network);
+        const delegationStatus = await getDelegationStatus({
+          stackingClient,
+          accountsApi,
+          transactionsApi,
+          smartContractsApi,
+          address: value,
+        });
+        return (
+          delegationStatus.isDelegating && delegationStatus.delegatedTo === currentAccountAddress
+        );
+      }
+    ),
     amount: stxAmountSchema()
-      .test(stxBalanceValidator(availableBalanceUStx))
+      .test(
+        'test-available-locking-amount',
+        'You cannot stack more than the delegated amount or the balance',
+        async (value, context) => {
+          const stacker = context.parent.stacker;
+          const stackingClient = new StackingClient(stacker, network);
+          const [delegationStatus, extendedBalances] = await Promise.all([
+            getDelegationStatus({
+              stackingClient,
+              accountsApi,
+              transactionsApi,
+              smartContractsApi,
+              address: stacker,
+            }),
+            stackingClient.getAccountExtendedBalances(),
+          ]);
+          if (!delegationStatus.isDelegating) return true;
+          const availableAmountForLocking = getAvailableAmountForLockingInSTX(
+            delegationStatus.amountMicroStx,
+            extendedBalances
+          );
+          return new BigNumber(availableAmountForLocking).isGreaterThanOrEqualTo(value);
+        }
+      )
       .test('test-precision', 'You cannot stack with a precision of less than 1 STX', value => {
         // If `undefined`, throws `required` error
         if (value === undefined) return true;
         return validateDecimalPrecision(0)(value);
-      })
-      .test({
-        name: 'test-fee-margin',
-        message: 'You must stack less than the stacker balance and delegation amount',
-        test: value => {
-          if (value === null || value === undefined) return false;
-          const uStxInput = stxToMicroStx(value);
-          return !uStxInput.isGreaterThan(new BigNumber(availableBalanceUStx.toString()));
-        },
       }),
     lockPeriod: yup.number().defined(),
     startBurnHt: yup.number().test({
@@ -62,7 +102,7 @@ export function createValidationSchema({
       },
     }),
     poxAddress: createBtcAddressSchema({
-      network,
+      network: networkName,
       // TODO
       isPostPeriod1: true,
     }),

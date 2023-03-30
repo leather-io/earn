@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
+import { StacksNetworkName } from '@stacks/network';
 import { StackingClient } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
@@ -33,7 +34,7 @@ interface CreateValidationSchemaArgs {
   /**
    * The name of the network the app is live on, e.g., mainnet or testnet.
    */
-  network: string;
+  network: StacksNetworkName;
 }
 export function createValidationSchema({
   availableBalanceUStx,

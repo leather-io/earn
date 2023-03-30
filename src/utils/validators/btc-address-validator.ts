@@ -1,10 +1,11 @@
+import { StacksNetworkName } from '@stacks/network';
 import validate, { getAddressInfo } from 'bitcoin-address-validation';
 import * as yup from 'yup';
 
 import { SUPPORTED_BTC_ADDRESS_FORMATS } from '@constants/app';
 
 interface Args {
-  network: string;
+  network: StacksNetworkName;
 
   /**
    * Whether the chain has moved on from Period 1, as described in
