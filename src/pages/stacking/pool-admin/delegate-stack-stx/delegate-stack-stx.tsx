@@ -19,13 +19,13 @@ import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
 
 import { StackingFormContainer } from '../../components/stacking-form-container';
 import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
-import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
 import { Amount } from '../components/choose-amount';
 import { Duration } from '../components/choose-duration';
 import { Stacker } from '../components/choose-stacker';
 import { StartBurnHeight } from '../components/choose-start-burn-height';
 import { PoolAdminIntro } from '../components/pool-admin-intro';
 import { PoolAdminLayout } from '../components/pool-admin-layout';
+import { PoxAddress } from '../components/pox-address';
 import { ConfirmAndSubmit } from './components/confirm-and-submit';
 import { InfoPanel } from './components/delegate-stack-stx-info-card';
 import { DelegateStackStxFormValues } from './types';

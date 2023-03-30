@@ -17,10 +17,10 @@ import {
 
 import { StackingFormContainer } from '../../components/stacking-form-container';
 import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
-import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
 import { RewardCycle } from '../components/choose-reward-cycle';
 import { PoolAdminIntro } from '../components/pool-admin-intro';
 import { PoolAdminLayout } from '../components/pool-admin-layout';
+import { PoxAddress } from '../components/pox-address';
 import { ConfirmAndSubmit } from './components/confirm-and-submit';
 import { InfoPanel } from './components/stack-aggregate-commit-info-card';
 import { StackAggregationCommitFormValues as StackAggreagtionCommitFormValues } from './types';
