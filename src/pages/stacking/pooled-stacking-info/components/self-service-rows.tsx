@@ -33,7 +33,7 @@ export function SelfServiceRows() {
       {tooEarly || tooLate ? (
         <Row>
           <Label>Extend to cycle {getPoxInfoQuery.data.current_cycle.id + 1} in</Label>
-          <Value>{extendWindow.blocksUntilStart * 500} blocks</Value>
+          <Value>{extendWindow.blocksUntilStart} blocks</Value>
         </Row>
       ) : (
         <Row>
