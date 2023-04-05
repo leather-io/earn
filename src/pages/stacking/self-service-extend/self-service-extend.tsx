@@ -9,28 +9,44 @@ import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { useNetwork } from '@components/network-provider';
 import {
+  useGetAccountBalanceLockedQuery,
+  useGetPoxInfoQuery,
   useGetStatusQuery,
   useStackingClient,
 } from '@components/stacking-client-provider/stacking-client-provider';
 
 import { SelfServiceLayout } from './components/self-service-extend-layout';
-import { createHandleSubmit } from './utils';
+import { createHandleSubmit, createValidationSchema } from './utils';
 
 export function SelfServiceExtend() {
   const navigate = useNavigate();
   const getStatusQuery = useGetStatusQuery();
+  const getAccountBalanceLockedQuery = useGetAccountBalanceLockedQuery();
+  const getPoxInfoQuery = useGetPoxInfoQuery();
 
   const { client } = useStackingClient();
   const { address: stacker } = useAuth();
-  const { network } = useNetwork();
+  const { network, networkName } = useNetwork();
 
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
 
-  if (getStatusQuery.isLoading) {
+  if (
+    getStatusQuery.isLoading ||
+    getAccountBalanceLockedQuery.isLoading ||
+    getPoxInfoQuery.isLoading
+  ) {
     return <CenteredSpinner />;
   }
 
-  if (getStatusQuery.isError || !getStatusQuery.data || !client) {
+  if (
+    getStatusQuery.isError ||
+    !getStatusQuery.data ||
+    getAccountBalanceLockedQuery.isError ||
+    !getAccountBalanceLockedQuery.data ||
+    getPoxInfoQuery.isError ||
+    !getPoxInfoQuery.data ||
+    !client
+  ) {
     const msg = 'Error while loading data, try reloading the page.';
     console.error(msg);
     return (
@@ -44,6 +60,7 @@ export function SelfServiceExtend() {
     ? getStatusQuery.data?.details
     : undefined;
 
+  const validationSchema = createValidationSchema({ networkName });
   const handleSubmit = createHandleSubmit({
     client,
     navigate,
@@ -54,12 +71,13 @@ export function SelfServiceExtend() {
     <Formik
       initialValues={{ stacker: stacker || '' }}
       onSubmit={handleSubmit}
-      //validationSchema={validationSchema}
+      validationSchema={validationSchema}
     >
       <Form>
         <SelfServiceLayout
-          title="Continue stacking"
-          details={stackerInfoDetails}
+          stackerInfoDetails={stackerInfoDetails}
+          lockedBalance={getAccountBalanceLockedQuery.data}
+          poxInfo={getPoxInfoQuery.data}
           isContractCallExtensionPageOpen={isContractCallExtensionPageOpen}
         />
       </Form>

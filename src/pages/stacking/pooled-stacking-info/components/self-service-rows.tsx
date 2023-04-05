@@ -13,7 +13,7 @@ import {
 } from '@components/stacking-client-provider/stacking-client-provider';
 import routes from '@constants/routes';
 
-import { nextExtend } from '../../self-service-extend/utils';
+import { nextExtendWindow } from '../../self-service-extend/utils';
 
 export function SelfServiceRows() {
   const navigate = useNavigate();
@@ -24,15 +24,28 @@ export function SelfServiceRows() {
   if (!getPoxInfoQuery.data || !burnBlockHeight) {
     return <></>;
   }
-  const { blocks, tooEarly } = nextExtend(burnBlockHeight, getPoxInfoQuery.data);
+  const { extendWindow, tooEarly, tooLate } = nextExtendWindow(
+    burnBlockHeight,
+    getPoxInfoQuery.data
+  );
   return (
     <>
+      {tooEarly || tooLate ? (
+        <Row>
+          <Label>Extend to cycle {getPoxInfoQuery.data.current_cycle.id + 1} in</Label>
+          <Value>{extendWindow.blocksUntilStart * 500} blocks</Value>
+        </Row>
+      ) : (
+        <Row>
+          <Label>Time left to extend</Label>
+          <Value>{extendWindow.blocksUntilEnd} blocks</Value>
+        </Row>
+      )}
       <Row justifyContent="space-evenly">
-        <Label>Until next extend</Label>
-        <Value>{blocks}</Value>
-      </Row>
-      <Row justifyContent="space-evenly">
-        <Button isDisabled={tooEarly} onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}>
+        <Button
+          isDisabled={tooEarly || tooLate}
+          onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}
+        >
           Extend pooled stacking
         </Button>
       </Row>

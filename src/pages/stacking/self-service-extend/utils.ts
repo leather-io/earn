@@ -58,14 +58,30 @@ export function createHandleSubmit({
   };
 }
 
-export function nextExtend(burnBlockHeight: number, poxInfo: PoxInfo) {
-  const blocks =
+/**
+ * Calculates a time window for self-service pools that
+ * allow any user to extend stacking after half of cycle passed.
+ *
+ * During that window users can call delegate-stack-stx.
+ * @param burnBlockHeight current burn block height
+ * @param poxInfo data about cycle length, etc.
+ * @returns
+ */
+export function nextExtendWindow(burnBlockHeight: number, poxInfo: PoxInfo) {
+  const halfTheCycle = poxInfo.reward_cycle_length / 2;
+  const blocksUntilNextExtendWindow =
     poxInfo.reward_cycle_length -
-    ((burnBlockHeight -
-      poxInfo.first_burnchain_block_height +
-      poxInfo.reward_cycle_length / 2 -
-      1) %
+    ((burnBlockHeight - poxInfo.first_burnchain_block_height + halfTheCycle - 1) %
       poxInfo.reward_cycle_length);
-  const tooEarly = blocks <= poxInfo.reward_cycle_length / 2 + 1;
-  return { blocks, tooEarly };
+  const blocksUntilExtendWindowEnds = blocksUntilNextExtendWindow - halfTheCycle - 1;
+  const tooEarly = blocksUntilNextExtendWindow < halfTheCycle;
+  const tooLate = blocksUntilExtendWindowEnds <= 0;
+  return {
+    extendWindow: {
+      blocksUntilStart: blocksUntilNextExtendWindow,
+      blocksUntilEnd: blocksUntilExtendWindowEnds,
+    },
+    tooEarly,
+    tooLate,
+  };
 }
