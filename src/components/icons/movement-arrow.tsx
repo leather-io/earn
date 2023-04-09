@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Box, BoxProps } from '@stacks/ui';
 
 export const MovementArrow = ({ ...props }: BoxProps) => (

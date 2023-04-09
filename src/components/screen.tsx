@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-
 import { Flex, FlexProps } from '@stacks/ui';
 
 type ScreenProps = FlexProps;
 
-export const Screen: FC<ScreenProps> = props => (
+export const Screen: React.FC<ScreenProps> = props => (
   <Flex
     flexDirection="column"
     maxWidth="1216px"

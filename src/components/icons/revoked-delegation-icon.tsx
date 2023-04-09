@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
-
 import { Box, color } from '@stacks/ui';
 
 interface RevokedDelegationIconProps {
   size?: string;
 }
 
-export const RevokedDelegationIcon: FC<RevokedDelegationIconProps> = ({ size = '20px' }) => (
+export const RevokedDelegationIcon: React.FC<RevokedDelegationIconProps> = ({ size = '20px' }) => (
   <Box width={size} height={size}>
     <svg viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="10.5082" cy="11.0689" r="8.7582" stroke="#C5CCFF" strokeWidth="1.5" />

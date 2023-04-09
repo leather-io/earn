@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-
 import { Box, BoxProps } from '@stacks/ui';
 
 type LargeCheckmarkProps = BoxProps;
 
-export const LargeCheckmark: FC<LargeCheckmarkProps> = props => (
+export const LargeCheckmark: React.FC<LargeCheckmarkProps> = props => (
   <Box {...props}>
     <svg
       width="104"

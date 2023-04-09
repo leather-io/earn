@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
-
 import { Box, BoxProps } from '@stacks/ui';
 
 interface LimitedStackingIconProps extends BoxProps {
   cycles: number;
 }
 
-export const LimitedStackingIcon: FC<LimitedStackingIconProps> = ({ cycles }) => {
+export const LimitedStackingIcon: React.FC<LimitedStackingIconProps> = ({ cycles }) => {
   return (
     <Box>
       <svg

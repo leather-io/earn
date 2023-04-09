@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
-
 import { BoxProps, Text, color } from '@stacks/ui';
 
 type TitleProps = BoxProps;
 
-export const Title: FC<TitleProps> = ({ children, ...props }) => {
+export const Title: React.FC<TitleProps> = ({ children, ...props }) => {
   return (
     <Text
       as="h1"

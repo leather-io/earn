@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
-
 import { Box, color } from '@stacks/ui';
 
 interface DelegatedIconProps {
   size?: string;
 }
 
-export const DelegatedIcon: FC<DelegatedIconProps> = ({ size = '20px' }) => (
+export const DelegatedIcon: React.FC<DelegatedIconProps> = ({ size = '20px' }) => (
   <Box size={size}>
     <svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="11.4921" cy="10.1332" r="8.7582" stroke="#C5CCFF" strokeWidth="1.5" />
