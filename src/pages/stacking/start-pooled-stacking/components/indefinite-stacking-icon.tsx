@@ -1,8 +1,6 @@
-import React, { FC } from 'react';
-
 import { Box, BoxProps } from '@stacks/ui';
 
-export const IndefiniteStackingIcon: FC<BoxProps> = props => {
+export const IndefiniteStackingIcon: React.FC<BoxProps> = props => {
   return (
     <Box {...props}>
       <svg

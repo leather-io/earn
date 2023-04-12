@@ -1,5 +1,3 @@
-import React, { FC, ReactNode } from 'react';
-
 import { Box, BoxProps } from '@stacks/ui';
 import Tippy from '@tippyjs/react';
 
@@ -9,7 +7,7 @@ interface TooltipProps extends BoxProps {
   text: string;
 }
 
-export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ children, text, ...props }) => {
   return (
     <Tippy
       zIndex={9999999}
@@ -36,10 +34,10 @@ export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
 
 interface ExplainerLabelProps {
   text: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const ExplainerLabel: FC<ExplainerLabelProps> = ({ text, children }) => (
+export const ExplainerLabel: React.FC<ExplainerLabelProps> = ({ text, children }) => (
   <>
     {' '}
     <Tooltip
@@ -53,7 +51,7 @@ export const ExplainerLabel: FC<ExplainerLabelProps> = ({ text, children }) => (
   </>
 );
 
-export const ExplainerTooltip: FC<BoxProps> = ({ children, ...props }) => {
+export const ExplainerTooltip: React.FC<BoxProps> = ({ children, ...props }) => {
   return (
     <Tippy
       zIndex={9999999}

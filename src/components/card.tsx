@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, BoxProps, Flex, Text, color } from '@stacks/ui';
 
 interface CardProps extends BoxProps {

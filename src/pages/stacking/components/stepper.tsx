@@ -1,5 +1,3 @@
-import React, { FC } from 'react';
-
 import { Box, BoxProps, Flex, FlexProps, Text, color } from '@stacks/ui';
 
 import { DecrementIcon } from '@components/icons/decrement';
@@ -17,7 +15,7 @@ interface StepperProps extends BoxProps {
 
 const border = `1px solid ${color('border')}`;
 
-const ChangeStepButton: FC<FlexProps> = ({ children, ...props }) => (
+const ChangeStepButton: React.FC<FlexProps> = ({ children, ...props }) => (
   <Flex
     as="button"
     type="button"
@@ -38,7 +36,7 @@ const ChangeStepButton: FC<FlexProps> = ({ children, ...props }) => (
   </Flex>
 );
 
-export const Stepper: FC<StepperProps> = props => {
+export const Stepper: React.FC<StepperProps> = props => {
   const { amount, onIncrement, onDecrement, ...rest } = props;
   return (
     <Box {...rest}>
