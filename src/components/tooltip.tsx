@@ -70,7 +70,7 @@ export const ExplainerTooltip: React.FC<BoxProps> = ({ children, ...props }) => 
         </Box>
       }
     >
-      <Box>
+      <Box mr="tight">
         <ExplainerIcon cursor="help" />
       </Box>
     </Tippy>

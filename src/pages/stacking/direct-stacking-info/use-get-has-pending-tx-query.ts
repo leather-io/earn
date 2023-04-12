@@ -6,8 +6,10 @@ import { useNetwork } from '@components/network-provider';
 import { useStackingClient } from '@components/stacking-client-provider/stacking-client-provider';
 
 import { getHasPendingDirectStacking } from './get-has-pending-direct-stacking';
+import { getHasPendingStackExtend } from './get-has-pending-stack-extend';
+import { getHasPendingStackIncrease } from './get-has-pending-stack-increase';
 
-export function useGetHasPendingDirectStackingQuery() {
+export function useGetHasPendingStackingTransactionQuery() {
   const { accountsApi, transactionsApi } = useBlockchainApiClient();
   const { client } = useStackingClient();
   const { address } = useAuth();
@@ -22,8 +24,8 @@ export function useGetHasPendingDirectStackingQuery() {
     throw new Error('Expected `address` to be defined.');
   }
 
-  return useQuery(
-    ['delegation-status', client, accountsApi, address, transactionsApi, networkName],
+  const getHasPendingDirectStackingQuery = useQuery(
+    ['pending-stacking-status', client, accountsApi, address, transactionsApi, networkName],
     async () =>
       getHasPendingDirectStacking({
         stackingClient: client,
@@ -36,4 +38,32 @@ export function useGetHasPendingDirectStackingQuery() {
       }),
     { refetchInterval: 5000 }
   );
+  const getHasPendingStackIncreaseQuery = useQuery(
+    ['pending-stack-increase', client, accountsApi, address, transactionsApi, networkName],
+    async () =>
+      getHasPendingStackIncrease({
+        stackingClient: client,
+        accountsApi,
+        address,
+        transactionsApi,
+      }),
+    { refetchInterval: 5000 }
+  );
+  const getHasPendingStackExtendQuery = useQuery(
+    ['pending-stack-extend', client, accountsApi, address, transactionsApi, networkName],
+    async () =>
+      getHasPendingStackExtend({
+        stackingClient: client,
+        accountsApi,
+        address,
+        transactionsApi,
+        network: networkName,
+      }),
+    { refetchInterval: 5000 }
+  );
+  return {
+    getHasPendingDirectStackingQuery,
+    getHasPendingStackIncreaseQuery,
+    getHasPendingStackExtendQuery,
+  };
 }
