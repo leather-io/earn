@@ -1,18 +1,19 @@
 import React, { FC, ReactNode } from 'react';
 
 import { Box, BoxProps } from '@stacks/ui';
-import Tippy from '@tippyjs/react';
+import Tippy, { TippyProps } from '@tippyjs/react';
 
 import { ExplainerIcon } from './icons/explainer';
 
-interface TooltipProps extends BoxProps {
+interface TooltipProps extends BoxProps, Partial<Pick<TippyProps, 'hideOnClick'>> {
   text: string;
 }
 
-export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ children, text, hideOnClick, ...props }) => {
   return (
     <Tippy
       zIndex={9999999}
+      hideOnClick={!!hideOnClick}
       content={
         <Box
           p="base-tight"
