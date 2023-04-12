@@ -6,7 +6,8 @@
   "scripts": {
     "build": "vite build",
     "check:packagejson": "ts-node-esm ./scripts/packageJsonChecks.ts",
-    "check:types": "tsc --noEmit --incremental --watch",
+    "check:types-live": "tsc --noEmit --incremental --watch",
+    "check:types": "tsc",
     "check:format": "prettier --check . --plugin-search-dir=./node_modules --plugin=@trivago/prettier-plugin-sort-imports",
     "check:format:fix": "prettier --write . --plugin-search-dir=./node_modules --plugin=@trivago/prettier-plugin-sort-imports",
     "check:lint": "eslint .",
