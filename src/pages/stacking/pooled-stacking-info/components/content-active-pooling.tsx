@@ -17,6 +17,8 @@ import {
 import { makeStackingClubRewardAddressLink } from '@utils/external-links';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
+import routes from '@constants/routes';
+import { useNavigate } from 'react-router-dom';
 import { Pox2Contracts } from '../../start-pooled-stacking/types-preset-pools';
 import { DelegationStatus } from '../get-delegation-status';
 import { IncreasePoolingAmount } from './increase-pooling-amount';
@@ -41,6 +43,7 @@ export function ActivePoolingContent({
   stackerInfo,
 }: ActivePoolingContentProps) {
   const isStacking = stackerInfo.stacked;
+  const navigate = useNavigate();
   const [showIncreasePoolingAmount, setShowIncreasePoolingAmount] = useState(false);
   const isSelfService = delegationStatusDetails.delegatedTo === Pox2Contracts.WrapperFastPool;
   return (
@@ -82,7 +85,11 @@ export function ActivePoolingContent({
               <Address address={poolAddress} />
             </Value>
           </Row>
-          {isSelfService && !showIncreasePoolingAmount && <SelfServiceRows />}
+          {isSelfService && !showIncreasePoolingAmount && (
+            <SelfServiceRows onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}>
+              Extend pooled stacking
+            </SelfServiceRows>
+          )}
           {showIncreasePoolingAmount ? (
             <IncreasePoolingAmount
               handleStopPoolingClick={() => {
