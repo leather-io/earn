@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Button } from '@stacks/ui';
 
 import {
@@ -11,12 +9,23 @@ import {
   useGetCoreInfoQuery,
   useGetPoxInfoQuery,
 } from '@components/stacking-client-provider/stacking-client-provider';
-import routes from '@constants/routes';
 
 import { nextExtendWindow } from '../../self-service-extend/utils';
 
-export function SelfServiceRows() {
-  const navigate = useNavigate();
+interface SelfServiceRowsProps {
+  isLoading?: boolean;
+  onClick: React.MouseEventHandler;
+  children: React.ReactNode;
+  showCancleButton?: boolean;
+  onClose?: React.MouseEventHandler;
+}
+export function SelfServiceRows({
+  isLoading,
+  onClick,
+  showCancleButton,
+  onClose,
+  children,
+}: SelfServiceRowsProps) {
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const getCoreInfoQuery = useGetCoreInfoQuery();
   const burnBlockHeight = getCoreInfoQuery.data?.burn_block_height;
@@ -41,12 +50,19 @@ export function SelfServiceRows() {
           <Value>{extendWindow.blocksUntilEnd} blocks</Value>
         </Row>
       )}
-      <Row justifyContent="space-evenly">
+      <Row justifyContent={showCancleButton ? 'space-between' : 'space-evenly'}>
+        {showCancleButton && (
+          <Button mode="tertiary" onClick={onClose}>
+            Cancel
+          </Button>
+        )}
         <Button
+          type="submit"
           isDisabled={tooEarly || tooLate}
-          onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}
+          isLoading={isLoading}
+          onClick={onClick}
         >
-          Extend pooled stacking
+          {children}
         </Button>
       </Row>
     </>

@@ -17,6 +17,8 @@ import routes from '@constants/routes';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
+import { SelfServiceRows } from '../../pooled-stacking-info/components/self-service-rows';
+import { nextExtendWindow } from '../utils';
 import { Stacker } from './choose-stacker';
 import { StackerDetailsRows } from './stacker-details-rows';
 
@@ -92,18 +94,25 @@ export function SelfServiceLayout(props: SelfServiceLayoutProps) {
                     <Text py="loose">Lock your STX for the 1 more cycle.</Text>
                   </>
                 )}
-                <Row m="loose" justifyContent="space-between">
-                  <Button mode="tertiary" onClick={onClose}>
-                    Cancel
-                  </Button>
-                  {!showStackerAddress || showPreview ? (
-                    <Button type="submit" isLoading={isContractCallExtensionPageOpen}>
-                      <Box mr="loose">
-                        <IconLock />
-                      </Box>
-                      Lock STX
+                {!showStackerAddress || showPreview ? (
+                  <SelfServiceRows
+                    isLoading={isContractCallExtensionPageOpen}
+                    onClick={() => {
+                      return;
+                    }}
+                    showCancleButton
+                    onClose={onClose}
+                  >
+                    <Box mr="loose">
+                      <IconLock />
+                    </Box>
+                    Lock STX
+                  </SelfServiceRows>
+                ) : (
+                  <Row m="loose" justifyContent="space-between">
+                    <Button mode="tertiary" onClick={onClose}>
+                      Cancel
                     </Button>
-                  ) : (
                     <Button
                       onClick={e => {
                         e.preventDefault();
@@ -112,8 +121,8 @@ export function SelfServiceLayout(props: SelfServiceLayoutProps) {
                     >
                       Preview
                     </Button>
-                  )}
-                </Row>
+                  </Row>
+                )}
                 {!showStackerAddress && (
                   <Row m="loose" justifyContent="space-evenly">
                     <Button mode="tertiary" onClick={() => setShowStackerAddress(true)}>
@@ -128,4 +137,16 @@ export function SelfServiceLayout(props: SelfServiceLayoutProps) {
       </Flex>
     </BaseDrawer>
   );
+}
+
+interface SelfServiceExtendLockButtonProps {
+  isLoading: boolean;
+}
+function SelfServiceExtendButton({ isLoading }: SelfServiceExtendLockButtonProps) {
+  const { extendWindow, tooEarly, tooLate } = nextExtendWindow(
+    burnBlockHeight,
+    getPoxInfoQuery.data
+  );
+
+  return <Button type="submit" isLoading={isLoading}></Button>;
 }
