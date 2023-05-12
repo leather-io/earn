@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { PoxInfo, StackerInfo } from '@stacks/stacking';
 import { Box, Button, Flex, Text } from '@stacks/ui';
@@ -14,6 +13,8 @@ import {
   InfoCardSection as Section,
 } from '@components/info-card';
 import routes from '@constants/routes';
+import { useNavigate } from '@hooks/use-navigate';
+import { useSIP22 } from '@hooks/use-sip-22';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
@@ -31,6 +32,7 @@ export function SelfServiceLayout(props: SelfServiceLayoutProps) {
   const [showStackerAddress, setShowStackerAddress] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const navigate = useNavigate();
+  const { poxDisabled } = useSIP22();
   const poxAddress = stackerInfoDetails
     ? formatPoxAddressToNetwork(stackerInfoDetails.pox_address)
     : undefined;
@@ -40,7 +42,7 @@ export function SelfServiceLayout(props: SelfServiceLayoutProps) {
   const title = stackerInfoDetails ? 'Extend stacking' : 'Stack again';
   const nextRewardCycleId = poxInfo.reward_cycle_id + 1;
   return (
-    <BaseDrawer title={title} isShowing onClose={onClose}>
+    <BaseDrawer title={title} isShowing={!poxDisabled} onClose={onClose}>
       <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
         <InfoCard width="420px">
           <Box mx={['loose', 'extra-loose']}>

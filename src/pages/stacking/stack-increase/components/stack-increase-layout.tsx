@@ -1,9 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-
 import { AccountExtendedBalances } from '@stacks/stacking';
 import { Box, Button, Flex, Text } from '@stacks/ui';
-import { IconLock } from '@tabler/icons-react';
-import { useFormikContext } from 'formik';
 
 import { BaseDrawer } from '@components/drawer/base-drawer';
 import { Hr } from '@components/hr';
@@ -14,30 +10,24 @@ import {
   InfoCardSection as Section,
 } from '@components/info-card';
 import routes from '@constants/routes';
-import { hasErrors } from '@utils/form/has-errors';
+import { useNavigate } from '@hooks/use-navigate';
+import { useSIP22 } from '@hooks/use-sip-22';
 import { toHumanReadableStx } from '@utils/unit-convert';
-
-import { PendingStackIncreaseAlert } from '../../components/pending-stack-increase-alert';
-import { StackIncreaseInfo } from '../../direct-stacking-info/get-has-pending-stack-increase';
-import { EditingFormValues } from '../utils';
-import { Amount } from './choose-amount';
 
 interface StackIncreaseLayoutProps {
   title: string;
   extendedStxBalances: AccountExtendedBalances['stx'];
-  pendingStackIncrease: StackIncreaseInfo | undefined | null;
-  isContractCallExtensionPageOpen: boolean;
 }
 export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
-  const { title, extendedStxBalances, pendingStackIncrease, isContractCallExtensionPageOpen } =
-    props;
+  const { title, extendedStxBalances } = props;
+  const { poxDisabled } = useSIP22();
   const navigate = useNavigate();
-  const { errors } = useFormikContext<EditingFormValues>();
+
   const onClose = () => {
     navigate(routes.DIRECT_STACKING_INFO);
   };
   return (
-    <BaseDrawer title={title} isShowing onClose={onClose}>
+    <BaseDrawer title={title} isShowing={!poxDisabled} onClose={onClose}>
       <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
         <InfoCard width="420px">
           <Box mx={['loose', 'extra-loose']}>
@@ -53,30 +43,26 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
                 {toHumanReadableStx(extendedStxBalances.locked.toString())}
               </Text>
             </Flex>
+
             <Hr />
 
-            {pendingStackIncrease && (
-              <PendingStackIncreaseAlert pendingStackIncrease={pendingStackIncrease} />
-            )}
-
+            <Group py="loose">
+              <Text>
+                Increasing stacking amount for direct stackers was disabled in preparation of Stacks
+                2.2.
+                <br />
+                You can use pooled stacking with a pool address that you control if you want to lock
+                more STX.
+              </Text>
+            </Group>
             <Group pt="base-loose">
               <Section>
-                <Row>
-                  <Amount />
-                </Row>
-
                 <Row m="loose" justifyContent="space-between">
                   <Button mode="tertiary" onClick={onClose}>
                     Cancel
                   </Button>
-                  <Button
-                    isLoading={isContractCallExtensionPageOpen}
-                    isDisabled={hasErrors(errors)}
-                  >
-                    <Box mr="loose">
-                      <IconLock />
-                    </Box>
-                    Confirm Increase
+                  <Button mode="tertiary" onClick={() => navigate(routes.START_POOLED_STACKING)}>
+                    Choose pooled stacking
                   </Button>
                 </Row>
               </Section>
