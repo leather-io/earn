@@ -3,6 +3,7 @@ import { Box, Stack } from '@stacks/ui';
 import { figmaTheme } from '@constants/figma-theme';
 
 import { DirectStackingCard } from './components/direct-stacking-card';
+import { LiquidStackingCard } from './components/liquid-stacking-card';
 import { Messages } from './components/messages';
 import { PooledStackingCard } from './components/pooled-stacking-card';
 import {
@@ -31,6 +32,8 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
         )}
         <OptionsContainer>
           <PooledStackingCard {...props} />
+          <Separator />
+          <LiquidStackingCard {...props} />
           <Separator />
           <DirectStackingCard {...props} />
         </OptionsContainer>

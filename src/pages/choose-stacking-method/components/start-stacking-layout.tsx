@@ -15,7 +15,7 @@ import {
 import { Title } from '@components/title';
 
 export const StartStackingLayout: FC<FlexProps> = props => (
-  <Box maxWidth="1200px" height="100%" as="main" mx="auto" {...props} />
+  <Box maxWidth="1400px" height="100%" as="main" mx="auto" {...props} />
 );
 
 export const StackingOptionsCardContainer: FC<FlexProps> = props => (
