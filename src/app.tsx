@@ -31,6 +31,7 @@ import { SelfServiceExtend } from './pages/stacking/self-service-extend/self-ser
 import { StackExtend } from './pages/stacking/stack-extend/stack-extend';
 import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
+import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
 
 const queryClient = new QueryClient();
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
               {
                 path: 'direct-stacking-info',
                 element: <DirectStackingInfo />,
+              },
+              {
+                path: 'start-liquid-stacking',
+                element: <StartLiquidStacking />,
               },
               {
                 path: 'lock-more-stx',

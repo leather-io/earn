@@ -10,7 +10,7 @@ export function Hero() {
         borderRadius="12px"
         px={['12px', '34px', '60px', '88px']}
         py={['12px', '34px', '60px', '88px']}
-        maxWidth="1200px"
+        maxWidth="1400px"
         margin="auto"
         mt="48px"
         backgroundImage={['inherit', 'inherit', `url("welcome.png")`, `url("welcome.png")`]}
