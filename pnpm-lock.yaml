@@ -30,8 +30,8 @@ dependencies:
     specifier: 6.8.1
     version: 6.8.1
   '@stacks/connect':
-    specifier: 7.6.0
-    version: 7.6.0
+    specifier: 7.7.0
+    version: 7.7.0
   '@stacks/connect-react':
     specifier: 22.4.0
     version: 22.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -2692,11 +2692,30 @@ packages:
       '@stencil/core': 2.22.3
     dev: false
 
+  /@stacks/connect-ui@6.4.0:
+    resolution: {integrity: sha512-S9+gOZAv05GxMBBIKq86eODzhWl98gUEKEdvzZTsoEZVQ3K1CwkTv1gQ/Hup5J35OKbTVT7m10mbalVNVcjARQ==}
+    dependencies:
+      '@stencil/core': 2.22.3
+    dev: false
+
   /@stacks/connect@7.6.0:
     resolution: {integrity: sha512-kFXUmuUb5N4TeeecZGfKM7xE402hSodCAyeSDZ5CFLmHkJaD1PLu+y9NzW1XW7hYA4lfR8qkuhjgOdywsURB2w==}
     dependencies:
       '@stacks/auth': 6.9.0
       '@stacks/connect-ui': 6.3.0
+      '@stacks/network': 6.8.1
+      '@stacks/profile': 6.9.0
+      '@stacks/transactions': 6.9.0
+      jsontokens: 4.0.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@stacks/connect@7.7.0:
+    resolution: {integrity: sha512-Psg1xKOjQieqSf4pd1rsV9f/9Ai7xEQ7qVtYDE9F6aYZRVh4xPfWt5TiWZI6r/w4ftPCcgzlCqPRgBJiOXf+Zw==}
+    dependencies:
+      '@stacks/auth': 6.9.0
+      '@stacks/connect-ui': 6.4.0
       '@stacks/network': 6.8.1
       '@stacks/profile': 6.9.0
       '@stacks/transactions': 6.9.0

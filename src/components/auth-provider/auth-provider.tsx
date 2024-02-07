@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { UserData } from '@stacks/auth';
-import { AppConfig, UserSession, showConnect } from '@stacks/connect';
+import { AppConfig, UserSession, disconnect, showConnect } from '@stacks/connect';
 import { validateStacksAddress as isValidStacksAddress } from '@stacks/transactions';
 import { APP_DETAILS } from 'src/constants';
 
@@ -72,6 +72,7 @@ export function AuthProvider({ children }: Props) {
 
   function signOut() {
     userSession.signUserOut();
+    disconnect();
     setIsSignedIn(false);
   }
 
