@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 
-import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
+import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { PoxInfo } from '@stacks/stacking';
 import { principalCV } from '@stacks/transactions';
@@ -45,7 +45,7 @@ export function createHandleSubmit({
       network,
     };
     setIsContractCallExtensionPageOpen(true);
-    openContractCall({
+    showContractCall({
       ...delegateStackStxOptions,
       onCancel() {
         setIsContractCallExtensionPageOpen(false);

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
+import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork } from '@stacks/network';
 import { StackingClient } from '@stacks/stacking';
 import { principalCV } from '@stacks/transactions';
@@ -39,7 +39,7 @@ export function createHandleSubmit({
 
     const disAllowContracCallerOptions = getOptions(poxWrapperContract, stackingContract, network);
 
-    openContractCall({
+    showContractCall({
       ...disAllowContracCallerOptions,
       onFinish() {
         setIsContractCallExtensionPageOpen(false);

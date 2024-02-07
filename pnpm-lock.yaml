@@ -30,11 +30,11 @@ dependencies:
     specifier: 6.8.1
     version: 6.8.1
   '@stacks/connect':
-    specifier: 7.4.1
-    version: 7.4.1
+    specifier: 7.6.0
+    version: 7.6.0
   '@stacks/connect-react':
-    specifier: 22.2.1
-    version: 22.2.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: 22.4.0
+    version: 22.4.0(react-dom@18.2.0)(react@18.2.0)
   '@stacks/network':
     specifier: 6.8.1
     version: 6.8.1
@@ -2672,13 +2672,13 @@ packages:
       '@types/node': 18.16.19
     dev: false
 
-  /@stacks/connect-react@22.2.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-xpbmCk/WyQ9sd5/1R8jGJYI89cPhN2PbSpCXWUMDRfoyztzyUBj/kamWlda/WqqeGZxUYjwNTTTiR2Zpy50byg==}
+  /@stacks/connect-react@22.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+ojenPvGqB56eloS2MbqHpCYXphA6xfsOFLA9q5N9AWvuzYm7DklURhalsTm2MIcBnoRj812MDsZ9QXH2OyMQg==}
     peerDependencies:
       react: ^16.x || 17.x || 18.x
       react-dom: ^16.x || 17.x || 18.x
     dependencies:
-      '@stacks/connect': 7.4.1
+      '@stacks/connect': 7.6.0
       jsontokens: 4.0.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -2686,17 +2686,17 @@ packages:
       - encoding
     dev: false
 
-  /@stacks/connect-ui@6.1.2:
-    resolution: {integrity: sha512-V4gUINXRDB2MO6YHk/JZZeApSnANrMFvIRv9qLBaJPamKsgeiCOBkiC88T7ucLVCz+NvCmS93Ntg4wytDIqdOg==}
+  /@stacks/connect-ui@6.3.0:
+    resolution: {integrity: sha512-d6MjLO+MrIghPDb94rJNJeeBucDh9MxbWTNU3P0n82zTBL0zDurcQlvAdoOnvIRUbYo6oZghhgRg3TuvRYATWw==}
     dependencies:
       '@stencil/core': 2.22.3
     dev: false
 
-  /@stacks/connect@7.4.1:
-    resolution: {integrity: sha512-kvF7Fnx8oMHNi/9At6UI6kThey+gYlYlbtsxhNL2VqflReXI8z3EndaMJ1WrD55ePIOoydAzV/Fx0rdNFjd4rQ==}
+  /@stacks/connect@7.6.0:
+    resolution: {integrity: sha512-kFXUmuUb5N4TeeecZGfKM7xE402hSodCAyeSDZ5CFLmHkJaD1PLu+y9NzW1XW7hYA4lfR8qkuhjgOdywsURB2w==}
     dependencies:
       '@stacks/auth': 6.9.0
-      '@stacks/connect-ui': 6.1.2
+      '@stacks/connect-ui': 6.3.0
       '@stacks/network': 6.8.1
       '@stacks/profile': 6.9.0
       '@stacks/transactions': 6.9.0

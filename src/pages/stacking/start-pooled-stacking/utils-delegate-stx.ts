@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
-import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
+import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { PoxInfo, StackingClient, poxAddressToTuple } from '@stacks/stacking';
 import { noneCV, someCV, uintCV } from '@stacks/transactions';
@@ -107,9 +107,9 @@ function getOptions(
         untilBurnBlockHeight,
       }
       // Type coercion necessary because the `network` property returned by
-      // `client.getStackingContract()` has a wider type than allowed by `openContractCall`. Despite
+      // `client.getStackingContract()` has a wider type than allowed by `showContractCall`. Despite
       // the wider type, the actual value of `network` is always of the type `StacksNetwork`
-      // expected by `openContractCall`.
+      // expected by `showContractCall`.
       //
       // See
       // https://github.com/hirosystems/stacks.js/blob/0e1f9f19dfa45788236c9e481f9a476d9948d86d/packages/stacking/src/index.ts#L1054
@@ -162,7 +162,7 @@ export function createHandleSubmit({
 
     const delegateStxOptions = getOptions(values, poxInfo, stackingContract, client, network);
 
-    openContractCall({
+    showContractCall({
       ...delegateStxOptions,
       onFinish() {
         setIsContractCallExtensionPageOpen(false);
