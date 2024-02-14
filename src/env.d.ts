@@ -2,12 +2,12 @@
 
 interface ImportMetaEnv {
   /**
-   * The current version of the app. Can be displayed in the UI or used in logs.
+   * The current version of the app. Can be displayed in the UI or used in logs
    */
   readonly VITE_APP_VERSION?: string;
 
   /**
-   * The commit SHA used to build the app. Useful for debugging.
+   * The commit SHA used to build the app. Useful for debugging
    */
   readonly VITE_COMMIT_SHA?: string;
 
