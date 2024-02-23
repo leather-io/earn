@@ -1,7 +1,7 @@
 import { Box, Flex } from '@stacks/ui';
 import { IconLock, IconStairs } from '@tabler/icons-react';
 
-import divingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
+import meltingIceIllustration from '@assets/images/liquid-stacking.svg';
 import { Users } from '@components/icons/users';
 
 import {
@@ -20,8 +20,8 @@ export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
     <Card>
       <Box height="130px">
         <img
-          src={divingBoardIllustration}
-          width="150px"
+          src={meltingIceIllustration}
+          width="110px"
           alt="Diving board illustration with a blue gradient and ominous-looking hole by Eugenia Digon"
         />
       </Box>
