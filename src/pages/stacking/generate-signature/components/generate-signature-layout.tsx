@@ -1,0 +1,211 @@
+import React from 'react';
+import { Box, Flex, Text, useClipboard } from '@stacks/ui';
+import { Hr } from '@components/hr';
+import {
+  InfoCardGroup as Group,
+  InfoCard,
+  InfoCardLabel as Label,
+  InfoCardRow as Row,
+  InfoCardSection as Section,
+  InfoCardValue as Value,
+} from '@components/info-card';
+import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
+import { Screen } from '@components/screen';
+import { StackingFormContainer } from '../../components/stacking-form-container';
+import { RewardCycle } from '../../pool-admin/components/choose-reward-cycle';
+import { ConfirmAndSubmit } from '../../components/confirm-and-submit';
+import { Topic } from './topic';
+import { Duration } from '../../pool-admin/components/choose-duration';
+import { SignatureData } from '@stacks/connect';
+import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
+import { GenerateSignatureFields, MAX_U128 } from '../types';
+import { truncateMiddle } from '@utils/tx-utils';
+import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
+import { IconCopy } from '@tabler/icons-react';
+import { MaxAmount } from './max-amount';
+import { AuthId } from './auth-id';
+import { useFormikContext } from 'formik';
+
+export function GenerateSignatureLayout({
+  signatureData,
+}: {
+  signatureData: SignatureData | null;
+}) {
+  const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } =
+    useFormikContext<GenerateSignatureFields>().values;
+  const getPoxInfoQuery = useGetPoxInfoQuery();
+  const { onCopy: onCopySig } = useClipboard(signatureData?.signature ?? '');
+  const { onCopy: onCopyPubKey } = useClipboard(signatureData?.publicKey ?? '');
+  return (
+    <Screen pt="80px" mb="extra-loose">
+      <Flex
+        flexDirection={['column-reverse', 'column-reverse', 'row']}
+        justifyContent="space-between"
+      >
+        <Box maxWidth={[null, null, '544px']} mr={[null, null, 'extra-loose']}>
+          <StackingFormContainer>
+            <RewardCycle />
+            <PoxAddress />
+            <Topic />
+            <MaxAmount />
+            <AuthId />
+            <Duration fieldName="period" />
+            <ConfirmAndSubmit isLoading={false} title="Submit" actionLabel="Generate Signature" />
+            {/* {signatureData !== null ? (
+              <Box>
+                <Text fontFamily={'monospace'}>Signature: 0x{signatureData.signature}</Text>
+                <Text fontFamily={'monospace'}>Public Key: 0x{signatureData.publicKey}</Text>
+              </Box>
+            ) : null} */}
+          </StackingFormContainer>
+        </Box>
+        <Box>
+          <StackingFormInfoPanel>
+            <InfoCard minHeight="84px">
+              <Box mx={['loose', 'extra-loose']} maxWidth={[null, null, '400px']}>
+                <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
+                  <Text textStyle="body.large.medium">Signature details</Text>
+                  <Text
+                    fontSize="24px"
+                    mt="extra-tight"
+                    fontWeight={500}
+                    fontFamily="Open Sauce"
+                    letterSpacing="-0.02em"
+                  >
+                    {/* {createAmountText(amount ?? 0)} */}
+                  </Text>
+                </Flex>
+                <Hr />
+                <Group width="100%" mt="base-loose" mb="extra-loose">
+                  <Section>
+                    <Row>
+                      <Label>Reward Cycle</Label>
+                      <Value>{rewardCycleId}</Value>
+                    </Row>
+                    <Row>
+                      <Label>Current cycle</Label>
+                      <Value>{getPoxInfoQuery.data?.current_cycle.id}</Value>
+                    </Row>
+                  </Section>
+                  <Section>
+                    <Row>
+                      <Label>Topic</Label>
+                      <Value>
+                        <Text fontFamily={'monospace'}>{topic}</Text>
+                      </Value>
+                    </Row>
+                  </Section>
+
+                  <Section>
+                    <Row>
+                      <Label
+                      // explainer={`One cycle lasts ${getPoxInfoQuery.data?.reward_cycle_length} blocks on the Bitcoin blockchain`}
+                      >
+                        Cycles
+                      </Label>
+                      <Value>{period}</Value>
+                    </Row>
+                  </Section>
+
+                  <Section>
+                    <Row>
+                      <Label explainer="The maximum amount of STX that can be locked while using this signature">
+                        Max Amount
+                      </Label>
+                      <Value>
+                        <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+                          {BigInt(maxAmount) === MAX_U128 ? 'MAX' : maxAmount}
+                        </Text>
+                      </Value>
+                    </Row>
+                  </Section>
+
+                  <Section>
+                    <Row>
+                      <Label>Auth ID</Label>
+                      <Value>
+                        <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+                          {authId}
+                        </Text>
+                      </Value>
+                    </Row>
+                  </Section>
+
+                  <Section>
+                    <Row>
+                      <Label>Bitcoin address</Label>
+                      <Value>{poxAddress ? truncateMiddle(poxAddress) : '—'}</Value>
+                    </Row>
+                  </Section>
+
+                  <>
+                    {signatureData === null ? null : (
+                      <>
+                        <Section>
+                          <Row>
+                            <Label>
+                              <Flex alignItems={'center'} justifyContent={'center'}>
+                                <Text>Public Key</Text>
+                                <Box
+                                  display="inline-block"
+                                  cursor="pointer"
+                                  ml="5px"
+                                  onClick={onCopyPubKey}
+                                >
+                                  <IconCopy size={16} />
+                                </Box>
+                              </Flex>
+                            </Label>
+                          </Row>
+                          <Row>
+                            <Value>
+                              <Text
+                                textStyle="caption"
+                                overflowWrap="anywhere"
+                                fontFamily={'monospace'}
+                              >
+                                0x{signatureData.publicKey}
+                              </Text>
+                            </Value>
+                          </Row>
+                        </Section>
+                        <Section>
+                          <Row>
+                            <Label>
+                              <Flex alignItems={'center'} justifyContent={'center'}>
+                                <Text>Signature</Text>
+                                <Box
+                                  display="inline-block"
+                                  cursor="pointer"
+                                  ml="5px"
+                                  onClick={onCopySig}
+                                >
+                                  <IconCopy size={16} />
+                                </Box>
+                              </Flex>
+                            </Label>
+                          </Row>
+                          <Row>
+                            <Value>
+                              <Text
+                                textStyle="caption"
+                                overflowWrap={'anywhere'}
+                                fontFamily={'monospace'}
+                              >
+                                0x{signatureData.signature}
+                              </Text>
+                            </Value>
+                          </Row>
+                        </Section>
+                      </>
+                    )}
+                  </>
+                </Group>
+              </Box>
+            </InfoCard>
+          </StackingFormInfoPanel>
+        </Box>
+      </Flex>
+    </Screen>
+  );
+}
