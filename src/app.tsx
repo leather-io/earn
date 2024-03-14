@@ -21,7 +21,7 @@ import { AddNetwork } from './pages/settings/add-network';
 import { Network } from './pages/settings/network/network';
 import { SignIn } from './pages/sign-in/sign-in';
 import { DirectStackingInfo } from './pages/stacking/direct-stacking-info/direct-stacking-info';
-import { GenerateSignerKeySignature } from './pages/stacking/generate-signature/signer-key-signature';
+import { GenerateSignerKeySignature } from './pages/stacking/signer/generate-signature/signer-key-signature';
 import { DelegateStackExtend } from './pages/stacking/pool-admin/delegate-stack-extend/delegate-stack-extend';
 import { DelegateStackIncrease } from './pages/stacking/pool-admin/delegate-stack-increase/delegate-stack-increase';
 import { DelegateStackStx } from './pages/stacking/pool-admin/delegate-stack-stx/delegate-stack-stx';
@@ -34,6 +34,7 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
+import { SignerInfo } from './pages/stacking/signer/signer-info/signer-info';
 
 const queryClient = new QueryClient();
 
@@ -127,8 +128,11 @@ const router = createBrowserRouter([
                 element: <SelfServiceExtend />,
               },
               {
-                path: 'generate-signature',
-                element: <GenerateSignerKeySignature />,
+                path: 'signer',
+                children: [
+                  { index: true, element: <SignerInfo /> },
+                  { path: 'generate-signature', element: <GenerateSignerKeySignature /> },
+                ],
               },
               { path: 'pool/:poolAddress', element: <PoolInfo /> },
               {

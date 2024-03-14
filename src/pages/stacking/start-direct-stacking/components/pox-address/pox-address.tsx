@@ -9,7 +9,10 @@ import { useGetPoxOperationInfo } from '@components/stacking-client-provider/sta
 
 import { Description, Step } from '../../../components/stacking-form-step';
 
-export function PoxAddress() {
+interface Props {
+  description?: string;
+}
+export function PoxAddress({ description }: Props) {
   const [field, meta] = useField('poxAddress');
   const q = useGetPoxOperationInfo();
 
@@ -31,7 +34,11 @@ export function PoxAddress() {
     <>
       <Step title="Bitcoin address">
         <Description>
-          <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.</Text>
+          {description ? (
+            <Text>{description}</Text>
+          ) : (
+            <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.'</Text>
+          )}
         </Description>
         <CryptoAddressInput fieldName="poxAddress" addressType="BTC" {...field}>
           {meta.touched && errors}

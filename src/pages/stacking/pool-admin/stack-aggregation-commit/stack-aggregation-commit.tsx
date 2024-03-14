@@ -10,6 +10,7 @@ import { FinishedTxResultInfo } from '@components/finished-tx-result-info';
 import {
   useGetAccountExtendedBalancesQuery,
   useGetPoxInfoQuery,
+  useGetPoxOperationInfo,
   useGetSecondsUntilNextCycleQuery,
   useStackingClient,
 } from '@components/stacking-client-provider/stacking-client-provider';
@@ -25,6 +26,8 @@ import { PoolAdminLayout } from '../components/pool-admin-layout';
 import { InfoPanel } from './components/stack-aggregate-commit-info-card';
 import { StackAggregationCommitFormValues as StackAggreagtionCommitFormValues } from './types';
 import { createHandleSubmit, createValidationSchema } from './utils';
+import { SignerKey } from './components/signer-key';
+import { useAuth } from '@components/auth-provider/auth-provider';
 
 const initialFormValues: StackAggreagtionCommitFormValues = {
   poxAddress: '',
@@ -53,15 +56,17 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
   const [txResult, setTxResult] = useState<FinishedTxData | undefined>();
 
   const { networkName } = useStacksNetwork();
+  const { btcAddressP2wpkh } = useAuth();
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesQuery();
-
+  const getPoxOperationInfo = useGetPoxOperationInfo();
   if (
     getSecondsUntilNextCycleQuery.isLoading ||
     getPoxInfoQuery.isLoading ||
-    getAccountExtendedBalancesQuery.isLoading
+    getAccountExtendedBalancesQuery.isLoading ||
+    getPoxOperationInfo.isLoading
   )
     return <CenteredSpinner />;
 
@@ -71,7 +76,9 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
     getPoxInfoQuery.isError ||
     !getPoxInfoQuery.data ||
     getAccountExtendedBalancesQuery.isError ||
-    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'string'
+    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'string' ||
+    getPoxOperationInfo.isError ||
+    !getPoxOperationInfo.data
   ) {
     const msg = 'Failed to load necessary data.';
     const id = '8c12f6b2-c839-4813-8471-b0fd542b845f';
@@ -84,6 +91,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
   });
   const handleSubmit = createHandleSubmit({
     client,
+    poxOperationInfo: getPoxOperationInfo.data,
     setIsContractCallExtensionPageOpen,
     setTxResult,
   });
@@ -92,6 +100,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
     <Formik
       initialValues={{
         ...initialFormValues,
+        poxAddress: btcAddressP2wpkh ?? '',
         rewardCycleId: getPoxInfoQuery.data.reward_cycle_id + 1,
       }}
       onSubmit={values => {
@@ -121,6 +130,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
               <StackingFormContainer>
                 <RewardCycle />
                 <PoxAddress />
+                <SignerKey />
                 <ConfirmAndSubmit
                   isLoading={isContractCallExtensionPageOpen}
                   title="Stack Aggregation Commit"
