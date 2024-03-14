@@ -1,12 +1,15 @@
-import { openStructuredDataSignatureRequestPopup, SignatureData } from '@stacks/connect';
 import { useCallback, useState } from 'react';
-import { useStacksNetwork } from './use-stacks-network';
-import { useStackingClient } from '@components/stacking-client-provider/stacking-client-provider';
+
+import { SignatureData, openStructuredDataSignatureRequestPopup } from '@stacks/connect';
 import {
   Pox4SignatureTopic,
   pox4SignatureMessage,
   verifyPox4SignatureHash,
 } from '@stacks/stacking';
+
+import { useStackingClient } from '@components/stacking-client-provider/stacking-client-provider';
+
+import { useStacksNetwork } from './use-stacks-network';
 
 export interface GenerateSignatureOptions {
   rewardCycle: number;

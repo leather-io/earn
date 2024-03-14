@@ -1,17 +1,20 @@
 import React, { createContext, useMemo } from 'react';
-import { Form, Formik } from 'formik';
-import { Pox4SignatureTopic } from '@stacks/stacking';
-import { useAuth } from '@components/auth-provider/auth-provider';
-import { GenerateSignatureLayout } from './components/generate-signature-layout';
-import { useGenerateStackingSignature } from '../../../hooks/use-generate-signature';
 import { useParams } from 'react-router-dom';
-import { GenerateSignatureFields, MAX_U128 } from './types';
+
+import { SignatureData } from '@stacks/connect';
+import { Pox4SignatureTopic } from '@stacks/stacking';
+import { Form, Formik } from 'formik';
+
+import { useAuth } from '@components/auth-provider/auth-provider';
+import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
-import { CenteredErrorAlert } from '@components/centered-error-alert';
-import { SignatureData } from '@stacks/connect';
-import { createValidationSchema } from './utils';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
+
+import { useGenerateStackingSignature } from '../../../hooks/use-generate-signature';
+import { GenerateSignatureLayout } from './components/generate-signature-layout';
+import { GenerateSignatureFields, MAX_U128 } from './types';
+import { createValidationSchema } from './utils';
 
 const initialFormValues: GenerateSignatureFields = {
   topic: Pox4SignatureTopic.StackStx,
