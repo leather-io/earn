@@ -6,7 +6,7 @@ import { useField } from 'formik';
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 
-import { Description, Step } from '../../components/stacking-form-step';
+import { Description, Step } from '../../../components/stacking-form-step';
 import { MAX_U128 } from '../types';
 
 export function MaxAmount() {

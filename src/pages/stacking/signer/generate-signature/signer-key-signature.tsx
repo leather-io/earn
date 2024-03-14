@@ -11,7 +11,7 @@ import { CenteredSpinner } from '@components/centered-spinner';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
-import { useGenerateStackingSignature } from '../../../hooks/use-generate-signature';
+import { useGenerateStackingSignature } from '../../../../hooks/use-generate-signature';
 import { GenerateSignatureLayout } from './components/generate-signature-layout';
 import { GenerateSignatureFields, MAX_U128 } from './types';
 import { createValidationSchema } from './utils';

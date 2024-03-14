@@ -18,16 +18,17 @@ import { Screen } from '@components/screen';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { truncateMiddle } from '@utils/tx-utils';
 
-import { ConfirmAndSubmit } from '../../components/confirm-and-submit';
-import { StackingFormContainer } from '../../components/stacking-form-container';
-import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
-import { Duration } from '../../pool-admin/components/choose-duration';
-import { RewardCycle } from '../../pool-admin/components/choose-reward-cycle';
-import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
+import { ConfirmAndSubmit } from '../../../components/confirm-and-submit';
+import { StackingFormContainer } from '../../../components/stacking-form-container';
+import { StackingFormInfoPanel } from '../../../components/stacking-form-info-panel';
+import { Duration } from '../../../pool-admin/components/choose-duration';
+import { RewardCycle } from '../../../pool-admin/components/choose-reward-cycle';
+import { PoxAddress } from '../../../start-direct-stacking/components/pox-address/pox-address';
 import { GenerateSignatureFields, MAX_U128 } from '../types';
 import { AuthId } from './auth-id';
 import { MaxAmount } from './max-amount';
 import { Topic } from './topic';
+import { SignatureSection } from './signature-section';
 
 export function GenerateSignatureLayout({
   signatureData,
@@ -37,8 +38,7 @@ export function GenerateSignatureLayout({
   const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } =
     useFormikContext<GenerateSignatureFields>().values;
   const getPoxInfoQuery = useGetPoxInfoQuery();
-  const { onCopy: onCopySig } = useClipboard(signatureData?.signature ?? '');
-  const { onCopy: onCopyPubKey } = useClipboard(signatureData?.publicKey ?? '');
+
   return (
     <Screen pt="80px" mb="extra-loose">
       <Flex
@@ -48,7 +48,11 @@ export function GenerateSignatureLayout({
         <Box maxWidth={[null, null, '544px']} mr={[null, null, 'extra-loose']}>
           <StackingFormContainer>
             <RewardCycle />
-            <PoxAddress />
+            <PoxAddress
+              description={
+                'Enter the bitcoin address you use for stacking or the bitcoin address of a stacker using your signing service.'
+              }
+            />
             <Topic />
             <MaxAmount />
             <AuthId />
@@ -144,62 +148,7 @@ export function GenerateSignatureLayout({
                   <>
                     {signatureData === null ? null : (
                       <>
-                        <Section>
-                          <Row>
-                            <Label>
-                              <Flex alignItems={'center'} justifyContent={'center'}>
-                                <Text>Public Key</Text>
-                                <Box
-                                  display="inline-block"
-                                  cursor="pointer"
-                                  ml="5px"
-                                  onClick={onCopyPubKey}
-                                >
-                                  <IconCopy size={16} />
-                                </Box>
-                              </Flex>
-                            </Label>
-                          </Row>
-                          <Row>
-                            <Value>
-                              <Text
-                                textStyle="caption"
-                                overflowWrap="anywhere"
-                                fontFamily={'monospace'}
-                              >
-                                0x{signatureData.publicKey}
-                              </Text>
-                            </Value>
-                          </Row>
-                        </Section>
-                        <Section>
-                          <Row>
-                            <Label>
-                              <Flex alignItems={'center'} justifyContent={'center'}>
-                                <Text>Signature</Text>
-                                <Box
-                                  display="inline-block"
-                                  cursor="pointer"
-                                  ml="5px"
-                                  onClick={onCopySig}
-                                >
-                                  <IconCopy size={16} />
-                                </Box>
-                              </Flex>
-                            </Label>
-                          </Row>
-                          <Row>
-                            <Value>
-                              <Text
-                                textStyle="caption"
-                                overflowWrap={'anywhere'}
-                                fontFamily={'monospace'}
-                              >
-                                0x{signatureData.signature}
-                              </Text>
-                            </Value>
-                          </Row>
-                        </Section>
+                        <SignatureSection signatureData={signatureData} />
                       </>
                     )}
                   </>

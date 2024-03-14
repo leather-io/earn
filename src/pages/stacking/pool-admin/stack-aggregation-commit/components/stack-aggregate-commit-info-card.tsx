@@ -13,11 +13,12 @@ import {
 import { truncateMiddle } from '@utils/tx-utils';
 
 import { StackAggregationCommitFormValues } from '../types';
+import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
 
 export function InfoPanel() {
   const f = useFormikContext<StackAggregationCommitFormValues>();
 
-  const { rewardCycleId, poxAddress } = f.values;
+  const { rewardCycleId, poxAddress, signerKey, signerSignature } = f.values;
 
   return (
     <InfoCard minHeight="84px">
@@ -42,6 +43,13 @@ export function InfoPanel() {
               <Value>{poxAddress ? truncateMiddle(poxAddress) : '—'}</Value>
             </Row>
           </Section>
+          <SignatureSection
+            signatureData={
+              signerSignature && signerKey
+                ? { signature: signerSignature, publicKey: signerKey }
+                : undefined
+            }
+          />
         </Group>
       </Box>
     </InfoCard>
