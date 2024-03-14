@@ -1,5 +1,10 @@
 import React from 'react';
+
+import { SignatureData } from '@stacks/connect';
 import { Box, Flex, Text, useClipboard } from '@stacks/ui';
+import { IconCopy } from '@tabler/icons-react';
+import { useFormikContext } from 'formik';
+
 import { Hr } from '@components/hr';
 import {
   InfoCardGroup as Group,
@@ -9,22 +14,20 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
 import { Screen } from '@components/screen';
-import { StackingFormContainer } from '../../components/stacking-form-container';
-import { RewardCycle } from '../../pool-admin/components/choose-reward-cycle';
-import { ConfirmAndSubmit } from '../../components/confirm-and-submit';
-import { Topic } from './topic';
-import { Duration } from '../../pool-admin/components/choose-duration';
-import { SignatureData } from '@stacks/connect';
-import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
-import { GenerateSignatureFields, MAX_U128 } from '../types';
-import { truncateMiddle } from '@utils/tx-utils';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
-import { IconCopy } from '@tabler/icons-react';
-import { MaxAmount } from './max-amount';
+import { truncateMiddle } from '@utils/tx-utils';
+
+import { ConfirmAndSubmit } from '../../components/confirm-and-submit';
+import { StackingFormContainer } from '../../components/stacking-form-container';
+import { StackingFormInfoPanel } from '../../components/stacking-form-info-panel';
+import { Duration } from '../../pool-admin/components/choose-duration';
+import { RewardCycle } from '../../pool-admin/components/choose-reward-cycle';
+import { PoxAddress } from '../../start-direct-stacking/components/pox-address/pox-address';
+import { GenerateSignatureFields, MAX_U128 } from '../types';
 import { AuthId } from './auth-id';
-import { useFormikContext } from 'formik';
+import { MaxAmount } from './max-amount';
+import { Topic } from './topic';
 
 export function GenerateSignatureLayout({
   signatureData,

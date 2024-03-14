@@ -1,7 +1,9 @@
-import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 import * as yup from 'yup';
-import { MAX_U128 } from './types';
+
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
+import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
+
+import { MAX_U128 } from './types';
 
 export function createValidationSchema({ network }: { network: string }) {
   return yup.object().shape({

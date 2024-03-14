@@ -1,9 +1,12 @@
-import { useField } from 'formik';
-import { Description, Step } from '../../components/stacking-form-step';
-import { Box, Button, Input, Text } from '@stacks/ui';
 import React from 'react';
+
+import { Box, Button, Input, Text } from '@stacks/ui';
+import { useField } from 'formik';
+
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
+
+import { Description, Step } from '../../components/stacking-form-step';
 
 export function AuthId() {
   const [field, meta, helpers] = useField('authId');
