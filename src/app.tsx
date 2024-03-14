@@ -33,6 +33,7 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
+import { GenerateSignerKeySignature } from './pages/stacking/generate-signature/signer-key-signature';
 
 const queryClient = new QueryClient();
 
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
               {
                 path: 'self-service-extend',
                 element: <SelfServiceExtend />,
+              },
+              {
+                path: 'generate-signature',
+                element: <GenerateSignerKeySignature />,
               },
               { path: 'pool/:poolAddress', element: <PoolInfo /> },
               {
