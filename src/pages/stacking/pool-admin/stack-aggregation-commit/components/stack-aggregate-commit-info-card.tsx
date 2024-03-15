@@ -13,12 +13,13 @@ import {
 import { truncateMiddle } from '@utils/tx-utils';
 
 import { StackAggregationCommitFormValues } from '../types';
-import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
+import { SignatureSection } from '../../../signer/generate-signature/components/signature-section';
+import { MAX_U128 } from '../../../signer/generate-signature/types';
 
 export function InfoPanel() {
   const f = useFormikContext<StackAggregationCommitFormValues>();
 
-  const { rewardCycleId, poxAddress, signerKey, signerSignature } = f.values;
+  const { rewardCycleId, poxAddress, signerKey, signerSignature, maxAmount, authId } = f.values;
 
   return (
     <InfoCard minHeight="84px">
@@ -46,7 +47,7 @@ export function InfoPanel() {
           <SignatureSection
             signatureData={
               signerSignature && signerKey
-                ? { signature: signerSignature, publicKey: signerKey }
+                ? { signature: signerSignature, publicKey: signerKey, maxAmount, authId }
                 : undefined
             }
           />

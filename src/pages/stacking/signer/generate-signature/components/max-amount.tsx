@@ -11,7 +11,6 @@ import { MAX_U128 } from '../types';
 
 export function MaxAmount() {
   const [field, meta, helpers] = useField('maxAmount');
-  // const form = useFormikContext<{ topic: string }>();
   const setMax = React.useCallback(() => {
     helpers.setValue(MAX_U128.toString());
   }, [helpers]);

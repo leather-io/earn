@@ -5,7 +5,6 @@ import { Description, Step } from '../../../components/stacking-form-step';
 
 export function Topic() {
   const [field, _meta] = useField('topic');
-  // const form = useFormikContext<{ topic: string }>();
   return (
     <Step title="Topic">
       <Description>

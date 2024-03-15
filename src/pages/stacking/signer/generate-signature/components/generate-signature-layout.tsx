@@ -38,6 +38,9 @@ export function GenerateSignatureLayout({
   const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } =
     useFormikContext<GenerateSignatureFields>().values;
   const getPoxInfoQuery = useGetPoxInfoQuery();
+  const { onCopy } = useClipboard(
+    signatureData ? JSON.stringify({ ...signatureData, maxAmount, authId }) : ''
+  );
 
   return (
     <Screen pt="80px" mb="extra-loose">
@@ -116,6 +119,13 @@ export function GenerateSignatureLayout({
 
                   <Section>
                     <Row>
+                      <Label>Bitcoin address</Label>
+                      <Value>{poxAddress ? truncateMiddle(poxAddress) : '—'}</Value>
+                    </Row>
+                  </Section>
+
+                  <Section>
+                    <Row>
                       <Label explainer="The maximum amount of STX that can be locked while using this signature">
                         Max Amount
                       </Label>
@@ -138,17 +148,19 @@ export function GenerateSignatureLayout({
                     </Row>
                   </Section>
 
-                  <Section>
-                    <Row>
-                      <Label>Bitcoin address</Label>
-                      <Value>{poxAddress ? truncateMiddle(poxAddress) : '—'}</Value>
-                    </Row>
-                  </Section>
-
                   <>
                     {signatureData === null ? null : (
                       <>
-                        <SignatureSection signatureData={signatureData} />
+                        <Section>
+                          <Row>
+                            <Label>Signer Details to share with Stackers</Label>
+
+                            <Box display="inline-block" cursor="pointer" ml="5px" onClick={onCopy}>
+                              <IconCopy size={16} />
+                            </Box>
+                          </Row>
+                        </Section>
+                        <SignatureSection signatureData={{ ...signatureData, maxAmount, authId }} />
                       </>
                     )}
                   </>

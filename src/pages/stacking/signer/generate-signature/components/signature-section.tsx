@@ -8,14 +8,13 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
+import { MAX_U128 } from '../types';
 
 interface Props {
-  signatureData: SignatureData | undefined;
+  signatureData: (SignatureData & { maxAmount: string; authId: string }) | undefined;
 }
 
 export function SignatureSection({ signatureData }: Props) {
-  const { onCopy: onCopySig } = useClipboard(signatureData?.signature ?? '');
-  const { onCopy: onCopyPubKey } = useClipboard(signatureData?.publicKey ?? '');
   return (
     <>
       <Section>
@@ -23,11 +22,6 @@ export function SignatureSection({ signatureData }: Props) {
           <Label>
             <Flex alignItems={'center'} justifyContent={'center'}>
               <Text>Public Key</Text>
-              {signatureData && (
-                <Box display="inline-block" cursor="pointer" ml="5px" onClick={onCopyPubKey}>
-                  <IconCopy size={16} />
-                </Box>
-              )}
             </Flex>
           </Label>
         </Row>
@@ -44,11 +38,6 @@ export function SignatureSection({ signatureData }: Props) {
           <Label>
             <Flex alignItems={'center'} justifyContent={'center'}>
               <Text>Signature</Text>
-              {signatureData && (
-                <Box display="inline-block" cursor="pointer" ml="5px" onClick={onCopySig}>
-                  <IconCopy size={16} />
-                </Box>
-              )}
             </Flex>
           </Label>
         </Row>
@@ -56,6 +45,30 @@ export function SignatureSection({ signatureData }: Props) {
           <Value>
             <Text textStyle="caption" overflowWrap={'anywhere'} fontFamily={'monospace'}>
               {signatureData ? `0x${signatureData.signature}` : '—'}
+            </Text>
+          </Value>
+        </Row>
+      </Section>
+      <Section>
+        <Row>
+          <Label>Max Amount</Label>
+          <Value>
+            <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+              {signatureData
+                ? BigInt(signatureData.maxAmount) === MAX_U128
+                  ? 'MAX'
+                  : signatureData.maxAmount
+                : '—'}
+            </Text>
+          </Value>
+        </Row>
+      </Section>
+      <Section>
+        <Row>
+          <Label>Auth ID</Label>
+          <Value>
+            <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+              {signatureData ? signatureData.authId : '—'}
             </Text>
           </Value>
         </Row>

@@ -10,7 +10,6 @@ import { Description, Step } from '../../../components/stacking-form-step';
 
 export function AuthId() {
   const [field, meta, helpers] = useField('authId');
-  // const form = useFormikContext<{ topic: string }>();
   const setRandom = React.useCallback(() => {
     helpers.setValue(Math.floor(Math.random() * 10000000));
   }, [helpers]);
@@ -20,7 +19,7 @@ export function AuthId() {
         <Text>A random number that is used to prevent re-use of the signature</Text>
       </Description>
       <Box position="relative" my="loose">
-        <Input id="authId" placeholder="Maximum amount of STX to lock" {...field} />
+        <Input id="authId" placeholder="Authorisation id" {...field} />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
