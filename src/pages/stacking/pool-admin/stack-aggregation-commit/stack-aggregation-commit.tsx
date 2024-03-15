@@ -26,12 +26,17 @@ import { PoolAdminLayout } from '../components/pool-admin-layout';
 import { InfoPanel } from './components/stack-aggregate-commit-info-card';
 import { StackAggregationCommitFormValues as StackAggreagtionCommitFormValues } from './types';
 import { createHandleSubmit, createValidationSchema } from './utils';
-import { SignerKey } from './components/signer-key';
+import { SignerDetails } from './components/signer-details';
 import { useAuth } from '@components/auth-provider/auth-provider';
+import { useClipboard } from '@stacks/ui';
 
 const initialFormValues: StackAggreagtionCommitFormValues = {
   poxAddress: '',
   rewardCycleId: 0,
+  signerKey: '',
+  signerSignature: '',
+  maxAmount: '',
+  authId: '',
 };
 
 export function StackAggregationCommit() {
@@ -130,7 +135,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
               <StackingFormContainer>
                 <RewardCycle />
                 <PoxAddress />
-                <SignerKey />
+                <SignerDetails />
                 <ConfirmAndSubmit
                   isLoading={isContractCallExtensionPageOpen}
                   title="Stack Aggregation Commit"

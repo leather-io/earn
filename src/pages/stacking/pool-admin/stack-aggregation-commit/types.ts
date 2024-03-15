@@ -12,13 +12,22 @@ export interface StackAggregationCommitFormValues {
 
   /**
    * The public key of the signer that the pool is using.
-   * This must be empty for pox-3 and lower, this must be filled
    */
-  signerKey?: string;
+  signerKey: string;
 
   /**
-   * A signature from the signerKey.
-   * This must be empty for pox-3 and lower, this must be filled
+   * An optional signature from the signerKey.
+   * This can be empty if the signer uses the same signature for all stackers.
    */
   signerSignature?: string;
+
+  /**
+   * The maximal amount of STX that this pool can lock.
+   */
+  maxAmount: string;
+
+  /**
+   * The authorization id that prevents re-use of the signature.
+   */
+  authId: string;
 }

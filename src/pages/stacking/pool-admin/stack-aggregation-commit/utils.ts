@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 
 import { StackAggregationCommitFormValues } from './types';
+import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
 interface CreateValidationSchemaArgs {
   /**
@@ -20,6 +21,10 @@ export function createValidationSchema({ network }: CreateValidationSchemaArgs) 
     poxAddress: createBtcAddressSchema({
       network,
     }),
+    signerKey: hexStringSchema().required(),
+    signerSignature: hexStringSchema(),
+    maxAmount: yup.number().defined(),
+    authId: yup.number().defined(),
   });
 }
 
