@@ -29,6 +29,7 @@ import { Duration } from './components/duration';
 import { PoxAddress } from './components/pox-address/pox-address';
 import { DirectStackingFormValues } from './types';
 import { createHandleSubmit, createValidationSchema } from './utils';
+import { SignerDetails } from '../pool-admin/stack-aggregation-commit/components/signer-details';
 
 const initialFormValues: DirectStackingFormValues = {
   amount: '',
@@ -126,6 +127,7 @@ function StartDirectStackingLayout({ client }: StartDirectStackingLayoutProps) {
               <Amount />
               <Duration />
               <PoxAddress />
+              <SignerDetails />
               <ConfirmAndSubmit isLoading={isContractCallExtensionPageOpen} />
             </StackingFormContainer>
           </Form>

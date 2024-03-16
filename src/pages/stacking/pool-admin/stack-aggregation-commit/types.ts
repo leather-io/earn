@@ -1,15 +1,4 @@
-export interface StackAggregationCommitFormValues {
-  /**
-   * The PoX rewards address. The address where rewards are paid into,
-   * Must be of a supported address type
-   */
-  poxAddress: string;
-
-  /**
-   * The reward cycle id that should be finalized.
-   */
-  rewardCycleId: number;
-
+export interface SignerDetailsFormValues {
   /**
    * The public key of the signer that the pool is using.
    */
@@ -30,4 +19,17 @@ export interface StackAggregationCommitFormValues {
    * The authorization id that prevents re-use of the signature.
    */
   authId: string;
+}
+
+export interface StackAggregationCommitFormValues extends SignerDetailsFormValues {
+  /**
+   * The PoX rewards address. The address where rewards are paid into,
+   * Must be of a supported address type
+   */
+  poxAddress: string;
+
+  /**
+   * The reward cycle id that should be finalized.
+   */
+  rewardCycleId: number;
 }
