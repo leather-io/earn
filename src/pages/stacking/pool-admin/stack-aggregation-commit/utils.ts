@@ -5,9 +5,9 @@ import { PoxOperationInfo, StackingClient } from '@stacks/stacking';
 import * as yup from 'yup';
 
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
+import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
 import { StackAggregationCommitFormValues } from './types';
-import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
 interface CreateValidationSchemaArgs {
   /**

@@ -27,8 +27,8 @@ import { PoxAddress } from '../../../start-direct-stacking/components/pox-addres
 import { GenerateSignatureFields, MAX_U128 } from '../types';
 import { AuthId } from './auth-id';
 import { MaxAmount } from './max-amount';
-import { Topic } from './topic';
 import { SignatureSection } from './signature-section';
+import { Topic } from './topic';
 
 export function GenerateSignatureLayout({
   signatureData,

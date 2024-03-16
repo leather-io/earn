@@ -12,9 +12,8 @@ import {
 } from '@components/info-card';
 import { truncateMiddle } from '@utils/tx-utils';
 
-import { StackAggregationCommitFormValues } from '../types';
 import { SignatureSection } from '../../../signer/generate-signature/components/signature-section';
-import { MAX_U128 } from '../../../signer/generate-signature/types';
+import { StackAggregationCommitFormValues } from '../types';
 
 export function InfoPanel() {
   const f = useFormikContext<StackAggregationCommitFormValues>();

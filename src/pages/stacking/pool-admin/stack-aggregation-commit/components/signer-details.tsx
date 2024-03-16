@@ -1,8 +1,10 @@
-import { ErrorLabel } from '@components/error-label';
-import { ErrorText } from '@components/error-text';
+import { ClipboardEvent, useState } from 'react';
+
 import { Input, Text } from '@stacks/ui';
 import { useFormikContext } from 'formik';
-import { ClipboardEvent, useState } from 'react';
+
+import { ErrorLabel } from '@components/error-label';
+import { ErrorText } from '@components/error-text';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
@@ -39,13 +41,13 @@ export function SignerDetails() {
       <Step title="Signer Information">
         <Description>
           <Text>
-            When you participate in Stacking, you're associating your locked Stacks with a signer
-            that is participating in consensus on the Stacks network.
+            When you participate in Stacking, you&apos;re associating your locked Stacks with a
+            signer that is participating in consensus on the Stacks network.
           </Text>
         </Description>
         <Text mt={'loose'}>
-          If you aren't running your own signer, you'll need to request this information from the
-          signer you're using. Paste the received information here:
+          If you aren&apos;t running your own signer, you&apos;ll need to request this information
+          from the signer you&apos;re using. Paste the received information here:
         </Text>
         <Input onPaste={fillFromClipboard} placeholder="paste here.." />
         {error && (
@@ -65,9 +67,9 @@ export function SignerDetails() {
           title="Signer Signature (optional)"
           text={
             <Text>
-              Enter a signature (in hexadecimal format) you've received from the signer, which is
-              allowing you to Stack using their signer key. Leave it empty, if the signature is the
-              same for all stackers.
+              Enter a signature (in hexadecimal format) you&apos;ve received from the signer, which
+              is allowing you to Stack using their signer key. Leave it empty, if the signature is
+              the same for all stackers.
             </Text>
           }
           placeholder="signature 0x1234..0123..ef"
