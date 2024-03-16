@@ -21,7 +21,6 @@ import { AddNetwork } from './pages/settings/add-network';
 import { Network } from './pages/settings/network/network';
 import { SignIn } from './pages/sign-in/sign-in';
 import { DirectStackingInfo } from './pages/stacking/direct-stacking-info/direct-stacking-info';
-import { GenerateSignerKeySignature } from './pages/stacking/signer/generate-signature/signer-key-signature';
 import { DelegateStackExtend } from './pages/stacking/pool-admin/delegate-stack-extend/delegate-stack-extend';
 import { DelegateStackIncrease } from './pages/stacking/pool-admin/delegate-stack-increase/delegate-stack-increase';
 import { DelegateStackStx } from './pages/stacking/pool-admin/delegate-stack-stx/delegate-stack-stx';
@@ -29,12 +28,13 @@ import { PoolInfo } from './pages/stacking/pool-admin/pool-info/pool-info';
 import { StackAggregationCommit } from './pages/stacking/pool-admin/stack-aggregation-commit/stack-aggregation-commit';
 import { PooledStackingInfo } from './pages/stacking/pooled-stacking-info/pooled-stacking-info';
 import { SelfServiceExtend } from './pages/stacking/self-service-extend/self-service-extend';
+import { GenerateSignerKeySignature } from './pages/stacking/signer/generate-signature/signer-key-signature';
+import { SignerInfo } from './pages/stacking/signer/signer-info/signer-info';
 import { StackExtend } from './pages/stacking/stack-extend/stack-extend';
 import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
-import { SignerInfo } from './pages/stacking/signer/signer-info/signer-info';
 
 const queryClient = new QueryClient();
 

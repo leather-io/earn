@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { Box, Flex, Text } from '@stacks/ui';
 import { BigNumber } from 'bignumber.js';
 import { useFormikContext } from 'formik';
+import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
 
 import { Hr } from '@components/hr';
 import {
@@ -21,7 +22,6 @@ import { stxToMicroStx, toHumanReadableStx } from '@utils/unit-convert';
 import { calculateRewardSlots, calculateStackingBuffer } from '../../../utils/calc-stacking-buffer';
 import { createAmountText } from '../../../utils/create-amount-text';
 import { DirectStackingFormValues } from '../../types';
-import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
 
 export function InfoPanel() {
   const f = useFormikContext<DirectStackingFormValues>();

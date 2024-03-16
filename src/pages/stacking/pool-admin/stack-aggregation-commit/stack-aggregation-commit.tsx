@@ -4,6 +4,7 @@ import { FinishedTxData } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
 import { Form, Formik } from 'formik';
 
+import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { FinishedTxResultInfo } from '@components/finished-tx-result-info';
@@ -23,12 +24,10 @@ import { PoxAddress } from '../../start-direct-stacking/components/pox-address/p
 import { RewardCycle } from '../components/choose-reward-cycle';
 import { PoolAdminIntro } from '../components/pool-admin-intro';
 import { PoolAdminLayout } from '../components/pool-admin-layout';
+import { SignerDetails } from './components/signer-details';
 import { InfoPanel } from './components/stack-aggregate-commit-info-card';
 import { StackAggregationCommitFormValues as StackAggreagtionCommitFormValues } from './types';
 import { createHandleSubmit, createValidationSchema } from './utils';
-import { SignerDetails } from './components/signer-details';
-import { useAuth } from '@components/auth-provider/auth-provider';
-import { useClipboard } from '@stacks/ui';
 
 const initialFormValues: StackAggreagtionCommitFormValues = {
   poxAddress: '',

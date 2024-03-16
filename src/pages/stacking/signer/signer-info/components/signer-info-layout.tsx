@@ -1,7 +1,8 @@
+import { Box, Button, Flex } from '@stacks/ui';
+
 import { Screen } from '@components/screen';
 import { Title } from '@components/title';
 import { useNavigate } from '@hooks/use-navigate';
-import { Box, Button, Flex } from '@stacks/ui';
 
 export function SignerInfoLayout() {
   const navigate = useNavigate();

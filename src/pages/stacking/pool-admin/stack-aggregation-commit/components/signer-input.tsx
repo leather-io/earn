@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
+
+import { Box, Input } from '@stacks/ui';
+import { useField } from 'formik';
+
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { Title } from '@components/title';
-import { Box, Input } from '@stacks/ui';
-import { FieldInputProps, FieldMetaProps, useField } from 'formik';
-import { ReactNode } from 'react';
 
 interface Props {
   title: string;

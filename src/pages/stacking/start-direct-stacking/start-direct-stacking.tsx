@@ -21,6 +21,7 @@ import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { StackingFormContainer } from '../components/stacking-form-container';
 import { StackingFormInfoPanel } from '../components/stacking-form-info-panel';
 import { StartStackingLayout } from '../components/stacking-layout';
+import { SignerDetails } from '../pool-admin/stack-aggregation-commit/components/signer-details';
 import { Amount } from './components/choose-amount';
 import { ConfirmAndSubmit } from './components/confirm-and-submit';
 import { InfoPanel } from './components/direct-stacking-info-card/direct-stacking-info-card';
@@ -29,12 +30,15 @@ import { Duration } from './components/duration';
 import { PoxAddress } from './components/pox-address/pox-address';
 import { DirectStackingFormValues } from './types';
 import { createHandleSubmit, createValidationSchema } from './utils';
-import { SignerDetails } from '../pool-admin/stack-aggregation-commit/components/signer-details';
 
 const initialFormValues: DirectStackingFormValues = {
   amount: '',
   lockPeriod: 12,
   poxAddress: '',
+  signerKey: '',
+  signerSignature: '',
+  maxAmount: '',
+  authId: '',
 };
 
 export function StartDirectStacking() {

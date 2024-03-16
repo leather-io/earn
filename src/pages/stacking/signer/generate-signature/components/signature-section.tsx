@@ -1,6 +1,5 @@
 import { SignatureData } from '@stacks/connect';
-import { Box, Flex, Text, useClipboard } from '@stacks/ui';
-import { IconCopy } from '@tabler/icons-react';
+import { Flex, Text } from '@stacks/ui';
 
 import {
   InfoCardLabel as Label,
@@ -8,6 +7,7 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
+
 import { MAX_U128 } from '../types';
 
 interface Props {

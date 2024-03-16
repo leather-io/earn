@@ -37,7 +37,7 @@ export function PoxAddress({ description }: Props) {
           {description ? (
             <Text>{description}</Text>
           ) : (
-            <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.'</Text>
+            <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.</Text>
           )}
         </Description>
         <CryptoAddressInput fieldName="poxAddress" addressType="BTC" {...field}>
