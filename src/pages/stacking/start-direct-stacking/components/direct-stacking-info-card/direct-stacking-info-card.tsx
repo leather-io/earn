@@ -21,12 +21,14 @@ import { stxToMicroStx, toHumanReadableStx } from '@utils/unit-convert';
 import { calculateRewardSlots, calculateStackingBuffer } from '../../../utils/calc-stacking-buffer';
 import { createAmountText } from '../../../utils/create-amount-text';
 import { DirectStackingFormValues } from '../../types';
+import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
 
 export function InfoPanel() {
   const f = useFormikContext<DirectStackingFormValues>();
   const getPoxInfoQuery = useGetPoxInfoQuery();
 
-  const { amount, lockPeriod, poxAddress } = f.values;
+  const { amount, lockPeriod, poxAddress, signerKey, signerSignature, maxAmount, authId } =
+    f.values;
 
   const amountToBeStacked = useMemo(
     () => stxToMicroStx(parseNumericalFormInput(amount)).integerValue(),
@@ -91,6 +93,14 @@ export function InfoPanel() {
               <Value>{poxAddress ? truncateMiddle(poxAddress) : '—'}</Value>
             </Row>
           </Section>
+
+          <SignatureSection
+            signatureData={
+              signerSignature && signerKey
+                ? { signature: signerSignature, publicKey: signerKey, maxAmount, authId }
+                : undefined
+            }
+          />
         </Group>
       </Box>
     </InfoCard>
