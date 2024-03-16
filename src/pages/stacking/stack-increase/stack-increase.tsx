@@ -85,6 +85,10 @@ export function StackIncrease() {
     <Formik
       initialValues={{
         increaseBy: microStxToStxRounded(availableBalanceUStx),
+        signerKey: '',
+        signerSignature: '',
+        maxAmount: '',
+        authId: '',
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}

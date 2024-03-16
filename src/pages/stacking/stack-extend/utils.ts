@@ -7,7 +7,9 @@ import * as yup from 'yup';
 import routes from '@constants/routes';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 
-export interface EditingFormValues {
+import { SignerDetailsFormValues } from '../pool-admin/stack-aggregation-commit/types';
+
+export interface EditingFormValues extends SignerDetailsFormValues {
   extendCycles: number;
   poxAddress: string;
 }
@@ -40,13 +42,24 @@ export function createHandleSubmit({
   navigate,
   setIsContractCallExtensionPageOpen,
 }: CreateHandleSubmitArgs) {
-  return async ({ extendCycles, poxAddress }: EditingFormValues) => {
+  return async ({
+    extendCycles,
+    poxAddress,
+    signerKey,
+    signerSignature,
+    maxAmount,
+    authId,
+  }: EditingFormValues) => {
     if (!client) return;
     const stackingContract = await client.getStackingContract();
     const stackExtendOptions = client.getStackExtendOptions({
       contract: stackingContract,
       extendCycles,
       poxAddress,
+      signerKey,
+      signerSignature,
+      maxAmount: BigInt(maxAmount),
+      authId,
     });
     setIsContractCallExtensionPageOpen(true);
     showContractCall({

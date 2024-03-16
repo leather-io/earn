@@ -70,6 +70,10 @@ export function StackExtend() {
       initialValues={{
         poxAddress: formatPoxAddressToNetwork(network, stackerInfoDetails.pox_address),
         extendCycles: 12 - stackerInfoDetails.lock_period,
+        signerKey: '',
+        signerSignature: '',
+        maxAmount: '',
+        authId: '',
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
