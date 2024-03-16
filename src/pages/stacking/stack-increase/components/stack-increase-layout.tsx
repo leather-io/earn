@@ -20,6 +20,7 @@ import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { PendingStackIncreaseAlert } from '../../components/pending-stack-increase-alert';
 import { StackIncreaseInfo } from '../../direct-stacking-info/get-has-pending-stack-increase';
+import { SignerDetails } from '../../pool-admin/stack-aggregation-commit/components/signer-details';
 import { EditingFormValues } from '../utils';
 import { Amount } from './choose-amount';
 
@@ -67,6 +68,8 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
                 <Row>
                   <Amount />
                 </Row>
+
+                <SignerDetails />
 
                 <Row m="loose" justifyContent="space-between">
                   <Button mode="tertiary" onClick={onClose}>

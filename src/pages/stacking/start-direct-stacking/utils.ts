@@ -101,6 +101,10 @@ export function createHandleSubmit({
       poxAddress: values.poxAddress,
       // TODO
       burnBlockHeight: coreInfo.burn_block_height,
+      signerKey: values.signerKey,
+      signerSignature: values.signerSignature,
+      maxAmount: BigInt(values.maxAmount),
+      authId: values.authId,
     });
 
     showContractCall({

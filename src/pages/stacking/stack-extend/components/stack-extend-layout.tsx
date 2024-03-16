@@ -29,6 +29,7 @@ import { PendingStackExtendAlert } from '../../components/pending-stack-extend-a
 import { Description } from '../../components/stacking-form-step';
 import { Stepper } from '../../components/stepper';
 import { StackExtendInfo } from '../../direct-stacking-info/get-has-pending-stack-extend';
+import { SignerDetails } from '../../pool-admin/stack-aggregation-commit/components/signer-details';
 import { EditingFormValues } from '../utils';
 
 interface StackExtendLayoutProps {
@@ -111,6 +112,7 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
                     <Address address={poxAddress} />
                   </Value>
                 </Row>
+                <SignerDetails />
                 <Row m="loose" justifyContent="space-between">
                   <Button mode="tertiary" onClick={onClose}>
                     Cancel

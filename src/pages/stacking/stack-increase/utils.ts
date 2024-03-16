@@ -12,8 +12,9 @@ import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 import { stxBalanceValidator } from '@utils/validators/stx-balance-validator';
 
 import { StackIncreaseInfo } from '../direct-stacking-info/get-has-pending-stack-increase';
+import { SignerDetailsFormValues } from '../pool-admin/stack-aggregation-commit/types';
 
-export interface EditingFormValues {
+export interface EditingFormValues extends SignerDetailsFormValues {
   increaseBy: BigNumber;
 }
 
@@ -65,12 +66,22 @@ export function createHandleSubmit({
   navigate,
   setIsContractCallExtensionPageOpen,
 }: CreateHandleSubmitArgs) {
-  return async ({ increaseBy }: EditingFormValues) => {
+  return async ({
+    increaseBy,
+    signerKey,
+    signerSignature,
+    maxAmount,
+    authId,
+  }: EditingFormValues) => {
     if (!client) return;
     const stackingContract = await client.getStackingContract();
     const stackIncreaseOptions = client.getStackIncreaseOptions({
       contract: stackingContract,
       increaseBy: stxToMicroStx(increaseBy).toString(),
+      signerKey,
+      signerSignature,
+      maxAmount: BigInt(maxAmount),
+      authId,
     });
     setIsContractCallExtensionPageOpen(true);
     showContractCall({
