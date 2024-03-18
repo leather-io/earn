@@ -81,7 +81,7 @@ export function createHandleSubmit({
       signerKey,
       signerSignature,
       maxAmount: BigInt(maxAmount),
-      authId,
+      authId: parseInt(authId),
     });
     setIsContractCallExtensionPageOpen(true);
     showContractCall({

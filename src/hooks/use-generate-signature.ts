@@ -16,6 +16,8 @@ export interface GenerateSignatureOptions {
   poxAddress: string;
   period: number;
   topic: Pox4SignatureTopic;
+  maxAmount: bigint;
+  authId: number;
 }
 
 export function useGenerateStackingSignature() {
@@ -30,6 +32,8 @@ export function useGenerateStackingSignature() {
         network: network.network,
         rewardCycle: options.rewardCycle,
         poxAddress: options.poxAddress,
+        maxAmount: options.maxAmount,
+        authId: options.authId,
       });
 
       await openStructuredDataSignatureRequestPopup({
@@ -45,6 +49,8 @@ export function useGenerateStackingSignature() {
             poxAddress: options.poxAddress,
             signature: data.signature,
             publicKey: data.publicKey,
+            maxAmount: options.maxAmount,
+            authId: options.authId,
           });
           console.log(isValid);
           setSignatureData(data);

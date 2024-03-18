@@ -104,7 +104,7 @@ export function createHandleSubmit({
       signerKey: values.signerKey,
       signerSignature: values.signerSignature,
       maxAmount: BigInt(values.maxAmount),
-      authId: values.authId,
+      authId: parseInt(values.authId),
     });
 
     showContractCall({
