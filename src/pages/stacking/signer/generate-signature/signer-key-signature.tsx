@@ -74,6 +74,8 @@ export function GenerateSignerKeySignature() {
           period: values.period,
           rewardCycle: values.rewardCycleId,
           topic: values.topic,
+          maxAmount: BigInt(values.maxAmount),
+          authId: values.authId,
         });
       }}
       validationSchema={validationSchema}
