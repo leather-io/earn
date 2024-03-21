@@ -50,6 +50,8 @@ export function createHandleSubmit({
       rewardCycle: values.rewardCycleId,
       signerKey: withSignerKey ? values.signerKey : undefined,
       signerSignature: withSignerKey ? values.signerSignature : undefined,
+      maxAmount: values.maxAmount,
+      authId: parseInt(values.authId, 10) * 1000000,
     });
 
     showContractCall({

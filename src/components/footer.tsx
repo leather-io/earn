@@ -22,7 +22,15 @@ export function Footer() {
         sx={{ textDecoration: 'underline' }}
         href={`${window.location.origin}/pool-admin${createSearch(activeNetwork)}`}
       >
-        Use Hot Wallet
+        Pool Administration
+      </OpenLinkInNewTab>
+      <OpenLinkInNewTab
+        color={figmaTheme.text}
+        fontWeight={500}
+        sx={{ textDecoration: 'underline' }}
+        href={`${window.location.origin}/signer/generate-signature${createSearch(activeNetwork)}`}
+      >
+        Signer Key Signature
       </OpenLinkInNewTab>
     </Flex>
   );
