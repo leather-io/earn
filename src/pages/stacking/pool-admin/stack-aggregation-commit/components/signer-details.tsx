@@ -1,6 +1,6 @@
 import { ClipboardEvent, useState } from 'react';
 
-import { Input, Text } from '@stacks/ui';
+import { Input, Text, color } from '@stacks/ui';
 import { useFormikContext } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -40,12 +40,12 @@ export function SignerDetails() {
     <>
       <Step title="Signer Information">
         <Description>
-          <Text>
+          <Text color={color('text-caption')}>
             When you participate in Stacking, you&apos;re associating your locked Stacks with a
             signer that is participating in consensus on the Stacks network.
           </Text>
         </Description>
-        <Text mt={'loose'}>
+        <Text mt={'loose'} color={color('text-caption')}>
           If you aren&apos;t running your own signer, you&apos;ll need to request this information
           from the signer you&apos;re using. Paste the received information here:
         </Text>
@@ -55,18 +55,24 @@ export function SignerDetails() {
             <ErrorText>{error}</ErrorText>
           </ErrorLabel>
         )}
-        <Text mt={'loose'}>Alternatively, enter the information manually.</Text>
+        <Text mt={'loose'} color={color('text-caption')}>
+          Alternatively, enter the information manually.
+        </Text>
 
         <SignerInput
           title="Signer Public Key"
-          text={<Text>Enter the public key of the signer in hexadecimal format</Text>}
+          text={
+            <Text color={color('text-caption')}>
+              Enter the public key of the signer in hexadecimal format
+            </Text>
+          }
           placeholder="public key 0x1234..ef"
           fieldName="signerKey"
         />
         <SignerInput
           title="Signer Signature (optional)"
           text={
-            <Text>
+            <Text color={color('text-caption')}>
               Enter a signature (in hexadecimal format) you&apos;ve received from the signer, which
               is allowing you to Stack using their signer key. Leave it empty, if the signature is
               the same for all stackers.
@@ -78,7 +84,7 @@ export function SignerDetails() {
         <SignerInput
           title="Max Amount"
           text={
-            <Text>
+            <Text color={color('text-caption')}>
               Enter the maximum amount of STX that can be locked while using this signature.
             </Text>
           }
@@ -88,7 +94,9 @@ export function SignerDetails() {
         <SignerInput
           title="Auth ID"
           text={
-            <Text>Enter the random number that is used to prevent re-use of the signature</Text>
+            <Text color={color('text-caption')}>
+              Enter the random number that is used to prevent re-use of the signature
+            </Text>
           }
           placeholder="value provided by signer"
           fieldName="authId"

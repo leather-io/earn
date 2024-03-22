@@ -1,4 +1,4 @@
-import { Box, Text } from '@stacks/ui';
+import { Box, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { Description, Step } from '../../../components/stacking-form-step';
@@ -8,7 +8,9 @@ export function Topic() {
   return (
     <Step title="Topic">
       <Description>
-        <Text>Select the topic (stacking method) for this signature</Text>
+        <Text color={color('text-caption')}>
+          Select the topic (stacking method) for this signature
+        </Text>
       </Description>
       <Box border="1px solid var(--colors-border)" padding="2px">
         <select
@@ -16,7 +18,7 @@ export function Topic() {
           id="topic"
           name="topic"
           value={field.value}
-          style={{ background: 'none', width: '100%' }}
+          style={{ background: 'none', width: '100%', color: color('text-caption') }}
         >
           <option value="stack-stx">stack-stx</option>
           <option value="agg-commit">stack-aggregation-commit</option>

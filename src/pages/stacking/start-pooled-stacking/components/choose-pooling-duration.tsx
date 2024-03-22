@@ -49,12 +49,12 @@ export function ChoosePoolingDuration() {
   return !customDuration && duration > 0 ? (
     <Step title="Duration">
       <Description>
-        <Text>
+        <Text color={color('text-caption')}>
           The pool looks your STX for {duration} cycle{duration > 1 ? 's' : ''} at the time. You can
           revoke the pool permission at any time and your STX will be unlocked after the end of the
           next cycle.
         </Text>
-        <Text>
+        <Text color={color('text-caption')}>
           By default, you will be part of the pool until you revoke (indefinite duration). You can
           set a limit to leave the pool automatically{' '}
           <Button
@@ -74,7 +74,7 @@ export function ChoosePoolingDuration() {
   ) : (
     <Step title="Duration">
       <Description>
-        <Text>
+        <Text color={color('text-caption')}>
           Choose whether you want to pool with a limited duration, or give the pool indefinite
           permission. Each cycles lasts around 15 days.
         </Text>

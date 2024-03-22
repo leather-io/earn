@@ -49,7 +49,7 @@ export const StackingOptionCardTitle: FC<BoxProps> = props => (
 );
 
 export const StackingOptionsCardDescription: FC<BoxProps> = props => (
-  <Text textStyle="body.large" mt="extra-loose" {...props} />
+  <Text color={color('text-body')} textStyle="body.large" mt="extra-loose" {...props} />
 );
 
 export const StackingOptionCardBenefitContainer: FC<BoxProps> = props => (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Button, Input, Text } from '@stacks/ui';
+import { Box, Button, Input, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -17,7 +17,9 @@ export function MaxAmount() {
   return (
     <Step title="Max Amount">
       <Description>
-        <Text>Enter the maximum amount of STX that can be locked while using this signature</Text>
+        <Text color={color('text-caption')}>
+          Enter the maximum amount of STX that can be locked while using this signature
+        </Text>
       </Description>
       <Box position="relative" my="loose">
         <Input id="maxAmount" placeholder="Maximum amount of STX to lock" {...field} />

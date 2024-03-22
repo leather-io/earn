@@ -1,4 +1,4 @@
-import { Text } from '@stacks/ui';
+import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -15,7 +15,9 @@ export function Duration({ fieldName, description }: { fieldName?: string; descr
     <>
       <Step title="Duration">
         <Description>
-          <Text>{description || 'Number of cycles to lock STX for this stacker'}</Text>
+          <Text color={color('text-caption')}>
+            {description || 'Number of cycles to lock STX for this stacker'}
+          </Text>
         </Description>
 
         <Stepper

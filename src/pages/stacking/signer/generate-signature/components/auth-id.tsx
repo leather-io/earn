@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Button, Input, Text } from '@stacks/ui';
+import { Box, Button, Input, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -16,7 +16,9 @@ export function AuthId() {
   return (
     <Step title="Auth ID">
       <Description>
-        <Text>A random number that is used to prevent re-use of the signature</Text>
+        <Text color={color('text-caption')}>
+          A random number that is used to prevent re-use of the signature
+        </Text>
       </Description>
       <Box position="relative" my="loose">
         <Input id="authId" placeholder="Authorisation id" {...field} />

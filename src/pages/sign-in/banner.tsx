@@ -1,12 +1,10 @@
-import { Box } from '@stacks/ui';
-
-import { figmaTheme } from '@constants/figma-theme';
+import { Box, color } from '@stacks/ui';
 
 export function Banner() {
   return (
     <Box
-      color={figmaTheme.textSubdued}
-      backgroundColor={figmaTheme.backgroundSubdued}
+      color={color('text-caption')}
+      backgroundColor={color('bg')}
       fontSize="12px"
       textAlign="center"
       px="24px"

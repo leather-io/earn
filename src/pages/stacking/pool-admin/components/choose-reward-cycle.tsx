@@ -1,4 +1,4 @@
-import { Box, Input, Stack, Text } from '@stacks/ui';
+import { Box, Input, Stack, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorAlert } from '@components/error-alert';
@@ -24,7 +24,9 @@ export function RewardCycle() {
     <Step title="Choose reward cycle">
       <Description>
         <Stack alignItems="flex-start" spacing="base">
-          <Text>Next cycle is {getPoxInfoQuery.data.reward_cycle_id + 1}</Text>
+          <Text color={color('text-caption')}>
+            Next cycle is {getPoxInfoQuery.data.reward_cycle_id + 1}
+          </Text>
         </Stack>
       </Description>
 

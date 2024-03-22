@@ -61,5 +61,5 @@ export const InfoCardLabel: FC<InfoCardLabelProps> = ({ children, ...props }) =>
 );
 
 export const InfoCardValue: FC<FlexProps> = props => (
-  <Text textStyle="body.large.medium" textAlign="right" {...props} />
+  <Text textStyle="body.large.medium" textAlign="right" color={color('text-caption')} {...props} />
 );

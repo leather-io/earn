@@ -17,7 +17,9 @@ export function ChoosePoolingRewardAddress({ editable }: Props) {
   return (
     <Step title="Bitcoin address">
       <Description>
-        <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.</Text>
+        <Text color={color('text-caption')}>
+          Enter the Bitcoin address where you&apos;d like to receive your rewards.
+        </Text>
       </Description>
 
       <Box position="relative" maxWidth="400px">

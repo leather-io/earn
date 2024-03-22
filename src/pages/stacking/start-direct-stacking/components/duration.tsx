@@ -1,4 +1,4 @@
-import { Text } from '@stacks/ui';
+import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -15,7 +15,7 @@ export function Duration() {
     <>
       <Step title="Duration">
         <Description>
-          <Text>
+          <Text color={color('text-caption')}>
             Every cycle, each of your reward slots will be eligible for rewards. After your chosen
             duration, you&apos;ll need to wait one cycle before you can stack from this address
             again.

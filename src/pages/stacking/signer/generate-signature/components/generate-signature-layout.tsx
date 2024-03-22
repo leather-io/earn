@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SignatureData } from '@stacks/connect';
-import { Box, Flex, Text, useClipboard } from '@stacks/ui';
+import { Box, Flex, Text, color, useClipboard } from '@stacks/ui';
 import { IconCopy } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
 
@@ -16,6 +16,7 @@ import {
 } from '@components/info-card';
 import { Screen } from '@components/screen';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
+import { Title } from '@components/title';
 import { truncateMiddle } from '@utils/tx-utils';
 
 import { ConfirmAndSubmit } from '../../../components/confirm-and-submit';
@@ -49,6 +50,12 @@ export function GenerateSignatureLayout({
         justifyContent="space-between"
       >
         <Box maxWidth={[null, null, '544px']} mr={[null, null, 'extra-loose']}>
+          <Title>Generate a signer key signature</Title>
+          <Text textStyle="body.large" display="block" color={color('text-caption')} mt={4}>
+            When making certain Stacking transactions, it&apos;s required that you provide a
+            signature and other information to ensure that the signer you&apos;re using is
+            authorizing the transaction.
+          </Text>
           <StackingFormContainer>
             <RewardCycle />
             <PoxAddress

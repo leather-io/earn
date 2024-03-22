@@ -1,4 +1,4 @@
-import { Spinner, Text } from '@stacks/ui';
+import { Spinner, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 import { CryptoAddressInput } from 'src/pages/stacking/components/crypto-address-form';
 
@@ -35,9 +35,11 @@ export function PoxAddress({ description }: Props) {
       <Step title="Bitcoin address">
         <Description>
           {description ? (
-            <Text>{description}</Text>
+            <Text color={color('text-caption')}>{description}</Text>
           ) : (
-            <Text>Enter the Bitcoin address where you&apos;d like to receive your rewards.</Text>
+            <Text color={color('text-caption')}>
+              Enter the Bitcoin address where you&apos;d like to receive your rewards.
+            </Text>
           )}
         </Description>
         <CryptoAddressInput fieldName="poxAddress" addressType="BTC" {...field}>
