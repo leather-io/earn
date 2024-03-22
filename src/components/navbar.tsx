@@ -1,10 +1,11 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Box, Button, Flex, Text } from '@stacks/ui';
+import { Box, Button, Flex, Text, color } from '@stacks/ui';
 import { useHover } from 'use-events';
 
-import logo from '@assets/images/logo.svg';
-import { figmaTheme } from '@constants/figma-theme';
+import darkLogo from '@assets/images/logo-dark.svg';
+import lightLogo from '@assets/images/logo.svg';
 import { truncateMiddle } from '@utils/tx-utils';
 
 import { useAuth } from './auth-provider/auth-provider';
@@ -15,12 +16,17 @@ export function Navbar() {
   const { isSignedIn, signOut, signIn, address } = useAuth();
   const [isHovered, bind] = useHover();
 
+  const logo = useMemo(() => {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDark ? darkLogo : lightLogo;
+  }, []);
+
   return (
     <Flex
       flexDirection="row"
       justifyContent="space-between"
       p="base-loose"
-      borderBottom={`1px solid ${figmaTheme.borderSubdued}`}
+      borderBottom={`1px solid ${color('border')}`}
     >
       <Flex alignItems="center">
         <Link to="/">
@@ -33,7 +39,7 @@ export function Navbar() {
         <Flex p="sm" justify="right" alignItems="center">
           <NetworkInfo />
           <OpenLinkInNewTab href="https://wallet.hiro.so/wallet/faq#stacking" px="loose">
-            <Text color={figmaTheme.text} fontWeight={500}>
+            <Text color={color('text-body')} fontWeight={500}>
               FAQ
             </Text>
           </OpenLinkInNewTab>

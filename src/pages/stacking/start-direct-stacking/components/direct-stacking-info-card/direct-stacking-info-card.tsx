@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Box, Flex, Text } from '@stacks/ui';
+import { Box, Flex, Text, color } from '@stacks/ui';
 import { BigNumber } from 'bignumber.js';
 import { useFormikContext } from 'formik';
 import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
@@ -49,13 +49,16 @@ export function InfoPanel() {
     <InfoCard minHeight="84px">
       <Box mx={['loose', 'extra-loose']}>
         <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-          <Text textStyle="body.large.medium">You&apos;ll lock</Text>
+          <Text textStyle="body.large.medium" color={color('text-body')}>
+            You&apos;ll lock
+          </Text>
           <Text
             fontSize="24px"
             mt="extra-tight"
             fontWeight={500}
             fontFamily="Open Sauce"
             letterSpacing="-0.02em"
+            color={color('text-caption')}
           >
             {createAmountText(amount ?? 0)}
           </Text>

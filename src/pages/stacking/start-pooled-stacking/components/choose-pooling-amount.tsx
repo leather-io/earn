@@ -23,12 +23,14 @@ export function ChoosePoolingAmount() {
   return (
     <Step title="Amount">
       <Description>
-        <Text>Choose how much you&apos;ll pool. Your pool may require a minimum.</Text>
-        <Text>
+        <Text color={color('text-caption')}>
+          Choose how much you&apos;ll pool. Your pool may require a minimum.
+        </Text>
+        <Text color={color('text-caption')}>
           The pooled amount can be higher than your current balance to allow the pool to stack more
           in the future.
         </Text>
-        <Text>
+        <Text color={color('text-caption')}>
           The pool may stack less than the delegated amount to leave some change to pay for
           transaction fees.
         </Text>

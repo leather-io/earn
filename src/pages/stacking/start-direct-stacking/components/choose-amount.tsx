@@ -74,10 +74,10 @@ export function Amount() {
     <Step title="Choose amount">
       <Description>
         <Stack alignItems="flex-start" spacing="base">
-          <Text>
+          <Text color={color('text-caption')}>
             You&apos;ll be eligible for one reward slot for every multiple of the minimum you stack.
           </Text>
-          <Text>
+          <Text color={color('text-caption')}>
             The estimated minimum per slot can change by multiples of 10,000 every cycle, so you may
             want to add a buffer to increase your chance of keeping the same number of slots.
           </Text>

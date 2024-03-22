@@ -1,4 +1,4 @@
-import { Flex } from '@stacks/ui';
+import { Flex, color } from '@stacks/ui';
 import { useGlobalContext } from 'src/context/use-app-context';
 
 import { figmaTheme } from '@constants/figma-theme';
@@ -17,7 +17,7 @@ export function Footer() {
       columnGap="loose"
     >
       <OpenLinkInNewTab
-        color={figmaTheme.text}
+        color={color('text-caption')}
         fontWeight={500}
         sx={{ textDecoration: 'underline' }}
         href={`${window.location.origin}/pool-admin${createSearch(activeNetwork)}`}
@@ -25,7 +25,7 @@ export function Footer() {
         Pool Administration
       </OpenLinkInNewTab>
       <OpenLinkInNewTab
-        color={figmaTheme.text}
+        color={color('text-caption')}
         fontWeight={500}
         sx={{ textDecoration: 'underline' }}
         href={`${window.location.origin}/signer/generate-signature${createSearch(activeNetwork)}`}
