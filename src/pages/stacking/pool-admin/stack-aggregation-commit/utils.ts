@@ -1,13 +1,14 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import { ContractCallRegularOptions, FinishedTxData, showContractCall } from '@stacks/connect';
-import { PoxOperationInfo, StackingClient } from '@stacks/stacking';
+import { PoxOperationInfo, StackingClient, verifyPox4SignatureHash } from '@stacks/stacking';
 import * as yup from 'yup';
 
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
 import { StackAggregationCommitFormValues } from './types';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 interface CreateValidationSchemaArgs {
   /**
@@ -44,14 +45,34 @@ export function createHandleSubmit({
     // TODO: handle thrown errors
     const [stackingContract] = await Promise.all([client.getStackingContract()]);
     const withSignerKey = poxOperationInfo.current === poxOperationInfo.pox4;
+    const authId = parseInt(values.authId, 10);
+    const maxAmount = stxToMicroStxBigint(BigInt(values.maxAmount));
+    if (typeof values.signerSignature === 'string') {
+      const isValid = verifyPox4SignatureHash({
+        topic: 'agg-commit',
+        poxAddress: values.poxAddress,
+        rewardCycle: values.rewardCycleId,
+        authId,
+        maxAmount,
+        period: 1,
+        network: client.network,
+        publicKey: values.signerKey,
+        signature: values.signerSignature,
+      });
+      if (!isValid) {
+        console.warn('Unable to verify signature.');
+      } else {
+        console.log('Signature is valid');
+      }
+    }
     const stackAggregationCommitOptions = client.getStackAggregationCommitOptionsIndexed({
       contract: stackingContract,
       poxAddress: values.poxAddress,
       rewardCycle: values.rewardCycleId,
       signerKey: withSignerKey ? values.signerKey : undefined,
       signerSignature: withSignerKey ? values.signerSignature : undefined,
-      maxAmount: values.maxAmount,
-      authId: parseInt(values.authId, 10) * 1000000,
+      maxAmount: BigInt(`${values.maxAmount}000000`),
+      authId: values.maxAmount,
     });
 
     showContractCall({

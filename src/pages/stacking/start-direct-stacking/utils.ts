@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
-import { StackingClient } from '@stacks/stacking';
+import { StackingClient, verifyPox4SignatureHash } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
 
@@ -92,19 +92,41 @@ export function createHandleSubmit({
     // TODO: handle thrown errors
     const [stackingContract, coreInfo] = await Promise.all([
       client.getStackingContract(),
-      client.getCoreInfo(),
+      client.getPoxInfo(),
     ]);
+    const currentHeight = coreInfo.current_burnchain_block_height;
+    if (typeof currentHeight !== 'number') {
+      throw new Error('Unable to get current block height.');
+    }
+    const authId = parseInt(values.authId, 10);
+    const maxAmount = stxToMicroStx(values.maxAmount).toString();
+    if (typeof values.signerSignature === 'string') {
+      const isValid = verifyPox4SignatureHash({
+        topic: 'stack-stx',
+        poxAddress: values.poxAddress,
+        rewardCycle: coreInfo.current_cycle.id,
+        authId,
+        maxAmount,
+        period: values.lockPeriod,
+        network: client.network,
+        publicKey: values.signerKey,
+        signature: values.signerSignature,
+      });
+      if (!isValid) {
+        console.warn('Unable to verify signature.');
+      }
+    }
     const stackOptions = client.getStackOptions({
       contract: stackingContract,
       amountMicroStx: stxToMicroStx(values.amount).toString(),
       cycles: values.lockPeriod,
       poxAddress: values.poxAddress,
       // TODO
-      burnBlockHeight: coreInfo.burn_block_height,
+      burnBlockHeight: currentHeight,
       signerKey: values.signerKey,
       signerSignature: values.signerSignature,
-      maxAmount: BigInt(values.maxAmount),
-      authId: parseInt(values.authId),
+      maxAmount,
+      authId,
     });
 
     showContractCall({

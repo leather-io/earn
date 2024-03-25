@@ -19,6 +19,11 @@ export interface SignerDetailsFormValues {
    * The authorization id that prevents re-use of the signature.
    */
   authId: string;
+
+  /**
+   * Internal: JSON of signature data
+   */
+  signatureJSON?: string;
 }
 
 export interface StackAggregationCommitFormValues extends SignerDetailsFormValues {

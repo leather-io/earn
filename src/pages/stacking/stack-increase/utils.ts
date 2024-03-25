@@ -7,7 +7,7 @@ import * as yup from 'yup';
 
 import routes from '@constants/routes';
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
-import { stxToMicroStx } from '@utils/unit-convert';
+import { stxToMicroStx, stxToMicroStxBigint } from '@utils/unit-convert';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 import { stxBalanceValidator } from '@utils/validators/stx-balance-validator';
 
@@ -80,7 +80,7 @@ export function createHandleSubmit({
       increaseBy: stxToMicroStx(increaseBy).toString(),
       signerKey,
       signerSignature,
-      maxAmount: BigInt(maxAmount),
+      maxAmount: stxToMicroStxBigint(BigInt(maxAmount)),
       authId: parseInt(authId),
     });
     setIsContractCallExtensionPageOpen(true);

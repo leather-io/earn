@@ -8,6 +8,7 @@ import routes from '@constants/routes';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 
 import { SignerDetailsFormValues } from '../pool-admin/stack-aggregation-commit/types';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 export interface EditingFormValues extends SignerDetailsFormValues {
   extendCycles: number;
@@ -58,7 +59,7 @@ export function createHandleSubmit({
       poxAddress,
       signerKey,
       signerSignature,
-      maxAmount: BigInt(maxAmount),
+      maxAmount: stxToMicroStxBigint(BigInt(maxAmount)),
       authId: parseInt(authId),
     });
     setIsContractCallExtensionPageOpen(true);
