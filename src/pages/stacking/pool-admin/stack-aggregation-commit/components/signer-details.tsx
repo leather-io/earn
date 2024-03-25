@@ -10,6 +10,7 @@ import { ErrorText } from '@components/error-text';
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
+import { microStxToStxBigint } from '@utils/unit-convert';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
@@ -30,7 +31,8 @@ export function SignerDetails() {
           setFieldValue('signerKey', signatureData['signerKey']);
           setFieldValue('signerSignature', signatureData['signerSignature']);
           const maxAmount = BigInt(signatureData['maxAmount']);
-          setFieldValue('maxAmount', maxAmount / 1000000n);
+          console.log('maxAmount', maxAmount);
+          setFieldValue('maxAmount', microStxToStxBigint(maxAmount).toString());
           setFieldValue('authId', signatureData['authId']);
         } catch (e) {
           console.error(e);
