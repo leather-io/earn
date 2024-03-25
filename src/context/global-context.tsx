@@ -7,7 +7,7 @@ import cookie from 'cookie';
 
 import { Navigate } from '@components/navigate';
 
-import { DEFAULT_DEVNET_SERVER, IS_BROWSER } from '../constants';
+import { DEFAULT_DEVNET_SERVER, IS_BROWSER, NAKA_TESTNET_SERVER } from '../constants';
 import { NetworkModeUrlMap } from '../constants/network';
 import { Network } from '../types/network';
 
@@ -71,6 +71,13 @@ export const AppContextProvider = ({
       [DEFAULT_DEVNET_SERVER]: {
         label: 'devnet',
         url: DEFAULT_DEVNET_SERVER,
+        networkId: ChainID.Testnet,
+        mode: 'testnet',
+        isCustomNetwork: true,
+      },
+      [NAKA_TESTNET_SERVER]: {
+        label: 'Nakamoto Testnet',
+        url: NAKA_TESTNET_SERVER,
         networkId: ChainID.Testnet,
         mode: 'testnet',
         isCustomNetwork: true,
