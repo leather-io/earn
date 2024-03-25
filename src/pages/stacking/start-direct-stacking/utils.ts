@@ -99,7 +99,7 @@ export function createHandleSubmit({
       throw new Error('Unable to get current block height.');
     }
     const authId = parseInt(values.authId, 10);
-    const maxAmount = stxToMicroStx(values.maxAmount).toString();
+    const maxAmount = stxToMicroStx(values.maxAmount).toString(10);
     if (typeof values.signerSignature === 'string') {
       const isValid = verifyPox4SignatureHash({
         topic: 'stack-stx',

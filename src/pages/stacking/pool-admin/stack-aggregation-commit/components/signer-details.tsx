@@ -6,11 +6,11 @@ import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/type
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
+import { microStxToStxBigint } from '@utils/unit-convert';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
-import { microStxToStxBigint } from '@utils/unit-convert';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
@@ -32,7 +32,7 @@ export function SignerDetails() {
           setFieldValue('signerSignature', signatureData['signerSignature']);
           const maxAmount = BigInt(signatureData['maxAmount']);
           console.log('maxAmount', maxAmount);
-          setFieldValue('maxAmount', microStxToStxBigint(maxAmount).toString());
+          setFieldValue('maxAmount', microStxToStxBigint(maxAmount).toString(10));
           setFieldValue('authId', signatureData['authId']);
         } catch (e) {
           console.error(e);

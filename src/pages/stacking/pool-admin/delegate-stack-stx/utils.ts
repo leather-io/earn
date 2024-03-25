@@ -74,7 +74,7 @@ export function createHandleSubmit({
     const delegateStackStxOptions = client.getDelegateStackOptions({
       contract: stackingContract,
       stacker: values.stacker,
-      amountMicroStx: stxToMicroStx(values.amount).toString(),
+      amountMicroStx: stxToMicroStx(values.amount).toString(10),
       cycles: values.lockPeriod,
       poxAddress: values.poxAddress,
       burnBlockHeight: values.startBurnHt,
