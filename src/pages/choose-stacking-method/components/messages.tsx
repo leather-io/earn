@@ -10,6 +10,8 @@ import { BUY_STACKS_URL } from '@constants/app';
 
 import { SignedInProps } from '../types';
 import { hasExistingCommitment } from '../utils';
+import { createSearch } from '@utils/networks';
+import { useGlobalContext } from 'src/context/use-app-context';
 
 export function Messages({
   hasEnoughBalanceToDirectStack,
@@ -18,6 +20,7 @@ export function Messages({
   hasExistingDelegation,
   hasExistingDirectStacking,
 }: SignedInProps) {
+  const { activeNetwork } = useGlobalContext();
   return (
     <Stack spacing="base-tight">
       {(hasExistingDelegation || hasExistingDelegatedStacking) && (
@@ -43,7 +46,11 @@ export function Messages({
               It appears that you&apos;re currently stacking. If your locking period recently ended,
               you&apos;ll soon be able to stack again.
             </Text>
-            <Caption color={color('brand')} to="../direct-stacking-info" as={Link}>
+            <Caption
+              color={color('brand')}
+              to={`/direct-stacking-info${createSearch(activeNetwork)}`}
+              as={Link}
+            >
               View your stacking info.
             </Caption>
           </Stack>

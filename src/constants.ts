@@ -25,4 +25,6 @@ export const DEFAULT_TESTNET_SERVER = 'https://api.testnet.hiro.so';
 
 export const DEFAULT_DEVNET_SERVER = 'http://localhost:3999';
 
+export const NAKA_TESTNET_SERVER = 'https://api.nakamoto.testnet.hiro.so';
+
 export const VERSION = packageJson.version;
