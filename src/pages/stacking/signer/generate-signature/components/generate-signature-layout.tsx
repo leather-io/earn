@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { SignatureData } from '@stacks/connect';
 import { Box, Flex, Text, color, useClipboard } from '@stacks/ui';
@@ -25,11 +25,12 @@ import { StackingFormInfoPanel } from '../../../components/stacking-form-info-pa
 import { Duration } from '../../../pool-admin/components/choose-duration';
 import { RewardCycle } from '../../../pool-admin/components/choose-reward-cycle';
 import { PoxAddress } from '../../../start-direct-stacking/components/pox-address/pox-address';
-import { GenerateSignatureFields, MAX_U128 } from '../types';
+import { GenerateSignatureFields, MAX_U128, SignatureJSON } from '../types';
 import { AuthId } from './auth-id';
 import { MaxAmount } from './max-amount';
 import { SignatureSection } from './signature-section';
 import { Topic } from './topic';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 export function GenerateSignatureLayout({
   signatureData,
@@ -39,9 +40,21 @@ export function GenerateSignatureLayout({
   const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } =
     useFormikContext<GenerateSignatureFields>().values;
   const getPoxInfoQuery = useGetPoxInfoQuery();
-  const { onCopy } = useClipboard(
-    signatureData ? JSON.stringify({ ...signatureData, maxAmount, authId }) : ''
-  );
+  const clipboardString = useMemo(() => {
+    if (!signatureData) return '';
+    const data: SignatureJSON = {
+      signerKey: signatureData.publicKey,
+      signerSignature: signatureData.signature,
+      authId,
+      rewardCycle: rewardCycleId.toString(),
+      maxAmount: stxToMicroStxBigint(BigInt(maxAmount)).toString(),
+      period: period.toString(),
+      poxAddress,
+      method: topic,
+    };
+    return JSON.stringify(data, null, 2);
+  }, [signatureData, maxAmount, authId, period, poxAddress, topic, rewardCycleId]);
+  const { onCopy } = useClipboard(clipboardString);
 
   return (
     <Screen pt="80px" mb="extra-loose">

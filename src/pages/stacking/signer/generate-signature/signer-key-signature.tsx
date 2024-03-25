@@ -15,6 +15,7 @@ import { useGenerateStackingSignature } from '../../../../hooks/use-generate-sig
 import { GenerateSignatureLayout } from './components/generate-signature-layout';
 import { GenerateSignatureFields, MAX_U128 } from './types';
 import { createValidationSchema } from './utils';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 const initialFormValues: GenerateSignatureFields = {
   topic: Pox4SignatureTopic.StackStx,
@@ -67,16 +68,15 @@ export function GenerateSignerKeySignature() {
         authId: authIdDefault,
       }}
       onSubmit={async values => {
-        // handleSubmit(values);
-        console.log(values);
         await openSignatureRequest({
           poxAddress: values.poxAddress,
           period: values.period,
           rewardCycle: values.rewardCycleId,
           topic: values.topic,
-          maxAmount: BigInt(values.maxAmount),
+          maxAmount: stxToMicroStxBigint(BigInt(values.maxAmount)),
           authId: values.authId,
         });
+        return;
       }}
       validationSchema={validationSchema}
     >

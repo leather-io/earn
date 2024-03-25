@@ -9,6 +9,7 @@ import { ErrorText } from '@components/error-text';
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
+import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/types';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
@@ -24,12 +25,15 @@ export function SignerDetails() {
     ) {
       const updateValues: FunctionStringCallback = v => {
         try {
-          const signatureData = JSON.parse(v);
-          setFieldValue('signerKey', signatureData['publicKey']);
-          setFieldValue('signerSignature', signatureData['signature']);
-          setFieldValue('maxAmount', signatureData['maxAmount']);
+          setFieldValue('signatureJSON', v);
+          const signatureData = JSON.parse(v) as SignatureJSON;
+          setFieldValue('signerKey', signatureData['signerKey']);
+          setFieldValue('signerSignature', signatureData['signerSignature']);
+          const maxAmount = BigInt(signatureData['maxAmount']);
+          setFieldValue('maxAmount', maxAmount / 1000000n);
           setFieldValue('authId', signatureData['authId']);
         } catch (e) {
+          console.error(e);
           setError('Invalid signer data');
         }
       };

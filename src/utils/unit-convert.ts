@@ -30,3 +30,13 @@ export function toHumanReadableStx(microStx: string | number | bigint | BigNumbe
   const amount = microStxToStx(microStx);
   return amount.toFormat() + ' STX';
 }
+
+// Max U128 is too large for BigNumber
+export function stxToMicroStxBigint(stx: bigint) {
+  return stx * 1000000n;
+}
+
+// Max U128 is too large for BigNumber
+export function microStxToStxBigint(microStx: bigint) {
+  return microStx / 1000000n;
+}
