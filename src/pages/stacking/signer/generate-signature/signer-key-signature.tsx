@@ -10,12 +10,12 @@ import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 import { useGenerateStackingSignature } from '../../../../hooks/use-generate-signature';
 import { GenerateSignatureLayout } from './components/generate-signature-layout';
 import { GenerateSignatureFields, MAX_U128 } from './types';
 import { createValidationSchema } from './utils';
-import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 const initialFormValues: GenerateSignatureFields = {
   topic: Pox4SignatureTopic.StackStx,

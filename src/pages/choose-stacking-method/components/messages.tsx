@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 
 import { Stack, Text, color } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
+import { useGlobalContext } from 'src/context/use-app-context';
 
 import { Alert } from '@components/alert';
 import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { Caption } from '@components/typography';
 import { BUY_STACKS_URL } from '@constants/app';
+import { createSearch } from '@utils/networks';
 
 import { SignedInProps } from '../types';
 import { hasExistingCommitment } from '../utils';
-import { createSearch } from '@utils/networks';
-import { useGlobalContext } from 'src/context/use-app-context';
 
 export function Messages({
   hasEnoughBalanceToDirectStack,
