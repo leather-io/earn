@@ -18,6 +18,7 @@ import { Screen } from '@components/screen';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { Title } from '@components/title';
 import { truncateMiddle } from '@utils/tx-utils';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 import { ConfirmAndSubmit } from '../../../components/confirm-and-submit';
 import { StackingFormContainer } from '../../../components/stacking-form-container';
@@ -30,7 +31,6 @@ import { AuthId } from './auth-id';
 import { MaxAmount } from './max-amount';
 import { SignatureSection } from './signature-section';
 import { Topic } from './topic';
-import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 export function GenerateSignatureLayout({
   signatureData,

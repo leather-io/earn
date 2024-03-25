@@ -5,10 +5,10 @@ import { StackingClient } from '@stacks/stacking';
 import * as yup from 'yup';
 
 import routes from '@constants/routes';
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 
 import { SignerDetailsFormValues } from '../pool-admin/stack-aggregation-commit/types';
-import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 export interface EditingFormValues extends SignerDetailsFormValues {
   extendCycles: number;

@@ -2,6 +2,7 @@ import { ClipboardEvent, useState } from 'react';
 
 import { Input, Text, color } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/types';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -9,7 +10,6 @@ import { ErrorText } from '@components/error-text';
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
-import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/types';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();

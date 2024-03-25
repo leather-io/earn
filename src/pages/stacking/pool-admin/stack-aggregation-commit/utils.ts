@@ -4,11 +4,11 @@ import { ContractCallRegularOptions, FinishedTxData, showContractCall } from '@s
 import { PoxOperationInfo, StackingClient, verifyPox4SignatureHash } from '@stacks/stacking';
 import * as yup from 'yup';
 
+import { stxToMicroStxBigint } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
 import { StackAggregationCommitFormValues } from './types';
-import { stxToMicroStxBigint } from '@utils/unit-convert';
 
 interface CreateValidationSchemaArgs {
   /**
