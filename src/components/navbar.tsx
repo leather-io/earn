@@ -46,7 +46,7 @@ export function Navbar() {
           <Box pr="12px">
             {isSignedIn && address ? (
               <Button
-                width="142px"
+                width="160px"
                 boxShadow="none"
                 _hover={{ boxShadow: 'none' }}
                 mode="tertiary"
