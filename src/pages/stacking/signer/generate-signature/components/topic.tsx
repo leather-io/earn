@@ -12,13 +12,23 @@ export function Topic() {
           Select the topic (stacking method) for this signature
         </Text>
       </Description>
-      <Box border="1px solid var(--colors-border)" padding="2px">
+      <Box
+        border="1px solid var(--colors-border)"
+        borderRadius={'5px'}
+        padding="14px 16px"
+        my="loose"
+      >
         <select
           {...field}
           id="topic"
           name="topic"
           value={field.value}
-          style={{ background: 'none', width: '100%', color: color('text-caption') }}
+          style={{
+            background: 'none',
+            width: '100%',
+            color: color('text-caption'),
+            fontSize: '14px',
+          }}
         >
           <option value="stack-stx">stack-stx</option>
           <option value="agg-commit">stack-aggregation-commit</option>
