@@ -71,8 +71,8 @@ export function createHandleSubmit({
       rewardCycle: values.rewardCycleId,
       signerKey: withSignerKey ? values.signerKey : undefined,
       signerSignature: withSignerKey ? values.signerSignature : undefined,
-      maxAmount: BigInt(`${values.maxAmount}000000`),
-      authId: values.maxAmount,
+      maxAmount,
+      authId,
     });
 
     showContractCall({

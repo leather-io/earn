@@ -2,10 +2,12 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Box, Button, Flex, Text, color } from '@stacks/ui';
+import { useGlobalContext } from 'src/context/use-app-context';
 import { useHover } from 'use-events';
 
 import darkLogo from '@assets/images/logo-dark.svg';
 import lightLogo from '@assets/images/logo.svg';
+import { createSearch } from '@utils/networks';
 import { truncateMiddle } from '@utils/tx-utils';
 
 import { useAuth } from './auth-provider/auth-provider';
@@ -15,6 +17,7 @@ import { OpenLinkInNewTab } from './open-link-in-new-tab';
 export function Navbar() {
   const { isSignedIn, signOut, signIn, address } = useAuth();
   const [isHovered, bind] = useHover();
+  const { activeNetwork } = useGlobalContext();
 
   const logo = useMemo(() => {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -29,7 +32,7 @@ export function Navbar() {
       borderBottom={`1px solid ${color('border')}`}
     >
       <Flex alignItems="center">
-        <Link to="/">
+        <Link to={`/${createSearch(activeNetwork)}`}>
           <Flex alignItems="center">
             <img src={logo} alt="Site logo with Stacks symbol and Stacking text" />
           </Flex>
