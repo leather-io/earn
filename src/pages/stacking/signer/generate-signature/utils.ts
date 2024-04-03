@@ -13,6 +13,20 @@ export function createValidationSchema({ network }: { network: string }) {
     poxAddress: createBtcAddressSchema({
       network,
     }),
+    period: yup
+      .number()
+      .defined()
+      .test({
+        name: 'is-1-if-agg-commit',
+        message: 'Period must be 1 for stack-aggregation-commit',
+        test: (value, context) => {
+          console.log(`Testing ${value} with ${context.parent.topic}`, value);
+          if (context.parent.topic === 'agg-commit') {
+            return value === 1;
+          }
+          return true;
+        },
+      }),
     rewardCycleId: yup.number().required('Reward cycle is required'),
     authId: yup
       .number()
