@@ -37,8 +37,9 @@ export function GenerateSignatureLayout({
 }: {
   signatureData: SignatureData | null;
 }) {
-  const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } =
-    useFormikContext<GenerateSignatureFields>().values;
+  const { values: formValues, isValid } = useFormikContext<GenerateSignatureFields>();
+  const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } = formValues;
+
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const clipboardString = useMemo(() => {
     if (!signatureData) return '';
@@ -80,7 +81,12 @@ export function GenerateSignatureLayout({
             <MaxAmount />
             <AuthId />
             <Duration fieldName="period" />
-            <ConfirmAndSubmit isLoading={false} title="Submit" actionLabel="Generate Signature" />
+            <ConfirmAndSubmit
+              isLoading={false}
+              title="Submit"
+              actionLabel="Generate Signature"
+              isDisabled={!isValid}
+            />
             {/* {signatureData !== null ? (
               <Box>
                 <Text fontFamily={'monospace'}>Signature: 0x{signatureData.signature}</Text>

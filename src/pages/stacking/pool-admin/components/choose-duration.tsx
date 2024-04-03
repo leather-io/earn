@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
@@ -11,6 +13,9 @@ import { Stepper } from '../../components/stepper';
 
 export function Duration({ fieldName, description }: { fieldName?: string; description?: string }) {
   const [field, meta, helpers] = useField(fieldName || 'lockPeriod');
+  useEffect(() => {
+    console.log(meta);
+  }, [meta]);
   return (
     <>
       <Step title="Duration">
@@ -33,7 +38,7 @@ export function Duration({ fieldName, description }: { fieldName?: string; descr
           }}
         />
         <OneCycleDescriptor mt="loose" />
-        {meta.touched && meta.error && (
+        {meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
           </ErrorLabel>
