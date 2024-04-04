@@ -35,8 +35,10 @@ import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/star
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
 
 const queryClient = new QueryClient();
+
 function Root() {
   useEffect(() => void loadFonts(), []);
+
   const [searchParams] = useSearchParams();
   const chain = searchParams.get('chain');
   const api = searchParams.get('api');
