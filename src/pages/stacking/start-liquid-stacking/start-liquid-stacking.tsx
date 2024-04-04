@@ -115,13 +115,13 @@ function StartLiquidStackingLayout({ client, currentAccountAddresses }: StartLiq
               <StackingFormContainer>
                 <p>
                   Liquid Stacking, a new feature developed by Stacking DAO, gives users an
-                  "auto-compounding tokenized representation of stacked STX (stSTX)" in exchange for
-                  their STX. Unlike Stacking, there's no minimum STX requirement for participation,
-                  and according to Stacking DAO, users can trade back to STX at any time. Learn more
-                  about Stacking DAO by visiting their website and reading Stacking DAO’s docs.{' '}
-                  <br /> <br />
+                  &quot;auto-compounding tokenized representation of stacked STX (stSTX)&quot; in
+                  exchange for their STX. Unlike Stacking, there&apos;s no minimum STX requirement
+                  for participation, and according to Stacking DAO, users can trade back to STX at
+                  any time. Learn more about Stacking DAO by visiting their website and reading
+                  Stacking DAO’s docs. <br /> <br />
                   <span className="mt-4">
-                    Important: Leather allows users to integrate with Stacking DAO's liquid
+                    Important: Leather allows users to integrate with Stacking DAO&apos;s liquid
                     stacking feature, but does not manage or have any control over the liquid
                     stacking process.
                   </span>
