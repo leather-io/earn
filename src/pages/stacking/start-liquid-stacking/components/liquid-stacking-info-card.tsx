@@ -61,7 +61,7 @@ export function ProtocolInfoCard(props: FlexProps) {
             <Section>
               <Row>
                 <Label explainer="This address is provided to you by your chosen protocol for liquid stacking specifically.">
-                  Liquid Stacking address
+                  Liquid Stacking Protocol
                 </Label>
                 <Value>{protocolStxAddress ? truncateMiddle(protocolStxAddress) : '—'}</Value>
               </Row>
