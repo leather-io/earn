@@ -21,8 +21,8 @@ export function LiquidStackingTerms({ ...rest }: StackProps) {
         icon={<IconLock width="16px" height="16px" />}
       >
         <Text>
-          There is no way to unlock your STX once the protocol starts stacking them. You must wait
-          until they unlock at the end of the protocol&apos;s chosen number of cycles.
+          You are transferring STX to the liquid stacking protocol. To receive STX back, you must
+          request them from the protocol.
         </Text>
       </StackingTermItem>
       <StackingTermItem

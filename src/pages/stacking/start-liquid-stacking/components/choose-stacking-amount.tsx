@@ -66,21 +66,6 @@ export function ChooseStackingAmount() {
       {lockedBalance ? (
         <>
           <Box
-            textStyle="body.small"
-            color={color('text-caption')}
-            mt="base-tight"
-            aria-busy={queryGetAccountExtendedBalances.isLoading}
-          >
-            Minimum amount:{' '}
-            <Button
-              variant="link"
-              type="button"
-              onClick={() => helpers.setValue(microStxToStx(lockedBalance))}
-            >
-              {toHumanReadableStx(lockedBalance)}{' '}
-            </Button>
-          </Box>
-          <Box
             background={color('bg-alt')}
             my="tight"
             py="tight"
