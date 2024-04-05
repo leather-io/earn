@@ -16,7 +16,7 @@ export const protocols = {
       ' ' +
       'Locked STX will stay stacked indefinitely.',
     duration: 1,
-    website: 'https://stackingdao.com',
+    website: 'https://www.stackingdao.com',
     payoutMethod: PayoutMethod.STX,
     protocolAddress: {
       [NetworkInstance.mainnet]:
@@ -32,7 +32,7 @@ export const protocols = {
     },
     poxContract: PoxContractName.WrapperStackingDAO,
     minimumDelegationAmount: 1_000_000,
-    icon: <PoolIcon src="/32x32_StackingDao.jpg" />,
+    icon: <PoolIcon src="/32x32_StackingDao.png" />,
     allowCustomRewardAddress: false,
   },
 };
