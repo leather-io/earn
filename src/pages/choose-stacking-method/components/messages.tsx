@@ -32,7 +32,11 @@ export function Messages({
               usually takes a few seconds.
             </Text>
             <Text>
-              <Caption color={color('brand')} to="../pooled-stacking-info" as={Link}>
+              <Caption
+                color={color('brand')}
+                to={`../pooled-stacking-info${createSearch(activeNetwork)}`}
+                as={Link}
+              >
                 View your pooling info.
               </Caption>
             </Text>
