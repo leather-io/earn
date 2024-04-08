@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
 import { cyclesToBurnChainHeight } from '@utils/calculate-burn-height';
 import { stxToMicroStx, toHumanReadableStx } from '@utils/unit-convert';
-import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
+// import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 
 import { pools } from './components/preset-pools';
@@ -28,20 +28,21 @@ interface Args {
 
   networkName: StacksNetworkName;
 }
-export function createValidationSchema({ currentAccountAddress, networkName }: Args) {
+export function createValidationSchema(_args: Args) {
   return yup.object().shape({
-    poolAddress: yup.string().when('poolName', {
-      is: 'Custom Pool',
-      then: schema =>
-        stxPrincipalSchema(schema, networkName).test({
-          name: 'cannot-pool-to-yourself',
-          message: 'Cannot pool to your own STX address',
-          test(value) {
-            return value !== currentAccountAddress;
-          },
-        }),
-      otherwise: schema => schema.optional(),
-    }),
+    poolAddress: yup.string(),
+    //   .when('poolName', {
+    //   is: 'Custom Pool',
+    //   then: schema =>
+    //     stxPrincipalSchema(schema, networkName).test({
+    //       name: 'cannot-pool-to-yourself',
+    //       message: 'Cannot pool to your own STX address',
+    //       test(value) {
+    //         return value !== currentAccountAddress;
+    //       },
+    //     }),
+    //   otherwise: schema => schema.optional(),
+    // }),
     amount: stxAmountSchema()
       .test({
         name: 'test-min-allowed-delegated-stacking',
