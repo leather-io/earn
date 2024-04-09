@@ -18,8 +18,25 @@ export function StackerDetailsRows({ stackerInfoDetails, poxAddress }: StackerDe
   const lastCycle = stackerInfoDetails.first_reward_cycle + stackerInfoDetails.lock_period - 1;
   const requiresExtension =
     getPoxInfoQuery.data && getPoxInfoQuery.data.current_cycle.id >= lastCycle;
+  const hasStarted =
+    getPoxInfoQuery.data &&
+    getPoxInfoQuery.data.current_cycle.id >= stackerInfoDetails.first_reward_cycle;
   return (
     <>
+      <Row>
+        <Label
+          explainer={
+            hasStarted
+              ? `Rewards became active in cycle ${stackerInfoDetails.first_reward_cycle}`
+              : `Rewards will become active in cycle ${stackerInfoDetails.first_reward_cycle}`
+          }
+        >
+          Rewards active?
+        </Label>
+        <Value color={hasStarted ? color('feedback-success') : color('feedback-alert')}>
+          {hasStarted ? 'Yes' : 'No'}
+        </Value>
+      </Row>
       <Row>
         <Label>Start</Label>
         <Value>Cycle {stackerInfoDetails.first_reward_cycle} </Value>

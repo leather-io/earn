@@ -31,7 +31,9 @@ export function PercentageRow({ extendedStxBalances }: PercentageRowProps) {
 
   return (
     <Row>
-      <Label>Progress</Label>
+      <Label explainer="This percentage measures the number of blocks between when you locked STX to when your STX are unlocked">
+        Progress
+      </Label>
       <Value>{lockingProgressPercentString}%</Value>
     </Row>
   );
