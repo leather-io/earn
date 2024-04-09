@@ -9,9 +9,7 @@ export function LiquidStackingButton(props: ChooseStackingMethodLayoutProps) {
   const navigate = useNavigate();
   const { signIn, isSigningIn } = useAuth();
 
-  const isDisabled = props.isSignedIn
-    ? hasExistingCommitment(props) || !props.hasEnoughBalanceToPool
-    : isSigningIn;
+  const isDisabled = props.isSignedIn ? !props.hasEnoughBalanceToPool : isSigningIn;
 
   return (
     <OptionButton
