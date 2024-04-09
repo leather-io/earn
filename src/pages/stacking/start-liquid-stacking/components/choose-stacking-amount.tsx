@@ -1,5 +1,5 @@
 import { intToBigInt } from '@stacks/common';
-import { Box, Button, Flex, Input, Spinner, Text, color } from '@stacks/ui';
+import { Box, Button, Input, Spinner, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorAlert } from '@components/error-alert';
@@ -19,6 +19,8 @@ export function ChooseStackingAmount() {
   const lockedBalance = queryGetAccountExtendedBalances.data?.stx.locked
     ? intToBigInt(queryGetAccountExtendedBalances.data.stx.locked, false)
     : undefined;
+  const availableForStacking =
+    totalAvailableBalance && lockedBalance ? totalAvailableBalance - lockedBalance : undefined;
 
   return (
     <Step title="Amount">
@@ -50,36 +52,18 @@ export function ChooseStackingAmount() {
         Available balance:{' '}
         {queryGetAccountExtendedBalances.isLoading ? (
           <Spinner />
-        ) : totalAvailableBalance ? (
+        ) : availableForStacking ? (
           <Button
             variant="link"
             type="button"
-            onClick={() => helpers.setValue(microStxToStx(totalAvailableBalance))}
+            onClick={() => helpers.setValue(microStxToStx(availableForStacking))}
           >
-            {toHumanReadableStx(totalAvailableBalance)}{' '}
+            {toHumanReadableStx(availableForStacking)}
           </Button>
         ) : (
           <ErrorAlert>Failed to load</ErrorAlert>
         )}
       </Box>
-
-      {lockedBalance ? (
-        <>
-          <Box
-            background={color('bg-alt')}
-            my="tight"
-            py="tight"
-            px="base-loose"
-            borderRadius="10px"
-          >
-            <Flex>
-              <Box textStyle="body.small" color={color('text-caption')}>
-                The minimum amount is what is already stacked.
-              </Box>
-            </Flex>
-          </Box>
-        </>
-      ) : null}
     </Step>
   );
 }
