@@ -3,7 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
 import { StacksNetwork } from '@stacks/network';
-import { PoxInfo, StackingClient } from '@stacks/stacking';
+import { StackingClient } from '@stacks/stacking';
 import {
   FungibleConditionCode,
   contractPrincipalCV,
@@ -19,8 +19,8 @@ import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 
 import { protocols } from './components/preset-protocols';
 import { EditingFormValues } from './types';
-import { PoxContractName, ProtocolName } from './types-preset-protocols';
-import { getNetworkInstance, getPoxContractAddressAndName } from './utils-preset-protocols';
+import { LiquidContractName, ProtocolName } from './types-preset-protocols';
+import { getLiquidContractAddressAndName, getNetworkInstance } from './utils-preset-protocols';
 
 export function createValidationSchema() {
   return yup.object().shape({
@@ -56,34 +56,37 @@ export function createValidationSchema() {
   });
 }
 
-function getOptions(
-  values: EditingFormValues,
-  poxInfo: PoxInfo,
-  stackingContract: string,
-  client: StackingClient,
-  network: StacksNetwork
-): ContractCallRegularOptions {
+function getOptions(values: EditingFormValues, network: StacksNetwork): ContractCallRegularOptions {
   const protocol = values.protocolName ? protocols[values.protocolName] : undefined;
   if (!protocol) throw new Error('Invalid Protocol Name');
   const networkMode = getNetworkInstance(network);
 
-  const [contractAddress, contractName] = getPoxContractAddressAndName(
+  const [contractAddress, contractName] = getLiquidContractAddressAndName(
     networkMode,
-    protocol.poxContract
+    protocol.liquidContract
   );
   const stxAmount = stxToMicroStx(values.amount).toString();
   const stxAddress = values.stxAddress;
-  const functionArgs =
-    protocol.poxContract === PoxContractName.WrapperStackingDAO
-      ? [contractPrincipalCV(contractAddress, 'reserve-v1'), uintCV(stxAmount), noneCV()]
-      : [];
+  const { functionArgs, functionName } =
+    protocol.liquidContract === LiquidContractName.WrapperStackingDAO
+      ? {
+          functionArgs: [
+            contractPrincipalCV(contractAddress, 'reserve-v1'),
+            uintCV(stxAmount),
+            noneCV(),
+          ],
+          functionName: 'deposit',
+        }
+      : protocol.liquidContract === LiquidContractName.Lisa
+      ? { functionArgs: [uintCV(stxAmount)], functionName: 'request-mint' }
+      : { functionArgs: [], functionName: 'deposit' };
   const postConditions = [
     makeStandardSTXPostCondition(stxAddress!, FungibleConditionCode.LessEqual, stxAmount),
   ];
   return {
     contractAddress,
     contractName,
-    functionName: 'deposit',
+    functionName,
     functionArgs,
     postConditions,
     network,
@@ -102,13 +105,7 @@ export function createHandleSubmit({
   navigate,
 }: CreateHandleSubmitArgs) {
   return async function handleSubmit(values: EditingFormValues) {
-    // TODO: handle thrown errors
-    const [poxInfo, stackingContract] = await Promise.all([
-      client.getPoxInfo(),
-      client.getStackingContract(),
-    ]);
-
-    const liquidStackStxOptions = getOptions(values, poxInfo, stackingContract, client, network);
+    const liquidStackStxOptions = getOptions(values, network);
 
     openContractCall({
       ...liquidStackStxOptions,

@@ -1,14 +1,15 @@
 import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-preset-pools';
 
 import {
-  NetworkInstanceToPoxContractMap,
-  PayoutMethod,
-  PoxContractName,
+  NetworkInstanceToLiquidContractMap,
+  LiquidToken,
+  LiquidContractName,
   ProtocolName,
+  Protocol,
 } from '../types-preset-protocols';
 import { PoolIcon } from './pool-icon';
 
-export const protocols = {
+export const protocols: { [key in ProtocolName]: Protocol } = {
   StackingDAO: {
     name: ProtocolName.StackingDao,
     description:
@@ -17,22 +18,41 @@ export const protocols = {
       'Locked STX will stay stacked indefinitely.',
     duration: 1,
     website: 'https://www.stackingdao.com',
-    payoutMethod: PayoutMethod.STX,
+    liquidContract: LiquidContractName.WrapperStackingDAO,
+    liquidToken: LiquidToken.ST_STX,
     protocolAddress: {
       [NetworkInstance.mainnet]:
-        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][
-          PoxContractName.WrapperStackingDAO
+        NetworkInstanceToLiquidContractMap[NetworkInstance.mainnet][
+          LiquidContractName.WrapperStackingDAO
         ],
       [NetworkInstance.testnet]:
-        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][
-          PoxContractName.WrapperStackingDAO
+        NetworkInstanceToLiquidContractMap[NetworkInstance.testnet][
+          LiquidContractName.WrapperStackingDAO
         ],
       [NetworkInstance.devnet]:
-        NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperStackingDAO],
+        NetworkInstanceToLiquidContractMap[NetworkInstance.devnet][
+          LiquidContractName.WrapperStackingDAO
+        ],
     },
-    poxContract: PoxContractName.WrapperStackingDAO,
     minimumDelegationAmount: 1_000_000,
     icon: <PoolIcon src="/32x32_StackingDao.png" />,
-    allowCustomRewardAddress: false,
+  },
+  Lisa: {
+    name: ProtocolName.Lisa,
+    description: '', // TODO
+    duration: 1,
+    website: 'https://www.lisalab.io/',
+    liquidContract: LiquidContractName.Lisa,
+    liquidToken: LiquidToken.LI_STX,
+    protocolAddress: {
+      [NetworkInstance.mainnet]:
+        NetworkInstanceToLiquidContractMap[NetworkInstance.mainnet][LiquidContractName.Lisa],
+      [NetworkInstance.testnet]:
+        NetworkInstanceToLiquidContractMap[NetworkInstance.testnet][LiquidContractName.Lisa],
+      [NetworkInstance.devnet]:
+        NetworkInstanceToLiquidContractMap[NetworkInstance.devnet][LiquidContractName.Lisa],
+    },
+    minimumDelegationAmount: 1_000_000,
+    icon: <PoolIcon src="/32x32_Lisa.png" />,
   },
 };

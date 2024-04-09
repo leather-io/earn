@@ -18,7 +18,6 @@ import { truncateMiddle } from '@utils/tx-utils';
 
 import { createAmountText } from '../../utils/create-amount-text';
 import { EditingFormValues } from '../types';
-import { getPoxWrapperContract2 } from '../utils-preset-protocols';
 import { LiquidStackingAmountInfo } from './liquid-stacking-amount-info';
 import { protocols } from './preset-protocols';
 
@@ -33,10 +32,6 @@ export function ProtocolInfoCard(props: FlexProps) {
   const protocolStxAddress =
     (protocol?.protocolAddress ? protocol.protocolAddress[networkInstance] : undefined) ||
     f.values.protocolAddress;
-  const poxWrapperContract =
-    (protocol?.poxContract
-      ? getPoxWrapperContract2(networkInstance, protocol.poxContract)
-      : undefined) || poxInfoQuery.data?.contract_id;
 
   const amountText = createAmountText(amount);
 
@@ -44,7 +39,7 @@ export function ProtocolInfoCard(props: FlexProps) {
     <>
       <InfoCard {...props}>
         <Box mx={['loose', 'extra-loose']} sx={{}}>
-          <LiquidStackingAmountInfo title="You'll liquid stack up to" amountText={amountText} />
+          <LiquidStackingAmountInfo title="You'll liquid stack" amountText={amountText} />
 
           <Hr />
 
@@ -60,19 +55,13 @@ export function ProtocolInfoCard(props: FlexProps) {
 
             <Section>
               <Row>
-                <Label explainer="This address is provided to you by your chosen protocol for liquid stacking specifically.">
-                  Liquid Stacking Protocol
-                </Label>
-                <Value>{protocolStxAddress ? truncateMiddle(protocolStxAddress) : '—'}</Value>
-              </Row>
-              <Row>
                 <Label>Contract</Label>
                 <Value>
-                  {poxWrapperContract && (
+                  {protocolStxAddress && (
                     <OpenExternalLinkInNewTab
-                      href={makeExplorerTxLink(poxWrapperContract, networkName)}
+                      href={makeExplorerTxLink(protocolStxAddress, networkName)}
                     >
-                      {truncateMiddle(poxWrapperContract)}
+                      {truncateMiddle(protocolStxAddress)}
                     </OpenExternalLinkInNewTab>
                   )}
                 </Value>
