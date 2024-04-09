@@ -3,7 +3,6 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
 import { StacksNetwork } from '@stacks/network';
-import { StackingClient } from '@stacks/stacking';
 import {
   FungibleConditionCode,
   contractPrincipalCV,
@@ -93,13 +92,11 @@ function getOptions(values: EditingFormValues, network: StacksNetwork): Contract
   };
 }
 interface CreateHandleSubmitArgs {
-  client: StackingClient;
   network: StacksNetwork;
   setIsContractCallExtensionPageOpen: Dispatch<SetStateAction<boolean>>;
   navigate: NavigateFunction;
 }
 export function createHandleSubmit({
-  client,
   network,
   setIsContractCallExtensionPageOpen,
   navigate,
