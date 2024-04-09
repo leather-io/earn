@@ -3,14 +3,11 @@ import { StacksNetwork } from '@stacks/network';
 import { DEFAULT_DEVNET_SERVER } from 'src/constants';
 import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-preset-pools';
 
-import { protocols } from './components/preset-protocols';
 import {
-  NetworkInstanceToPoxContractMap,
-  PoxContractName,
-  PoxContractType,
-  Protocol,
-  ProtocolName,
-  WrapperPrincipal,
+  LiquidContractName,
+  NetworkInstanceToLiquidContractMap,
+  LiquidContractType,
+  LiquidContractPrincipal,
 } from './types-preset-protocols';
 
 export function getNetworkInstance(network: StacksNetwork) {
@@ -23,32 +20,21 @@ export function getNetworkInstance(network: StacksNetwork) {
   }
 }
 
-export function getPox3Contracts(network: StacksNetwork): PoxContractType {
+export function getPox3Contracts(network: StacksNetwork): LiquidContractType {
   const mode = getNetworkInstance(network);
-  return NetworkInstanceToPoxContractMap[mode];
+  return NetworkInstanceToLiquidContractMap[mode];
 }
 
-export function usesPoxWrapperContract(protocol: Protocol) {
-  return protocol.poxContract !== PoxContractName.Pox3;
-}
-
-export function getPoxWrapperContract(
-  protocolName: ProtocolName,
-  network: StacksNetwork
-): WrapperPrincipal {
-  return getPox3Contracts(network)[protocols[protocolName].poxContract];
-}
-
-export function getPoxWrapperContract2(
+export function getLiquidContract(
   networkInstance: NetworkInstance,
-  poxContractName: PoxContractName
-): WrapperPrincipal {
-  return NetworkInstanceToPoxContractMap[networkInstance][poxContractName];
+  poxContractName: LiquidContractName
+): LiquidContractPrincipal {
+  return NetworkInstanceToLiquidContractMap[networkInstance][poxContractName];
 }
 
-export function getPoxContractAddressAndName(
+export function getLiquidContractAddressAndName(
   networkInstance: NetworkInstance,
-  poxContract: PoxContractName
+  poxContractName: LiquidContractName
 ) {
-  return NetworkInstanceToPoxContractMap[networkInstance][poxContract].split('.');
+  return NetworkInstanceToLiquidContractMap[networkInstance][poxContractName].split('.');
 }

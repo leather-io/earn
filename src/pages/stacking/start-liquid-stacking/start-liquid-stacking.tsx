@@ -132,11 +132,7 @@ function StartLiquidStackingLayout({ client, currentAccountAddresses }: StartLiq
                   }}
                 />
                 <ChooseStackingAmount />
-                <ConfirmAndSubmit
-                  isLoading={isContractCallExtensionPageOpen}
-                  allowContractCallerTxId={''}
-                  requiresAllowContractCaller={false}
-                />
+                <ConfirmAndSubmit isLoading={isContractCallExtensionPageOpen} />
               </StackingFormContainer>
             </Form>
           </>
