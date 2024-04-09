@@ -5,9 +5,9 @@ import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-
 
 import {
   LiquidContractName,
-  NetworkInstanceToLiquidContractMap,
-  LiquidContractType,
   LiquidContractPrincipal,
+  LiquidContractType,
+  NetworkInstanceToLiquidContractMap,
 } from './types-preset-protocols';
 
 export function getNetworkInstance(network: StacksNetwork) {

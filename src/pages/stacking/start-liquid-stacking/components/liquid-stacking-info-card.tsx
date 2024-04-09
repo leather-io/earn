@@ -11,7 +11,6 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { makeExplorerTxLink } from '@utils/external-links';
 import { truncateMiddle } from '@utils/tx-utils';
@@ -23,7 +22,6 @@ import { protocols } from './preset-protocols';
 
 export function ProtocolInfoCard(props: FlexProps) {
   const f = useFormikContext<EditingFormValues>();
-  const poxInfoQuery = useGetPoxInfoQuery();
   const { networkName, networkInstance } = useStacksNetwork();
 
   const amount = f.values.amount;

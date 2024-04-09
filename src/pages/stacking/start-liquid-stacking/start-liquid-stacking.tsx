@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
-import { StackingClient } from '@stacks/stacking';
 import { Form, Formik } from 'formik';
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
-import {
-  useGetSecondsUntilNextCycleQuery,
-  useStackingClient,
-} from '@components/stacking-client-provider/stacking-client-provider';
+import { useGetSecondsUntilNextCycleQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useNavigate } from '@hooks/use-navigate';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
@@ -34,17 +30,11 @@ const initialDelegatingFormValues: Partial<EditingFormValues> = {
 };
 
 export function StartLiquidStacking() {
-  const { client } = useStackingClient();
   const { address } = useAuth();
   const { networkName } = useStacksNetwork();
 
   if (!address) {
     const msg = 'Expected `address` to be defined.';
-    console.error(msg);
-    return <CenteredErrorAlert>{msg}</CenteredErrorAlert>;
-  }
-  if (!client) {
-    const msg = 'Expected `client` to be defined.';
     console.error(msg);
     return <CenteredErrorAlert>{msg}</CenteredErrorAlert>;
   }
@@ -54,16 +44,15 @@ export function StartLiquidStacking() {
     return <CenteredErrorAlert>{msg}</CenteredErrorAlert>;
   }
 
-  return <StartLiquidStackingLayout client={client} currentAccountAddresses={{ address }} />;
+  return <StartLiquidStackingLayout currentAccountAddresses={{ address }} />;
 }
 
 interface StartLiquidStackingProps {
-  client: StackingClient;
   currentAccountAddresses: {
     address: string;
   };
 }
-function StartLiquidStackingLayout({ client, currentAccountAddresses }: StartLiquidStackingProps) {
+function StartLiquidStackingLayout({ currentAccountAddresses }: StartLiquidStackingProps) {
   const { network } = useStacksNetwork();
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
 
@@ -72,7 +61,6 @@ function StartLiquidStackingLayout({ client, currentAccountAddresses }: StartLiq
 
   const validationSchema = createValidationSchema();
   const handleStackStxSubmit = createHandleStackStxSubmit({
-    client,
     network,
     navigate,
     setIsContractCallExtensionPageOpen,

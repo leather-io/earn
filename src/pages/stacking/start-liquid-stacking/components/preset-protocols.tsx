@@ -1,11 +1,11 @@
 import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-preset-pools';
 
 import {
-  NetworkInstanceToLiquidContractMap,
-  LiquidToken,
   LiquidContractName,
-  ProtocolName,
+  LiquidToken,
+  NetworkInstanceToLiquidContractMap,
   Protocol,
+  ProtocolName,
 } from '../types-preset-protocols';
 import { PoolIcon } from './pool-icon';
 
@@ -39,7 +39,7 @@ export const protocols: { [key in ProtocolName]: Protocol } = {
   },
   Lisa: {
     name: ProtocolName.Lisa,
-    description: '', // TODO
+    description: 'See your balance increase automatically and always exchange at 1 STX to 1 LiSTX',
     duration: 1,
     website: 'https://www.lisalab.io/',
     liquidContract: LiquidContractName.Lisa,

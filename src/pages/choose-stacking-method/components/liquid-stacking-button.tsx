@@ -3,7 +3,6 @@ import { useNavigate } from '@hooks/use-navigate';
 
 import { StackingOptionCardButton as OptionButton } from '../components/start-stacking-layout';
 import { ChooseStackingMethodLayoutProps } from '../types';
-import { hasExistingCommitment } from '../utils';
 
 export function LiquidStackingButton(props: ChooseStackingMethodLayoutProps) {
   const navigate = useNavigate();
