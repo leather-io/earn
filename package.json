@@ -26,7 +26,7 @@
     "@stacks/connect": "7.7.0",
     "@stacks/connect-react": "22.4.0",
     "@stacks/network": "6.8.1",
-    "@stacks/stacking": "6.13.0",
+    "@stacks/stacking": "6.13.2",
     "@stacks/transactions": "6.13.0",
     "@stacks/ui": "7.10.0",
     "@stacks/ui-core": "7.3.0",

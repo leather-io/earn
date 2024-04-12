@@ -55,7 +55,7 @@ export function SignatureSection({ signatureData }: Props) {
           <Value>
             <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
               {signatureData && signatureData.maxAmount
-                ? BigInt(signatureData.maxAmount) === MAX_U128
+                ? signatureData.maxAmount === MAX_U128
                   ? 'MAX'
                   : signatureData.maxAmount
                 : '—'}

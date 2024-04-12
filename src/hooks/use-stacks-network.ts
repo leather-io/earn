@@ -13,6 +13,8 @@ import { fetchWithApiKey } from '@utils/fetch-with-api-keys';
 
 import { useGlobalContext } from '../context/use-app-context';
 
+export type StacksNetworkContext = ReturnType<typeof useStacksNetwork>;
+
 export const useStacksNetwork = (): {
   network: StacksTestnet | StacksMainnet;
   networkName: StacksNetworkName;

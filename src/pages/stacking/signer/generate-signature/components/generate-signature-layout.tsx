@@ -24,10 +24,10 @@ import { ConfirmAndSubmit } from '../../../components/confirm-and-submit';
 import { StackingFormContainer } from '../../../components/stacking-form-container';
 import { StackingFormInfoPanel } from '../../../components/stacking-form-info-panel';
 import { Duration } from '../../../pool-admin/components/choose-duration';
-import { RewardCycle } from '../../../pool-admin/components/choose-reward-cycle';
 import { PoxAddress } from '../../../start-direct-stacking/components/pox-address/pox-address';
 import { GenerateSignatureFields, MAX_U128, SignatureJSON } from '../types';
 import { AuthId } from './auth-id';
+import { RewardCycle } from './choose-reward-cycle';
 import { MaxAmount } from './max-amount';
 import { SignatureSection } from './signature-section';
 import { Topic } from './topic';
@@ -48,7 +48,7 @@ export function GenerateSignatureLayout({
       signerSignature: signatureData.signature,
       authId,
       rewardCycle: rewardCycleId.toString(),
-      maxAmount: stxToMicroStxBigint(BigInt(maxAmount)).toString(),
+      maxAmount: stxToMicroStxBigint(maxAmount),
       period: period.toString(),
       poxAddress,
       method: topic,
@@ -157,7 +157,7 @@ export function GenerateSignatureLayout({
                       </Label>
                       <Value>
                         <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
-                          {BigInt(maxAmount) === MAX_U128 ? 'MAX' : maxAmount}
+                          {maxAmount === MAX_U128 ? 'MAX' : maxAmount}
                         </Text>
                       </Value>
                     </Row>
