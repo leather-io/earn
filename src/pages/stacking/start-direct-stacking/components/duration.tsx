@@ -11,6 +11,7 @@ import { Stepper } from '../../components/stepper';
 
 export function Duration() {
   const [field, meta, helpers] = useField('lockPeriod');
+  const [sigData] = useField('signatureJSON');
   return (
     <>
       <Step title="Duration">
@@ -36,7 +37,7 @@ export function Duration() {
           }}
         />
         <OneCycleDescriptor mt="loose" />
-        {meta.touched && meta.error && (
+        {(meta.touched || sigData.value) && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
           </ErrorLabel>

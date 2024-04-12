@@ -59,7 +59,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
   const [txResult, setTxResult] = useState<FinishedTxData | undefined>();
 
-  const { networkName } = useStacksNetwork();
+  const network = useStacksNetwork();
   const { btcAddressP2wpkh } = useAuth();
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
@@ -91,7 +91,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
   }
 
   const validationSchema = createValidationSchema({
-    network: networkName,
+    network,
   });
   const handleSubmit = createHandleSubmit({
     client,

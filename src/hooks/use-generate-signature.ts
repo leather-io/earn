@@ -10,14 +10,15 @@ import {
 import { useStackingClient } from '@components/stacking-client-provider/stacking-client-provider';
 
 import { useStacksNetwork } from './use-stacks-network';
+import { IntegerType } from '@stacks/common';
 
 export interface GenerateSignatureOptions {
   rewardCycle: number;
   poxAddress: string;
   period: number;
   topic: Pox4SignatureTopic;
-  maxAmount: bigint;
-  authId: number;
+  maxAmount: IntegerType;
+  authId: IntegerType;
 }
 
 export function useGenerateStackingSignature() {

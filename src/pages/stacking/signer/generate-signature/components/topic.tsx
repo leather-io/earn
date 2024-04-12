@@ -2,9 +2,18 @@ import { Box, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { Description, Step } from '../../../components/stacking-form-step';
+import React from 'react';
 
 export function Topic() {
   const [field, _meta] = useField('topic');
+  const [_period, _periodMeta, periodHelpers] = useField('period');
+
+  React.useEffect(() => {
+    if (field.value === 'agg-commit' || field.value === 'agg-increase') {
+      periodHelpers.setValue(1);
+    }
+  }, [field.value, periodHelpers]);
+
   return (
     <Step title="Topic">
       <Description>
@@ -34,6 +43,7 @@ export function Topic() {
           <option value="agg-commit">stack-aggregation-commit</option>
           <option value="stack-extend">stack-extend</option>
           <option value="stack-increase">stack-increase</option>
+          <option value="agg-increase">stack-aggregation-increase</option>
         </select>
       </Box>
     </Step>

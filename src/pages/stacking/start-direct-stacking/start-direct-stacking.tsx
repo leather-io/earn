@@ -59,7 +59,7 @@ interface StartDirectStackingLayoutProps {
 }
 function StartDirectStackingLayout({ client }: StartDirectStackingLayoutProps) {
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
-  const { networkName } = useStacksNetwork();
+  const network = useStacksNetwork();
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
   const getPoxInfoQuery = useGetPoxInfoQuery();
@@ -95,7 +95,7 @@ function StartDirectStackingLayout({ client }: StartDirectStackingLayoutProps) {
     minimumAmountUStx: BigInt(getPoxInfoQuery.data.min_amount_ustx),
     transactionFeeUStx,
     availableBalanceUStx: intToBigInt(getAccountExtendedBalancesQuery.data.stx.balance, false),
-    network: networkName,
+    network,
   });
   const handleSubmit = createHandleSubmit({
     client,

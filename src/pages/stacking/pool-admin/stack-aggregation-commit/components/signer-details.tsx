@@ -24,16 +24,15 @@ export function SignerDetails() {
       e.clipboardData.items.length > 0 &&
       e.clipboardData.items[0].kind === 'string'
     ) {
-      const updateValues: FunctionStringCallback = v => {
+      const updateValues: FunctionStringCallback = async v => {
         try {
-          setFieldValue('signatureJSON', v);
+          await setFieldValue('signatureJSON', v);
           const signatureData = JSON.parse(v) as SignatureJSON;
-          setFieldValue('signerKey', signatureData['signerKey']);
-          setFieldValue('signerSignature', signatureData['signerSignature']);
+          await setFieldValue('signerKey', signatureData['signerKey']);
           const maxAmount = BigInt(signatureData['maxAmount']);
-          console.log('maxAmount', maxAmount);
-          setFieldValue('maxAmount', microStxToStxBigint(maxAmount).toString(10));
-          setFieldValue('authId', signatureData['authId']);
+          await setFieldValue('maxAmount', microStxToStxBigint(maxAmount));
+          await setFieldValue('authId', signatureData['authId'], true);
+          await setFieldValue('signerSignature', signatureData['signerSignature'], true);
         } catch (e) {
           console.error(e);
           setError('Invalid signer data');

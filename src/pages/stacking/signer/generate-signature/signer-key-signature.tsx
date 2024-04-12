@@ -10,7 +10,7 @@ import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
-import { stxToMicroStxBigint } from '@utils/unit-convert';
+import { parseNumber, stxToMicroStxBigint } from '@utils/unit-convert';
 
 import { useGenerateStackingSignature } from '../../../../hooks/use-generate-signature';
 import { GenerateSignatureLayout } from './components/generate-signature-layout';
@@ -36,7 +36,10 @@ export function GenerateSignerKeySignature() {
     if (topic === Pox4SignatureTopic.AggregateCommit) return Pox4SignatureTopic.AggregateCommit;
     if (topic === Pox4SignatureTopic.StackExtend) return Pox4SignatureTopic.StackExtend;
     if (topic === Pox4SignatureTopic.StackStx) return Pox4SignatureTopic.StackStx;
-    console.warn(`Received invalid topic parameter: ${topic}`);
+    if (topic === Pox4SignatureTopic.AggregateIncrease) return Pox4SignatureTopic.AggregateIncrease;
+    if (topic) {
+      console.warn(`Received invalid topic parameter: ${topic}`);
+    }
     return Pox4SignatureTopic.StackStx;
   }, [topic]);
   const authIdDefault = useMemo(() => {
@@ -56,7 +59,10 @@ export function GenerateSignerKeySignature() {
     return <CenteredErrorAlert id={id}>{msg}</CenteredErrorAlert>;
   }
 
-  const validationSchema = createValidationSchema({ network: networkName });
+  const validationSchema = createValidationSchema({
+    network: networkName,
+    currentCycle: getPoxInfoQuery.data.current_cycle.id,
+  });
 
   return (
     <Formik
@@ -68,12 +74,14 @@ export function GenerateSignerKeySignature() {
         authId: authIdDefault,
       }}
       onSubmit={async values => {
+        console.log('values', values);
+        console.log(parseNumber(values.maxAmount).toFixed(6));
         await openSignatureRequest({
           poxAddress: values.poxAddress,
           period: values.period,
           rewardCycle: values.rewardCycleId,
           topic: values.topic,
-          maxAmount: stxToMicroStxBigint(BigInt(values.maxAmount)),
+          maxAmount: stxToMicroStxBigint(values.maxAmount),
           authId: values.authId,
         });
         return;

@@ -1,7 +1,8 @@
 import BigNumber from 'bignumber.js';
 
-function parseNumber(num: string | number | BigNumber) {
-  return new BigNumber(num);
+export function parseNumber(num: string | number | BigNumber | bigint) {
+  const n = typeof num === 'bigint' ? num.toString() : num;
+  return new BigNumber(n);
 }
 
 export function microStxToStx(microStx: string | number | bigint | BigNumber): BigNumber {
@@ -32,11 +33,11 @@ export function toHumanReadableStx(microStx: string | number | bigint | BigNumbe
 }
 
 // Max U128 is too large for BigNumber
-export function stxToMicroStxBigint(stx: bigint) {
-  return stx * 1000000n;
+export function stxToMicroStxBigint(stx: bigint | string | number): string {
+  return parseNumber(stx).shiftedBy(6).decimalPlaces(0).toString(10);
 }
 
 // Max U128 is too large for BigNumber
-export function microStxToStxBigint(microStx: bigint) {
-  return microStx / 1000000n;
+export function microStxToStxBigint(microStx: bigint | string | number): string {
+  return parseNumber(microStx).shiftedBy(-6).decimalPlaces(6).toString(10);
 }

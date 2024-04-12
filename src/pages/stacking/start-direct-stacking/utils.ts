@@ -2,17 +2,26 @@ import { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
-import { StackingClient, verifyPox4SignatureHash } from '@stacks/stacking';
+import { Pox4SignatureTopic, StackingClient, verifyPox4SignatureHash } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
 
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
-import { stxToMicroStx, toHumanReadableStx } from '@utils/unit-convert';
+import {
+  parseNumber,
+  stxToMicroStx,
+  stxToMicroStxBigint,
+  toHumanReadableStx,
+} from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 import { stxBalanceValidator } from '@utils/validators/stx-balance-validator';
 
 import { DirectStackingFormValues } from './types';
+import { SignatureDataSchema } from '../signer/generate-signature/types';
+import { hexStringSchema } from '@utils/validators/hex-string-validator';
+// import { StacksMainnet, StacksTestnet } from '@stacks/network';
+import { StacksNetworkContext } from '@hooks/use-stacks-network';
 
 interface CreateValidationSchemaArgs {
   /**
@@ -31,9 +40,9 @@ interface CreateValidationSchemaArgs {
   minimumAmountUStx: bigint;
 
   /**
-   * The name of the network the app is live on, e.g., mainnet or testnet.
+   * The Stacks network context returned from `useStacksNetwork`.
    */
-  network: string;
+  network: StacksNetworkContext;
 }
 export function createValidationSchema({
   availableBalanceUStx,
@@ -69,10 +78,83 @@ export function createValidationSchema({
           return new BigNumber(minimumAmountUStx.toString()).isLessThanOrEqualTo(uStxInput);
         },
       }),
-    lockPeriod: yup.number().defined(),
+    lockPeriod: yup
+      .number()
+      .defined()
+      .test(
+        'matches-period-pox-address',
+        'Duration does not match signature data',
+        function (lockPeriod) {
+          const signatureJSON = this.parent.signatureJSON;
+          if (typeof signatureJSON !== 'string') return true;
+          const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+          return parseInt(signatureData.period, 10) === lockPeriod;
+        }
+      ),
     poxAddress: createBtcAddressSchema({
-      network,
-    }),
+      network: network.networkName,
+    }).test(
+      'matches-signature-pox-address',
+      'BTC Address does not match signature data',
+      function (poxAddress) {
+        const signatureJSON = this.parent.signatureJSON;
+        if (typeof signatureJSON !== 'string') return true;
+        const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+        return signatureData.poxAddress === poxAddress;
+      }
+    ),
+    signatureJSON: yup.string(),
+    signerKey: hexStringSchema().required(),
+    signerSignature: hexStringSchema()
+      .test('matches-topic', 'Signature was not generated for stack-stx', function (_signature) {
+        const signatureJSON = this.parent.signatureJSON;
+        if (typeof signatureJSON !== 'string') return true;
+        const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+        return signatureData.method === 'stack-stx';
+      })
+      .test('valid-signature', 'Unable to validate signature', function (signerSignature, context) {
+        const signatureJSON = context.parent.signatureJSON;
+        if (typeof signatureJSON !== 'string') return true;
+        if (typeof signerSignature !== 'string') return true;
+        const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+        const signatureVerificationOptions = {
+          topic: 'stack-stx' as Pox4SignatureTopic,
+          rewardCycle: parseInt(signatureData.rewardCycle, 10),
+          poxAddress: context.parent.poxAddress,
+          authId: context.parent.authId,
+          network: network.network,
+          publicKey: context.parent.signerKey,
+          signature: signerSignature,
+          period: context.parent.lockPeriod,
+          maxAmount: stxToMicroStxBigint(context.parent.maxAmount),
+        };
+        const isValid = verifyPox4SignatureHash(signatureVerificationOptions);
+        return isValid;
+      }),
+    maxAmount: yup
+      .string()
+      .defined()
+      .test(
+        'matches-signature-max-amount',
+        'Max amount does not match signature data',
+        function (maxAmount) {
+          const signatureJSON = this.parent.signatureJSON;
+          if (typeof signatureJSON !== 'string') return true;
+          const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+          return parseNumber(signatureData.maxAmount).isEqualTo(
+            parseNumber(stxToMicroStxBigint(maxAmount))
+          );
+        }
+      ),
+    authId: yup
+      .number()
+      .defined()
+      .test('matches-signature', 'Auth ID does not match signature data', function (authId) {
+        const signatureJSON = this.parent.signatureJSON;
+        if (typeof signatureJSON !== 'string') return true;
+        const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+        return BigInt(signatureData.authId) === BigInt(authId);
+      }),
   });
 }
 
@@ -99,7 +181,7 @@ export function createHandleSubmit({
       throw new Error('Unable to get current block height.');
     }
     const authId = parseInt(values.authId, 10);
-    const maxAmount = stxToMicroStx(values.maxAmount).toString(10);
+    const maxAmount = stxToMicroStxBigint(values.maxAmount);
     if (typeof values.signerSignature === 'string') {
       const isValid = verifyPox4SignatureHash({
         topic: 'stack-stx',
@@ -118,7 +200,7 @@ export function createHandleSubmit({
     }
     const stackOptions = client.getStackOptions({
       contract: stackingContract,
-      amountMicroStx: stxToMicroStx(values.amount).toString(),
+      amountMicroStx: maxAmount,
       cycles: values.lockPeriod,
       poxAddress: values.poxAddress,
       // TODO
