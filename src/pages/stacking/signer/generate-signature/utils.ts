@@ -1,9 +1,9 @@
 import * as yup from 'yup';
 
+import { parseNumber } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 
 import { MAX_U128_BIGNUMBER_STX } from './types';
-import { parseNumber } from '@utils/unit-convert';
 
 export function createValidationSchema({
   network,
