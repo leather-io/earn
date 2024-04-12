@@ -6,6 +6,8 @@ import { Pox4SignatureTopic, StackingClient, verifyPox4SignatureHash } from '@st
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
 
+// import { StacksMainnet, StacksTestnet } from '@stacks/network';
+import { StacksNetworkContext } from '@hooks/use-stacks-network';
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
 import {
   parseNumber,
@@ -14,14 +16,12 @@ import {
   toHumanReadableStx,
 } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
+import { hexStringSchema } from '@utils/validators/hex-string-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 import { stxBalanceValidator } from '@utils/validators/stx-balance-validator';
 
-import { DirectStackingFormValues } from './types';
 import { SignatureDataSchema } from '../signer/generate-signature/types';
-import { hexStringSchema } from '@utils/validators/hex-string-validator';
-// import { StacksMainnet, StacksTestnet } from '@stacks/network';
-import { StacksNetworkContext } from '@hooks/use-stacks-network';
+import { DirectStackingFormValues } from './types';
 
 interface CreateValidationSchemaArgs {
   /**

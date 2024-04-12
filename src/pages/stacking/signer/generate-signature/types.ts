@@ -1,6 +1,7 @@
-import { microStxToStxBigint } from '@utils/unit-convert';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
+
+import { microStxToStxBigint } from '@utils/unit-convert';
 
 export type GenerateSignatureFields = {
   poxAddress: string;

@@ -9,13 +9,13 @@ import {
 } from '@stacks/stacking';
 import * as yup from 'yup';
 
+import { StacksNetworkContext } from '@hooks/use-stacks-network';
 import { parseNumber, stxToMicroStxBigint } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
 import { hexStringSchema } from '@utils/validators/hex-string-validator';
 
-import { StackAggregationCommitFormValues } from './types';
 import { SignatureDataSchema } from '../../signer/generate-signature/types';
-import { StacksNetworkContext } from '@hooks/use-stacks-network';
+import { StackAggregationCommitFormValues } from './types';
 
 interface CreateValidationSchemaArgs {
   /**

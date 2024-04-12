@@ -1,8 +1,9 @@
+import React from 'react';
+
 import { Box, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { Description, Step } from '../../../components/stacking-form-step';
-import React from 'react';
 
 export function Topic() {
   const [field, _meta] = useField('topic');
