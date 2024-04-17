@@ -63,13 +63,10 @@ export function createValidationSchema({ network }: CreateValidationSchemaArgs) 
         }
       )
       .test('valid-signature', 'Unable to validate signature', function (signerSignature, context) {
-        const signatureJSON = context.parent.signatureJSON;
-        if (typeof signatureJSON !== 'string') return true;
         if (typeof signerSignature !== 'string') return true;
-        const signatureData = SignatureDataSchema.json().cast(signatureJSON);
         const signatureVerificationOptions = {
           topic: 'agg-commit' as Pox4SignatureTopic,
-          rewardCycle: parseInt(signatureData.rewardCycle, 10),
+          rewardCycle: context.parent.rewardCycleId,
           poxAddress: context.parent.poxAddress,
           authId: context.parent.authId,
           network: network.network,
