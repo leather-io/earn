@@ -11,6 +11,7 @@ import { microStxToStxBigint } from '@utils/unit-convert';
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
+import { OpenExternalLinkInNewTab } from '@components/external-link';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
@@ -46,13 +47,29 @@ export function SignerDetails() {
       <Step title="Signer Information">
         <Description>
           <Text color={color('text-caption')}>
-            When you participate in Stacking, you&apos;re associating your locked Stacks with a
-            signer that is participating in consensus on the Stacks network.
+            When you engage in Stacking, you&apos;re associating your locked STX with a signer
+            actively involved in the Stacks network&apos;s consensus process. With the{' '}
+            <OpenExternalLinkInNewTab href="https://www.nakamoto.run/">
+              Nakamoto Release
+            </OpenExternalLinkInNewTab>
+            , Stackers who choose to stack independently will need to run their own signer software.
           </Text>
         </Description>
         <Text mt={'loose'} color={color('text-caption')}>
-          If you aren&apos;t running your own signer, you&apos;ll need to request this information
-          from the signer you&apos;re using. Paste the received information here:
+          If you&apos;re interested in running your own signer, please consult{' '}
+          <OpenExternalLinkInNewTab href="https://docs.stacks.co/nakamoto-upgrade/signing-and-stacking/stacking-flow">
+            these documents
+          </OpenExternalLinkInNewTab>{' '}
+          on how to Stack as a signer and fill out{' '}
+          <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/signer/generate-signature?chain=mainnet">
+            this page
+          </OpenExternalLinkInNewTab>{' '}
+          to generate a signer signature. If you prefer not to manage your own signer, we suggest
+          <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/start-pooled-stacking">
+            Stacking using another method
+          </OpenExternalLinkInNewTab>
+          .Users who are not running their own signer software will need to request this data from
+          the signer that you&apos;re using. Enter the data you receive here:
         </Text>
         <Input onPaste={fillFromClipboard} placeholder="paste here.." />
         {error && (
@@ -68,7 +85,7 @@ export function SignerDetails() {
           title="Signer Public Key"
           text={
             <Text color={color('text-caption')}>
-              Enter the public key of the signer in hexadecimal format
+              Enter the signer&apos;s public key in hexadecimal format:
             </Text>
           }
           placeholder="public key 0x1234..ef"
@@ -78,9 +95,9 @@ export function SignerDetails() {
           title="Signer Signature (optional)"
           text={
             <Text color={color('text-caption')}>
-              Enter a signature (in hexadecimal format) you&apos;ve received from the signer, which
-              is allowing you to Stack using their signer key. Leave it empty, if the signature is
-              the same for all stackers.
+              Enter the hexadecimal signature from the signer enabling you to Stack with their key.
+              Leave this field blank if the signature is universal for all Stackers who use this
+              signer:
             </Text>
           }
           placeholder="signature 0x1234..0123..ef"
@@ -90,7 +107,7 @@ export function SignerDetails() {
           title="Max Amount"
           text={
             <Text color={color('text-caption')}>
-              Enter the maximum amount of STX that can be locked while using this signature.
+              Enter the maximum amount of STX that can be locked while using this signature:
             </Text>
           }
           placeholder="Maximum amount of STX to lock"
@@ -100,7 +117,8 @@ export function SignerDetails() {
           title="Auth ID"
           text={
             <Text color={color('text-caption')}>
-              Enter the random number that is used to prevent re-use of the signature
+              Enter the signer&apos;s Auth ID, a randomly generated number that prevents signer
+              signature reuse:
             </Text>
           }
           placeholder="value provided by signer"
