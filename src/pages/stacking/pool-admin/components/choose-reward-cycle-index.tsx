@@ -8,30 +8,27 @@ import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stackin
 
 import { Description, Step } from '../../components/stacking-form-step';
 
-export function RewardCycle() {
-  const getPoxInfoQuery = useGetPoxInfoQuery();
-
-  const [field, meta] = useField('rewardCycleId');
-
-  if (getPoxInfoQuery.isError || !getPoxInfoQuery.data) {
-    const id = '134098d7-444b-4591-abfe-8767af6def3f';
-    const msg = 'Failed to load necessary data.';
-    console.error(id, msg);
-    return <ErrorAlert id={id}>{msg}</ErrorAlert>;
-  }
+export function RewardCycleIndex() {
+  const [field, meta] = useField('rewardCycleIndex');
 
   return (
-    <Step title="Choose reward cycle">
+    <Step title="Choose Reward Cycle Index">
       <Description>
         <Stack alignItems="flex-start" spacing="base">
           <Text color={color('text-caption')}>
-            Next cycle is {getPoxInfoQuery.data.reward_cycle_id + 1}
+            The reward cycle index is the identifier of your stacking. It is returned by Stack
+            Aggegation Commit action.
           </Text>
         </Stack>
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="rewardCycle" placeholder="Next cycle" mt="loose" {...field} />
+        <Input
+          id="rewardCycleIndex"
+          placeholder="Indentifier for the cycle"
+          mt="loose"
+          {...field}
+        />
         {(meta.touched || field) && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

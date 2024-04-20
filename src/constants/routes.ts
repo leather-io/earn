@@ -14,5 +14,6 @@ export default {
   DELEGATE_STACK_INCREASE: '/pool-admin/delegate-stack-increase',
   DELEGATE_STACK_EXTEND: '/pool-admin/delegate-stack-extend',
   STACK_AGGREGATION_COMMIT: '/pool-admin/stack-aggregation-commit',
+  STACK_AGGREGATION_INCREASE: '/pool-admin/stack-aggregation-increase',
   GENERATE_SIGNATURE: '/signer/generate-signature',
 };

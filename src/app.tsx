@@ -26,6 +26,7 @@ import { DelegateStackIncrease } from './pages/stacking/pool-admin/delegate-stac
 import { DelegateStackStx } from './pages/stacking/pool-admin/delegate-stack-stx/delegate-stack-stx';
 import { PoolInfo } from './pages/stacking/pool-admin/pool-info/pool-info';
 import { StackAggregationCommit } from './pages/stacking/pool-admin/stack-aggregation-commit/stack-aggregation-commit';
+import { StackAggregationIncrease } from './pages/stacking/pool-admin/stack-aggregation-increase/stack-aggregation-increase';
 import { PooledStackingInfo } from './pages/stacking/pooled-stacking-info/pooled-stacking-info';
 import { SelfServiceExtend } from './pages/stacking/self-service-extend/self-service-extend';
 import { GenerateSignerKeySignature } from './pages/stacking/signer/generate-signature/signer-key-signature';
@@ -143,6 +144,7 @@ const router = createBrowserRouter([
                   { path: 'delegate-stack-extend', element: <DelegateStackExtend /> },
                   { path: 'delegate-stack-increase', element: <DelegateStackIncrease /> },
                   { path: 'stack-aggregation-commit', element: <StackAggregationCommit /> },
+                  { path: 'stack-aggregation-increase', element: <StackAggregationIncrease /> },
                 ],
               },
               {
