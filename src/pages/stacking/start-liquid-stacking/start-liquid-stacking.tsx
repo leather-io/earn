@@ -22,6 +22,7 @@ import {
   createHandleSubmit as createHandleStackStxSubmit,
   createValidationSchema,
 } from './utils-liquid-stacking-stx';
+import { OpenExternalLinkInNewTab } from '@components/external-link';
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: '',
@@ -102,16 +103,25 @@ function StartLiquidStackingLayout({ currentAccountAddresses }: StartLiquidStack
             <Form>
               <StackingFormContainer>
                 <p>
-                  Liquid Stacking, a new feature developed by Stacking DAO, gives users an
-                  &quot;auto-compounding tokenized representation of stacked STX (stSTX)&quot; in
-                  exchange for their STX. Unlike Stacking, there&apos;s no minimum STX requirement
-                  for participation, and according to Stacking DAO, users can trade back to STX at
-                  any time. Learn more about Stacking DAO by visiting their website and reading
-                  Stacking DAO’s docs. <br /> <br />
+                  Liquid Stacking, a new feature developed by ecosystem builders, gives users the
+                  ability to lock their STX in exchange for a tokenized representation of stacked
+                  Stacks (stSTX or LiSTX). This allows users to leverage their Stacked STX
+                  throughout the ecosystem while continuing to earn Stacking rewards. Unlike
+                  Stacking, there's no minimum STX requirement for participation. Users can trade
+                  back to STX at any time. <br /> <br />
+                  Visit their websites and read their documents to learn more about{' '}
+                  <OpenExternalLinkInNewTab href="https://stackingdao.com">
+                    StackingDAO
+                  </OpenExternalLinkInNewTab>{' '}
+                  and{' '}
+                  <OpenExternalLinkInNewTab href="https://lisalab.io">
+                    LISA
+                  </OpenExternalLinkInNewTab>
+                  .
+                  <br />
                   <span className="mt-4">
-                    Important: Leather allows users to integrate with Stacking DAO&apos;s liquid
-                    stacking feature, but does not manage or have any control over the liquid
-                    stacking process.
+                    Important: Leather allows users to integrate with liquid stacking features, but
+                    does not manage or have any control over the liquid stacking process.
                   </span>
                 </p>
                 <ChooseStackingProtocol

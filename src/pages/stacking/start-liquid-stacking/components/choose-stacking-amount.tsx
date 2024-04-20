@@ -29,8 +29,8 @@ export function ChooseStackingAmount() {
           Choose how much you&apos;ll stack. Your liquid stacking protocol may require a minimum.
         </Text>
         <Text>
-          The STX tokens will leave your wallet and you will get stSTX which represents your
-          principal plus yield.
+          The STX tokens will leave your wallet and you will get stSTX or LiSTX which represents
+          your principal plus yield.
         </Text>
       </Description>
 
