@@ -5,6 +5,7 @@ import { Form, Formik } from 'formik';
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
+import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { useGetSecondsUntilNextCycleQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useNavigate } from '@hooks/use-navigate';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
@@ -22,7 +23,6 @@ import {
   createHandleSubmit as createHandleStackStxSubmit,
   createValidationSchema,
 } from './utils-liquid-stacking-stx';
-import { OpenExternalLinkInNewTab } from '@components/external-link';
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: '',

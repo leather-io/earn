@@ -77,6 +77,9 @@ export function PoolInfo() {
             <Button onClick={() => navigate(routes.STACK_AGGREGATION_COMMIT)}>
               Stack Aggregation Commit
             </Button>
+            <Button onClick={() => navigate(routes.STACK_AGGREGATION_INCREASE)}>
+              Stack Aggregation Increase
+            </Button>
           </Stack>
         </>
       }

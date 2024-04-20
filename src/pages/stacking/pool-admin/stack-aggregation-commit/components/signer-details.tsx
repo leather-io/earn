@@ -6,12 +6,12 @@ import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/type
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
+import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { microStxToStxBigint } from '@utils/unit-convert';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
-import { OpenExternalLinkInNewTab } from '@components/external-link';
 
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
