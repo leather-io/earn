@@ -107,8 +107,8 @@ function StartLiquidStackingLayout({ currentAccountAddresses }: StartLiquidStack
                   ability to lock their STX in exchange for a tokenized representation of stacked
                   Stacks (stSTX or LiSTX). This allows users to leverage their Stacked STX
                   throughout the ecosystem while continuing to earn Stacking rewards. Unlike
-                  Stacking, there's no minimum STX requirement for participation. Users can trade
-                  back to STX at any time. <br /> <br />
+                  Stacking, there&apos; no minimum STX requirement for participation. Users can
+                  trade back to STX at any time. <br /> <br />
                   Visit their websites and read their documents to learn more about{' '}
                   <OpenExternalLinkInNewTab href="https://stackingdao.com">
                     StackingDAO
