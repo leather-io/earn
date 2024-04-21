@@ -1,10 +1,8 @@
 import { Box, Input, Stack, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
-import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
-import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 
 import { Description, Step } from '../../components/stacking-form-step';
 

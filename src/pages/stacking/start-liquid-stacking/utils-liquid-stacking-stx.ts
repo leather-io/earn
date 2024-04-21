@@ -80,7 +80,7 @@ function getOptions(values: EditingFormValues, network: StacksNetwork): Contract
       ? { functionArgs: [uintCV(stxAmount)], functionName: 'request-mint' }
       : { functionArgs: [], functionName: 'deposit' };
   const postConditions = [
-    makeStandardSTXPostCondition(stxAddress!, FungibleConditionCode.LessEqual, stxAmount),
+    makeStandardSTXPostCondition(stxAddress, FungibleConditionCode.LessEqual, stxAmount),
   ];
   return {
     contractAddress,
