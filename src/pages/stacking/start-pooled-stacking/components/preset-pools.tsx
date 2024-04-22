@@ -21,7 +21,7 @@ export const pools = {
       ' ' +
       'Locked STX will unlock 1 day after the end of the cycle.',
     duration: 1,
-    website: 'https://pool.friedger.de',
+    website: 'https://fastpool.org',
     payoutMethod: PayoutMethod.STX,
     poolAddress: {
       [NetworkInstance.mainnet]:
@@ -35,7 +35,7 @@ export const pools = {
     minimumDelegationAmount: 40_000_000,
     icon: <PoolIcon src="/32x32_FastPool.png" />,
     allowCustomRewardAddress: false,
-    disabled: true,
+    disabled: false,
   },
 
   PlanBetter: {
@@ -53,7 +53,7 @@ export const pools = {
     minimumDelegationAmount: 200_000_000,
     icon: <PoolIcon src="/32x32_PlanBetter.png" />,
     allowCustomRewardAddress: false, // only for ledger users
-    disabled: true,
+    disabled: false,
   },
 
   Xverse: {
@@ -72,7 +72,7 @@ export const pools = {
     minimumDelegationAmount: 100_000_000,
     icon: <PoolIcon src="/32x32_Xverse.png" />,
     allowCustomRewardAddress: true,
-    disabled: true,
+    disabled: false,
   },
   'Custom Pool': {
     name: PoolName.CustomPool,
