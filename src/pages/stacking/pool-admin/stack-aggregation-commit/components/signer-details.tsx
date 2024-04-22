@@ -17,7 +17,7 @@ import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
 
 export function SignerDetails() {
-  const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
+  const { setValues } = useFormikContext<StackAggregationCommitFormValues>();
   const [error, setError] = useState<string>('');
   const { activeNetwork } = useGlobalContext();
 
@@ -31,13 +31,19 @@ export function SignerDetails() {
     ) {
       const updateValues: FunctionStringCallback = async v => {
         try {
-          await setFieldValue('signatureJSON', v);
           const signatureData = JSON.parse(v) as SignatureJSON;
-          await setFieldValue('signerKey', signatureData['signerKey']);
           const maxAmount = BigInt(signatureData['maxAmount']);
-          await setFieldValue('maxAmount', microStxToStxBigint(maxAmount));
-          await setFieldValue('authId', signatureData['authId'], true);
-          await setFieldValue('signerSignature', signatureData['signerSignature'], true);
+          setValues(
+            existing => ({
+              ...existing,
+              signatureJSON: v,
+              signerKey: signatureData['signerKey'],
+              maxAmount: microStxToStxBigint(maxAmount),
+              authId: signatureData['authId'],
+              signerSignature: signatureData['signerSignature'],
+            }),
+            true
+          );
         } catch (e) {
           console.error(e);
           setError('Invalid signer data');
@@ -81,13 +87,17 @@ export function SignerDetails() {
           . Users who are not running their own signer software will need to request this data from
           the signer that you&apos;re using. Enter the data you receive here:
         </Text>
-        <Input onPaste={fillFromClipboard} placeholder="paste here.." />
+        <Input
+          onPaste={fillFromClipboard}
+          placeholder="paste signature JSON here.."
+          my="base-loose"
+        />
         {error && (
           <ErrorLabel>
             <ErrorText>{error}</ErrorText>
           </ErrorLabel>
         )}
-        <Text mt={'loose'} color={color('text-caption')}>
+        <Text mb="base" color={color('text-caption')}>
           Alternatively, enter the information manually.
         </Text>
 
