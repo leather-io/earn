@@ -64,7 +64,7 @@ export function SignerDetails() {
           <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/signer/generate-signature?chain=mainnet">
             this page
           </OpenExternalLinkInNewTab>{' '}
-          to generate a signer signature. If you prefer not to manage your own signer, we suggest
+          to generate a signer signature. If you prefer not to manage your own signer, we suggest{' '}
           <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/start-pooled-stacking">
             Stacking using another method
           </OpenExternalLinkInNewTab>
