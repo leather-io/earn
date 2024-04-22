@@ -75,6 +75,7 @@ export function createValidationSchema({ network }: CreateValidationSchemaArgs) 
           period: 1,
           maxAmount: stxToMicroStxBigint(context.parent.maxAmount),
         };
+        console.log(signatureVerificationOptions);
         const isValid = verifyPox4SignatureHash(signatureVerificationOptions);
         return isValid;
       }),
