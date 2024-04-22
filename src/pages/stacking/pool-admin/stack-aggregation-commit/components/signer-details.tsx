@@ -2,11 +2,14 @@ import { ClipboardEvent, useState } from 'react';
 
 import { Input, Text, color } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { useGlobalContext } from 'src/context/use-app-context';
 import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/types';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { OpenExternalLinkInNewTab } from '@components/external-link';
+import { OpenLinkInNewTab } from '@components/open-link-in-new-tab';
+import { createSearch } from '@utils/networks';
 import { microStxToStxBigint } from '@utils/unit-convert';
 
 import { Description, Step } from '../../../components/stacking-form-step';
@@ -16,6 +19,7 @@ import { SignerInput } from './signer-input';
 export function SignerDetails() {
   const { setFieldValue } = useFormikContext<StackAggregationCommitFormValues>();
   const [error, setError] = useState<string>('');
+  const { activeNetwork } = useGlobalContext();
 
   const fillFromClipboard = (e: ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -61,14 +65,20 @@ export function SignerDetails() {
             these documents
           </OpenExternalLinkInNewTab>{' '}
           on how to Stack as a signer and fill out{' '}
-          <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/signer/generate-signature?chain=mainnet">
+          <OpenLinkInNewTab
+            href={`/signer/generate-signature${createSearch(activeNetwork)}`}
+            display="inline-block"
+          >
             this page
-          </OpenExternalLinkInNewTab>{' '}
+          </OpenLinkInNewTab>{' '}
           to generate a signer signature. If you prefer not to manage your own signer, we suggest{' '}
-          <OpenExternalLinkInNewTab href="https://staging.lockstacks.com/start-pooled-stacking">
+          <OpenLinkInNewTab
+            href={`/start-pooled-stacking${createSearch(activeNetwork)}`}
+            display="inline-block"
+          >
             Stacking using another method
-          </OpenExternalLinkInNewTab>
-          .Users who are not running their own signer software will need to request this data from
+          </OpenLinkInNewTab>
+          . Users who are not running their own signer software will need to request this data from
           the signer that you&apos;re using. Enter the data you receive here:
         </Text>
         <Input onPaste={fillFromClipboard} placeholder="paste here.." />
