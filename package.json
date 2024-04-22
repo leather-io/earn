@@ -11,6 +11,7 @@
     "check:format:fix": "prettier --write . --plugin-search-dir=./node_modules --plugin=@trivago/prettier-plugin-sort-imports",
     "check:lint": "eslint .",
     "check:lint:fix": "eslint . --fix",
+    "check:all": "pnpm check:types && pnpm check:format && pnpm check:lint",
     "dev": "vite",
     "preview": "vite preview"
   },

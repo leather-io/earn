@@ -33,6 +33,7 @@ export function ChoosePoolingPool({ onPoolChange }: ChoosePoolingPoolProps) {
       <Stack spacing="base" mt="extra-loose">
         {(Object.keys(pools) as PoolName[]).map((poolName: PoolName, index: number) => {
           const p = pools[poolName];
+          if (p.disabled) return null;
           return (
             <PoolSelectItem
               name={p.name}
