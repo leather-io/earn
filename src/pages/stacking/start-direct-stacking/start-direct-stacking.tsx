@@ -96,6 +96,7 @@ function StartDirectStackingLayout({ client }: StartDirectStackingLayoutProps) {
     transactionFeeUStx,
     availableBalanceUStx: intToBigInt(getAccountExtendedBalancesQuery.data.stx.balance, false),
     network,
+    rewardCycleId: getPoxInfoQuery.data.current_cycle.id,
   });
   const handleSubmit = createHandleSubmit({
     client,

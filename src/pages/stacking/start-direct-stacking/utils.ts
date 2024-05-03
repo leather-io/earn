@@ -43,12 +43,18 @@ interface CreateValidationSchemaArgs {
    * The Stacks network context returned from `useStacksNetwork`.
    */
   network: StacksNetworkContext;
+
+  /**
+   * The current reward cycle
+   */
+  rewardCycleId: number;
 }
 export function createValidationSchema({
   availableBalanceUStx,
   transactionFeeUStx,
   minimumAmountUStx,
   network,
+  rewardCycleId,
 }: CreateValidationSchemaArgs) {
   return yup.object().shape({
     amount: stxAmountSchema()
@@ -130,7 +136,18 @@ export function createValidationSchema({
         };
         const isValid = verifyPox4SignatureHash(signatureVerificationOptions);
         return isValid;
-      }),
+      })
+      .test(
+        'matches-reward-cycle',
+        'Signature is not valid for current reward cycle',
+        function (signerSignature, context) {
+          const signatureJSON = context.parent.signatureJSON;
+          if (typeof signatureJSON !== 'string') return true;
+          if (typeof signerSignature !== 'string') return true;
+          const signatureData = SignatureDataSchema.json().cast(signatureJSON);
+          return parseInt(signatureData.rewardCycle, 10) === rewardCycleId;
+        }
+      ),
     maxAmount: yup
       .string()
       .defined()
