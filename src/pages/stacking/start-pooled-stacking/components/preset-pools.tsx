@@ -74,6 +74,28 @@ export const pools = {
     allowCustomRewardAddress: true,
     disabled: false,
   },
+
+  Restake: {
+    name: PoolName.Restake,
+    description:
+      'Earn STX rewards by pooling your tokens with Restake, a non-custodial infrastructure operator trusted by institutions.',
+    duration: 1,
+    website: 'https://restake.net/stacks-pool',
+    payoutMethod: PayoutMethod.STX,
+    poolAddress: {
+      [NetworkInstance.mainnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperRestake],
+      [NetworkInstance.testnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperRestake],
+      [NetworkInstance.devnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperRestake],
+    }, // pool address is the same as pool contract
+    poxContract: PoxContractName.WrapperRestake,
+    minimumDelegationAmount: 100_000_000,
+    icon: <PoolIcon src="/32x32_Restake.png" />,
+    allowCustomRewardAddress: false,
+    disabled: false,
+  },
   'Custom Pool': {
     name: PoolName.CustomPool,
     description:
