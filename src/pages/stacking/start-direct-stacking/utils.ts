@@ -195,7 +195,9 @@ export function createHandleSubmit({
         signature: values.signerSignature,
       });
       if (!isValid) {
-        console.warn('Unable to verify signature.');
+        console.warn('⚠️ Unable to verify signature.');
+      } else {
+        console.log('✅ Signature verified');
       }
     }
     const stackOptions = client.getStackOptions({
