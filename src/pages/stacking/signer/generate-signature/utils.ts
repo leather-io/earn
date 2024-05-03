@@ -49,6 +49,17 @@ export function createValidationSchema({
           }
           return true;
         }
+      )
+      .test(
+        'is-now-for-solo-stacking',
+        'Reward cycle must be the current cycle for solo stacking signatures',
+        function (rewardCycle) {
+          const topic = this.parent.topic;
+          if (topic === 'stack-stx' || topic === 'stack-extend' || topic === 'stack-increase') {
+            return rewardCycle === currentCycle;
+          }
+          return true;
+        }
       ),
     authId: yup
       .number()
