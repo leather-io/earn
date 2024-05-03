@@ -200,7 +200,7 @@ export function createHandleSubmit({
     }
     const stackOptions = client.getStackOptions({
       contract: stackingContract,
-      amountMicroStx: maxAmount,
+      amountMicroStx: stxToMicroStxBigint(values.amount),
       cycles: values.lockPeriod,
       poxAddress: values.poxAddress,
       // TODO
