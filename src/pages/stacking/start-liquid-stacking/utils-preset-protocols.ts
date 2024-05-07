@@ -20,7 +20,7 @@ export function getNetworkInstance(network: StacksNetwork) {
   }
 }
 
-export function getPox3Contracts(network: StacksNetwork): LiquidContractType {
+export function getPoxContracts(network: StacksNetwork): LiquidContractType {
   const mode = getNetworkInstance(network);
   return NetworkInstanceToLiquidContractMap[mode];
 }

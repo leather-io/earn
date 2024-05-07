@@ -35,7 +35,7 @@ import {
   createHandleSubmit as createHandleDelegateStxSubmit,
   createValidationSchema,
 } from './utils-delegate-stx';
-import { getPox3Contracts, usesPoxWrapperContract } from './utils-preset-pools';
+import { getPoxContracts, usesPoxWrapperContract } from './utils-preset-pools';
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: '',
@@ -89,7 +89,7 @@ function StartPooledStackingLayout({
   currentAccountAddresses,
 }: StartPooledStackingProps) {
   const { network, networkInstance } = useStacksNetwork();
-  const pox3Contracts = getPox3Contracts(network);
+  const poxContracts = getPoxContracts(network);
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
   const [rewardAddressEditable, setRewardAddressEditable] = useState(true);
   const [poolRequiresUserRewardAddress, setPoolRequiresUserRewardAddress] = useState(true);
@@ -97,10 +97,13 @@ function StartPooledStackingLayout({
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
   const getAllowanceContractCallersFastPoolQuery = useGetAllowanceContractCallersQuery(
-    pox3Contracts[PoxContractName.WrapperFastPool]
+    poxContracts[PoxContractName.WrapperFastPool]
+  );
+  const getAllowanceContractCallersRestakeQuery = useGetAllowanceContractCallersQuery(
+    poxContracts[PoxContractName.WrapperRestake]
   );
   const getAllowanceContractCallersOneCycleQuery = useGetAllowanceContractCallersQuery(
-    pox3Contracts[PoxContractName.WrapperOneCycle]
+    poxContracts[PoxContractName.WrapperOneCycle]
   );
 
   const [hasUserConfirmedPoolWrapperContract, setHasUserConfirmedPoolWrapperContract] =
@@ -111,18 +114,21 @@ function StartPooledStackingLayout({
       return {
         ...confirmed,
         [networkInstance]: {
-          [pox3Contracts[PoxContractName.Pox3]]: true,
-          [pox3Contracts[PoxContractName.WrapperFastPool]]:
+          [poxContracts[PoxContractName.Pox4]]: true,
+          [poxContracts[PoxContractName.WrapperFastPool]]:
             getAllowanceContractCallersFastPoolQuery?.data?.type === ClarityType.OptionalSome,
-          [pox3Contracts[PoxContractName.WrapperOneCycle]]:
+          [poxContracts[PoxContractName.WrapperRestake]]:
+            getAllowanceContractCallersRestakeQuery?.data?.type === ClarityType.OptionalSome,
+          [poxContracts[PoxContractName.WrapperOneCycle]]:
             getAllowanceContractCallersOneCycleQuery?.data?.type === ClarityType.OptionalSome,
         },
       };
     });
   }, [
-    pox3Contracts,
+    poxContracts,
     networkInstance,
     getAllowanceContractCallersFastPoolQuery?.data?.type,
+    getAllowanceContractCallersRestakeQuery?.data?.type,
     getAllowanceContractCallersOneCycleQuery?.data?.type,
     setHasUserConfirmedPoolWrapperContract,
   ]);

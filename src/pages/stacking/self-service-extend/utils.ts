@@ -10,8 +10,8 @@ import * as yup from 'yup';
 import routes from '@constants/routes';
 import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 
-import { PoxContractName } from '../start-pooled-stacking/types-preset-pools';
-import { getPox3Contracts } from '../start-pooled-stacking/utils-preset-pools';
+import { PoxContractName, PoxContractType } from '../start-pooled-stacking/types-preset-pools';
+import { getPoxContracts } from '../start-pooled-stacking/utils-preset-pools';
 
 export interface EditingFormValues {
   stacker: string;
@@ -26,17 +26,18 @@ export function createValidationSchema({ networkName }: { networkName: StacksNet
 interface CreateHandleSubmitArgs {
   navigate: NavigateFunction;
   setIsContractCallExtensionPageOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  delegatedTo: PoxContractName;
   network: StacksNetwork;
 }
 
 export function createHandleSubmit({
   navigate,
   setIsContractCallExtensionPageOpen,
+  delegatedTo,
   network,
 }: CreateHandleSubmitArgs) {
   return async ({ stacker }: EditingFormValues) => {
-    const [contractAddress, contractName] =
-      getPox3Contracts(network)[PoxContractName.WrapperFastPool].split('.');
+    const [contractAddress, contractName] = getPoxContracts(network)[delegatedTo].split('.');
     const delegateStackStxOptions: ContractCallRegularOptions = {
       contractAddress,
       contractName,

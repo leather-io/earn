@@ -23,13 +23,13 @@ export function getNetworkInstance(network: StacksNetwork) {
   }
 }
 
-export function getPox3Contracts(network: StacksNetwork): PoxContractType {
+export function getPoxContracts(network: StacksNetwork): PoxContractType {
   const mode = getNetworkInstance(network);
   return NetworkInstanceToPoxContractMap[mode];
 }
 
 export function usesPoxWrapperContract(pool: Pool) {
-  return pool.poxContract !== PoxContractName.Pox3;
+  return pool.poxContract !== PoxContractName.Pox4;
 }
 
 export function requiresAllowContractCaller(poolName: PoolName) {
@@ -42,7 +42,7 @@ export function getPoxWrapperContract(
   poolName: PoolName,
   network: StacksNetwork
 ): WrapperPrincipal {
-  return getPox3Contracts(network)[pools[poolName].poxContract];
+  return getPoxContracts(network)[pools[poolName].poxContract];
 }
 
 export function getPoxWrapperContract2(
@@ -57,6 +57,9 @@ export function isSelfServicePool(poolAddress: string) {
     NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperFastPool],
     NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperFastPool],
     NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperFastPool],
+    NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperRestake],
+    NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperRestake],
+    NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperRestake],
   ];
   return allSelfServicePools.includes(poolAddress);
 }
