@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import routes from '@constants/routes';
 import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 
-import { PoxContractName, PoxContractType } from '../start-pooled-stacking/types-preset-pools';
+import { PoxContractName } from '../start-pooled-stacking/types-preset-pools';
 import { getPoxContracts } from '../start-pooled-stacking/utils-preset-pools';
 
 export interface EditingFormValues {
