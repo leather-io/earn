@@ -4,7 +4,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { PoxInfo, StackingClient, poxAddressToTuple } from '@stacks/stacking';
-import { noneCV, someCV, uintCV } from '@stacks/transactions';
+import { ClarityValue, noneCV, someCV, uintCV } from '@stacks/transactions';
 import { principalCV } from '@stacks/transactions/dist/clarity/types/principalCV';
 import * as yup from 'yup';
 
@@ -120,19 +120,26 @@ function getOptions(
       networkMode,
       pool.poxContract
     );
-    const functionArgs =
-      pool.poxContract === PoxContractName.WrapperOneCycle
-        ? [
-            uintCV(stxToMicroStx(values.amount).toString()),
-            principalCV(delegateTo),
-            untilBurnBlockHeight ? someCV(uintCV(untilBurnBlockHeight)) : noneCV(),
-            noneCV(),
-            poxAddressToTuple(values.rewardAddress),
-            noneCV(),
-          ]
-        : pool.poxContract === PoxContractName.WrapperFastPool
-        ? [uintCV(stxToMicroStx(values.amount).toString())]
-        : [];
+
+    let functionArgs: ClarityValue[];
+    switch (pool.poxContract) {
+      case PoxContractName.WrapperOneCycle:
+        functionArgs = [
+          uintCV(stxToMicroStx(values.amount).toString()),
+          principalCV(delegateTo),
+          untilBurnBlockHeight ? someCV(uintCV(untilBurnBlockHeight)) : noneCV(),
+          noneCV(),
+          poxAddressToTuple(values.rewardAddress),
+          noneCV(),
+        ];
+        break;
+      case PoxContractName.WrapperFastPool:
+      case PoxContractName.WrapperRestake:
+        functionArgs = [uintCV(stxToMicroStx(values.amount).toString())];
+        break;
+      default:
+        functionArgs = [];
+    }
     return {
       contractAddress,
       contractName,

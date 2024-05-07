@@ -15,12 +15,16 @@ import {
 import { useNavigate } from '@hooks/use-navigate';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
+import { useDelegationStatusQuery } from '../pooled-stacking-info/use-delegation-status-query';
+import { PoxContractName } from '../start-pooled-stacking/types-preset-pools';
+import { getPoxContracts } from '../start-pooled-stacking/utils-preset-pools';
 import { SelfServiceLayout } from './components/self-service-extend-layout';
 import { createHandleSubmit, createValidationSchema } from './utils';
 
 export function SelfServiceExtend() {
   const navigate = useNavigate();
   const getStatusQuery = useGetStatusQuery();
+  const getDelegationStatusQuery = useDelegationStatusQuery();
   const getAccountBalanceLockedQuery = useGetAccountBalanceLockedQuery();
   const getPoxInfoQuery = useGetPoxInfoQuery();
 
@@ -32,6 +36,7 @@ export function SelfServiceExtend() {
 
   if (
     getStatusQuery.isLoading ||
+    getDelegationStatusQuery.isLoading ||
     getAccountBalanceLockedQuery.isLoading ||
     getPoxInfoQuery.isLoading
   ) {
@@ -53,6 +58,8 @@ export function SelfServiceExtend() {
     typeof getAccountBalanceLockedQuery.data !== 'bigint' ||
     getPoxInfoQuery.isError ||
     !getPoxInfoQuery.data ||
+    getDelegationStatusQuery.isError ||
+    !getDelegationStatusQuery.data ||
     !client
   ) {
     const msg = 'Error while loading data, try reloading the page.';
@@ -67,11 +74,36 @@ export function SelfServiceExtend() {
   const stackerInfoDetails = getStatusQuery.data?.stacked
     ? getStatusQuery.data?.details
     : undefined;
+  const delegationDetails = getDelegationStatusQuery.data?.delegated
+    ? getDelegationStatusQuery.data?.details
+    : undefined;
+  const poxContracts = getPoxContracts(network);
+
+  let delegatedTo: PoxContractName | undefined;
+  switch (delegationDetails?.delegated_to) {
+    case poxContracts[PoxContractName.WrapperFastPool]:
+      delegatedTo = PoxContractName.WrapperFastPool;
+      break;
+    case poxContracts[PoxContractName.WrapperRestake]:
+      delegatedTo = PoxContractName.WrapperRestake;
+      break;
+    default:
+      delegatedTo = undefined;
+  }
+
+  if (delegatedTo === undefined) {
+    return (
+      <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
+        <Text>Not pooling with a self-service pool</Text>
+      </CenteredErrorAlert>
+    );
+  }
 
   const validationSchema = createValidationSchema({ networkName });
   const handleSubmit = createHandleSubmit({
     navigate,
     setIsContractCallExtensionPageOpen,
+    delegatedTo,
     network,
   });
   return (

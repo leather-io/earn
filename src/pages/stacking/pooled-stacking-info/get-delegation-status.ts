@@ -14,7 +14,7 @@ import { ClarityType, ClarityValue, cvToString, hexToCV } from '@stacks/transact
 
 import { getHasPendingTransaction } from '../direct-stacking-info/utils-pending-txs';
 import { PoxContractName } from '../start-pooled-stacking/types-preset-pools';
-import { getPox3Contracts } from '../start-pooled-stacking/utils-preset-pools';
+import { getPoxContracts } from '../start-pooled-stacking/utils-preset-pools';
 
 function isDelegateOrRevokeDelegate(t: ContractCallTransactionMetadata) {
   return ['delegate-stx', 'revoke-delegate-stx'].includes(t.contract_call.function_name);
@@ -35,7 +35,7 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
   return (
     transaction: ContractCallTransaction | MempoolContractCallTransaction
   ): DelegationInfo => {
-    const pox3Contracts = getPox3Contracts(network);
+    const poxContracts = getPoxContracts(network);
 
     if (transaction.contract_call.function_name === 'revoke-delegate-stx') {
       return { delegated: false } as const;
@@ -62,7 +62,8 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
       let untilBurnHeight: undefined | number = undefined;
 
       if (
-        transaction.contract_call.contract_id === pox3Contracts[PoxContractName.WrapperFastPool]
+        transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperFastPool] ||
+        transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperRestake]
       ) {
         untilBurnHeight = undefined;
       } else {
@@ -76,8 +77,10 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
       }
 
       const delegatedTo =
-        transaction.contract_call.contract_id === pox3Contracts[PoxContractName.WrapperFastPool]
-          ? pox3Contracts[PoxContractName.WrapperFastPool]
+        transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperFastPool]
+          ? poxContracts[PoxContractName.WrapperFastPool]
+          : transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperRestake]
+          ? poxContracts[PoxContractName.WrapperRestake]
           : safeDelegateToCVToString(delegatedToCV);
 
       const extractPoxAddressFromClarityValue2 = (poxAddrCV: ClarityValue) => {
