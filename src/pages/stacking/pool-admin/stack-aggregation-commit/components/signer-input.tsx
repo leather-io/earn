@@ -15,13 +15,25 @@ interface Props {
 }
 
 export function SignerInput({ title, text, fieldName, placeholder }: Props) {
-  const [field, meta] = useField(fieldName);
+  const [field, meta, helpers] = useField(fieldName);
   return (
     <>
       <Title fontSize="20px">{title}</Title>
       {text}
       <Box position="relative" maxWidth="400px">
-        <Input {...field} mt={'loose'} placeholder={placeholder} />
+        <Input
+          {...field}
+          mt={'loose'}
+          onChange={e => {
+            if ('value' in e.target) {
+              const { value } = e.target;
+              if (!value) return field.onChange(e);
+              return helpers.setValue(value.replaceAll('0x', ''));
+            }
+            return field.onChange(e);
+          }}
+          placeholder={placeholder}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
