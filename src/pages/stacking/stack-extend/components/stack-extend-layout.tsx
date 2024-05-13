@@ -1,3 +1,5 @@
+import { useEffect, useMemo } from 'react';
+
 import { Box, Button, Flex, Text } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useField, useFormikContext } from 'formik';
@@ -50,6 +52,22 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
     navigate(routes.DIRECT_STACKING_INFO);
   };
   const end = details.first_reward_cycle + details.lock_period - 1 + field.value;
+
+  // Add console.errors for any undisplayed errors
+  const errorMsg = useMemo(() => {
+    if (!hasErrors(errors)) return;
+    return Object.entries(errors)
+      .map(([key, value]) => {
+        return `${key}: ${value}`;
+      })
+      .join('\n');
+  }, [errors]);
+
+  useEffect(() => {
+    if (errorMsg) {
+      console.error(errorMsg);
+    }
+  }, [errorMsg]);
   return (
     <BaseDrawer title={title} isShowing={!poxDisabled} onClose={onClose}>
       <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
