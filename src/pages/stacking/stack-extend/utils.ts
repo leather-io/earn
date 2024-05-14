@@ -48,18 +48,19 @@ export function createHandleSubmit({
     poxAddress,
     signerKey,
     signerSignature,
-    maxAmount,
+    maxAmount: _maxAmount,
     authId,
   }: EditingFormValues) => {
     if (!client) return;
     const stackingContract = await client.getStackingContract();
+    const maxAmount = stxToMicroStxBigint(_maxAmount);
     const stackExtendOptions = client.getStackExtendOptions({
       contract: stackingContract,
       extendCycles,
       poxAddress,
       signerKey,
       signerSignature,
-      maxAmount: stxToMicroStxBigint(BigInt(maxAmount)),
+      maxAmount,
       authId: parseInt(authId),
     });
     setIsContractCallExtensionPageOpen(true);
