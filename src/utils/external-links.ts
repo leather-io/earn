@@ -23,13 +23,3 @@ export function makeExplorerTxLink(txId: string, network: string) {
 // export function makeExplorerAddressLink(address: string, network: string) {
 //   return makeExplorerLink(`/address/${address}`, network);
 // }
-
-// Stacking Club
-
-function makeStackingClubLink(path: string) {
-  return urljoin(STACKING_CLUB_URL, `${path}?${utmSource}`);
-}
-
-export function makeStackingClubRewardAddressLink(address: string) {
-  return makeStackingClubLink(`/reward-address/${address}`);
-}

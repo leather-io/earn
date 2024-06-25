@@ -6,7 +6,6 @@ import { Box, Button, Text, color } from '@stacks/ui';
 import { DelegationInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
-import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { Hr } from '@components/hr';
 import { CancelIcon } from '@components/icons/cancel';
 import {
@@ -19,7 +18,6 @@ import {
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
-import { makeStackingClubRewardAddressLink } from '@utils/external-links';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
@@ -129,16 +127,6 @@ export function ActivePoolingContent({
 
       <Group my="extra-loose">
         <Section>
-          <Row>
-            <Label>
-              <OpenExternalLinkInNewTab
-                href={makeStackingClubRewardAddressLink(poolAddress)}
-                color={color('text-caption')}
-              >
-                🥞 View on stacking.club
-              </OpenExternalLinkInNewTab>
-            </Label>
-          </Row>
           {!showIncreasePoolingAmount && (
             <Row>
               <Label>
