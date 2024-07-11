@@ -4,7 +4,6 @@ import { IconClockHour4 } from '@tabler/icons-react';
 
 import { Address } from '@components/address';
 import { Alert, AlertText } from '@components/alert';
-import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { Hr } from '@components/hr';
 import {
   InfoCardGroup as Group,
@@ -15,7 +14,6 @@ import {
   InfoCardValue as Value,
 } from '@components/info-card';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
-import { makeStackingClubRewardAddressLink } from '@utils/external-links';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
@@ -115,16 +113,6 @@ export function ActiveStackingInfo({
                   </Value>
                 </Row>
                 <ActionButtonsRow />
-              </Section>
-
-              <Section>
-                <OpenExternalLinkInNewTab
-                  href={makeStackingClubRewardAddressLink(
-                    String(formatPoxAddressToNetwork(network, details.pox_address))
-                  )}
-                >
-                  🥞 View on stacking.club
-                </OpenExternalLinkInNewTab>
               </Section>
             </Group>
           </Flex>

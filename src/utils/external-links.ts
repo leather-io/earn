@@ -1,7 +1,7 @@
 import urljoin from 'url-join';
 import { isWebUri } from 'valid-url';
 
-import { EXPLORER_URL, STACKING_CLUB_URL } from '@constants/app';
+import { EXPLORER_URL } from '@constants/app';
 
 export async function openExternalLink(url: string) {
   if (!isWebUri(url)) return;
@@ -23,13 +23,3 @@ export function makeExplorerTxLink(txId: string, network: string) {
 // export function makeExplorerAddressLink(address: string, network: string) {
 //   return makeExplorerLink(`/address/${address}`, network);
 // }
-
-// Stacking Club
-
-function makeStackingClubLink(path: string) {
-  return urljoin(STACKING_CLUB_URL, `${path}?${utmSource}`);
-}
-
-export function makeStackingClubRewardAddressLink(address: string) {
-  return makeStackingClubLink(`/reward-address/${address}`);
-}
