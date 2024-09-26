@@ -8,11 +8,13 @@ import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import {
   useGetAccountExtendedBalancesQuery,
+  useGetPoxInfoQuery,
   useGetStatusQuery,
   useStackingClient,
 } from '@components/stacking-client-provider/stacking-client-provider';
 import { STACKING_CONTRACT_CALL_TX_BYTES } from '@constants/app';
 import { useCalculateFee } from '@hooks/use-calculate-fee';
+import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { microStxToStxRounded } from '@utils/unit-convert';
 
 import { useGetHasPendingStackingTransactionQuery } from '../direct-stacking-info/use-get-has-pending-tx-query';
@@ -25,15 +27,18 @@ export function StackIncrease() {
 
   const navigate = useNavigate();
   const getStatusQuery = useGetStatusQuery();
+  const network = useStacksNetwork();
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesQuery();
   const { getHasPendingStackIncreaseQuery } = useGetHasPendingStackingTransactionQuery();
+  const getPoxInfoQuery = useGetPoxInfoQuery();
 
   const { client } = useStackingClient();
   const [isContractCallExtensionPageOpen, setIsContractCallExtensionPageOpen] = useState(false);
   if (
     getStatusQuery.isLoading ||
     getAccountExtendedBalancesQuery.isLoading ||
-    getHasPendingStackIncreaseQuery.isLoading
+    getHasPendingStackIncreaseQuery.isLoading ||
+    getPoxInfoQuery.isLoading
   ) {
     return <CenteredSpinner />;
   }
@@ -41,6 +46,8 @@ export function StackIncrease() {
   if (
     getStatusQuery.isError ||
     !getStatusQuery.data ||
+    getPoxInfoQuery.isError ||
+    !getPoxInfoQuery.data ||
     getAccountExtendedBalancesQuery.isError ||
     !getAccountExtendedBalancesQuery.data ||
     getHasPendingStackIncreaseQuery.isError ||
@@ -79,6 +86,9 @@ export function StackIncrease() {
   const validationSchema = createValidationSchema({
     availableBalanceUStx: availableBalanceUStx,
     transactionFeeUStx,
+    stackerInfo: getStatusQuery.data,
+    network,
+    rewardCycleId: getPoxInfoQuery.data.reward_cycle_id,
   });
 
   return (

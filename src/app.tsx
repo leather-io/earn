@@ -37,7 +37,14 @@ import { StartDirectStacking } from './pages/stacking/start-direct-stacking/star
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchInterval: 1000 * 60,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function Root() {
   useEffect(() => void loadFonts(), []);
