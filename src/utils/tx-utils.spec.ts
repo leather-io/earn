@@ -1,4 +1,5 @@
 import { MempoolTransaction } from '@stacks/stacks-blockchain-api-types';
+import { describe, expect, test } from 'vitest';
 
 import { sumTxsTotalSpentByAddress } from './tx-utils';
 

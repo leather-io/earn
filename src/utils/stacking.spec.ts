@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest';
+
 import { convertPoxAddressToBtc } from './stacking';
 
 describe(convertPoxAddressToBtc.name, () => {
