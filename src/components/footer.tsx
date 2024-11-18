@@ -12,7 +12,8 @@ export function Footer() {
     <Flex
       flexDirection={['column', 'column', 'row', 'row']}
       justifyContent="center"
-      p="tight"
+      py="tight"
+      px={['loose', 'loose', 'tight', 'tight']}
       borderTop={`1px solid ${figmaTheme.borderSubdued}`}
       columnGap="loose"
     >
