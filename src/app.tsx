@@ -9,6 +9,7 @@ import { BlockchainApiClientProvider } from '@components/blockchain-api-client-p
 import { Navigate } from '@components/navigate';
 import { StackingClientProvider } from '@components/stacking-client-provider/stacking-client-provider';
 import { NetworkModeUrlMap } from '@constants/network';
+import { setupLeatherFetchInterceptor } from '@utils/fetch-interceptor';
 import { loadFonts } from '@utils/load-fonts';
 
 import { AuthGuard } from './components/auth-guard';
@@ -45,6 +46,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+setupLeatherFetchInterceptor();
 
 function Root() {
   useEffect(() => void loadFonts(), []);
