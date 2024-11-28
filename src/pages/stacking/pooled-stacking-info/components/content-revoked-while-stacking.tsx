@@ -1,5 +1,5 @@
 import { intToBigInt } from '@stacks/common';
-import { AccountExtendedBalances } from '@stacks/stacking';
+import { ExtendedAccountBalances } from '@stacks/stacking';
 import { Text, color } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
 
@@ -20,7 +20,7 @@ import { toHumanReadableStx } from '@utils/unit-convert';
 import { PercentageRow } from './percentage-row';
 
 interface RevokedWhileStackingContentProps {
-  extendedStxBalances: AccountExtendedBalances['stx'];
+  extendedStxBalances: ExtendedAccountBalances['stx'];
   poolAddress: string;
 }
 export function RevokedWhileStackingContent({
@@ -38,7 +38,7 @@ export function RevokedWhileStackingContent({
         mt="extra-tight"
         my="extra-loose"
       >
-        {toHumanReadableStx(intToBigInt(extendedStxBalances.locked, false))}
+        {toHumanReadableStx(intToBigInt(extendedStxBalances.locked))}
       </Text>
 
       <Hr />

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { AccountExtendedBalances } from '@stacks/stacking';
+import { ExtendedAccountBalances } from '@stacks/stacking';
 import { Box, Button, Flex, Text } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
@@ -26,7 +26,7 @@ import { Amount } from './choose-amount';
 
 interface StackIncreaseLayoutProps {
   title: string;
-  extendedStxBalances: AccountExtendedBalances['stx'];
+  extendedStxBalances: ExtendedAccountBalances['stx'];
   pendingStackIncrease: StackIncreaseInfo | undefined | null;
   isContractCallExtensionPageOpen: boolean;
 }

@@ -94,7 +94,7 @@ function StartDirectStackingLayout({ client }: StartDirectStackingLayoutProps) {
   const validationSchema = createValidationSchema({
     minimumAmountUStx: BigInt(getPoxInfoQuery.data.min_amount_ustx),
     transactionFeeUStx,
-    availableBalanceUStx: intToBigInt(getAccountExtendedBalancesQuery.data.stx.balance, false),
+    availableBalanceUStx: intToBigInt(getAccountExtendedBalancesQuery.data.stx.balance),
     network,
     rewardCycleId: getPoxInfoQuery.data.current_cycle.id,
   });

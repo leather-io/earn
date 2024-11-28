@@ -31,7 +31,7 @@ export function ExtendForCurrentUser({
   setShowExtendForOtherUser,
 }: Props) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient(address, network);
+  const client = new StackingClient({ address, network });
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });
 
   if (getDelegationStatusQuery.isError || !getDelegationStatusQuery.data) {

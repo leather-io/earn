@@ -42,7 +42,10 @@ export function StackerDetailsRowsForUserExtend({
   const canExtend = isSelfServicePool(poolStxAddress);
 
   const requiredPoxAddress = delegationStatus.details.pox_address
-    ? formatPoxAddressToNetwork(network, delegationStatus.details.pox_address)
+    ? formatPoxAddressToNetwork(network, {
+        version: new Uint8Array([delegationStatus.details.pox_address.version]),
+        hashbytes: delegationStatus.details.pox_address.hashbytes,
+      })
     : undefined;
   const stackedPoxAddress = stackerInfoDetails?.pox_address
     ? formatPoxAddressToNetwork(network, stackerInfoDetails.pox_address)

@@ -28,7 +28,7 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
   const [field, meta] = useField('stacker');
   const { network } = useStacksNetwork();
   const address = field.value;
-  const client = new StackingClient(address, network);
+  const client = new StackingClient({ address, network });
   const getStatusQuery = useGetStatusWithClientQuery(client);
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });

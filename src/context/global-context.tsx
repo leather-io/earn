@@ -2,7 +2,7 @@ import { ReactNode, createContext, useMemo, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import { StacksNetworkName } from '@stacks/network';
-import { ChainID } from '@stacks/transactions';
+import { ChainId } from '@stacks/network';
 import cookie from 'cookie';
 
 import { Navigate } from '@components/navigate';
@@ -27,7 +27,7 @@ export const GlobalContext = createContext<GlobalContextProps>({
   activeNetwork: {
     label: 'stacks.co',
     url: NetworkModeUrlMap.mainnet,
-    networkId: ChainID.Mainnet,
+    networkId: ChainId.Mainnet,
     mode: 'mainnet',
   },
   activeNetworkKey: NetworkModeUrlMap.mainnet,
@@ -59,26 +59,26 @@ export const AppContextProvider = ({
       [apiUrls.mainnet]: {
         label: 'hiro.so',
         url: apiUrls.mainnet,
-        networkId: ChainID.Mainnet,
+        networkId: ChainId.Mainnet,
         mode: 'mainnet',
       },
       [apiUrls.testnet]: {
         label: 'hiro.so',
         url: apiUrls.testnet,
-        networkId: ChainID.Testnet,
+        networkId: ChainId.Testnet,
         mode: 'testnet',
       },
       [DEFAULT_DEVNET_SERVER]: {
         label: 'devnet',
         url: DEFAULT_DEVNET_SERVER,
-        networkId: ChainID.Testnet,
+        networkId: ChainId.Testnet,
         mode: 'testnet',
         isCustomNetwork: true,
       },
       [NAKA_TESTNET_SERVER]: {
         label: 'Nakamoto Testnet',
         url: NAKA_TESTNET_SERVER,
-        networkId: ChainID.Testnet,
+        networkId: ChainId.Testnet,
         mode: 'testnet',
         isCustomNetwork: true,
       },

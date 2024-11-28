@@ -14,10 +14,10 @@ export function ChoosePoolingAmount() {
   const [field, meta, helpers] = useField('amount');
   const queryGetAccountExtendedBalances = useGetAccountExtendedBalancesQuery();
   const totalAvailableBalance = queryGetAccountExtendedBalances.data?.stx.balance
-    ? intToBigInt(queryGetAccountExtendedBalances.data.stx.balance, false)
+    ? intToBigInt(queryGetAccountExtendedBalances.data.stx.balance)
     : undefined;
   const lockedBalance = queryGetAccountExtendedBalances.data?.stx.locked
-    ? intToBigInt(queryGetAccountExtendedBalances.data.stx.locked, false)
+    ? intToBigInt(queryGetAccountExtendedBalances.data.stx.locked)
     : undefined;
 
   return (

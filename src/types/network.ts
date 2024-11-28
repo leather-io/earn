@@ -1,20 +1,20 @@
 import { StacksNetworkName } from '@stacks/network';
-import { ChainID } from '@stacks/transactions';
+import { ChainId } from '@stacks/network';
 
 export interface Network {
   label: string;
   url: string;
-  networkId: ChainID;
+  networkId: ChainId;
   mode: StacksNetworkName;
   wsUrl?: string;
   isCustomNetwork?: boolean;
 }
 
 interface WhenStacksChainIdMap<T> {
-  [ChainID.Mainnet]: T;
-  [ChainID.Testnet]: T;
+  [ChainId.Mainnet]: T;
+  [ChainId.Testnet]: T;
 }
-export function whenStacksChainId(chainId: ChainID) {
+export function whenStacksChainId(chainId: ChainId) {
   return <T>(chainIdMap: WhenStacksChainIdMap<T>): T => chainIdMap[chainId];
 }
 interface WhenStacksModeMap<T> {

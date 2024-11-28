@@ -1,5 +1,4 @@
-import { ChainID } from '@stacks/common';
-import { StacksNetwork } from '@stacks/network';
+import { ChainId, StacksNetwork } from '@stacks/network';
 import { DEFAULT_DEVNET_SERVER } from 'src/constants';
 import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-preset-pools';
 
@@ -11,9 +10,9 @@ import {
 } from './types-preset-protocols';
 
 export function getNetworkInstance(network: StacksNetwork) {
-  if (network.chainId === ChainID.Mainnet) {
+  if (network.chainId === ChainId.Mainnet) {
     return NetworkInstance.mainnet;
-  } else if (network.coreApiUrl === DEFAULT_DEVNET_SERVER) {
+  } else if (network.client.baseUrl === DEFAULT_DEVNET_SERVER) {
     return NetworkInstance.devnet;
   } else {
     return NetworkInstance.testnet;

@@ -57,7 +57,7 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
       if (!amountMicroStxCV || amountMicroStxCV.type !== ClarityType.UInt) {
         throw new Error('Expected `amount-ustx` to be defined.');
       }
-      const amountMicroStx: bigint = amountMicroStxCV.value;
+      const amountMicroStx = BigInt(amountMicroStxCV.value);
 
       let untilBurnHeight: undefined | number = undefined;
 
@@ -85,7 +85,7 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
 
       const extractPoxAddressFromClarityValue2 = (poxAddrCV: ClarityValue) => {
         const { version, hashBytes } = extractPoxAddressFromClarityValue(poxAddrCV);
-        return { version: new Uint8Array([version]), hashbytes: hashBytes };
+        return { version, hashbytes: hashBytes };
       };
 
       const poxAddress =

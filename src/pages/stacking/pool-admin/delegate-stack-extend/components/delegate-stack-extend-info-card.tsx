@@ -26,12 +26,12 @@ import { DelegateStackExtendFormValues } from '../types';
 
 function StackerExtendInfo({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient(stacker, network);
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
 
   let amount: bigint | null = null;
   if (!getAccountExtendedBalancesQuery.isError && getAccountExtendedBalancesQuery.data?.stx) {
-    amount = intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked, false);
+    amount = intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked);
   }
   if (amount === null || amount === 0n) {
     return (

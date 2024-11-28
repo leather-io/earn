@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { intToBigInt } from '@stacks/common';
-import { AccountExtendedBalances, StackerInfo } from '@stacks/stacking';
+import { ExtendedAccountBalances, StackerInfo } from '@stacks/stacking';
 import { Box, Button, Text, color } from '@stacks/ui';
 import { DelegationInfoDetails } from 'src/types/stacking';
 
@@ -34,7 +34,7 @@ interface ActivePoolingContentProps {
   poolAddress: string;
   isContractCallExtensionPageOpen: boolean;
   stackerInfo: StackerInfo;
-  extendedStxBalance: AccountExtendedBalances['stx'];
+  extendedStxBalance: ExtendedAccountBalances['stx'];
   handleStopPoolingClick: () => void;
 }
 export function ActivePoolingContent({
@@ -86,7 +86,7 @@ export function ActivePoolingContent({
               />
               <Row>
                 <Label>Stacked amount</Label>
-                <Value>{toHumanReadableStx(intToBigInt(extendedStxBalance.locked, false))}</Value>
+                <Value>{toHumanReadableStx(intToBigInt(extendedStxBalance.locked))}</Value>
               </Row>
             </>
           )}
