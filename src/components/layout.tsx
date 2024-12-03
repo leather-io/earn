@@ -5,11 +5,12 @@ import { Box, Flex } from '@stacks/ui';
 import { Footer } from './footer';
 import { Navbar } from './navbar';
 import { PoxDisabledLayout } from './pox-disabled-layout';
+import { figmaTheme } from '@constants/figma-theme';
 
 export function Layout() {
   return (
     <>
-      <Flex h="100vh" flexDirection="column">
+      <Flex h="100vh" flexDirection="column" background={figmaTheme.surface}>
         <Navbar />
         <PoxDisabledLayout />
         <Box flexGrow={1}>

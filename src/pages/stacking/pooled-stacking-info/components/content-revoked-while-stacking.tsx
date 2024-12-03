@@ -32,7 +32,7 @@ export function RevokedWhileStackingContent({
       <Text textStyle="display.large">You&apos;re pooling</Text>
       <Text
         fontSize="24px"
-        fontFamily="Open Sauce"
+        fontFamily="Diatype"
         fontWeight={500}
         letterSpacing="-0.02em"
         mt="extra-tight"

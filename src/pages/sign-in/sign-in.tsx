@@ -6,6 +6,7 @@ import { Navigate } from '@components/navigate';
 import { Hero } from '../../components/hero';
 import { ChooseStackingMethodAuthHandler } from '../choose-stacking-method/choose-stacking-method';
 import { Banner } from './banner';
+import { figmaTheme } from '@constants/figma-theme';
 
 export function SignIn() {
   const { isSignedIn } = useAuth();
@@ -14,7 +15,7 @@ export function SignIn() {
   }
 
   return (
-    <Box>
+    <Box background={figmaTheme.background}>
       <Banner />
       <Hero />
       <ChooseStackingMethodAuthHandler />

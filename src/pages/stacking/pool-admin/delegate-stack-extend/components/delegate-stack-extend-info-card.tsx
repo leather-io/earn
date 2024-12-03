@@ -50,7 +50,7 @@ function StackerExtendInfo({ stacker }: { stacker: string }) {
         fontSize="24px"
         mt="extra-tight"
         fontWeight={500}
-        fontFamily="Open Sauce"
+        fontFamily="Diatype"
         letterSpacing="-0.02em"
       >
         {toHumanReadableStx(amount ?? 0)} for

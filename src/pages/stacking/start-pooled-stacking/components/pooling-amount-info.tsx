@@ -17,7 +17,7 @@ export const PoolingAmountInfo: FC<PoolingAmountInfoProps> = ({
       </Text>
       <Text
         fontSize="24px"
-        fontFamily="Open Sauce"
+        fontFamily="Diatype"
         fontWeight={500}
         letterSpacing="-0.02em"
         mt="extra-tight"

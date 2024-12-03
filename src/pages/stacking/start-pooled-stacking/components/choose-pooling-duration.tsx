@@ -24,7 +24,7 @@ function RecommendedFor({ children }: { children?: React.ReactNode }) {
             lineHeight="20px"
             display="block"
             fontWeight={500}
-            fontFamily="Open Sauce"
+            fontFamily="Diatype"
             letterSpacing="-0.02em"
             color={color('text-title')}
             mb="base"

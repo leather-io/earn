@@ -12,7 +12,7 @@ export const Title: FC<TitleProps> = ({ children, ...props }) => {
       lineHeight="56px"
       display="block"
       fontWeight={500}
-      fontFamily="Open Sauce"
+      fontFamily="Diatype"
       letterSpacing="-0.02em"
       color={color('text-title')}
       {...props}

@@ -100,7 +100,7 @@ export const Title = forwardRefWithAs<BoxProps, Headings>((props, ref) => (
   <BaseText
     userSelect="none"
     letterSpacing="-0.01em"
-    fontFamily="'Open Sauce One'"
+    fontFamily="'Diatype One'"
     fontWeight="500"
     color={color('text-title')}
     ref={ref}

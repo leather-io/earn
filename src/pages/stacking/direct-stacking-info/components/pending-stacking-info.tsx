@@ -33,7 +33,7 @@ export function PendingStackingInfo({ data, transactionId, networkName }: Props)
               <Text textStyle="body.large.medium">You&apos;re stacking</Text>
               <Text
                 fontSize="24px"
-                fontFamily="Open Sauce"
+                fontFamily="Diatype"
                 fontWeight={500}
                 letterSpacing="-0.02em"
                 mt="extra-tight"

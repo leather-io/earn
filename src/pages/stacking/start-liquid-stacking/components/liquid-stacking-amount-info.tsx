@@ -10,7 +10,7 @@ export function LiquidStackingAmountInfo({ title, amountText }: LiquidStackingAm
       <Text textStyle="body.large.medium">{title}</Text>
       <Text
         fontSize="24px"
-        fontFamily="Open Sauce"
+        fontFamily="Diatype"
         fontWeight={500}
         letterSpacing="-0.02em"
         mt="extra-tight"

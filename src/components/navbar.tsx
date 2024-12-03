@@ -13,6 +13,7 @@ import { truncateMiddle } from '@utils/tx-utils';
 import { useAuth } from './auth-provider/auth-provider';
 import { NetworkInfo } from './network-info';
 import { OpenLinkInNewTab } from './open-link-in-new-tab';
+import { figmaTheme } from '@constants/figma-theme';
 
 export function Navbar() {
   const { isSignedIn, signOut, signIn, address } = useAuth();
@@ -27,9 +28,10 @@ export function Navbar() {
   return (
     <Flex
       flexDirection="row"
+      background={figmaTheme.background}
       justifyContent="space-between"
       p="base-loose"
-      borderBottom={`1px solid ${color('border')}`}
+      borderBottom={`1px solid ${figmaTheme.border}`}
     >
       <Flex alignItems="center">
         <Link to={`/${createSearch(activeNetwork)}`}>
