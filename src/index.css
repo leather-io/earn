@@ -1,0 +1,26 @@
+@layer reset, base, tokens, recipes, utilities;
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colors-accent: #5546FF !important;
+        --colors-brand: #5546FF !important;
+        --colors-bg: white !important;
+        --colors-bg-2: white !important;
+        --colors-bg-3: white !important;
+        --colors-bg-4: #F7F7FA !important;
+        --colors-bg-alt: #F7F7FA !important;
+        --colors-bg-light: white !important;
+        --colors-invert: #040404 !important;
+        --colors-text-hover: #5546FF !important;
+        --colors-text-title: #141416 !important;
+        --colors-text-caption: #747478 !important;
+        --colors-text-body: #424248 !important;
+        --colors-icon: #9C9CA2 !important;
+        --colors-input-placeholder: #747478 !important;
+        --colors-border: #F0F0F2 !important;
+        --colors-feedback-alert: #FE9000 !important;
+        --colors-feedback-error: #CF0000 !important;
+        --colors-feedback-success: #00A200 !important;
+        --colors-highlight-line-bg: rgba(255, 255, 255, 0.08) !important;
+    }
+}

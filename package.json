@@ -13,11 +13,14 @@
     "check:lint:fix": "eslint . --fix",
     "check:all": "pnpm check:types && pnpm check:format && pnpm check:lint",
     "dev": "vite",
+    "prepare": "panda codegen",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
+    "@leather.io/tokens": "0.12.1",
+    "@leather.io/ui": "1.37.0",
     "@noble/hashes": "1.3.2",
     "@reduxjs/toolkit": "1.9.7",
     "@scure/base": "1.1.3",
@@ -45,15 +48,16 @@
     "crypto-browserify": "3.12.0",
     "date-fns": "2.30.0",
     "dayjs": "1.11.8",
+    "dompurify": "3.1.4",
     "formik": "2.4.2",
     "punycode": "2.3.0",
-    "react": "18.2.0",
+    "react": "18.3.1",
     "react-card-flip": "1.2.0",
     "react-cookie": "4.1.1",
     "react-dom": "18.2.0",
     "react-icons": "4.9.0",
     "react-redux": "8.1.0",
-    "react-router-dom": "6.13.0",
+    "react-router-dom": "6.26.2",
     "rollup-plugin-polyfill-node": "0.12.0",
     "sort-package-json": "2.4.1",
     "url-join": "5.0.0",
@@ -61,13 +65,14 @@
     "use-latest": "1.2.1",
     "valid-url": "1.0.9",
     "vite-plugin-node-stdlib-browser": "0.2.1",
-    "vitest": "^0.32.4",
     "yup": "1.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.5",
     "@emotion/core": "11.0.0",
     "@esbuild-plugins/node-globals-polyfill": "0.2.3",
+    "@leather.io/panda-preset": "0.5.3",
+    "@pandacss/dev": "^0.48.0",
     "@stacks/prettier-config": "0.0.10",
     "@stacks/stacks-blockchain-api-types": "7.3.2",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
@@ -88,18 +93,25 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "node-stdlib-browser": "1.2.0",
+    "postcss": "^8.4.49",
     "prettier": "2.8.8",
     "rollup": "3.25.1",
     "ts-node": "10.9.1",
     "ts-unused-exports": "9.0.4",
-    "typescript": "5.0.3",
+    "typescript": "5.4.5",
     "vite": "4.3.9",
     "vite-compatible-readable-stream": "3.6.1",
-    "vite-tsconfig-paths": "4.2.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "4.2.0",
+    "vitest": "^0.32.4"
   },
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.11.0",
   "engines": {
-    "node": ">=18.13.0 <21",
-    "pnpm": ">=7.22.0 <=9"
+    "node": ">=18.0.0 <22.0.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@leather.io/ui@1.37.0": "patches/@leather.io__ui@1.37.0.patch"
+    }
   }
 }

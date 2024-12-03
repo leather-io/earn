@@ -1,5 +1,6 @@
 import { intToBigInt } from '@stacks/common';
-import { Box, Button, Input, Spinner, Text, color } from '@stacks/ui';
+import { Button, Spinner, Input } from '@stacks/ui';
+import { Box, styled } from 'leather-styles/jsx';
 import { useField } from 'formik';
 
 import { ErrorAlert } from '@components/error-alert';
@@ -9,6 +10,7 @@ import { useGetAccountExtendedBalancesQuery } from '@components/stacking-client-
 import { microStxToStx, toHumanReadableStx } from '@utils/unit-convert';
 
 import { Description, Step } from '../../components/stacking-form-step';
+import { token } from 'leather-styles/tokens';
 
 export function ChooseStackingAmount() {
   const [field, meta, helpers] = useField('amount');
@@ -25,17 +27,23 @@ export function ChooseStackingAmount() {
   return (
     <Step title="Amount">
       <Description>
-        <Text>
+        <styled.p textStyle="body.01">
           Choose how much you&apos;ll stack. Your liquid stacking protocol may require a minimum.
-        </Text>
-        <Text>
+          <br />
+          <br />
           The STX tokens will leave your wallet and you will get stSTX or LiSTX which represents
           your principal plus yield.
-        </Text>
+        </styled.p>
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stxAmount" mt="loose" placeholder="Amount of STX to Stack" {...field} />
+        <Input
+          id="stxAmount"
+          mt="loose"
+          placeholder="Amount of STX to Stack"
+          {...field}
+          backgroundColor={token('colors.ink.background-primary')}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -45,11 +53,12 @@ export function ChooseStackingAmount() {
 
       <Box
         textStyle="body.small"
-        color={color('text-caption')}
         mt="base-tight"
         aria-busy={queryGetAccountExtendedBalances.isLoading}
       >
-        Available balance:{' '}
+        <styled.p textStyle="body.01" mt="space.03" color="ink.text-subdued">
+          Available balance:{' '}
+        </styled.p>
         {queryGetAccountExtendedBalances.isLoading ? (
           <Spinner />
         ) : availableForStacking ? (

@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import { FiInfo } from 'react-icons/fi';
 
-import { Box, Flex, Text, color } from '@stacks/ui';
+import { Box, Flex, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 interface Props {
   title?: ReactNode;
@@ -10,19 +11,25 @@ interface Props {
 }
 export function Alert({ title, children: body, icon }: Props) {
   let bodyEl = undefined;
+
   if (typeof body === 'string') {
     bodyEl = <AlertText>{body}</AlertText>;
   } else {
     bodyEl = body;
   }
   return (
-    <Box background={color('bg-alt')} py="base" px="base-loose" borderRadius="10px">
+    <Box
+      style={{ backgroundColor: token('colors.ink.background-secondary') }}
+      py="space.04"
+      px="space.04"
+      borderRadius="4px"
+    >
       <Flex>
-        <Box mr="base-tight" mt="2px">
-          {icon ?? <FiInfo color={color('accent')} />}
+        <Box mr="space.02" mt="2px">
+          {icon ?? <FiInfo color={token('colors.ink.background-primary')} />}
         </Box>
         <Box>
-          {title && <Text textStyle="body.small.medium">{title}</Text>}
+          {title && <styled.p textStyle="heading.01">{title}</styled.p>}
           {body && bodyEl}
         </Box>
       </Flex>
@@ -32,8 +39,13 @@ export function Alert({ title, children: body, icon }: Props) {
 
 export function AlertText({ children }: { children?: ReactNode }) {
   return (
-    <Text textStyle="body.small" color={color('text-caption')} lineHeight="22px" mt="extra-tight">
+    <styled.a
+      textStyle="body.01"
+      style={{ color: token('colors.ink.background-primary') }}
+      lineHeight="22px"
+      mt="extra-tight"
+    >
       {children}
-    </Text>
+    </styled.a>
   );
 }

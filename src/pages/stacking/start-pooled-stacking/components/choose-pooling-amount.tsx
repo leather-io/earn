@@ -9,6 +9,7 @@ import { useGetAccountExtendedBalancesQuery } from '@components/stacking-client-
 import { microStxToStx, toHumanReadableStx } from '@utils/unit-convert';
 
 import { Description, Step } from '../../components/stacking-form-step';
+import { token } from 'leather-styles/tokens';
 
 export function ChoosePoolingAmount() {
   const [field, meta, helpers] = useField('amount');
@@ -37,7 +38,13 @@ export function ChoosePoolingAmount() {
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stxAmount" mt="loose" placeholder="Amount of STX to Stack" {...field} />
+        <Input
+          id="stxAmount"
+          mt="loose"
+          placeholder="Amount of STX to Stack"
+          backgroundColor={token('colors.ink.background-primary')}
+          {...field}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

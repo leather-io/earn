@@ -1,4 +1,5 @@
-import { Box, BoxProps, Text, color } from '@stacks/ui';
+import { Box, BoxProps, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 import { openExternalLink } from '@utils/external-links';
 
@@ -9,22 +10,17 @@ interface Props extends BoxProps {
 export function OpenLinkInNewTab({ href, children, ...props }: Props) {
   const openUrl = () => openExternalLink(href);
   return (
-    <Text
-      onClick={openUrl}
-      as="a"
-      type="a"
-      cursor="pointer"
-      display="block"
-      outline={0}
-      color={color('brand')}
-      _hover={{ textDecoration: 'underline' }}
-      _focus={{ textDecoration: 'underline' }}
+    <Box
+      style={{
+        color: token('colors.blue.action-primary-default'),
+        cursor: 'pointer',
+        display: 'flex',
+        outline: 0,
+        ...props.style,
+      }}
       {...props}
     >
-      {children}
-      <Box display="inline-block" ml="extra-tight" mb="1px">
-        ↗
-      </Box>
-    </Text>
+      <styled.a onClick={openUrl}>{children}</styled.a>&nbsp;↗
+    </Box>
   );
 }

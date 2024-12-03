@@ -1,4 +1,4 @@
-import { BoxProps } from '@stacks/ui';
+import { BoxProps } from 'leather-styles/jsx';
 
 import { LegalDisclaimerTooltip } from './legal-disclaimer-tooltip';
 import { OpenLinkInNewTab } from './open-link-in-new-tab';

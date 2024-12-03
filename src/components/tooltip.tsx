@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Box, BoxProps } from '@stacks/ui';
 import Tippy from '@tippyjs/react';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 import { ExplainerIcon } from './icons/explainer';
 
@@ -27,9 +27,7 @@ export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
         </Box>
       }
     >
-      <Box as="span" {...props}>
-        {children}
-      </Box>
+      <Box {...props}>{children}</Box>
     </Tippy>
   );
 };

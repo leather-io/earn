@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
-import { Box, Flex } from '@stacks/ui';
+import { Box, Flex } from 'leather-styles/jsx';
+import { Banner } from 'src/pages/sign-in/banner';
 
 import { Footer } from './footer';
 import { Navbar } from './navbar';
@@ -9,7 +10,8 @@ import { PoxDisabledLayout } from './pox-disabled-layout';
 export function Layout() {
   return (
     <>
-      <Flex h="100vh" flexDirection="column">
+      <Flex minH="100vh" flexDirection="column">
+        <Banner />
         <Navbar />
         <PoxDisabledLayout />
         <Box flexGrow={1}>

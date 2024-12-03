@@ -1,55 +1,58 @@
 import { FC } from 'react';
 
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  ExclamationMarkCircleIcon,
-  Flex,
-  FlexProps,
-  Text,
-  color,
-} from '@stacks/ui';
+import { Button, ButtonProps, ErrorCircleIcon } from '@leather.io/ui';
+import { Box, BoxProps, Flex, FlexProps, Grid, GridProps, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
+import { css } from 'leather-styles/css';
 
-import { Title } from '@components/title';
-
-export const StartStackingLayout: FC<FlexProps> = props => (
-  <Box maxWidth="1400px" height="100%" as="main" mx="auto" {...props} />
+export const StartStackingLayout: FC<BoxProps> = props => (
+  <Box
+    className={css({ backgroundColor: 'ink.background-primary' })}
+    style={{ maxWidth: '1400px', margin: '0 auto' }}
+    {...props}
+  />
 );
 
-export const StackingOptionsCardContainer: FC<FlexProps> = props => (
-  <Flex
-    justifyContent="space-between"
-    flexDirection={['column', 'column', 'column', 'row']}
-    width="100%"
-    my="56px"
+export const EarnBTCSectionContainer: FC<GridProps> = props => (
+  <Grid
+    gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr', '1fr 1fr']}
+    gap="space.00"
+    {...props}
+  />
+);
+
+export const StackingOptionsCardContainer: FC<GridProps> = props => (
+  <Grid
+    gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr']}
+    gap="space.00"
     {...props}
   />
 );
 
 export const StackingOptionCard: FC<FlexProps> = ({ children, ...props }) => (
-  <Flex
-    px="loose"
-    py="extra-loose"
-    as="section"
-    flexDirection="column"
-    borderRadius="6px"
-    margin="auto"
-    flex={1}
-    maxWidth={[null, null, '320px', '420px']}
-    {...props}
+  <Grid
+    justifyItems="center"
+    style={{
+      outline: `1px solid ${token('colors.ink.border-default')}`,
+    }}
   >
-    {children}
-  </Flex>
+    <Flex
+      flexDirection="column"
+      maxWidth={[null, null, '320px', '420px']}
+      style={{ padding: token('spacing.space.03') }}
+      {...props}
+    >
+      {children}
+    </Flex>
+  </Grid>
 );
 
 export const StackingOptionCardTitle: FC<BoxProps> = props => (
-  <Title fontSize="32px" mt="base-loose" {...props} />
+  <styled.h1 textStyle="heading.01" fontSize="32px" mt="base-loose" {...props} />
 );
 
 export const StackingOptionsCardDescription: FC<BoxProps> = props => (
-  <Text color={color('text-body')} textStyle="body.large" mt="extra-loose" {...props} />
+  <styled.p textStyle="body.01" marginTop="extra-loose" {...props} />
 );
 
 export const StackingOptionCardBenefitContainer: FC<BoxProps> = props => (
@@ -62,29 +65,31 @@ interface StackingOptionCardBenefitProps extends BoxProps {
 export const StackingOptionCardBenefit: FC<StackingOptionCardBenefitProps> = props => {
   const { icon: Icon, ...rest } = props;
   return (
-    <Flex alignItems="center" my="base">
+    <Flex alignItems="center" mb="space.03">
       <Flex width="32px" justifyContent="center" alignItems="center" mr="tight">
         <Icon />
       </Flex>
-      <Text display="block" textStyle="body.large.medium" color={color('text-body')} {...rest} />
+      <styled.p
+        display="block"
+        textStyle="body.large.medium"
+        color={token('colors.ink.text-primary')}
+        {...rest}
+      />
     </Flex>
   );
 };
 
 export const StackingOptionCardButton: FC<ButtonProps> = props => (
-  <Button alignSelf="flex-start" mt="base" {...props} />
+  <Button variant="solid" alignSelf="flex-start" mt="base" {...props} />
 );
 
 export const InsufficientStackingBalanceWarning: FC<FlexProps> = props => (
-  <Flex
-    color={color('feedback-alert')}
-    ml="base"
-    mt="base-tight"
-    alignItems="center"
-    textStyle="body.small"
-    {...props}
-  >
-    <ExclamationMarkCircleIcon width="16px" mt="1px" mr="6px" />
-    Insufficient balance
+  <Flex color={token('colors.red.border')} alignItems="center" {...props} mt="space.02">
+    <Box mr="space.02">
+      <ErrorCircleIcon variant="small" color={token('colors.red.action-primary-default')} />
+    </Box>
+    <styled.span textStyle="label.02" textAlign={'bottom'} marginLeft="loose">
+      Insufficient balance
+    </styled.span>
   </Flex>
 );

@@ -1,46 +1,31 @@
-import { Box, Flex } from '@stacks/ui';
 import { IconLock, IconStairs } from '@tabler/icons-react';
+import { StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
+import { useLiquidStackingButton } from 'src/pages/choose-stacking-method/hooks';
 
-import meltingIceIllustration from '@assets/images/liquid-stacking.svg';
+import MeltingIceIllustration from '@assets/images/liquid-stacking.svg';
 import { Users } from '@components/icons/users';
 
-import {
-  StackingOptionCard as Card,
-  StackingOptionsCardDescription as Description,
-  StackingOptionCardBenefit as OptionBenefit,
-  StackingOptionCardBenefitContainer as OptionBenefitContainer,
-  StackingOptionCardTitle as Title,
-} from '../components/start-stacking-layout';
 import { ChooseStackingMethodLayoutProps } from '../types';
-import { LiquidStackingButton } from './liquid-stacking-button';
-import { PooledStackingInsufficientStackingBalanceWarning } from './pooled-stacking-insufficient-stacking-balance-warning';
 
 export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
+  const { isDisabled, onClick } = useLiquidStackingButton(props);
+  const benefits = [
+    { icon: IconLock, title: 'Interact with liquid stacking contracts' },
+    { icon: Users, title: 'A protocol stacks on your behalf' },
+    { icon: IconStairs, title: 'No minimum required' },
+  ];
+
   return (
-    <Card>
-      <Box height="130px">
-        <img
-          src={meltingIceIllustration}
-          width="110px"
-          alt="Diving board illustration with a blue gradient and ominous-looking hole by Eugenia Digon"
-        />
-      </Box>
-      <Title>Liquid Stacking</Title>
-      <Description>
-        Stack with a liquid stacking protocol, enabling you to retain your liquidity in stSTX tokens
-        and auto-compound yield in STX. The provider may charge a small commission on rewards.
-      </Description>
-
-      <OptionBenefitContainer>
-        <OptionBenefit icon={IconLock}>Interact with liquid stacking contracts</OptionBenefit>
-        <OptionBenefit icon={Users}>A protocol stacks on your behalf</OptionBenefit>
-        <OptionBenefit icon={IconStairs}>No minimum required</OptionBenefit>
-      </OptionBenefitContainer>
-
-      <Flex alignItems="center">
-        <LiquidStackingButton {...props} />
-        <PooledStackingInsufficientStackingBalanceWarning {...props} />
-      </Flex>
-    </Card>
+    <StackingMethodCard
+      {...props}
+      title="Liquid Stacking"
+      description="Stack with a liquid stacking protocol, enabling you to retain your liquidity in stSTX tokens and auto-compound yield in STX. The provider may charge a small commission on rewards."
+      icon={<MeltingIceIllustration />}
+      benefits={benefits}
+      onButtonPress={onClick}
+      buttonDisabled={isDisabled}
+      buttonText="Stack liquid"
+      hasSufficientBalance={props.isSignedIn && props.hasEnoughBalanceToPool}
+    />
   );
 }

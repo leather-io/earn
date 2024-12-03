@@ -20,7 +20,6 @@ export function Footer() {
       <OpenLinkInNewTab
         color={color('text-caption')}
         fontWeight={500}
-        sx={{ textDecoration: 'underline' }}
         href={`${window.location.origin}/pool-admin${createSearch(activeNetwork)}`}
       >
         Pool Administration
@@ -28,7 +27,6 @@ export function Footer() {
       <OpenLinkInNewTab
         color={color('text-caption')}
         fontWeight={500}
-        sx={{ textDecoration: 'underline' }}
         href={`${window.location.origin}/signer/generate-signature${createSearch(activeNetwork)}`}
       >
         Signer Key Signature
@@ -36,7 +34,6 @@ export function Footer() {
       <OpenLinkInNewTab
         color={color('text-caption')}
         fontWeight={500}
-        sx={{ textDecoration: 'underline' }}
         href="https://leather.io/terms"
       >
         Terms of Service
@@ -44,7 +41,6 @@ export function Footer() {
       <OpenLinkInNewTab
         color={color('text-caption')}
         fontWeight={500}
-        sx={{ textDecoration: 'underline' }}
         href="https://leather.io/privacy-policy"
       >
         Privacy Policy

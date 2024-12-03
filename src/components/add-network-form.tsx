@@ -13,6 +13,7 @@ import { useGlobalContext } from '../context/use-app-context';
 import { Network } from '../types/network';
 import { ErrorLabel } from './error-label';
 import { ErrorText } from './error-text';
+import { token } from 'leather-styles/tokens';
 
 const buildCustomNetworkUrl = (url: string) => {
   const hostname = encodeURIComponent(new URL(url).hostname);
@@ -105,7 +106,11 @@ export const AddNetworkForm: React.FC = () => {
                 {({ field, form }: FieldProps<string, FormValues>) => (
                   <Box>
                     <FormLabel>Name</FormLabel>
-                    <Input {...field} placeholder="My Stacks API" />
+                    <Input
+                      {...field}
+                      placeholder="My Stacks API"
+                      backgroundColor={token('colors.ink.background-primary')}
+                    />
                     {form.touched && form.errors.label && (
                       <ErrorLabel>
                         <ErrorText>{form.errors.label}</ErrorText>

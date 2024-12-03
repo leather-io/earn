@@ -1,9 +1,11 @@
 import { ReactElement, ReactNode } from 'react';
 
-import { Box, Button, ButtonProps, Flex, Stack } from '@stacks/ui';
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
 
 import { Title } from '@components/title';
+import { Box, Stack } from 'leather-styles/jsx';
+import { Flex } from 'leather-styles/jsx';
+import { Button, ButtonProps } from '@leather.io/ui';
 
 interface StepProps {
   title: string;
@@ -68,7 +70,7 @@ interface DescriptionProps {
  */
 export function Description({ children }: DescriptionProps) {
   return (
-    <Stack display="block" textStyle="body.large" spacing="base">
+    <Stack display="block" textStyle="body.large">
       {children}
     </Stack>
   );

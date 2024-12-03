@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter, useSearchParams } from 'react-router-dom';
 
 import { StacksNetworkName } from '@stacks/network';
-import { CSSReset, ThemeProvider } from '@stacks/ui';
+import { ThemeProvider } from '@stacks/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { BlockchainApiClientProvider } from '@components/blockchain-api-client-provider';
@@ -36,7 +36,7 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
-
+import './index.css';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -66,7 +66,6 @@ function Root() {
           <StackingClientProvider>
             <BlockchainApiClientProvider>
               <ThemeProvider>
-                {CSSReset}
                 <Outlet />
               </ThemeProvider>
             </BlockchainApiClientProvider>

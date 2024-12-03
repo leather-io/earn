@@ -1,76 +1,113 @@
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Box, Button, Flex, Text, color } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { css } from 'leather-styles/css';
+import { Box, Flex, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 import { useGlobalContext } from 'src/context/use-app-context';
 import { useHover } from 'use-events';
 
-import darkLogo from '@assets/images/logo-dark.svg';
-import lightLogo from '@assets/images/logo.svg';
+import { openExternalLink } from '@utils/external-links';
 import { createSearch } from '@utils/networks';
 import { truncateMiddle } from '@utils/tx-utils';
 
+import Logo from '../assets/images/logo.svg';
 import { useAuth } from './auth-provider/auth-provider';
 import { NetworkInfo } from './network-info';
-import { OpenLinkInNewTab } from './open-link-in-new-tab';
 
 export function Navbar() {
-  const { isSignedIn, signOut, signIn, address } = useAuth();
-  const [isHovered, bind] = useHover();
+  return (
+    <Box
+      style={{ background: token('colors.ink.text-primary') }}
+      className={css({
+        width: '100%',
+      })}
+    >
+      <Flex
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Flex
+          flex={1}
+          style={{
+            justifyContent: 'center',
+            maxWidth: '1400px',
+            height: '80px',
+          }}
+        >
+          <Flex
+            flexDirection="row"
+            alignItems="center"
+            className={css({ width: { base: '100%', smToXl: '94%' } })}
+          >
+            <NavbarLeft />
+            <NavbarRight />
+          </Flex>
+        </Flex>
+      </Flex>
+    </Box>
+  );
+}
+
+const NavbarLeft = () => {
   const { activeNetwork } = useGlobalContext();
 
-  const logo = useMemo(() => {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return isDark ? darkLogo : lightLogo;
-  }, []);
-
   return (
-    <Flex
-      flexDirection="row"
-      justifyContent="space-between"
-      p="base-loose"
-      borderBottom={`1px solid ${color('border')}`}
-    >
-      <Flex alignItems="center">
-        <Link to={`/${createSearch(activeNetwork)}`}>
-          <Flex alignItems="center">
-            <img src={logo} alt="Site logo with Stacks symbol and Stacking text" />
-          </Flex>
-        </Link>
-      </Flex>
-      <Box>
-        <Flex p="sm" justify="right" alignItems="center">
-          <NetworkInfo />
-          <OpenLinkInNewTab href="https://wallet.hiro.so/wallet/faq#stacking" px="loose">
-            <Text color={color('text-body')} fontWeight={500}>
-              FAQ
-            </Text>
-          </OpenLinkInNewTab>
-          <Box pr="12px">
-            {isSignedIn && address ? (
-              <Button
-                width="160px"
-                boxShadow="none"
-                _hover={{ boxShadow: 'none' }}
-                mode="tertiary"
-                onClick={() => signOut()}
-                {...bind}
-              >
-                {isHovered ? 'Sign out' : truncateMiddle(address)}
-              </Button>
-            ) : (
-              <Button
-                boxShadow="none"
-                _hover={{ boxShadow: 'none' }}
-                mode="tertiary"
-                onClick={() => signIn()}
-              >
-                Connect wallet
-              </Button>
-            )}
-          </Box>
+    <Flex alignItems="center" flex="1 1 100%">
+      <Link to={`/${createSearch(activeNetwork)}`}>
+        <Flex alignItems="center">
+          <Logo />
         </Flex>
+      </Link>
+    </Flex>
+  );
+};
+
+const NavbarRight = () => {
+  const { isSignedIn, signOut, signIn, address } = useAuth();
+  const [isHovered, bind] = useHover();
+  return (
+    <Flex justify="right" alignItems="center" justifyItems={'flex-end'}>
+      {isSignedIn && <NetworkInfo />}
+      <styled.a
+        style={{ color: token('colors.ink.background-primary'), cursor: 'pointer' }}
+        onClick={() => openExternalLink('https://wallet.hiro.so/wallet/faq#stacking')}
+        mx="space.04"
+      >
+        FAQ
+      </styled.a>
+      <Box pr="12px">
+        {isSignedIn && address ? (
+          <Button
+            width="160px"
+            mr="space.00"
+            boxShadow="none"
+            variant="outline"
+            _hover={{ boxShadow: 'none' }}
+            onClick={() => signOut()}
+            borderRadius="6px"
+            background={'ink.background-primary'}
+            {...bind}
+          >
+            {isHovered ? 'Sign out' : truncateMiddle(address)}
+          </Button>
+        ) : (
+          <Button
+            boxShadow="none"
+            _hover={{ boxShadow: 'none' }}
+            width="160px"
+            variant="outline"
+            borderRadius="6px"
+            background={'ink.background-primary'}
+            onClick={() => signIn()}
+          >
+            Connect wallet
+          </Button>
+        )}
       </Box>
     </Flex>
   );
-}
+};

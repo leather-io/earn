@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { BoxProps } from '@stacks/ui';
+import { BoxProps } from 'leather-styles/jsx';
 
 import { Tooltip } from './tooltip';
 

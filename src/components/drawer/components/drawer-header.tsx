@@ -1,10 +1,7 @@
 import { FiArrowLeft, FiX as IconX } from 'react-icons/fi';
 
-import { Box, Flex } from '@stacks/ui';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 import { useHover } from 'use-events';
-
-import { Title } from '@components/title';
-import { Caption } from '@components/typography';
 
 import { HeaderActionButton } from './header-action-button';
 
@@ -33,8 +30,8 @@ export function DrawerHeader({
       pb="base"
       justifyContent="space-between"
       alignItems="center"
-      pt="loose"
-      px="loose"
+      py="space.04"
+      px="space.04"
       {...bind}
     >
       {enableGoBack ? (
@@ -44,18 +41,18 @@ export function DrawerHeader({
           onAction={onGoBack}
         />
       ) : (
-        <Box size="36px" />
+        <Box width="36px" height="36px" />
       )}
       {icon && icon}
       {title && (
-        <Title fontSize="20px" lineHeight="28px">
+        <styled.p color="ink.background-primary" fontSize="20px" lineHeight="28px">
           {title}
-        </Title>
+        </styled.p>
       )}
       {isHovered && isWaitingOnPerformedAction && (
-        <Caption fontSize="14px" fontWeight={500}>
+        <styled.p color="ink.background-primary" fontSize="14px" fontWeight={500}>
           {waitingOnPerformedActionMessage}
-        </Caption>
+        </styled.p>
       )}
       {onClose ? (
         <HeaderActionButton
@@ -64,7 +61,7 @@ export function DrawerHeader({
           onAction={onClose}
         />
       ) : (
-        <Box size="36px" />
+        <Box width="36px" height="36px" />
       )}
     </Flex>
   );

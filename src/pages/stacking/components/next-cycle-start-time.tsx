@@ -1,7 +1,8 @@
-import { Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 import { addSeconds, formatDistanceToNow } from 'date-fns';
 
 import { ClockIcon } from '@components/icons/clock';
+import { token } from 'leather-styles/tokens';
 
 interface NextCycleStartTimeProps extends FlexProps {
   /**
@@ -17,26 +18,26 @@ export function NextCycleStartTime({ timeUntilNextCycle, ...rest }: NextCycleSta
       <Flex
         width="44px"
         height="44px"
-        background={color('bg-4')}
+        background={token('colors.ink.text-primary')}
         borderRadius="50%"
-        alignItems="center"
-        justifyContent="center"
+        alignItems="flex-start"
+        justifyContent="flex-start"
       >
-        <ClockIcon size="14px" />
+        <ClockIcon size="24px" />
       </Flex>
       <Flex ml="base" flexDirection="column">
-        <Text as="h4" display="block" textStyle="body.large.medium" lineHeight="20px">
+        <styled.h4 display="block" textStyle="body.01" lineHeight="20px">
           Next cycle starts in
-        </Text>
-        <Text
+        </styled.h4>
+        <styled.p
           display="block"
-          textStyle="body.large"
-          color={color('text-caption')}
+          textStyle="body.01"
+          color="ink.text-subdued"
           lineHeight="20px"
-          mt="extra-tight"
+          mt="space.01"
         >
           {timeUntilNextCycleText}
-        </Text>
+        </styled.p>
       </Flex>
     </Flex>
   );
