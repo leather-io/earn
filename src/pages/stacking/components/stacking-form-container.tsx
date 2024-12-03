@@ -3,7 +3,6 @@ import React, { cloneElement, isValidElement } from 'react';
 import { Box } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
 
-import { Hr } from '@components/hr';
 import { increment } from '@utils/mutate-numbers';
 
 interface ChildProps extends BoxProps {
@@ -21,7 +20,6 @@ export function StackingFormContainer({ children }: Props) {
   const parsedFormSteps = parsedChildren.flatMap((child, index) => {
     if (!isValidElement(child)) return null;
     return [
-      <Hr mt="extra-loose" mb="48px" key={index.toString() + '-hr'} />,
       cloneElement(child, {
         key: index,
         step: increment(index),

@@ -1,15 +1,12 @@
 {
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-
   "compilerOptions": {
     // Type Checking
     "strict": true,
-
+    "allowSyntheticDefaultImports": true,
     // Modules
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -18,9 +15,10 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"]
     },
-
+    "types": ["vitest/globals"],
     "resolveJsonModule": true,
-
+    "sourceMap": true,
+    "removeComments": true,
     // Emit
     "noEmit": true,
 
@@ -36,5 +34,6 @@
 
     // Completeness
     "skipLibCheck": true
-  }
+  },
+  "include": ["src", "leather-styles", "theme", "panda.config.ts", "vite.config.ts", "global.d.ts"]
 }

@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Box, BoxProps } from '@stacks/ui';
 import Tippy from '@tippyjs/react';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 import { ExplainerIcon } from './icons/explainer';
 
@@ -19,17 +19,14 @@ export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
           color="white"
           background="black"
           borderRadius="6px"
-          textStyle="body.small.medium"
+          textStyle="body.01"
           whiteSpace="normal"
-          maxWidth="290px"
         >
           {text}
         </Box>
       }
     >
-      <Box as="span" {...props}>
-        {children}
-      </Box>
+      <Box {...props}>{children}</Box>
     </Tippy>
   );
 };
@@ -59,11 +56,11 @@ export const ExplainerTooltip: FC<BoxProps> = ({ children, ...props }) => {
       zIndex={9999999}
       content={
         <Box
-          p="base-tight"
+          p="space.02"
           color="white"
           background="black"
-          borderRadius="6px"
-          textStyle="body.small.medium"
+          borderRadius="2px"
+          textStyle="body.01"
           whiteSpace="normal"
           maxWidth="290px"
           {...props}
@@ -72,7 +69,7 @@ export const ExplainerTooltip: FC<BoxProps> = ({ children, ...props }) => {
         </Box>
       }
     >
-      <Box mr="tight">
+      <Box mr="space.01">
         <ExplainerIcon cursor="help" />
       </Box>
     </Tippy>

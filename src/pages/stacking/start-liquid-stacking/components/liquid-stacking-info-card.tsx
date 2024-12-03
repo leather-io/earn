@@ -1,5 +1,5 @@
-import { Box, FlexProps } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { Box, FlexProps } from 'leather-styles/jsx';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { Hr } from '@components/hr';
@@ -36,12 +36,12 @@ export function ProtocolInfoCard(props: FlexProps) {
   return (
     <>
       <InfoCard {...props}>
-        <Box mx={['loose', 'extra-loose']} sx={{}}>
+        <Box mx={['space.04', 'space.05']}>
           <LiquidStackingAmountInfo title="You'll liquid stack" amountText={amountText} />
 
           <Hr />
 
-          <Group mt="base-loose" mb="extra-loose">
+          <Group mt="space.04" mb="space.05">
             <Section>
               <Row>
                 <Label explainer="How long you will liquid stack with the protocol. By default, any liquid stacking protocol will stack your STX indefinitely until you decide to unstack.">

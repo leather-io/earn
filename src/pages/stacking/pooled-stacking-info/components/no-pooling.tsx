@@ -1,10 +1,9 @@
-import { Flex, Stack, Text, color } from '@stacks/ui';
+import { Flex, Stack, Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
 
 import { Alert } from '@components/alert';
 import { InfoCard } from '@components/info-card';
 import { Link } from '@components/link';
-import { Caption } from '@components/typography';
 
 export function NoPooling() {
   return (
@@ -18,23 +17,23 @@ export function NoPooling() {
             </Text>
             <Text>
               You may want to{' '}
-              <Caption
+              <Link
                 display="inline"
                 to="../start-pooled-stacking"
-                as={Link}
-                color={color('brand')}
+                color="ink.text-primary"
+                textDecoration="underline"
               >
                 start pooling
-              </Caption>{' '}
+              </Link>{' '}
               or{' '}
-              <Caption
+              <Link
                 display="inline"
                 to="../choose-stacking-method"
-                as={Link}
-                color={color('brand')}
+                color="ink.text-primary"
+                textDecoration="underline"
               >
                 choose your stacking method
-              </Caption>
+              </Link>
               .
             </Text>
           </Stack>

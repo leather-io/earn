@@ -9,7 +9,6 @@ import {
   useGetPoxInfoQuery,
 } from '@components/stacking-client-provider/stacking-client-provider';
 
-import { Banner } from '../sign-in/banner';
 import { useDelegationStatusQuery } from '../stacking/pooled-stacking-info/use-delegation-status-query';
 import { ChooseStackingMethodLayout } from './choose-stacking-method.layout';
 import { useStackingInitiatedByQuery } from './use-stacking-initiated-by';
@@ -17,7 +16,6 @@ import { useStackingInitiatedByQuery } from './use-stacking-initiated-by';
 export function ChooseStackingMethod() {
   return (
     <Box>
-      <Banner />
       <ChooseStackingMethodAuthHandler />
     </Box>
   );

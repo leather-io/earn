@@ -1,13 +1,15 @@
 import { ReactNode, Suspense, memo, useCallback, useRef } from 'react';
 
-import { css } from '@emotion/react';
-import { Box, Flex, FlexProps, color, transition, useEventListener } from '@stacks/ui';
+import { useEventListener } from '@stacks/ui';
+import { css } from 'leather-styles/css';
+import { Box, Flex, FlexProps } from 'leather-styles/jsx';
 
-import { hideScrollbarStyle } from '@components/styles/hide-scrollbar';
 import { useNavigate } from '@hooks/use-navigate';
 import { useOnClickOutside } from '@hooks/use-onclickoutside';
 
 import { DrawerHeader } from './components/drawer-header';
+
+const transition = 'all 0.2s cubic-bezier(0.23, 1, 0.32, 1)';
 
 function useDrawer(isShowing: boolean, onClose: () => void, pause?: boolean) {
   const ref = useRef(null);
@@ -67,13 +69,15 @@ const BaseDrawerComponent = (props: BaseDrawerProps) => {
   return (
     <Flex
       display={isShowing ? 'flex' : 'none'}
-      bg={`rgba(0,0,0,0.${isShowing ? 4 : 0})`}
+      className={css({
+        bg: isShowing ? 'black/40' : 'unset',
+      })}
       transition={transition}
       position="fixed"
       top={0}
       left={0}
       height="100%"
-      pt="loose"
+      pt="space.09"
       width="100%"
       alignItems={['flex-end', 'center', 'center']}
       justifyContent="center"
@@ -95,9 +99,9 @@ const BaseDrawerComponent = (props: BaseDrawerProps) => {
         transition={isShowing ? transition + ' 0.1s' : transition}
         transitionDuration="0.4s"
         willChange="transform, opacity"
+        bg="ink.background-primary"
         width="100%"
         maxWidth="472px"
-        bg={color('bg')}
         borderTopLeftRadius="16px"
         borderTopRightRadius="16px"
         borderBottomLeftRadius={[0, '16px', '16px', '16px']}
@@ -107,10 +111,12 @@ const BaseDrawerComponent = (props: BaseDrawerProps) => {
         maxHeight={['calc(100vh - 24px)', 'calc(100vh - 96px)']}
       >
         <Box
-          css={css`
-            overflow-y: scroll;
-            ${hideScrollbarStyle}
-          `}
+          className={css({
+            overflowY: 'scroll',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+          })}
         >
           <DrawerHeader
             enableGoBack={enableGoBack}

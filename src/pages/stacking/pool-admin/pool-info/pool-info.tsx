@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { Button, Stack } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { Stack } from 'leather-styles/jsx';
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
@@ -66,7 +67,7 @@ export function PoolInfo() {
       }
       poolAdminForm={
         <>
-          <Stack spacing="base" mt="extra-loose">
+          <Stack gap="space.04" mt="space.04">
             <Button onClick={() => navigate(routes.DELEGATE_STACK_STX)}>Delegate Stack STX</Button>
             <Button onClick={() => navigate(routes.DELEGATE_STACK_EXTEND)}>
               Delegate Stack Extend

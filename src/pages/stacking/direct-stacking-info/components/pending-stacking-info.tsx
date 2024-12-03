@@ -1,5 +1,5 @@
-import { Box, Flex, Text } from '@stacks/ui';
 import { IconClockHour4 } from '@tabler/icons-react';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { Address } from '@components/address';
 import { Alert, AlertText } from '@components/alert';
@@ -28,21 +28,19 @@ export function PendingStackingInfo({ data, transactionId, networkName }: Props)
     <>
       <Flex height="100%" justify="center" align="center">
         <InfoCard width="420px">
-          <Box mx={['loose', 'extra-loose']}>
-            <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-              <Text textStyle="body.large.medium">You&apos;re stacking</Text>
-              <Text
+          <Box mx={['space.04', 'space.06']}>
+            <Flex flexDirection="column" pt="space.04" pb="space.04">
+              <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
+              <styled.p
+                textStyle="heading.02"
                 fontSize="24px"
-                fontFamily="Open Sauce"
                 fontWeight={500}
                 letterSpacing="-0.02em"
-                mt="extra-tight"
-                pb="base-loose"
               >
                 {toHumanReadableStx(data.amountMicroStx)}
-              </Text>
+              </styled.p>
 
-              <Box pb="base-loose">
+              <Box pb="space.04">
                 <Alert icon={<IconClockHour4 />} title="Waiting for transaction confirmation">
                   <AlertText>
                     A stacking request was successfully submitted to the blockchain. Once confirmed,
@@ -53,7 +51,7 @@ export function PendingStackingInfo({ data, transactionId, networkName }: Props)
 
               <Hr />
 
-              <Group mt="base-loose">
+              <Group mt="space.04">
                 <Section>
                   <Row>
                     <Label>Duration</Label>

@@ -1,4 +1,4 @@
-import { Text } from '@stacks/ui';
+import { styled } from 'leather-styles/jsx';
 
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
@@ -12,7 +12,7 @@ import {
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
 import { ActiveStackingInfo } from './components/active-stacking-info';
-import { NoStacking } from './components/no-stacking-info';
+import { NoStackingInfo } from './components/no-stacking-info';
 import { PendingStackingInfo } from './components/pending-stacking-info';
 import { useGetHasPendingStackingTransactionQuery } from './use-get-has-pending-tx-query';
 
@@ -64,7 +64,7 @@ export function DirectStackingInfo() {
     console.error(msg);
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>{msg}</Text>
+        <styled.p textStyle="body.01">{msg}</styled.p>
       </CenteredErrorAlert>
     );
   }
@@ -72,7 +72,7 @@ export function DirectStackingInfo() {
   const isStacking = getStatusQuery.data.stacked;
 
   if (!isStacking && getHasPendingDirectStackingQuery.data === null) {
-    return <NoStacking />;
+    return <NoStackingInfo />;
   }
 
   const transactionId = getHasPendingDirectStackingQuery.data?.transactionId;

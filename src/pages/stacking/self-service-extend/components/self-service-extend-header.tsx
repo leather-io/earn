@@ -1,4 +1,4 @@
-import { Flex, Text } from '@stacks/ui';
+import { Flex, styled } from 'leather-styles/jsx';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { toHumanReadableStx } from '@utils/unit-convert';
@@ -16,21 +16,21 @@ export function SelfServiceExtendHeader({
     <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
       {stackerInfoDetails && !showExtendForOtherUser ? (
         <>
-          <Text textStyle="body.large.medium">You&apos;re stacking</Text>
-          <Text
+          <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
+          <styled.h2
+            textStyle="heading.02"
             fontSize="24px"
-            fontFamily="Open Sauce"
             fontWeight={500}
             letterSpacing="-0.02em"
-            mt="extra-tight"
           >
             {toHumanReadableStx(lockedBalance)}
-          </Text>
+          </styled.h2>
         </>
       ) : (
         <>
-          <Text textStyle="body.large.medium">Self-service pooling with</Text>
-          <Text
+          <styled.h2 textStyle="heading.02">Self-service pooling with</styled.h2>
+          <styled.h2
+            textStyle="heading.02"
             fontSize="24px"
             fontFamily="Open Sauce"
             fontWeight={500}
@@ -38,7 +38,7 @@ export function SelfServiceExtendHeader({
             mt="extra-tight"
           >
             Fast Pool
-          </Text>
+          </styled.h2>
         </>
       )}
     </Flex>

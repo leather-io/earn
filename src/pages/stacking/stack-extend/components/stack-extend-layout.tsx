@@ -1,8 +1,9 @@
 import { useEffect, useMemo } from 'react';
 
-import { Box, Button, Flex, Text } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useField, useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
@@ -68,32 +69,27 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
       console.error(errorMsg);
     }
   }, [errorMsg]);
+
   return (
     <BaseDrawer title={title} isShowing={!poxDisabled} onClose={onClose}>
-      <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
+      <Flex alignItems="center" flexDirection="column" pb={['space.04', '48px']} px="space.04">
         <InfoCard width="420px">
-          <Box mx={['loose', 'extra-loose']}>
-            <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-              <Text textStyle="body.large.medium">You&apos;re stacking</Text>
-              <Text
-                fontSize="24px"
-                fontFamily="Open Sauce"
-                fontWeight={500}
-                letterSpacing="-0.02em"
-                mt="extra-tight"
-              >
+          <Box mx={['space.04', 'space.06']}>
+            <Flex flexDirection="column" pt="space.05" pb="space.04">
+              <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
+              <styled.p fontSize="24px" fontWeight={500} mt="space.01">
                 for {details.lock_period} cycles
-              </Text>
+              </styled.p>
             </Flex>
             <Hr />
             {pendingStackExtend && (
               <PendingStackExtendAlert pendingStackExtend={pendingStackExtend} />
             )}
             <Description>
-              <Text>
+              <styled.p>
                 Increase the amount of cycles you want to lock your STX. Currently each cycle lasts
                 around 15 days and the maximum locked period is 12 cycles.
-              </Text>
+              </styled.p>
             </Description>
 
             <Flex justifyContent="center">
@@ -117,8 +113,8 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
                 <ErrorText>{meta.error}</ErrorText>
               </ErrorLabel>
             )}
-            <OneCycleDescriptor mt="loose" />
-            <Group pt="base-loose">
+            <OneCycleDescriptor mt="space.04" />
+            <Group pt="space.04">
               <Section>
                 <Row>
                   <Label explainer="STX will unlock after that cycle">End</Label>
@@ -131,18 +127,18 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
                   </Value>
                 </Row>
                 <SignerDetails />
-                <Row m="loose" justifyContent="space-between">
-                  <Button mode="tertiary" onClick={onClose}>
+                <Row my="space.04" justifyContent="space-between">
+                  <Button variant="outline" onClick={onClose}>
                     Cancel
                   </Button>
                   <Button
-                    isLoading={isContractCallExtensionPageOpen}
-                    isDisabled={hasErrors(errors)}
+                    _loading={{ opacity: 0.5 }}
+                    disabled={hasErrors(errors) || isContractCallExtensionPageOpen}
                   >
-                    <Box mr="loose">
+                    <Flex flexDirection="row" alignItems="center" justifyContent="center">
                       <IconLock />
-                    </Box>
-                    Continue Stacking
+                      &nbsp; Continue Stacking
+                    </Flex>
                   </Button>
                 </Row>
               </Section>

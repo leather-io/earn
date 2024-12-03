@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
-
-import { Flex, Stack, Text, color } from '@stacks/ui';
+import { Flex, Stack, Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
 
 import { Alert } from '@components/alert';
 import { InfoCard } from '@components/info-card';
-import { Caption } from '@components/typography';
+import { Link } from '@components/link';
 
-export function NoStacking() {
+export function NoStackingInfo() {
   return (
     <Flex height="100%" justify="center" align="center" m="loose">
       <InfoCard width="420px">
@@ -19,23 +17,21 @@ export function NoStacking() {
             </Text>
             <Text>
               You may want to{' '}
-              <Caption
-                display="inline"
+              <Link
                 to="../start-direct-stacking"
-                color={color('brand')}
-                as={Link}
+                color="ink.text-primary"
+                textDecoration="underline"
               >
                 start stacking
-              </Caption>{' '}
+              </Link>{' '}
               or{' '}
-              <Caption
-                display="inline"
-                color={color('brand')}
+              <Link
                 to="../choose-stacking-method"
-                as={Link}
+                color="ink.text-primary"
+                textDecoration="underline"
               >
                 choose your stacking method
-              </Caption>
+              </Link>
               .
             </Text>
           </Stack>

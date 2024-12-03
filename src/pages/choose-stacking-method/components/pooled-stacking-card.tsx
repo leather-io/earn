@@ -1,46 +1,35 @@
-import { Box, Flex } from '@stacks/ui';
-import { IconLock, IconStairs } from '@tabler/icons-react';
+import { StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
+import { usePooledStackingButton } from 'src/pages/choose-stacking-method/hooks';
 
-import divingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
-import { Users } from '@components/icons/users';
+import IconUserGroup from '@assets/images/ic-group.svg';
+import IconLock from '@assets/images/ic-lock.svg';
+import IconStack from '@assets/images/ic-stack.svg';
+import DivingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
 
-import {
-  StackingOptionCard as Card,
-  StackingOptionsCardDescription as Description,
-  StackingOptionCardBenefit as OptionBenefit,
-  StackingOptionCardBenefitContainer as OptionBenefitContainer,
-  StackingOptionCardTitle as Title,
-} from '../components/start-stacking-layout';
 import { ChooseStackingMethodLayoutProps } from '../types';
-import { PooledStackingButton } from './pooled-stacking-button';
-import { PooledStackingInsufficientStackingBalanceWarning } from './pooled-stacking-insufficient-stacking-balance-warning';
 
 export function PooledStackingCard(props: ChooseStackingMethodLayoutProps) {
+  const { isDisabled, onClick } = usePooledStackingButton(props);
+  const benefits = [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    { icon: IconLock as any as React.FC, title: 'Interact with the protocol directly' },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    { icon: IconUserGroup as any as React.FC, title: 'A pool stacks on your behalf' },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    { icon: IconStack as any as React.FC, title: 'No minimum required' },
+  ];
+
   return (
-    <Card>
-      <Box height="130px">
-        <img
-          src={divingBoardIllustration}
-          width="150px"
-          alt="Diving board illustration with a blue gradient and ominous-looking hole by Eugenia Digon"
-        />
-      </Box>
-      <Title>Stack in a pool</Title>
-      <Description>
-        Delegate to a Stacking pool provider, enabling you to stack even if you don&apos;t meet the
-        minimum. The Stacking provider may maintain discretion with payment of rewards.
-      </Description>
-
-      <OptionBenefitContainer>
-        <OptionBenefit icon={IconLock}>Interact with the protocol directly</OptionBenefit>
-        <OptionBenefit icon={Users}>A pool stacks on your behalf</OptionBenefit>
-        <OptionBenefit icon={IconStairs}>No minimum required</OptionBenefit>
-      </OptionBenefitContainer>
-
-      <Flex alignItems="center">
-        <PooledStackingButton {...props} />
-        <PooledStackingInsufficientStackingBalanceWarning {...props} />
-      </Flex>
-    </Card>
+    <StackingMethodCard
+      {...props}
+      title="Stack in a pool"
+      description="Delegate to a Stacking pool provider, enabling you to stack even if you don't meet the minimum. The Stacking provider may maintain discretion with payment of rewards."
+      icon={<DivingBoardIllustration />}
+      benefits={benefits}
+      onButtonPress={onClick}
+      buttonDisabled={isDisabled}
+      buttonText="Stack in a pool"
+      hasSufficientBalance={props.isSignedIn && props.hasEnoughBalanceToPool}
+    />
   );
 }

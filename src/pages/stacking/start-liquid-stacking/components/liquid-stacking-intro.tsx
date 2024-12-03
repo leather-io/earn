@@ -12,7 +12,7 @@ export function LiquidStackingIntro({ timeUntilNextCycle }: LiquidStackingIntroP
   return (
     <>
       <Title>Liquid Stacking</Title>
-      <NextCycleStartTime mt="extra-loose" timeUntilNextCycle={timeUntilNextCycle} />
+      <NextCycleStartTime mt="space.04" timeUntilNextCycle={timeUntilNextCycle} />
     </>
   );
 }

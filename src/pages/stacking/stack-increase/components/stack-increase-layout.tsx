@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
 import { ExtendedAccountBalances } from '@stacks/stacking';
-import { Box, Button, Flex, Text } from '@stacks/ui';
+import { Box, Button, Flex } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { BaseDrawer } from '@components/drawer/base-drawer';
 import { Hr } from '@components/hr';
@@ -45,16 +46,10 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
         <InfoCard width="420px">
           <Box mx={['loose', 'extra-loose']}>
             <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-              <Text textStyle="body.large.medium">You&apos;re stacking</Text>
-              <Text
-                fontSize="24px"
-                fontFamily="Open Sauce"
-                fontWeight={500}
-                letterSpacing="-0.02em"
-                mt="extra-tight"
-              >
+              <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
+              <styled.p fontSize="24px" fontWeight={500} letterSpacing="-0.02em">
                 {toHumanReadableStx(extendedStxBalances.locked.toString())}
-              </Text>
+              </styled.p>
             </Flex>
 
             <Hr />

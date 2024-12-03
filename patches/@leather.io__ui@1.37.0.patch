@@ -1,0 +1,28 @@
+diff --git a/dist-web/components/collectibles/web/collectible-text.layout.web.js b/dist-web/components/collectibles/web/collectible-text.layout.web.js
+index c5d3a1e6a9bb04d19ceadd56bb9292dfde4e6594..1e525eb820790680514f81c0d2acf5cf7233756f 100644
+--- a/dist-web/components/collectibles/web/collectible-text.layout.web.js
++++ b/dist-web/components/collectibles/web/collectible-text.layout.web.js
+@@ -1,7 +1,7 @@
+ import { jsx } from 'react/jsx-runtime';
+-import { sanitize } from 'dompurify';
++import DOMPurify from 'dompurify';
+ import { Box } from 'leather-styles/jsx';
+ 
+-function n({children:e}){return jsx(Box,{_after:{content:'""',position:"absolute",bottom:"0",left:"0",height:"30px",width:"100%",backgroundImage:"linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))"},bg:"black",color:"white",height:"100%",p:"20px",position:"relative",overflow:"hidden",textAlign:"left",width:"100%",children:jsx("pre",{children:sanitize(e)})})}
++function n({children:e}){return jsx(Box,{_after:{content:'""',position:"absolute",bottom:"0",left:"0",height:"30px",width:"100%",backgroundImage:"linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))"},bg:"black",color:"white",height:"100%",p:"20px",position:"relative",overflow:"hidden",textAlign:"left",width:"100%",children:jsx("pre",{children:DOMPurify.sanitize(e)})})}
+ 
+ export { n as CollectibleTextLayout };
+diff --git a/dist-web/components/collectibles/web/inscription-preview-card/components/inscription-text.layout.web.js b/dist-web/components/collectibles/web/inscription-preview-card/components/inscription-text.layout.web.js
+index eb1c25595960dd0c60bd88fff8a58b2b916ea953..4ea9eb5723e0312ad1c596a9ef53c1772e8f1662 100644
+--- a/dist-web/components/collectibles/web/inscription-preview-card/components/inscription-text.layout.web.js
++++ b/dist-web/components/collectibles/web/inscription-preview-card/components/inscription-text.layout.web.js
+@@ -1,7 +1,7 @@
+ import { jsx } from 'react/jsx-runtime';
+-import { sanitize } from 'dompurify';
++import DOMPurify from 'dompurify';
+ import { Box } from 'leather-styles/jsx';
+ 
+-function p({content:o}){return jsx(Box,{_after:{content:'""',position:"absolute",bottom:"0",left:"0",height:"30px",width:"100%",backgroundImage:"linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))"},color:"white",fontSize:"9px",height:"100%",p:"space.03",position:"relative",overflow:"hidden",textAlign:"left",width:"100%",children:jsx("pre",{children:sanitize(o)})})}
++function p({content:o}){return jsx(Box,{_after:{content:'""',position:"absolute",bottom:"0",left:"0",height:"30px",width:"100%",backgroundImage:"linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))"},color:"white",fontSize:"9px",height:"100%",p:"space.03",position:"relative",overflow:"hidden",textAlign:"left",width:"100%",children:jsx("pre",{children:DOMPurify.sanitize(o)})})}
+ 
+ export { p as InscriptionTextLayout };

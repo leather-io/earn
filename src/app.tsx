@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter, useSearchParams } from 'react-router-dom';
 
 import { StacksNetworkName } from '@stacks/network';
-import { CSSReset, ThemeProvider } from '@stacks/ui';
+import { ThemeProvider } from '@stacks/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { BlockchainApiClientProvider } from '@components/blockchain-api-client-provider';
@@ -16,6 +16,7 @@ import { AuthProvider } from './components/auth-provider/auth-provider';
 import { Layout } from './components/layout';
 import { IS_BROWSER } from './constants';
 import { AppContextProvider } from './context/global-context';
+import './index.css';
 import { ChooseStackingMethod } from './pages/choose-stacking-method/choose-stacking-method';
 import { AddNetwork } from './pages/settings/add-network';
 import { Network } from './pages/settings/network/network';
@@ -66,7 +67,6 @@ function Root() {
           <StackingClientProvider>
             <BlockchainApiClientProvider>
               <ThemeProvider>
-                {CSSReset}
                 <Outlet />
               </ThemeProvider>
             </BlockchainApiClientProvider>

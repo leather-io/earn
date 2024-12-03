@@ -1,19 +1,20 @@
 'use client';
 
-import React, { ReactNode } from 'react';
-import { TbCheck, TbTrash } from 'react-icons/tb';
+import React from 'react';
+import { TbTrash } from 'react-icons/tb';
 import { useNavigate as useNavigateRouterDom } from 'react-router-dom';
 
+import { Button, ButtonProps, CheckmarkIcon } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
 import { ChainId } from '@stacks/network';
-import { Box, Flex, FlexProps, IconButton, Spinner, Stack, Tooltip, color } from '@stacks/ui';
+import { IconButton, Spinner, Tooltip } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
 import { useQuery } from '@tanstack/react-query';
+import { css } from 'leather-styles/css';
+import { Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
 
-import { Title as StacksTitle } from '@components/title';
-import { Caption } from '@components/typography';
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
 import { createSearch } from '@utils/networks';
@@ -23,18 +24,6 @@ import { Badge } from '../../../components/badge';
 import { useGlobalContext } from '../../../context/use-app-context';
 import { Network, whenStacksChainId } from '../../../types/network';
 
-const Title = ({ children, bold }: { children: ReactNode; bold?: boolean }) => {
-  return (
-    <StacksTitle
-      fontSize="20px"
-      lineHeight="28px"
-      display="block"
-      fontWeight={bold ? 400 : undefined}
-    >
-      {children}
-    </StacksTitle>
-  );
-};
 interface ItemWrapperProps extends FlexProps {
   isDisabled?: string | boolean;
   isActive?: boolean;
@@ -48,10 +37,10 @@ const ItemWrapper: React.FC<ItemWrapperProps> = ({ isActive, isDisabled, ...prop
       justifyContent="space-between"
       position="relative"
       zIndex="999"
-      bg={isDisabled ? 'bg-4' : 'bg'}
+      bg={'ink.background-primary'}
       cursor={isDisabled ? 'not-allowed' : 'unset'}
       _hover={{
-        bg: isDisabled ? 'unset' : isActive ? 'unset' : 'bgAlt',
+        bg: isDisabled || isActive ? undefined : 'ink.action-primary',
         cursor: isDisabled ? 'not-allowed' : isActive ? 'default' : 'pointer',
       }}
       {...props}
@@ -69,13 +58,20 @@ const getCustomNetworkApiInfo = (baseUrl: string) => () => {
   return coreInfoApi.getCoreApiInfo();
 };
 
-export const NetworkBadge = ({ mode }: { mode: StacksNetworkName }) => {
+export const NetworkBadge = ({
+  networkName,
+  networkLabel,
+}: {
+  networkName: string;
+  networkLabel: string;
+}) => {
   return (
-    <Badge bg={color('bg-4')} ml="8px" color={color('text-caption')}>
-      {mode}
+    <Badge bg="ink.background-pr" color="ink.background-primary">
+      {`${networkLabel}:${networkName}`}
     </Badge>
   );
 };
+
 const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemProps) => {
   const {
     removeCustomNetwork,
@@ -115,26 +111,30 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
     <ItemWrapper
       isActive={isActive}
       isDisabled={!!isDisabled || !!error || isInitialLoading}
+      className={css({
+        cursor: isDisabled ? 'not-allowed' : 'pointer',
+        borderBottom: '1px solid',
+        borderColor: 'ink.border-default',
+      })}
       {...rest}
     >
-      <Stack
-        pl="32px"
-        pr={'32px'}
-        py="16px"
-        width="100%"
-        flexGrow={1}
-        spacing="8px"
-        onClick={onClick}
-      >
+      <Stack pr={'32px'} py="16px" width="100%" flexGrow={1} onClick={onClick}>
         <Flex alignItems="center">
-          <Title>{item.label}</Title>
-          {itemNetworkMode ? <NetworkBadge mode={itemNetworkMode} /> : null}
+          {
+            <styled.p textStyle="heading.01" fontSize="16px" lineHeight="1" fontWeight="400">
+              {item.label}
+              {itemNetworkMode ? `:${itemNetworkMode}` : null}
+            </styled.p>
+          }
+          {/* {itemNetworkMode ? (
+            <NetworkBadge networkName={itemNetworkMode} networkLabel={item.label} />
+          ) : null} */}
         </Flex>
-        <Caption display="block">
+        <styled.p textStyle="label.01" fontSize="14px" lineHeight="20px" fontWeight="400">
           {item?.url?.includes('//') ? item?.url?.split('//')[1] : item?.url || isDisabled}
-        </Caption>
+        </styled.p>
       </Stack>
-      <Flex alignItems="center" pr={'32px'} py="16px" position={'relative'}>
+      <Flex alignItems="center" py="16px" position={'relative'}>
         {isCustom && !isActive ? (
           <Tooltip label="Remove network">
             <IconButton
@@ -154,30 +154,41 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
         ) : isInitialLoading ? (
           <Spinner size="18px" opacity={0.5} color={'#666'} />
         ) : error ? (
-          <Caption color={color('feedback-error')}>Offline</Caption>
+          <styled.p color="red.background-primary">Offline</styled.p>
         ) : isActive ? (
-          <Box as={TbCheck} color={color('feedback-success')} size="18px" />
+          <CheckmarkIcon
+            className={css({
+              color: 'green.action-primary-default',
+              width: '18px',
+              height: '18px',
+            })}
+          />
         ) : null}
       </Flex>
     </ItemWrapper>
   );
 };
 
-const AddNetwork: React.FC<ItemWrapperProps> = ({ onClick, ...rest }) => {
+const AddNetwork: React.FC<
+  ButtonProps & {
+    isDisabled?: string | boolean;
+    isActive?: boolean;
+  }
+> = ({ onClick, ...rest }) => {
   const navigate = useNavigate();
+
   return (
-    <ItemWrapper
+    <Button
+      {...rest}
+      mt="space.04"
       onClick={e => {
         navigate(routes.ADD_NETWORK);
         onClick?.(e);
       }}
-      py="24px"
-      px="32px"
-      borderTopWidth="1px"
-      {...rest}
+      variant="outline"
     >
-      <Title bold>Add a network</Title>
-    </ItemWrapper>
+      Add a network
+    </Button>
   );
 };
 
@@ -213,6 +224,7 @@ function NetworkItemsComponent({ onItemClick }: NetworkItemsProps) {
           />
         );
       })}
+
       <AddNetwork
         onClick={() => {
           onItemClick?.('new');

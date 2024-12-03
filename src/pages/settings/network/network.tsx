@@ -1,4 +1,4 @@
-import { Flex } from '@stacks/ui';
+import { Flex } from 'leather-styles/jsx';
 
 import { BaseDrawer } from '@components/drawer/base-drawer';
 import { InfoCard } from '@components/info-card';
@@ -17,8 +17,8 @@ export const Network = () => {
         navigate(routes.HOME);
       }}
     >
-      <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
-        <InfoCard width="420px">
+      <Flex alignItems="center" flexDirection="column" pb={['space.04', '48px']} px="space.04">
+        <InfoCard border="none" borderColor="ink.border-default" width="420px">
           <NetworkItems />
         </InfoCard>
       </Flex>

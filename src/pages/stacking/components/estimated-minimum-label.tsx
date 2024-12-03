@@ -23,7 +23,7 @@ export function EstimatedMinimumLabel({
         alignItems="center"
         justifyContent="center"
       >
-        <StepsIcon size="14px" />
+        <StepsIcon width="14px" height="14px" />
       </Flex>
       <Flex ml="base" flexDirection="column">
         <Text as="h4" display="block" textStyle="body.large.medium" lineHeight="20px">

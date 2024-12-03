@@ -1,6 +1,9 @@
+import { Button } from '@leather.io/ui';
 import { intToBigInt } from '@stacks/common';
-import { Box, Button, Input, Spinner, Text, color } from '@stacks/ui';
+import { Input, Spinner } from '@stacks/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -25,17 +28,23 @@ export function ChooseStackingAmount() {
   return (
     <Step title="Amount">
       <Description>
-        <Text>
+        <styled.p textStyle="body.01">
           Choose how much you&apos;ll stack. Your liquid stacking protocol may require a minimum.
-        </Text>
-        <Text>
+          <br />
+          <br />
           The STX tokens will leave your wallet and you will get stSTX or LiSTX which represents
           your principal plus yield.
-        </Text>
+        </styled.p>
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stxAmount" mt="loose" placeholder="Amount of STX to Stack" {...field} />
+        <Input
+          id="stxAmount"
+          mt="loose"
+          placeholder="Amount of STX to Stack"
+          {...field}
+          backgroundColor={token('colors.ink.background-primary')}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -43,25 +52,25 @@ export function ChooseStackingAmount() {
         )}
       </Box>
 
-      <Box
-        textStyle="body.small"
-        color={color('text-caption')}
-        mt="base-tight"
-        aria-busy={queryGetAccountExtendedBalances.isLoading}
-      >
-        Available balance:{' '}
+      <Box textStyle="body.03" mt="space.03" aria-busy={queryGetAccountExtendedBalances.isLoading}>
         {queryGetAccountExtendedBalances.isLoading ? (
           <Spinner />
         ) : availableForStacking ? (
-          <Button
-            variant="link"
-            type="button"
-            onClick={() => helpers.setValue(microStxToStx(availableForStacking))}
-          >
-            {toHumanReadableStx(availableForStacking)}
-          </Button>
+          <>
+            <styled.p mt="space.03" color="ink.text-primary">
+              Available balance:{' '}
+            </styled.p>
+            <Button
+              variant="outline"
+              size="sm"
+              type="button"
+              onClick={() => helpers.setValue(microStxToStx(availableForStacking))}
+            >
+              {toHumanReadableStx(availableForStacking)}
+            </Button>
+          </>
         ) : (
-          <ErrorAlert>Failed to load</ErrorAlert>
+          <ErrorAlert>Failed to load available balance</ErrorAlert>
         )}
       </Box>
     </Step>

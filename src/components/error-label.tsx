@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Flex, FlexProps } from '@stacks/ui';
+import { Box, Flex, FlexProps } from 'leather-styles/jsx';
 
 import { ExclamationMark } from './icons/exclamation-mark';
 

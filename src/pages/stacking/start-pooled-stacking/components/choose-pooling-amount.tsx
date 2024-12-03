@@ -1,6 +1,7 @@
 import { intToBigInt } from '@stacks/common';
 import { Box, Button, Flex, Input, Spinner, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { token } from 'leather-styles/tokens';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -37,7 +38,13 @@ export function ChoosePoolingAmount() {
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stxAmount" mt="loose" placeholder="Amount of STX to Stack" {...field} />
+        <Input
+          id="stxAmount"
+          mt="loose"
+          placeholder="Amount of STX to Stack"
+          backgroundColor={token('colors.ink.background-primary')}
+          {...field}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

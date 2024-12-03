@@ -1,23 +1,13 @@
 import React, { FC } from 'react';
 
-import { BoxProps, Text, color } from '@stacks/ui';
+import { BoxProps, styled } from 'leather-styles/jsx';
 
 type TitleProps = BoxProps;
 
 export const Title: FC<TitleProps> = ({ children, ...props }) => {
   return (
-    <Text
-      as="h1"
-      fontSize="40px"
-      lineHeight="56px"
-      display="block"
-      fontWeight={500}
-      fontFamily="Open Sauce"
-      letterSpacing="-0.02em"
-      color={color('text-title')}
-      {...props}
-    >
+    <styled.h1 textStyle="display.02" color="ink.text-primary" {...props}>
       {children}
-    </Text>
+    </styled.h1>
   );
 };

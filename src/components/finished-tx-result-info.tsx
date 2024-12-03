@@ -1,5 +1,5 @@
 import { FinishedTxData } from '@stacks/connect';
-import { Box } from '@stacks/ui';
+import { Box } from 'leather-styles/jsx';
 
 import { Alert, AlertText } from './alert';
 
