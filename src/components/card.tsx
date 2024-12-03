@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Box, BoxProps, Flex, Text, color } from '@stacks/ui';
+import { Box, BoxProps, Flex, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 interface CardProps extends BoxProps {
   title?: string;
@@ -9,28 +10,29 @@ interface CardProps extends BoxProps {
 export function Card({ title, children, ...rest }: CardProps) {
   return (
     <Box
-      borderRadius="6px"
-      border="1px solid"
-      borderColor={color('border')}
-      boxShadow="mid"
-      textAlign="center"
-      width="100%"
+      style={{
+        border: '1px solid',
+        borderColor: token('borders.subdued'),
+        width: '100%',
+        textAlign: 'center',
+        minHeight: '600px',
+        backgroundColor: token('colors.ink.background-primary'),
+      }}
       {...rest}
     >
       {title && (
         <Flex
           borderBottom="1px solid"
-          borderColor={color('border')}
-          height="40px"
+          borderColor="ink.border-default"
           justifyContent="center"
           alignItems="center"
         >
-          <Text textStyle="caption" color={color('text-caption')}>
+          <styled.p textStyle="body.01" style={{ color: token('colors.ink.text-primary') }}>
             {title}
-          </Text>
+          </styled.p>
         </Flex>
       )}
-      <Box my="base" mx="base">
+      <Box my="space.02" mx="space.04">
         {children}
       </Box>
     </Box>

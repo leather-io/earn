@@ -1,5 +1,5 @@
-import { Box, BoxProps, Flex, Text, color } from '@stacks/ui';
 import { IconAlertCircle } from '@tabler/icons-react';
+import { Box, BoxProps, Flex } from 'leather-styles/jsx';
 
 import { useSIP22 } from '@hooks/use-sip-22';
 
@@ -56,7 +56,7 @@ export function PoxDisabledLayout() {
 function ExplainerItem({ ...rest }: BoxProps) {
   return (
     <Flex alignItems="center" my="base">
-      <Text display="block" textStyle="body.large.medium" color={color('text-body')} {...rest} />
+      <Box display="block" textStyle="body.01" color={'ink.text-primary'} {...rest} />
     </Flex>
   );
 }

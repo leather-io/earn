@@ -1,8 +1,7 @@
-import { Flex, FlexProps, Text } from '@stacks/ui';
 import { forwardRefWithAs } from '@stacks/ui-core';
+import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
-export type BadgeProps = FlexProps;
-export const Badge = forwardRefWithAs<BadgeProps, 'div'>(({ children, ...rest }, ref) => (
+export const Badge = forwardRefWithAs<FlexProps, 'div'>(({ children, ...rest }, ref) => (
   <Flex
     ref={ref}
     alignItems="center"
@@ -14,7 +13,7 @@ export const Badge = forwardRefWithAs<BadgeProps, 'div'>(({ children, ...rest },
     borderWidth="1px"
     {...rest}
   >
-    <Text
+    <styled.p
       display="block"
       lineHeight="16px"
       fontSize={['10px', '10px', '11px']}
@@ -22,6 +21,6 @@ export const Badge = forwardRefWithAs<BadgeProps, 'div'>(({ children, ...rest },
       color="currentColor"
     >
       {children}
-    </Text>
+    </styled.p>
   </Flex>
 ));

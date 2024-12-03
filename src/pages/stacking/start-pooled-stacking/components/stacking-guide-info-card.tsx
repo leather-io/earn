@@ -1,5 +1,5 @@
-import { Box, FlexProps, Text, color } from '@stacks/ui';
 import { IconEdit } from '@tabler/icons-react';
+import { Box, FlexProps, styled } from 'leather-styles/jsx';
 
 import { InfoCardGroup as Group, InfoCard, InfoCardRow as Row } from '@components/info-card';
 import { Link } from '@components/link';
@@ -14,23 +14,23 @@ export function StackingGuideInfoCard(props: FlexProps) {
               <IconEdit />
 
               <Link to="">
-                <Text
-                  textStyle="body.small"
+                <styled.p
+                  textStyle="body.02"
                   fontWeight={500}
                   display="block"
                   style={{ wordBreak: 'break-all' }}
                 >
                   Read the Stacking Guide
-                </Text>
-                <Text
-                  textStyle="body.small"
-                  color={color('text-caption')}
+                </styled.p>
+                <styled.p
+                  textStyle="body.02"
+                  color="ink.text-subdued"
                   mt="tight"
                   display="inline-block"
                   lineHeight="18px"
                 >
                   to get the most out of stacking.
-                </Text>
+                </styled.p>
               </Link>
             </Row>
           </Box>

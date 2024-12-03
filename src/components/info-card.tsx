@@ -1,6 +1,15 @@
 import React, { FC, cloneElement, isValidElement } from 'react';
 
-import { Box, BoxProps, Flex, FlexProps, Stack, StackProps, Text, color } from '@stacks/ui';
+import {
+  Box,
+  BoxProps,
+  Flex,
+  HTMLStyledProps,
+  Stack,
+  StackProps,
+  styled,
+} from 'leather-styles/jsx';
+import { FlexProps } from 'leather-styles/jsx';
 
 import { Hr } from '@components/hr';
 import { ExplainerTooltip } from '@components/tooltip';
@@ -9,9 +18,8 @@ export function InfoCard(props: FlexProps) {
   return (
     <Flex
       flexDirection="column"
-      boxShadow="low"
-      border={`1px solid ${color('border')}`}
-      borderRadius="8px"
+      border="1px solid"
+      borderColor="ink.border-default"
       minHeight="84px"
       {...props}
     />
@@ -41,9 +49,7 @@ export const InfoCardGroup = ({ children, ...props }: Props) => {
 };
 
 export const InfoCardSection: FC<StackProps> = ({ children, ...props }) => (
-  <Stack {...props} spacing="base-tight">
-    {children}
-  </Stack>
+  <Stack {...props}>{children}</Stack>
 );
 
 export const InfoCardRow: FC<FlexProps> = props => (
@@ -54,12 +60,12 @@ interface InfoCardLabelProps extends FlexProps {
   explainer?: string;
 }
 export const InfoCardLabel: FC<InfoCardLabelProps> = ({ children, ...props }) => (
-  <Flex color={color('text-caption')} alignItems="center" {...props}>
-    <Box mr={props.explainer ? 'tight' : undefined}>{children}</Box>
+  <Flex color="ink.text-primary" alignItems="center" {...props}>
+    <Box mr={props.explainer ? 'space.01' : undefined}>{children}</Box>
     {props.explainer && <ExplainerTooltip>{props.explainer}</ExplainerTooltip>}
   </Flex>
 );
 
-export const InfoCardValue: FC<FlexProps> = props => (
-  <Text textStyle="body.large.medium" textAlign="right" color={color('text-caption')} {...props} />
+export const InfoCardValue = (props: HTMLStyledProps<'p'>) => (
+  <styled.p textStyle="body.01" textAlign="right" color="ink.text-subdued" {...props} />
 );

@@ -1,9 +1,6 @@
-import { Stack, StackProps, Text } from '@stacks/ui';
-import { IconLock } from '@tabler/icons-react';
-
-import { Stacks } from '@components/icons/stacks';
-import { StepsIcon } from '@components/icons/steps';
-import { pseudoBorderLeft } from '@components/styles/pseudo-border-left';
+import { Eye1Icon, LockIcon, StacksIcon } from '@leather.io/ui';
+import { css } from 'leather-styles/css';
+import { Stack, StackProps, styled } from 'leather-styles/jsx';
 
 import { StackingTermItem } from '../../components/stacking-term';
 
@@ -11,37 +8,48 @@ export function LiquidStackingTerms({ ...rest }: StackProps) {
   return (
     <Stack
       textStyle={['body.small', 'body.large']}
-      spacing="base-loose"
       pl="base"
-      {...pseudoBorderLeft('feedback-alert')}
+      className={css({
+        position: 'relative',
+        _before: {
+          content: '""',
+          top: 0,
+          left: 0,
+          borderRadius: '8px',
+          width: '4px',
+          height: '100%',
+          position: 'absolute',
+          background: 'ink.action-primary-hover',
+        },
+      })}
       {...rest}
     >
       <StackingTermItem
         title="This transaction can’t be reversed"
-        icon={<IconLock width="16px" height="16px" />}
+        icon={<LockIcon width="16px" height="16px" />}
       >
-        <Text>
+        <styled.p>
           You are transferring STX to the liquid stacking protocol. To receive STX back, you must
           request them from the protocol.
-        </Text>
+        </styled.p>
       </StackingTermItem>
       <StackingTermItem
         title="Research your protocol"
-        icon={<StepsIcon width="16px" height="16px" />}
+        icon={<Eye1Icon width="16px" height="16px" />}
       >
-        <Text>
+        <styled.p>
           Paying out rewards is at the discretion of the protocol. Make sure you’ve researched and
           trust the protocol you’re using.
-        </Text>
+        </styled.p>
       </StackingTermItem>
       <StackingTermItem
         title="Stacking with Protocol Contract"
-        icon={<Stacks width="16px" height="16px" />}
+        icon={<StacksIcon width="16px" height="16px" />}
       >
-        <Text>
+        <styled.p>
           The protocol uses a smart contract that handles your stacking. By allowing the contract to
           call Stacking functions, you agree to the rules of the Protocol contract.
-        </Text>
+        </styled.p>
       </StackingTermItem>
     </Stack>
   );

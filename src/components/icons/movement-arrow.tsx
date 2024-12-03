@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, BoxProps } from '@stacks/ui';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 export const MovementArrow = ({ ...props }: BoxProps) => (
   <Box {...props}>

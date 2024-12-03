@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
+import { Button } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { ChainId } from '@stacks/network';
-import { Box, Button, FormLabel, Input, Stack } from '@stacks/ui';
+import { FormLabel, Input } from '@stacks/ui';
 import { Field, FieldProps, Form, Formik, FormikErrors } from 'formik';
+import { Box, Stack } from 'leather-styles/jsx';
 import { string } from 'yup';
 
 import { createSearch } from '@utils/networks';
@@ -99,8 +101,8 @@ export const AddNetworkForm: React.FC = () => {
     >
       {form => (
         <Form>
-          <Stack spacing="24px">
-            <Stack spacing="16px">
+          <Stack gap="space.04">
+            <Stack gap="space.02">
               <Field name="label">
                 {({ field, form }: FieldProps<string, FormValues>) => (
                   <Box>
@@ -140,7 +142,7 @@ export const AddNetworkForm: React.FC = () => {
               )}
             </Field>
             <Box>
-              <Button isLoading={form.isValidating} width="100%" type="submit">
+              <Button variant="outline" disabled={form.isValidating} width="100%" type="submit">
                 Add and select
               </Button>
             </Box>

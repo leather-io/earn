@@ -1,6 +1,6 @@
 import { intToBigInt } from '@stacks/common';
 import { ExtendedAccountBalances } from '@stacks/stacking';
-import { Text, color } from '@stacks/ui';
+import { Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
 
 import { Address } from '@components/address';
@@ -14,7 +14,6 @@ import {
   InfoCardValue as Value,
 } from '@components/info-card';
 import { Link } from '@components/link';
-import { Caption } from '@components/typography';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { PercentageRow } from './percentage-row';
@@ -66,23 +65,13 @@ export function RevokedWhileStackingContent({
         <Section>
           <Alert icon={<IconInfoCircle />}>
             You&apos;ve revoked the pool&apos;s delegation. You may want to{' '}
-            <Caption
-              display="inline"
-              to="../start-pooled-stacking"
-              as={Link}
-              color={color('brand')}
-            >
+            <Link display="inline" to="../start-pooled-stacking" color="ink.text-primary">
               start pooling
-            </Caption>{' '}
+            </Link>{' '}
             again or{' '}
-            <Caption
-              display="inline"
-              to="../choose-stacking-method"
-              as={Link}
-              color={color('brand')}
-            >
+            <Link display="inline" to="../choose-stacking-method" color="ink.text-primary">
               choose a different stacking method
-            </Caption>
+            </Link>
             .
           </Alert>
         </Section>

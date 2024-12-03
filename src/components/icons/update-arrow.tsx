@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, BoxProps } from '@stacks/ui';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 export const UpdateArrowIcon: React.FC<BoxProps> = props => (
   <Box {...props}>

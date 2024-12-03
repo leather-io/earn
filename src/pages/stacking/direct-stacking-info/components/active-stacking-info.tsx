@@ -1,6 +1,7 @@
 import { StackerInfo } from '@stacks/stacking';
-import { Box, Flex, Text } from '@stacks/ui';
 import { IconClockHour4 } from '@tabler/icons-react';
+import { Box, styled } from 'leather-styles/jsx';
+import { Flex } from 'leather-styles/jsx';
 
 import { Address } from '@components/address';
 import { Alert, AlertText } from '@components/alert';
@@ -48,23 +49,22 @@ export function ActiveStackingInfo({
   const poxAddress = formatPoxAddressToNetwork(network, details.pox_address);
 
   return (
-    <Flex height="100%" justify="center" align="center">
-      <InfoCard width="420px">
-        <Box mx={['loose', 'extra-loose']}>
-          <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-            <Text textStyle="body.large.medium">You&apos;re stacking</Text>
-            <Text
+    <Flex height="100%" flexDirection="column" justify="center" align="center">
+      <InfoCard width={['100%', '80%', '420px', '420px']} my="space.10">
+        <Box mx="space.04">
+          <Flex flexDirection="column" pt="space.06" pb="space.05">
+            <styled.h2 textStyle="heading.01">You&apos;re stacking</styled.h2>
+            <styled.p
+              textStyle="heading.02"
               fontSize="24px"
-              fontFamily="Open Sauce"
               fontWeight={500}
               letterSpacing="-0.02em"
-              mt="extra-tight"
             >
               {toHumanReadableStx(lockedAmount)}
-            </Text>
+            </styled.p>
 
             {isBeforeFirstRewardCycle && (
-              <Box pb="base-loose">
+              <Box pb="space.04">
                 <Alert icon={<IconClockHour4 />} title="Waiting for the cycle to start">
                   Your STX are ready for stacking. Once the next cycle starts the network will
                   determine if and how many slots are claimed.
@@ -73,7 +73,7 @@ export function ActiveStackingInfo({
             )}
 
             {pendingStackIncrease && (
-              <Box pb="base-loose">
+              <Box pb="space.04">
                 <Alert icon={<IconClockHour4 />} title="Waiting for transaction confirmation">
                   <AlertText>
                     A stacking request was successfully submitted to the blockchain. Once confirmed,
@@ -90,7 +90,7 @@ export function ActiveStackingInfo({
 
             <Hr />
 
-            <Group pt="base-loose">
+            <Group pt="space.04">
               <Section>
                 <Row>
                   <Label>Duration</Label>
@@ -108,9 +108,7 @@ export function ActiveStackingInfo({
                 </Row>
                 <Row>
                   <Label>Bitcoin address</Label>
-                  <Value>
-                    <Address address={poxAddress} />
-                  </Value>
+                  <Address address={poxAddress} />
                 </Row>
                 <ActionButtonsRow />
               </Section>

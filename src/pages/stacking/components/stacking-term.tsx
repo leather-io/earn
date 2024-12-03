@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Flex, FlexProps, Stack, Text, color } from '@stacks/ui';
+import { Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
 
 export interface StackingTermItem extends FlexProps {
   title: string;
@@ -9,15 +9,15 @@ export interface StackingTermItem extends FlexProps {
 export function StackingTermItem(props: StackingTermItem) {
   const { title, icon, children, ...rest } = props;
   return (
-    <Flex alignItems="baseline" {...rest}>
-      <Flex width="16px" mr="base-tight">
+    <Flex alignItems="flex-start" {...rest}>
+      <Flex width="16px" ml="space.04" mr="space.02" pt="space.01">
         {icon}
       </Flex>
-      <Stack spacing="extra-tight">
-        <Text as="h3" textStyle="body.large.medium">
+      <Stack mt="space.00">
+        <styled.h3 textStyle="heading.06" fontWeight="bold">
           {title}
-        </Text>
-        <Stack spacing="base" textStyle="body.large" color={color('text-caption')}>
+        </styled.h3>
+        <Stack mb="space.02" textStyle="body.02" color="ink.text">
           {children}
         </Stack>
       </Stack>

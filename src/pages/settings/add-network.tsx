@@ -1,9 +1,9 @@
-import { Box, Flex, Text, color } from '@stacks/ui';
+import { Box, Flex } from 'leather-styles/jsx';
+import { styled } from 'leather-styles/jsx';
 
 import { AddNetworkForm } from '@components/add-network-form';
 import { BaseDrawer } from '@components/drawer/base-drawer';
 import { InfoCard } from '@components/info-card';
-import { Caption } from '@components/typography';
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
 
@@ -13,21 +13,20 @@ export const AddNetwork = () => {
     <BaseDrawer title={'Add a network'} isShowing onClose={() => navigate(routes.HOME)}>
       <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
         <InfoCard width="420px">
-          <Box m={['loose', 'extra-loose']}>
+          <Box m={['space.04', 'space.06']}>
             <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-              <Text fontSize={'14px'} color={'textBody'}>
+              <styled.p textStyle="body.01" mb="space.04" color="ink.text-primary">
                 Use this form to add a new instance of the{' '}
-                <Caption
+                <styled.a
                   display="inline"
-                  as="a"
                   href="https://github.com/hirosystems/stacks-blockchain-api"
                   target="_blank"
-                  color={color('brand')}
+                  color="ink.text-primary"
                 >
                   Stacks Blockchain API
-                </Caption>
+                </styled.a>
                 . Make sure you review and trust the host before you add it.
-              </Text>
+              </styled.p>
             </Flex>
             <AddNetworkForm />
           </Box>
