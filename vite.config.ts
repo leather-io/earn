@@ -16,11 +16,12 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: [
-        'leather-styles/jsx',
-        'leather-styles/tokens',
         'leather-styles/css',
-        'leather-styles/hooks',
-        'leather-styles',
+        'leather-styles/jsx',
+        'leather-styles/patterns',
+        'leather-styles/recipes',
+        'leather-styles/tokens',
+        'leather-styles/types',
       ],
     },
   },
