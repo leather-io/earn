@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import { Button, ButtonProps, ErrorCircleIcon } from '@leather.io/ui';
+import { css } from 'leather-styles/css';
 import { Box, BoxProps, Flex, FlexProps, Grid, GridProps, styled } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
-import { css } from 'leather-styles/css';
 
 export const StartStackingLayout: FC<BoxProps> = props => (
   <Box

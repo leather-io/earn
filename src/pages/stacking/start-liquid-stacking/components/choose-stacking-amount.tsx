@@ -1,7 +1,8 @@
 import { intToBigInt } from '@stacks/common';
-import { Button, Spinner, Input } from '@stacks/ui';
-import { Box, styled } from 'leather-styles/jsx';
+import { Button, Input, Spinner } from '@stacks/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -10,7 +11,6 @@ import { useGetAccountExtendedBalancesQuery } from '@components/stacking-client-
 import { microStxToStx, toHumanReadableStx } from '@utils/unit-convert';
 
 import { Description, Step } from '../../components/stacking-form-step';
-import { token } from 'leather-styles/tokens';
 
 export function ChooseStackingAmount() {
   const [field, meta, helpers] = useField('amount');

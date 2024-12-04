@@ -16,6 +16,7 @@ import { AuthProvider } from './components/auth-provider/auth-provider';
 import { Layout } from './components/layout';
 import { IS_BROWSER } from './constants';
 import { AppContextProvider } from './context/global-context';
+import './index.css';
 import { ChooseStackingMethod } from './pages/choose-stacking-method/choose-stacking-method';
 import { AddNetwork } from './pages/settings/add-network';
 import { Network } from './pages/settings/network/network';
@@ -36,7 +37,7 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
-import './index.css';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

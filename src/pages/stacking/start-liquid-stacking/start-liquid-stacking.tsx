@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Form, Formik } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
@@ -23,7 +24,6 @@ import {
   createHandleSubmit as createHandleStackStxSubmit,
   createValidationSchema,
 } from './utils-liquid-stacking-stx';
-import { styled } from 'leather-styles/jsx';
 
 const initialDelegatingFormValues: Partial<EditingFormValues> = {
   amount: '',

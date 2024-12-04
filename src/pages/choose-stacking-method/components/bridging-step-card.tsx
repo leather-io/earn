@@ -1,8 +1,8 @@
 import { Button } from '@leather.io/ui';
 import { Box, Flex, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
-import { token } from 'leather-styles/tokens';
 
 type Props = ChooseStackingMethodLayoutProps & {
   title: string;

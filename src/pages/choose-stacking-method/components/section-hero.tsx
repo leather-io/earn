@@ -1,5 +1,4 @@
 import { css } from 'leather-styles/css';
-
 import { Box, Flex, styled } from 'leather-styles/jsx';
 
 interface SectionHeroProps {

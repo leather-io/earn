@@ -4,6 +4,7 @@ import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { ChainId } from '@stacks/network';
 import { Box, Button, FormLabel, Input, Stack } from '@stacks/ui';
 import { Field, FieldProps, Form, Formik, FormikErrors } from 'formik';
+import { token } from 'leather-styles/tokens';
 import { string } from 'yup';
 
 import { createSearch } from '@utils/networks';
@@ -13,7 +14,6 @@ import { useGlobalContext } from '../context/use-app-context';
 import { Network } from '../types/network';
 import { ErrorLabel } from './error-label';
 import { ErrorText } from './error-text';
-import { token } from 'leather-styles/tokens';
 
 const buildCustomNetworkUrl = (url: string) => {
   const hostname = encodeURIComponent(new URL(url).hostname);

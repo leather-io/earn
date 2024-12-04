@@ -1,8 +1,8 @@
+import { Eye1Icon, LockIcon, StacksIcon } from '@leather.io/ui';
+import { css } from 'leather-styles/css';
 import { Stack, StackProps, styled } from 'leather-styles/jsx';
-import { LockIcon, StacksIcon, Eye1Icon } from '@leather.io/ui';
 
 import { StackingTermItem } from '../../components/stacking-term';
-import { css } from 'leather-styles/css';
 
 export function LiquidStackingTerms({ ...rest }: StackProps) {
   return (

@@ -4,6 +4,7 @@ import React from 'react';
 import { TbTrash } from 'react-icons/tb';
 import { useNavigate as useNavigateRouterDom } from 'react-router-dom';
 
+import { Button, ButtonProps, CheckmarkIcon } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
@@ -11,6 +12,9 @@ import { ChainId } from '@stacks/network';
 import { IconButton, Spinner, Tooltip } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
 import { useQuery } from '@tanstack/react-query';
+import { css } from 'leather-styles/css';
+import { Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
@@ -20,10 +24,6 @@ import { ONE_MINUTE } from '@utils/query-stale-time';
 import { Badge } from '../../../components/badge';
 import { useGlobalContext } from '../../../context/use-app-context';
 import { Network, whenStacksChainId } from '../../../types/network';
-import { FlexProps, Flex, Stack, styled } from 'leather-styles/jsx';
-import { Button, ButtonProps, CheckmarkIcon } from '@leather.io/ui';
-import { css } from 'leather-styles/css';
-import { token } from 'leather-styles/tokens';
 
 interface ItemWrapperProps extends FlexProps {
   isDisabled?: string | boolean;

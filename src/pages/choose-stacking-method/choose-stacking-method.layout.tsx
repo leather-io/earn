@@ -1,7 +1,12 @@
+import { css } from 'leather-styles/css';
 import { Box, Stack, styled } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
+import { BridgeToSBTCCard } from 'src/pages/choose-stacking-method/components/bridge-to-sbtc-card';
+import { EnrollForSBTCRewardsCard } from 'src/pages/choose-stacking-method/components/enroll-for-sbtc-rewards';
+import { SectionHero } from 'src/pages/choose-stacking-method/components/section-hero';
 
 import BTCBall from '../../assets/images/btc-ball.svg';
+import EarnWithSBTCImage from '../../assets/images/earn-with-btc-image.svg';
 import EarnWithStackingImage from '../../assets/images/earn-with-stacking.svg';
 import { DirectStackingCard } from './components/direct-stacking-card';
 import { LiquidStackingCard } from './components/liquid-stacking-card';
@@ -13,11 +18,6 @@ import {
   StartStackingLayout,
 } from './components/start-stacking-layout';
 import { ChooseStackingMethodLayoutProps } from './types';
-import { css } from 'leather-styles/css';
-import { SectionHero } from 'src/pages/choose-stacking-method/components/section-hero';
-import EarnWithSBTCImage from '../../assets/images/earn-with-btc-image.svg';
-import { BridgeToSBTCCard } from 'src/pages/choose-stacking-method/components/bridge-to-sbtc-card';
-import { EnrollForSBTCRewardsCard } from 'src/pages/choose-stacking-method/components/enroll-for-sbtc-rewards';
 
 export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProps) {
   return (

@@ -3,9 +3,9 @@ import { NetworkBadge } from 'src/pages/settings/network/network-items';
 
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
+import { useStacksNetwork } from '@hooks/use-stacks-network';
 
 import { Caption } from './typography';
-import { useStacksNetwork } from '@hooks/use-stacks-network';
 
 export function NetworkInfo() {
   const navigate = useNavigate();

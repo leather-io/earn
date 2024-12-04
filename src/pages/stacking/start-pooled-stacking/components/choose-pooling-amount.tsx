@@ -1,6 +1,7 @@
 import { intToBigInt } from '@stacks/common';
 import { Box, Button, Flex, Input, Spinner, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { token } from 'leather-styles/tokens';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -9,7 +10,6 @@ import { useGetAccountExtendedBalancesQuery } from '@components/stacking-client-
 import { microStxToStx, toHumanReadableStx } from '@utils/unit-convert';
 
 import { Description, Step } from '../../components/stacking-form-step';
-import { token } from 'leather-styles/tokens';
 
 export function ChoosePoolingAmount() {
   const [field, meta, helpers] = useField('amount');

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { styled, BoxProps } from 'leather-styles/jsx';
+import { BoxProps, styled } from 'leather-styles/jsx';
 
 type TitleProps = BoxProps;
 

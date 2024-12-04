@@ -1,8 +1,8 @@
+import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/bridging-step-card';
+
 import DivingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
-
-import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/bridging-step-card';
 
 export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps) {
   return (

@@ -1,11 +1,11 @@
 import { ReactElement, ReactNode } from 'react';
 
+import { Button, ButtonProps } from '@leather.io/ui';
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
-
-import { Title } from '@components/title';
 import { Box, Stack } from 'leather-styles/jsx';
 import { Flex } from 'leather-styles/jsx';
-import { Button, ButtonProps } from '@leather.io/ui';
+
+import { Title } from '@components/title';
 
 interface StepProps {
   title: string;

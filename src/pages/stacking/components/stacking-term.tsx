@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { styled, Flex, FlexProps, Stack } from 'leather-styles/jsx';
+import { Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
 
 export interface StackingTermItem extends FlexProps {
   title: string;
