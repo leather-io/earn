@@ -2,7 +2,7 @@ import { ReactNode, createContext, useContext } from 'react';
 
 import { StackingClient } from '@stacks/stacking';
 import {
-  callReadOnlyFunction,
+  fetchCallReadOnlyFunction,
   validateStacksAddress as isValidStacksAddress,
   noneCV,
   principalCV,
@@ -27,11 +27,11 @@ interface Props {
 export function StackingClientProvider({ children }: Props) {
   const { address } = useAuth();
   const { network } = useStacksNetwork();
-
+  console.log('network', network);
   let client: StackingClient | null = null;
 
   if (address !== null && isValidStacksAddress(address)) {
-    client = new StackingClient(address, network);
+    client = new StackingClient({ address, network });
   }
 
   return (
@@ -127,7 +127,7 @@ export function useGetAllowanceContractCallersQuery(callingContract: string) {
   return useQuery(['getAllowanceContractCallers', senderAddress, callingContract, network], () => {
     if (senderAddress) {
       const [contractAddress, contractName] = poxContractId.split('.');
-      return callReadOnlyFunction({
+      return fetchCallReadOnlyFunction({
         contractAddress,
         contractName,
         functionName: 'get-allowance-contract-callers',

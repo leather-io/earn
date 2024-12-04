@@ -40,5 +40,6 @@ export function sumStxTxTotal(
     current.event_type === 'stx_asset' && current.asset.asset_event_type === 'transfer'
       ? new BigNumber(current.asset.amount || 0).plus(prev)
       : initialValue;
+
   return tx.events.reduce(sumEventTransferHandler, initialValue).plus(tx.fee_rate);
 }

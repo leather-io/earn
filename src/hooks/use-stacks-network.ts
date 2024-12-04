@@ -1,36 +1,43 @@
 import {
-  StacksDevnet,
-  StacksMainnet,
-  StacksMocknet,
+  STACKS_DEVNET,
+  STACKS_MAINNET,
+  STACKS_MOCKNET,
+  STACKS_TESTNET,
+  StacksNetwork,
   StacksNetworkName,
-  StacksTestnet,
+  networkFrom,
 } from '@stacks/network';
 import { NetworkInstance } from 'src/pages/stacking/start-pooled-stacking/types-preset-pools';
 import { getNetworkInstance } from 'src/pages/stacking/start-pooled-stacking/utils-preset-pools';
 import { whenStacksNetworkMode } from 'src/types/network';
 
-import { fetchWithApiKey } from '@utils/fetch-with-api-keys';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 import { useGlobalContext } from '../context/use-app-context';
 
 export type StacksNetworkContext = ReturnType<typeof useStacksNetwork>;
 
+function setFetchFn(network: StacksNetwork) {
+  network.client.fetch = fetchFn;
+  return network;
+}
+
 export const useStacksNetwork = (): {
-  network: StacksTestnet | StacksMainnet;
+  network: StacksNetwork;
   networkName: StacksNetworkName;
   networkInstance: NetworkInstance;
   networkLabel: string;
 } => {
   const selectedNetwork = useGlobalContext().activeNetwork;
-  const apiServer = selectedNetwork.url;
+
   const networkMode = selectedNetwork.mode;
-  const Network = whenStacksNetworkMode(networkMode)({
-    mainnet: StacksMainnet,
-    testnet: StacksTestnet,
-    devnet: StacksDevnet,
-    mocknet: StacksMocknet,
+  const network = whenStacksNetworkMode(networkMode)({
+    mainnet: networkFrom(setFetchFn(STACKS_MAINNET)),
+    testnet: networkFrom(setFetchFn(STACKS_TESTNET)),
+    devnet: networkFrom(setFetchFn(STACKS_DEVNET)),
+    mocknet: networkFrom(setFetchFn(STACKS_MOCKNET)),
   });
-  const network = new Network({ url: apiServer, fetchFn: fetchWithApiKey });
+
   const networkInstance = getNetworkInstance(network);
   return {
     network,

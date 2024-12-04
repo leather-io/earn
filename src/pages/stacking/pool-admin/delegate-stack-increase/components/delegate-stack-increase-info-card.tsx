@@ -42,12 +42,12 @@ function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: str
 
 export function StackerDuration({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient(stacker, network);
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
 
   let lockedAmount: bigint | null = null;
   if (!getAccountExtendedBalancesQuery.isError && getAccountExtendedBalancesQuery.data?.stx) {
-    lockedAmount = intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked, false);
+    lockedAmount = intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked);
   }
   if (lockedAmount === null || lockedAmount === 0n) {
     return (
@@ -62,14 +62,13 @@ export function StackerDuration({ stacker }: { stacker: string }) {
 
 function IncreaseByValue({ stacker, amount }: { stacker: string; amount: IntegerType }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient(stacker, network);
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
   if (getAccountExtendedBalancesQuery.isError || !getAccountExtendedBalancesQuery.data) {
     return <Value>0 STX</Value>;
   }
   const increaseBy =
-    intToBigInt(amount, false) * 1_000_000n -
-    intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked, false);
+    intToBigInt(amount) * 1_000_000n - intToBigInt(getAccountExtendedBalancesQuery.data.stx.locked);
   return <Value>{toHumanReadableStx(increaseBy > 0n ? increaseBy : 0n)}</Value>;
 }
 

@@ -1,4 +1,4 @@
-import { AccountExtendedBalances } from '@stacks/stacking';
+import { ExtendedAccountBalances } from '@stacks/stacking';
 
 import {
   InfoCardLabel as Label,
@@ -8,7 +8,7 @@ import {
 import { useGetCoreInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 
 interface PercentageRowProps {
-  extendedStxBalances: AccountExtendedBalances['stx'];
+  extendedStxBalances: ExtendedAccountBalances['stx'];
 }
 export function PercentageRow({ extendedStxBalances }: PercentageRowProps) {
   const getCoreInfoQuery = useGetCoreInfoQuery();

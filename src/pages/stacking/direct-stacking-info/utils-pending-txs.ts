@@ -132,5 +132,5 @@ export function expectUintCV(valueCV: ClarityValue, argName: string) {
   if (!valueCV || valueCV.type !== ClarityType.UInt) {
     throw new Error(`Expected '${argName}' to be of type 'UInt'.`);
   }
-  return valueCV.value;
+  return BigInt(valueCV.value);
 }

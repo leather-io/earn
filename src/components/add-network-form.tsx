@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
-import { ChainID } from '@stacks/transactions';
+import { ChainId } from '@stacks/network';
 import { Box, Button, FormLabel, Input, Stack } from '@stacks/ui';
 import { Field, FieldProps, Form, Formik, FormikErrors } from 'formik';
 import { string } from 'yup';
@@ -20,11 +20,11 @@ const buildCustomNetworkUrl = (url: string) => {
   return `${hostname === 'localhost' ? 'http://' : 'https://'}${hostname}${port ? `:${port}` : ''}`;
 };
 
-const fetchCustomNetworkId: (url: string) => Promise<ChainID | undefined> = (url: string) => {
+const fetchCustomNetworkId: (url: string) => Promise<ChainId | undefined> = (url: string) => {
   return new InfoApi(new Configuration({ basePath: url }))
     .getCoreApiInfo()
     .then(res =>
-      Object.values(ChainID).includes(res.network_id) ? (res.network_id as ChainID) : undefined
+      Object.values(ChainId).includes(res.network_id) ? (res.network_id as ChainId) : undefined
     )
     .catch();
 };

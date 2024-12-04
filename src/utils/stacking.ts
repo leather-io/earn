@@ -1,5 +1,4 @@
-import { ChainID } from '@stacks/common';
-import { StacksNetwork } from '@stacks/network';
+import { ChainId, StacksNetwork } from '@stacks/network';
 import { poxAddressToBtcAddress } from '@stacks/stacking';
 import { whenStacksChainId } from 'src/types/network';
 
@@ -19,8 +18,8 @@ export const formatPoxAddressToNetwork = (
 ) => {
   return convertPoxAddressToBtc(
     whenStacksChainId(network.chainId)({
-      [ChainID.Mainnet]: 'mainnet',
-      [ChainID.Testnet]: 'testnet',
+      [ChainId.Mainnet]: 'mainnet',
+      [ChainId.Testnet]: 'testnet',
     })
   )(poxAddress);
 };

@@ -64,11 +64,10 @@ export function createHandleSubmit({
 }: CreateHandleSubmitArgs) {
   return async function handleSubmit(values: DelegateStackIncreaseFormValues) {
     if (values.amount === null) throw new Error('Expected a non-null amount to be submitted.');
-    const stackerClient = new StackingClient(values.stacker, network);
+    const stackerClient = new StackingClient({ address: values.stacker, network });
     const balances = await stackerClient.getAccountExtendedBalances();
     const increaseBy =
-      intToBigInt(stxToMicroStx(values.amount).toString(), false) -
-      intToBigInt(balances.stx.locked, false);
+      intToBigInt(stxToMicroStx(values.amount).toString()) - intToBigInt(balances.stx.locked);
 
     // TODO: handle thrown errors
     const [stackingContract] = await Promise.all([client.getStackingContract()]);

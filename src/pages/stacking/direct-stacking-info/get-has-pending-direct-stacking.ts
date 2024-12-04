@@ -46,13 +46,13 @@ function getDirectStackingStatusFromTransaction(network: StacksNetworkName) {
     if (!startBurnHeightCV || startBurnHeightCV.type !== ClarityType.UInt) {
       throw new Error('Expected `startBurnHeightCV` to be of type `UInt`.');
     }
-    const startBurnHeight: bigint = startBurnHeightCV.value;
+    const startBurnHeight = BigInt(startBurnHeightCV.value);
 
     // Amount
     if (!amountMicroStxCV || amountMicroStxCV.type !== ClarityType.UInt) {
       throw new Error('Expected `amountMicroStxCV` to be of type `UInt`.');
     }
-    const amountMicroStx: bigint = amountMicroStxCV.value;
+    const amountMicroStx = BigInt(amountMicroStxCV.value);
 
     // PoX address
     const poxAddress = poxAddressToBtcAddress(poxAddressCV, network);
@@ -61,7 +61,7 @@ function getDirectStackingStatusFromTransaction(network: StacksNetworkName) {
     if (!lockPeriodCV || lockPeriodCV.type !== ClarityType.UInt) {
       throw new Error('Expected `lockPeriodCV` to be of type `UInt`.');
     }
-    const lockPeriod = lockPeriodCV.value;
+    const lockPeriod = BigInt(lockPeriodCV.value);
 
     return {
       transactionId: transaction.tx_id,

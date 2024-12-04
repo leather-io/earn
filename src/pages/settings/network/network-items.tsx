@@ -7,7 +7,7 @@ import { useNavigate as useNavigateRouterDom } from 'react-router-dom';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
-import { ChainID } from '@stacks/transactions';
+import { ChainId } from '@stacks/network';
 import { Box, Flex, FlexProps, IconButton, Spinner, Stack, Tooltip, color } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
 import { useQuery } from '@tanstack/react-query';
@@ -85,9 +85,9 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
   const isTestnet = item.url === testnet;
   const isDefault = isMainnet || isTestnet;
 
-  let itemNetworkId: ChainID.Mainnet | ChainID.Testnet = isMainnet
-    ? ChainID.Mainnet
-    : ChainID.Testnet;
+  let itemNetworkId: ChainId.Mainnet | ChainId.Testnet = isMainnet
+    ? ChainId.Mainnet
+    : ChainId.Testnet;
 
   const doNotFetch = isDisabled || !item.url || isDefault;
 
@@ -107,8 +107,8 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
   }
 
   const itemNetworkMode: StacksNetworkName = whenStacksChainId(itemNetworkId)({
-    [ChainID.Mainnet]: 'mainnet',
-    [ChainID.Testnet]: 'testnet',
+    [ChainId.Mainnet]: 'mainnet',
+    [ChainId.Testnet]: 'testnet',
   });
 
   return (

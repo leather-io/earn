@@ -2,7 +2,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import {
-  AccountExtendedBalances,
+  ExtendedAccountBalances,
   Pox4SignatureTopic,
   StackerInfo,
   StackingClient,
@@ -194,7 +194,7 @@ export function createHandleSubmit({
 }
 
 export function getAvailableAmountUstx(
-  extendedStxBalances: AccountExtendedBalances['stx'],
+  extendedStxBalances: ExtendedAccountBalances['stx'],
   stackIncreaseInfo: StackIncreaseInfo | undefined | null
 ) {
   return new BigNumber(extendedStxBalances.balance.toString())

@@ -53,7 +53,7 @@ export function Amount() {
   const showStackingWarningCard = ustxAmount.isGreaterThanOrEqualTo(minimumAmountUstx);
 
   let maxAmountUstx = new BigNumberFloorRound(
-    new BigNumber(availableBalance.toString()).minus(STACKING_CONTRACT_CALL_TX_BYTES).toString()
+    new BigNumber(availableBalance).minus(STACKING_CONTRACT_CALL_TX_BYTES).toString()
   ).decimalPlaces(0);
   if (maxAmountUstx.isNegative()) {
     maxAmountUstx = new BigNumber(0);

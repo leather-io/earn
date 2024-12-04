@@ -3,13 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
 import { StacksNetwork } from '@stacks/network';
-import {
-  FungibleConditionCode,
-  contractPrincipalCV,
-  makeStandardSTXPostCondition,
-  noneCV,
-  uintCV,
-} from '@stacks/transactions';
+import { StxPostCondition, contractPrincipalCV, noneCV, uintCV } from '@stacks/transactions';
 import * as yup from 'yup';
 
 import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
@@ -79,16 +73,23 @@ function getOptions(values: EditingFormValues, network: StacksNetwork): Contract
       : protocol.liquidContract === LiquidContractName.Lisa
       ? { functionArgs: [uintCV(stxAmount)], functionName: 'request-mint' }
       : { functionArgs: [], functionName: 'deposit' };
-  const postConditions = [
-    makeStandardSTXPostCondition(stxAddress, FungibleConditionCode.LessEqual, stxAmount),
+
+  const postConditions: StxPostCondition[] = [
+    {
+      type: 'stx-postcondition',
+      address: stxAddress,
+      condition: 'lte',
+      amount: stxAmount,
+    },
   ];
+
   return {
     contractAddress,
     contractName,
     functionName,
     functionArgs,
-    postConditions,
     network,
+    postConditions,
   };
 }
 interface CreateHandleSubmitArgs {

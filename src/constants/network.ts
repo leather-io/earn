@@ -1,5 +1,5 @@
 import { StacksNetworkName } from '@stacks/network';
-import { ChainID } from '@stacks/transactions';
+import { ChainId } from '@stacks/network';
 
 import {
   DEFAULT_DEVNET_SERVER,
@@ -7,9 +7,9 @@ import {
   DEFAULT_TESTNET_SERVER,
 } from '../constants';
 
-export const NetworkIdModeMap: { [key in ChainID]: StacksNetworkName } = {
-  [ChainID.Mainnet]: 'mainnet',
-  [ChainID.Testnet]: 'testnet',
+export const NetworkIdModeMap: { [key in ChainId]: StacksNetworkName } = {
+  [ChainId.Mainnet]: 'mainnet',
+  [ChainId.Testnet]: 'testnet',
 };
 
 export const NetworkModeUrlMap: Record<StacksNetworkName, string> = {

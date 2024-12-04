@@ -13,7 +13,7 @@ importers:
         version: 11.11.1(@types/react@18.2.13)(react@18.2.0)
       '@emotion/styled':
         specifier: 11.11.0
-        version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.2.13)(react@18.2.0)
+        version: 11.11.0(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(@types/react@18.2.13)(react@18.2.0)
       '@noble/hashes':
         specifier: 1.3.2
         version: 1.3.2
@@ -24,35 +24,35 @@ importers:
         specifier: 1.1.3
         version: 1.1.3
       '@stacks/auth':
-        specifier: 6.13.0
-        version: 6.13.0
+        specifier: 7.0.2
+        version: 7.0.2
       '@stacks/blockchain-api-client':
         specifier: 7.3.2
         version: 7.3.2
       '@stacks/common':
-        specifier: 6.8.1
-        version: 6.8.1
+        specifier: 7.0.2
+        version: 7.0.2
       '@stacks/connect':
-        specifier: 7.7.0
-        version: 7.7.0
+        specifier: 7.9.0
+        version: 7.9.0
       '@stacks/connect-react':
-        specifier: 22.4.0
-        version: 22.4.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 22.6.0
+        version: 22.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@stacks/network':
-        specifier: 6.8.1
-        version: 6.8.1
+        specifier: 7.0.2
+        version: 7.0.2
       '@stacks/stacking':
-        specifier: 6.13.2
-        version: 6.13.2
+        specifier: 7.0.2
+        version: 7.0.2
       '@stacks/transactions':
-        specifier: 6.13.0
-        version: 6.13.0
+        specifier: 7.0.2
+        version: 7.0.2
       '@stacks/ui':
         specifier: 7.10.0
-        version: 7.10.0(@emotion/core@11.0.0)(@emotion/react@11.11.1)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)
+        version: 7.10.0(@emotion/core@11.0.0)(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@stacks/ui-core':
         specifier: 7.3.0
-        version: 7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1)(react@18.2.0)
+        version: 7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(react@18.2.0)
       '@stacks/ui-theme':
         specifier: 7.5.0
         version: 7.5.0
@@ -61,10 +61,10 @@ importers:
         version: 2.39.0(react@18.2.0)
       '@tanstack/react-query':
         specifier: 4.36.1
-        version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
+        version: 4.36.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@tippyjs/react':
         specifier: 4.2.6
-        version: 4.2.6(react-dom@18.2.0)(react@18.2.0)
+        version: 4.2.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/cookie':
         specifier: 0.5.2
         version: 0.5.2
@@ -106,7 +106,7 @@ importers:
         version: 18.2.0
       react-card-flip:
         specifier: 1.2.0
-        version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
+        version: 1.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-cookie:
         specifier: 4.1.1
         version: 4.1.1(react@18.2.0)
@@ -118,10 +118,10 @@ importers:
         version: 4.9.0(react@18.2.0)
       react-redux:
         specifier: 8.1.0
-        version: 8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+        version: 8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1)
       react-router-dom:
         specifier: 6.13.0
-        version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
+        version: 6.13.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       rollup-plugin-polyfill-node:
         specifier: 0.12.0
         version: 0.12.0(rollup@3.25.1)
@@ -142,7 +142,7 @@ importers:
         version: 1.0.9
       vite-plugin-node-stdlib-browser:
         specifier: 0.2.1
-        version: 0.2.1(node-stdlib-browser@1.2.0)(rollup@3.25.1)(vite@4.3.9)
+        version: 0.2.1(node-stdlib-browser@1.2.0)(rollup@3.25.1)(vite@4.3.9(@types/node@20.3.1))
       vitest:
         specifier: ^0.32.4
         version: 0.32.4
@@ -185,13 +185,13 @@ importers:
         version: 1.0.4
       '@typescript-eslint/eslint-plugin':
         specifier: 5.55.0
-        version: 5.55.0(@typescript-eslint/parser@5.55.0)(eslint@8.43.0)(typescript@5.0.3)
+        version: 5.55.0(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint@8.43.0)(typescript@5.0.3)
       '@typescript-eslint/parser':
         specifier: 5.55.0
         version: 5.55.0(eslint@8.43.0)(typescript@5.0.3)
       '@vitejs/plugin-react':
         specifier: 4.0.0
-        version: 4.0.0(vite@4.3.9)
+        version: 4.0.0(vite@4.3.9(@types/node@20.3.1))
       '@vue/compiler-sfc':
         specifier: 3.3.4
         version: 3.3.4
@@ -206,7 +206,7 @@ importers:
         version: 8.8.0(eslint@8.43.0)
       eslint-plugin-import:
         specifier: 2.27.5
-        version: 2.27.5(@typescript-eslint/parser@5.55.0)(eslint@8.43.0)
+        version: 2.27.5(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint@8.43.0)
       eslint-plugin-jsx-a11y:
         specifier: 6.7.1
         version: 6.7.1(eslint@8.43.0)
@@ -242,7 +242,7 @@ importers:
         version: 3.6.1
       vite-tsconfig-paths:
         specifier: 4.2.0
-        version: 4.2.0(typescript@5.0.3)(vite@4.3.9)
+        version: 4.2.0(typescript@5.0.3)(vite@4.3.9(@types/node@20.3.1))
 
 packages:
 
@@ -1380,59 +1380,47 @@ packages:
   '@socket.io/component-emitter@3.1.0':
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
 
-  '@stacks/auth@6.13.0':
-    resolution: {integrity: sha512-3a6FwP5yNngQfalu78MltQzCROL4l+MNngnCxFKo52EJfIdJp8TWKuwkzHN/jLzrvdUoq1lQjKlxoINCiUP03g==}
+  '@stacks/auth@7.0.2':
+    resolution: {integrity: sha512-1N0ylkK9mz6RqIH3SbuIvoUG4eTgSkun7hHiPirScGCyXvmugjereGdTowSRSrEnl32/qrnquAAaO7a1XF6TMA==}
 
   '@stacks/blockchain-api-client@7.3.2':
     resolution: {integrity: sha512-nhFDpA2d5mN2YCmllIUrmkQzd5CEtqAR9XUUrvVOKsLw7pdkF21grbd8ZbKARFLR/l0rYwHB8YW2sL2fv8Ty/A==}
 
-  '@stacks/common@6.13.0':
-    resolution: {integrity: sha512-wwzyihjaSdmL6NxKvDeayy3dqM0L0Q2sawmdNtzJDi0FnXuJGm5PeapJj7bEfcI9XwI7Bw5jZoC6mCn9nc5YIw==}
+  '@stacks/common@6.16.0':
+    resolution: {integrity: sha512-PnzvhrdGRMVZvxTulitlYafSK4l02gPCBBoI9QEoTqgSnv62oaOXhYAUUkTMFKxdHW1seVEwZsrahuXiZPIAwg==}
 
-  '@stacks/common@6.8.1':
-    resolution: {integrity: sha512-ewL9GLZNQYa5a/3K4xSHlHIgHkD4rwWW/QEaPId8zQIaL+1O9qCaF4LX9orNQeOmEk8kvG0x2xGV54fXKCZeWQ==}
+  '@stacks/common@7.0.2':
+    resolution: {integrity: sha512-+RSecHdkxOtswmE4tDDoZlYEuULpnTQVeDIG5eZ32opK8cFxf4EugAcK9CsIsHx/Se1yTEaQ21WGATmJGK84lQ==}
 
-  '@stacks/connect-react@22.4.0':
-    resolution: {integrity: sha512-+ojenPvGqB56eloS2MbqHpCYXphA6xfsOFLA9q5N9AWvuzYm7DklURhalsTm2MIcBnoRj812MDsZ9QXH2OyMQg==}
+  '@stacks/connect-react@22.6.0':
+    resolution: {integrity: sha512-+ANQyxujO7ObrPps/Ix9y13a6yGhFbZSHbJW00bPNeYdo2YLxZHbPVCd0VWRdLO7O3y4kRi+nUH0zeWWJYHIbA==}
     peerDependencies:
       react: ^16.x || 17.x || 18.x
       react-dom: ^16.x || 17.x || 18.x
 
-  '@stacks/connect-ui@6.3.0':
-    resolution: {integrity: sha512-d6MjLO+MrIghPDb94rJNJeeBucDh9MxbWTNU3P0n82zTBL0zDurcQlvAdoOnvIRUbYo6oZghhgRg3TuvRYATWw==}
+  '@stacks/connect-ui@6.5.0':
+    resolution: {integrity: sha512-iXSpl2NxrjERBqtGgkZp0tX1uJgdWZXmsNo3I0cJYYTTbieSAE/Al9nTYc1wLTPW5w5oVvZEkQKo90WIrHR8Rw==}
 
-  '@stacks/connect-ui@6.4.0':
-    resolution: {integrity: sha512-S9+gOZAv05GxMBBIKq86eODzhWl98gUEKEdvzZTsoEZVQ3K1CwkTv1gQ/Hup5J35OKbTVT7m10mbalVNVcjARQ==}
+  '@stacks/connect@7.9.0':
+    resolution: {integrity: sha512-UPv2UQpZwnNPYodL4bf+6Pu3kHY9BcRabAgAbmDajn3RFWvDrnOMmvLqJRGOvo5fEm8vSwxAGY8R7BSOPmlLdg==}
 
-  '@stacks/connect@7.6.0':
-    resolution: {integrity: sha512-kFXUmuUb5N4TeeecZGfKM7xE402hSodCAyeSDZ5CFLmHkJaD1PLu+y9NzW1XW7hYA4lfR8qkuhjgOdywsURB2w==}
+  '@stacks/encryption@7.0.2':
+    resolution: {integrity: sha512-3evRvxPqVzQAhcZ8uacQrVfAETUMIV8VyKkHGsd4QZroGWlvXQheLV3CFeDttFb304QcKq/oKv1clOvQ2shaAw==}
 
-  '@stacks/connect@7.7.0':
-    resolution: {integrity: sha512-Psg1xKOjQieqSf4pd1rsV9f/9Ai7xEQ7qVtYDE9F6aYZRVh4xPfWt5TiWZI6r/w4ftPCcgzlCqPRgBJiOXf+Zw==}
+  '@stacks/network@6.17.0':
+    resolution: {integrity: sha512-numHbfKjwco/rbkGPOEz8+FcJ2nBnS/tdJ8R422Q70h3SiA9eqk9RjSzB8p4JP8yW1SZvW+eihADHfMpBuZyfw==}
 
-  '@stacks/encryption@6.13.0':
-    resolution: {integrity: sha512-CsacBxY1XBVXBuJ5erJPjB5FmQ8KGJ/ft02/pIM6WrJ31ZcBdkn2BPV1AsPSD5qsIkiMdHAe14WKIwm8M2SWtQ==}
-
-  '@stacks/encryption@6.13.1':
-    resolution: {integrity: sha512-y5IFX3/nGI3fCk70gE0JwH70GpshD8RhUfvhMLcL96oNaec1cCdj1ZUiQupeicfYTHuraaVBYU9xLls4TRmypg==}
-
-  '@stacks/network@6.13.0':
-    resolution: {integrity: sha512-Ss/Da4BNyPBBj1OieM981fJ7SkevKqLPkzoI1+Yo7cYR2df+0FipIN++Z4RfpJpc8ne60vgcx7nJZXQsiGhKBQ==}
-
-  '@stacks/network@6.8.1':
-    resolution: {integrity: sha512-n8M25pPbLqpSBctabtsLOTBlmPvm9EPQpTI//x7HLdt5lEjDXxauEQt0XGSvDUZwecrmztqt9xNxlciiGApRBw==}
+  '@stacks/network@7.0.2':
+    resolution: {integrity: sha512-XzHnoWqku/jRrTgMXhmh3c+I0O9vDH24KlhzGDZtBu+8CGGyHNPAZzGwvoUShonMXrXjEnfO9IYQwV5aJhfv6g==}
 
   '@stacks/prettier-config@0.0.10':
     resolution: {integrity: sha512-MrYWGEgO/mYR8TOZIKknQEHbFQZ5VyAD/s8eF2Yxr6Lgalt2alVEh+6ODehVP2uepkyXPmJzLbaQYs8/L4E78Q==}
 
-  '@stacks/profile@6.13.0':
-    resolution: {integrity: sha512-IIOPtP+bHu53j426UTFn+JFgv9G3JyybtJ6TDcc4zxoMvs8sLKEVTyjZNFrP38DjkoAGo1qWNWqoJhURfL55Uw==}
+  '@stacks/profile@7.0.2':
+    resolution: {integrity: sha512-BJis1ZAP2yzv0IFaJcm4mZFtauizcB1zBVpAeOSX06BDEUgM8h0L8uRvAbfTvSuSjsveNgblucZouZMSEsQMGA==}
 
-  '@stacks/profile@6.9.0':
-    resolution: {integrity: sha512-sIR60DsAHi8C6zGqKqSe1r2hXTMHgwrJkX3fAaP3de40KeplZ2bkE+0B83yismEeU2baNc+AukyVvWJv0PfP0A==}
-
-  '@stacks/stacking@6.13.2':
-    resolution: {integrity: sha512-4h1UQuL2+Xdra9zMqzUElvKG9X9fenuNE7hD9sIqyxyLFxeQ7gRqczmTYPsmaj4wY5004JNj+efzGJ0VmpOcAA==}
+  '@stacks/stacking@7.0.2':
+    resolution: {integrity: sha512-JAi396fKMgA0v8Lrj6yYNKRBuPHT+dq1/vVs1GCpgbH74ZHQT6NQYBrsnIxtc85M9w86zMr1FHrIq66Z0kKh/A==}
 
   '@stacks/stacks-blockchain-api-types@0.61.0':
     resolution: {integrity: sha512-yPOfTUboo5eA9BZL/hqMcM71GstrFs9YWzOrJFPeP4cOO1wgYvAcckgBRbgiE3NqeX0A7SLZLDAXLZbATuRq9w==}
@@ -1440,11 +1428,11 @@ packages:
   '@stacks/stacks-blockchain-api-types@7.3.2':
     resolution: {integrity: sha512-1r0+eqEWOOo7UYrFq9HGbc02DVME3NVCW/45sNKPN31PkOMMaK59DHragPJ2QbxPFiutVDUCS924+48+o3+0Tw==}
 
-  '@stacks/transactions@6.13.0':
-    resolution: {integrity: sha512-xrx09qsXL/tWCkvAArzsFQqtZKDXyedjdVB9uX8xw+cQCi3xZ7r5MHMKzvEsTgJz3EO+MkQBXcvI1uzfuoqhcA==}
+  '@stacks/transactions@6.17.0':
+    resolution: {integrity: sha512-FUah2BRgV66ApLcEXGNGhwyFTRXqX5Zco3LpiM3essw8PF0NQlHwwdPgtDko5RfrJl3LhGXXe/30nwsfNnB3+g==}
 
-  '@stacks/transactions@6.13.1':
-    resolution: {integrity: sha512-PWw2I+2Fj3CaFYQIoVcqQN6E2qGHNhFv03nuR0CxMq0sx8stPgYZbdzUlnlBcJQdsFiHrw3sPeqnXDZt+Hg5YQ==}
+  '@stacks/transactions@7.0.2':
+    resolution: {integrity: sha512-m2bvchqUeYv1ttXuC0EukW8UX4xBXTDcYb8bXmfI1RG89HXAvvCCgr5aiadU6zbutgoXvm8mquDt3nww0PO4Jg==}
 
   '@stacks/ui-core@7.3.0':
     resolution: {integrity: sha512-q3ZBu2uk/MMFsBGNZ8aT6stbwqaHuQTatDwS2A8a1gM+Csb/souJD6uY0Nf3R/z4IDCUGT6SYlvd8+lYgTAxzA==}
@@ -3930,9 +3918,10 @@ snapshots:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.13
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.13
 
   '@emotion/serialize@1.1.2':
     dependencies:
@@ -3944,7 +3933,7 @@ snapshots:
 
   '@emotion/sheet@1.2.2': {}
 
-  '@emotion/styled@11.11.0(@emotion/react@11.11.1)(@types/react@18.2.13)(react@18.2.0)':
+  '@emotion/styled@11.11.0(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(@types/react@18.2.13)(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.22.6
       '@emotion/babel-plugin': 11.11.0
@@ -3953,8 +3942,9 @@ snapshots:
       '@emotion/serialize': 1.1.2
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
-      '@types/react': 18.2.13
       react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.13
 
   '@emotion/unitless@0.8.1': {}
 
@@ -4243,34 +4233,34 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@reach/alert@0.13.2(react-dom@18.2.0)(react@18.2.0)':
+  '@reach/alert@0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@reach/utils': 0.13.2(react-dom@18.2.0)(react@18.2.0)
-      '@reach/visually-hidden': 0.13.2(react-dom@18.2.0)(react@18.2.0)
+      '@reach/utils': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@reach/visually-hidden': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tslib: 2.6.0
 
-  '@reach/auto-id@0.13.2(react-dom@18.2.0)(react@18.2.0)':
+  '@reach/auto-id@0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@reach/utils': 0.13.2(react-dom@18.2.0)(react@18.2.0)
+      '@reach/utils': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tslib: 2.6.0
 
   '@reach/observe-rect@1.2.0': {}
 
-  '@reach/rect@0.13.2(react-dom@18.2.0)(react@18.2.0)':
+  '@reach/rect@0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@reach/observe-rect': 1.2.0
-      '@reach/utils': 0.13.2(react-dom@18.2.0)(react@18.2.0)
+      '@reach/utils': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tslib: 2.6.0
 
-  '@reach/utils@0.13.2(react-dom@18.2.0)(react@18.2.0)':
+  '@reach/utils@0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@types/warning': 3.0.0
       react: 18.2.0
@@ -4278,7 +4268,7 @@ snapshots:
       tslib: 2.6.0
       warning: 4.0.3
 
-  '@reach/visually-hidden@0.13.2(react-dom@18.2.0)(react@18.2.0)':
+  '@reach/visually-hidden@0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       prop-types: 15.8.1
       react: 18.2.0
@@ -4307,7 +4297,7 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/calendar@3.4.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/calendar@3.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.3.0
       '@react-aria/i18n': 3.8.0(react@18.2.0)
@@ -4334,14 +4324,14 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/combobox@3.6.2(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/combobox@3.6.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/listbox': 3.10.0(react@18.2.0)
       '@react-aria/live-announcer': 3.3.1
-      '@react-aria/menu': 3.10.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/overlays': 3.15.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/menu': 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/overlays': 3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/selection': 3.16.0(react@18.2.0)
       '@react-aria/textfield': 3.10.0(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
@@ -4355,7 +4345,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@react-aria/datepicker@3.5.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/datepicker@3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.3.0
       '@internationalized/number': 3.2.1
@@ -4364,7 +4354,7 @@ snapshots:
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/label': 3.6.0(react@18.2.0)
-      '@react-aria/spinbutton': 3.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/spinbutton': 3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-stately/datepicker': 3.5.0(react@18.2.0)
       '@react-types/button': 3.7.3(react@18.2.0)
@@ -4376,10 +4366,10 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@react-aria/dialog@3.5.3(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/dialog@3.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
-      '@react-aria/overlays': 3.15.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/overlays': 3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-stately/overlays': 3.6.0(react@18.2.0)
       '@react-types/dialog': 3.5.3(react@18.2.0)
@@ -4389,13 +4379,13 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@react-aria/dnd@3.3.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/dnd@3.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/string': 3.1.1
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/live-announcer': 3.3.1
-      '@react-aria/overlays': 3.15.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/overlays': 3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-aria/visually-hidden': 3.8.2(react@18.2.0)
       '@react-stately/dnd': 3.2.2(react@18.2.0)
@@ -4414,7 +4404,7 @@ snapshots:
       clsx: 1.2.1
       react: 18.2.0
 
-  '@react-aria/grid@3.8.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/grid@3.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
@@ -4433,10 +4423,10 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@react-aria/gridlist@3.5.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/gridlist@3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
-      '@react-aria/grid': 3.8.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/grid': 3.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/selection': 3.16.0(react@18.2.0)
@@ -4505,12 +4495,12 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.1
 
-  '@react-aria/menu@3.10.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/menu@3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
-      '@react-aria/overlays': 3.15.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/overlays': 3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/selection': 3.16.0(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-stately/collections': 3.9.0(react@18.2.0)
@@ -4531,12 +4521,12 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/numberfield@3.6.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/numberfield@3.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/live-announcer': 3.3.1
-      '@react-aria/spinbutton': 3.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/spinbutton': 3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/textfield': 3.10.0(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-stately/numberfield': 3.5.0(react@18.2.0)
@@ -4548,7 +4538,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@react-aria/overlays@3.15.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/overlays@3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
@@ -4600,13 +4590,13 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/select@3.11.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/select@3.11.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/label': 3.6.0(react@18.2.0)
       '@react-aria/listbox': 3.10.0(react@18.2.0)
-      '@react-aria/menu': 3.10.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/menu': 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/selection': 3.16.0(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
       '@react-aria/visually-hidden': 3.8.2(react@18.2.0)
@@ -4652,7 +4642,7 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/spinbutton@3.5.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/spinbutton@3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/live-announcer': 3.3.1
@@ -4676,10 +4666,10 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/table@3.10.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/table@3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@react-aria/focus': 3.13.0(react@18.2.0)
-      '@react-aria/grid': 3.8.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/grid': 3.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/live-announcer': 3.3.1
@@ -4711,9 +4701,9 @@ snapshots:
       '@swc/helpers': 0.5.1
       react: 18.2.0
 
-  '@react-aria/tag@3.1.0(react-dom@18.2.0)(react@18.2.0)':
+  '@react-aria/tag@3.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@react-aria/gridlist': 3.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/gridlist': 3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/label': 3.6.0(react@18.2.0)
@@ -5145,11 +5135,12 @@ snapshots:
   '@reduxjs/toolkit@1.9.7(react-redux@8.1.0)(react@18.2.0)':
     dependencies:
       immer: 9.0.21
-      react: 18.2.0
-      react-redux: 8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
+    optionalDependencies:
+      react: 18.2.0
+      react-redux: 8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1)
 
   '@remix-run/router@1.6.3': {}
 
@@ -5158,6 +5149,7 @@ snapshots:
       '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
       estree-walker: 2.0.2
       magic-string: 0.27.0
+    optionalDependencies:
       rollup: 3.25.1
 
   '@rollup/pluginutils@5.0.2(rollup@3.25.1)':
@@ -5165,6 +5157,7 @@ snapshots:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    optionalDependencies:
       rollup: 3.25.1
 
   '@scure/base@1.1.1': {}
@@ -5180,12 +5173,13 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.0': {}
 
-  '@stacks/auth@6.13.0':
+  '@stacks/auth@7.0.2':
     dependencies:
-      '@stacks/common': 6.13.0
-      '@stacks/encryption': 6.13.0
-      '@stacks/network': 6.13.0
-      '@stacks/profile': 6.13.0
+      '@noble/secp256k1': 1.7.1
+      '@stacks/common': 7.0.2
+      '@stacks/encryption': 7.0.2
+      '@stacks/network': 7.0.2
+      '@stacks/profile': 7.0.2
       cross-fetch: 3.1.8
       jsontokens: 4.0.1
     transitivePeerDependencies:
@@ -5206,89 +5200,61 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stacks/common@6.13.0':
+  '@stacks/common@6.16.0':
     dependencies:
       '@types/bn.js': 5.1.1
       '@types/node': 18.16.19
 
-  '@stacks/common@6.8.1':
-    dependencies:
-      '@types/bn.js': 5.1.1
-      '@types/node': 18.16.19
+  '@stacks/common@7.0.2': {}
 
-  '@stacks/connect-react@22.4.0(react-dom@18.2.0)(react@18.2.0)':
+  '@stacks/connect-react@22.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@stacks/connect': 7.6.0
+      '@stacks/connect': 7.9.0
       jsontokens: 4.0.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/connect-ui@6.3.0':
+  '@stacks/connect-ui@6.5.0':
     dependencies:
       '@stencil/core': 2.22.3
 
-  '@stacks/connect-ui@6.4.0':
+  '@stacks/connect@7.9.0':
     dependencies:
-      '@stencil/core': 2.22.3
-
-  '@stacks/connect@7.6.0':
-    dependencies:
-      '@stacks/auth': 6.13.0
-      '@stacks/connect-ui': 6.3.0
-      '@stacks/network': 6.8.1
-      '@stacks/profile': 6.9.0
-      '@stacks/transactions': 6.13.0
+      '@stacks/auth': 7.0.2
+      '@stacks/common': 7.0.2
+      '@stacks/connect-ui': 6.5.0
+      '@stacks/network': 7.0.2
+      '@stacks/network-v6': '@stacks/network@6.17.0'
+      '@stacks/profile': 7.0.2
+      '@stacks/transactions': 7.0.2
+      '@stacks/transactions-v6': '@stacks/transactions@6.17.0'
       jsontokens: 4.0.1
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/connect@7.7.0':
-    dependencies:
-      '@stacks/auth': 6.13.0
-      '@stacks/connect-ui': 6.4.0
-      '@stacks/network': 6.8.1
-      '@stacks/profile': 6.9.0
-      '@stacks/transactions': 6.13.0
-      jsontokens: 4.0.1
-    transitivePeerDependencies:
-      - encoding
-
-  '@stacks/encryption@6.13.0':
+  '@stacks/encryption@7.0.2':
     dependencies:
       '@noble/hashes': 1.1.5
       '@noble/secp256k1': 1.7.1
       '@scure/bip39': 1.1.0
-      '@stacks/common': 6.13.0
-      '@types/node': 18.16.19
+      '@stacks/common': 7.0.2
       base64-js: 1.5.1
       bs58: 5.0.0
       ripemd160-min: 0.0.6
       varuint-bitcoin: 1.1.2
 
-  '@stacks/encryption@6.13.1':
+  '@stacks/network@6.17.0':
     dependencies:
-      '@noble/hashes': 1.1.5
-      '@noble/secp256k1': 1.7.1
-      '@scure/bip39': 1.1.0
-      '@stacks/common': 6.13.0
-      '@types/node': 18.16.19
-      base64-js: 1.5.1
-      bs58: 5.0.0
-      ripemd160-min: 0.0.6
-      varuint-bitcoin: 1.1.2
-
-  '@stacks/network@6.13.0':
-    dependencies:
-      '@stacks/common': 6.13.0
+      '@stacks/common': 6.16.0
       cross-fetch: 3.1.8
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/network@6.8.1':
+  '@stacks/network@7.0.2':
     dependencies:
-      '@stacks/common': 6.8.1
+      '@stacks/common': 7.0.2
       cross-fetch: 3.1.8
     transitivePeerDependencies:
       - encoding
@@ -5297,37 +5263,26 @@ snapshots:
     dependencies:
       prettier: 2.5.1
 
-  '@stacks/profile@6.13.0':
+  '@stacks/profile@7.0.2':
     dependencies:
-      '@stacks/common': 6.13.0
-      '@stacks/network': 6.13.0
-      '@stacks/transactions': 6.13.0
+      '@stacks/common': 7.0.2
+      '@stacks/network': 7.0.2
+      '@stacks/transactions': 7.0.2
       jsontokens: 4.0.1
       schema-inspector: 2.0.3
       zone-file: 2.0.0-beta.3
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/profile@6.9.0':
-    dependencies:
-      '@stacks/common': 6.8.1
-      '@stacks/network': 6.8.1
-      '@stacks/transactions': 6.13.0
-      jsontokens: 4.0.1
-      schema-inspector: 2.0.3
-      zone-file: 2.0.0-beta.3
-    transitivePeerDependencies:
-      - encoding
-
-  '@stacks/stacking@6.13.2':
+  '@stacks/stacking@7.0.2':
     dependencies:
       '@noble/hashes': 1.1.5
       '@scure/base': 1.1.1
-      '@stacks/common': 6.13.0
-      '@stacks/encryption': 6.13.1
-      '@stacks/network': 6.13.0
+      '@stacks/common': 7.0.2
+      '@stacks/encryption': 7.0.2
+      '@stacks/network': 7.0.2
       '@stacks/stacks-blockchain-api-types': 0.61.0
-      '@stacks/transactions': 6.13.1
+      '@stacks/transactions': 7.0.2
       bs58: 5.0.0
     transitivePeerDependencies:
       - encoding
@@ -5336,29 +5291,29 @@ snapshots:
 
   '@stacks/stacks-blockchain-api-types@7.3.2': {}
 
-  '@stacks/transactions@6.13.0':
+  '@stacks/transactions@6.17.0':
     dependencies:
       '@noble/hashes': 1.1.5
       '@noble/secp256k1': 1.7.1
-      '@stacks/common': 6.13.0
-      '@stacks/network': 6.13.0
+      '@stacks/common': 6.16.0
+      '@stacks/network': 6.17.0
       c32check: 2.0.0
       lodash.clonedeep: 4.5.0
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/transactions@6.13.1':
+  '@stacks/transactions@7.0.2':
     dependencies:
       '@noble/hashes': 1.1.5
       '@noble/secp256k1': 1.7.1
-      '@stacks/common': 6.13.0
-      '@stacks/network': 6.13.0
+      '@stacks/common': 7.0.2
+      '@stacks/network': 7.0.2
       c32check: 2.0.0
       lodash.clonedeep: 4.5.0
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/ui-core@7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1)(react@18.2.0)':
+  '@stacks/ui-core@7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@emotion/core': 11.0.0
       '@emotion/react': 11.11.1(@types/react@18.2.13)(react@18.2.0)
@@ -5382,29 +5337,29 @@ snapshots:
       type-fest: 0.21.3
       typescript: 4.9.5
 
-  '@stacks/ui@7.10.0(@emotion/core@11.0.0)(@emotion/react@11.11.1)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)':
+  '@stacks/ui@7.10.0(@emotion/core@11.0.0)(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@emotion/core': 11.0.0
       '@emotion/react': 11.11.1(@types/react@18.2.13)(react@18.2.0)
-      '@reach/alert': 0.13.2(react-dom@18.2.0)(react@18.2.0)
-      '@reach/auto-id': 0.13.2(react-dom@18.2.0)(react@18.2.0)
-      '@reach/rect': 0.13.2(react-dom@18.2.0)(react@18.2.0)
+      '@reach/alert': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@reach/auto-id': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@reach/rect': 0.13.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-spectrum/utils': 3.10.0(react@18.2.0)
-      '@stacks/ui-core': 7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1)(react@18.2.0)
+      '@stacks/ui-core': 7.3.0(@emotion/core@11.0.0)(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.2.0))(react@18.2.0)
       '@stacks/ui-theme': 7.5.0
       '@stacks/ui-utils': 7.5.0
       '@styled-system/should-forward-prop': 5.1.5
       '@styled-system/theme-get': 5.1.2
-      '@tippyjs/react': 4.2.6(react-dom@18.2.0)(react@18.2.0)
+      '@tippyjs/react': 4.2.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       color: 3.1.3
       prism-react-renderer: 1.3.5(react@18.2.0)
       prismjs: 1.29.0
       react: 18.2.0
-      react-aria: 3.26.0(react-dom@18.2.0)(react@18.2.0)
+      react-aria: 3.26.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
-      react-hotkeys-hook: 2.4.1(react-dom@18.2.0)(react@18.2.0)
-      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
-      spinners-react: spinners-react-peer-deps-fix@1.0.5(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)
+      react-hotkeys-hook: 2.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      spinners-react: spinners-react-peer-deps-fix@1.0.5(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       type-fest: 0.21.3
       use-events: 1.4.2(react@18.2.0)
       use-onclickoutside: use-onclickoutside-peer-deps@0.3.1(@types/react@18.2.13)(react@18.2.0)
@@ -5489,14 +5444,15 @@ snapshots:
 
   '@tanstack/query-core@4.36.1': {}
 
-  '@tanstack/react-query@4.36.1(react-dom@18.2.0)(react@18.2.0)':
+  '@tanstack/react-query@4.36.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@tanstack/query-core': 4.36.1
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
 
-  '@tippyjs/react@4.2.6(react-dom@18.2.0)(react@18.2.0)':
+  '@tippyjs/react@4.2.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5508,10 +5464,11 @@ snapshots:
       '@babel/parser': 7.22.6
       '@babel/traverse': 7.17.3
       '@babel/types': 7.17.0
-      '@vue/compiler-sfc': 3.3.4
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
       prettier: 2.8.8
+    optionalDependencies:
+      '@vue/compiler-sfc': 3.3.4
     transitivePeerDependencies:
       - supports-color
 
@@ -5605,7 +5562,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.0
 
-  '@typescript-eslint/eslint-plugin@5.55.0(@typescript-eslint/parser@5.55.0)(eslint@8.43.0)(typescript@5.0.3)':
+  '@typescript-eslint/eslint-plugin@5.55.0(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint@8.43.0)(typescript@5.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.5.1
       '@typescript-eslint/parser': 5.55.0(eslint@8.43.0)(typescript@5.0.3)
@@ -5619,6 +5576,7 @@ snapshots:
       natural-compare-lite: 1.4.0
       semver: 7.5.3
       tsutils: 3.21.0(typescript@5.0.3)
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -5630,6 +5588,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.55.0(typescript@5.0.3)
       debug: 4.3.4
       eslint: 8.43.0
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -5646,6 +5605,7 @@ snapshots:
       debug: 4.3.4
       eslint: 8.43.0
       tsutils: 3.21.0(typescript@5.0.3)
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -5661,6 +5621,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.5.3
       tsutils: 3.21.0(typescript@5.0.3)
+    optionalDependencies:
       typescript: 5.0.3
     transitivePeerDependencies:
       - supports-color
@@ -5685,7 +5646,7 @@ snapshots:
       '@typescript-eslint/types': 5.55.0
       eslint-visitor-keys: 3.4.1
 
-  '@vitejs/plugin-react@4.0.0(vite@4.3.9)':
+  '@vitejs/plugin-react@4.0.0(vite@4.3.9(@types/node@20.3.1))':
     dependencies:
       '@babel/core': 7.22.5
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.5)
@@ -6370,18 +6331,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@5.55.0)(eslint-import-resolver-node@0.3.7)(eslint@8.43.0):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint-import-resolver-node@0.3.7)(eslint@8.43.0):
     dependencies:
-      '@typescript-eslint/parser': 5.55.0(eslint@8.43.0)(typescript@5.0.3)
       debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 5.55.0(eslint@8.43.0)(typescript@5.0.3)
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.55.0)(eslint@8.43.0):
+  eslint-plugin-import@2.27.5(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint@8.43.0):
     dependencies:
-      '@typescript-eslint/parser': 5.55.0(eslint@8.43.0)(typescript@5.0.3)
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -6389,7 +6350,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.43.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.55.0)(eslint-import-resolver-node@0.3.7)(eslint@8.43.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.55.0(eslint@8.43.0)(typescript@5.0.3))(eslint-import-resolver-node@0.3.7)(eslint@8.43.0)
       has: 1.0.3
       is-core-module: 2.12.1
       is-glob: 4.0.3
@@ -6398,6 +6359,8 @@ snapshots:
       resolve: 1.22.2
       semver: 6.3.0
       tsconfig-paths: 3.14.2
+    optionalDependencies:
+      '@typescript-eslint/parser': 5.55.0(eslint@8.43.0)(typescript@5.0.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7268,39 +7231,39 @@ snapshots:
       randombytes: 2.1.0
       safe-buffer: 5.2.1
 
-  react-aria@3.26.0(react-dom@18.2.0)(react@18.2.0):
+  react-aria@3.26.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@react-aria/breadcrumbs': 3.5.3(react@18.2.0)
       '@react-aria/button': 3.8.0(react@18.2.0)
-      '@react-aria/calendar': 3.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/calendar': 3.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/checkbox': 3.9.2(react@18.2.0)
-      '@react-aria/combobox': 3.6.2(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/datepicker': 3.5.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/dialog': 3.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/dnd': 3.3.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/combobox': 3.6.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/datepicker': 3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/dialog': 3.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/dnd': 3.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/focus': 3.13.0(react@18.2.0)
-      '@react-aria/gridlist': 3.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/gridlist': 3.5.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/i18n': 3.8.0(react@18.2.0)
       '@react-aria/interactions': 3.16.0(react@18.2.0)
       '@react-aria/label': 3.6.0(react@18.2.0)
       '@react-aria/link': 3.5.2(react@18.2.0)
       '@react-aria/listbox': 3.10.0(react@18.2.0)
-      '@react-aria/menu': 3.10.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/menu': 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/meter': 3.4.3(react@18.2.0)
-      '@react-aria/numberfield': 3.6.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/overlays': 3.15.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/numberfield': 3.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-aria/overlays': 3.15.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/progress': 3.4.3(react@18.2.0)
       '@react-aria/radio': 3.6.2(react@18.2.0)
       '@react-aria/searchfield': 3.5.3(react@18.2.0)
-      '@react-aria/select': 3.11.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/select': 3.11.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/selection': 3.16.0(react@18.2.0)
       '@react-aria/separator': 3.3.3(react@18.2.0)
       '@react-aria/slider': 3.5.0(react@18.2.0)
       '@react-aria/ssr': 3.7.0(react@18.2.0)
       '@react-aria/switch': 3.5.2(react@18.2.0)
-      '@react-aria/table': 3.10.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/table': 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/tabs': 3.6.1(react@18.2.0)
-      '@react-aria/tag': 3.1.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/tag': 3.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-aria/textfield': 3.10.0(react@18.2.0)
       '@react-aria/tooltip': 3.6.0(react@18.2.0)
       '@react-aria/utils': 3.18.0(react@18.2.0)
@@ -7309,7 +7272,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  react-card-flip@1.2.0(react-dom@18.2.0)(react@18.2.0):
+  react-card-flip@1.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7329,7 +7292,7 @@ snapshots:
 
   react-fast-compare@2.0.4: {}
 
-  react-hotkeys-hook@2.4.1(react-dom@18.2.0)(react@18.2.0):
+  react-hotkeys-hook@2.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       hotkeys-js: 3.8.1
       react: 18.2.0
@@ -7343,24 +7306,25 @@ snapshots:
 
   react-is@18.2.0: {}
 
-  react-redux@8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+  react-redux@8.1.0(@reduxjs/toolkit@1.9.7)(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1):
     dependencies:
       '@babel/runtime': 7.22.6
-      '@reduxjs/toolkit': 1.9.7(react-redux@8.1.0)(react@18.2.0)
       '@types/hoist-non-react-statics': 3.3.1
-      '@types/react': 18.2.13
-      '@types/react-dom': 18.2.6
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       react-is: 18.2.0
-      redux: 4.2.1
       use-sync-external-store: 1.2.0(react@18.2.0)
+    optionalDependencies:
+      '@reduxjs/toolkit': 1.9.7(react-redux@8.1.0)(react@18.2.0)
+      '@types/react': 18.2.13
+      '@types/react-dom': 18.2.6
+      react-dom: 18.2.0(react@18.2.0)
+      redux: 4.2.1
 
   react-refresh@0.14.0: {}
 
-  react-router-dom@6.13.0(react-dom@18.2.0)(react@18.2.0):
+  react-router-dom@6.13.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@remix-run/router': 1.6.3
       react: 18.2.0
@@ -7372,7 +7336,7 @@ snapshots:
       '@remix-run/router': 1.6.3
       react: 18.2.0
 
-  react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
+  react-transition-group@4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.22.6
       dom-helpers: 5.2.1
@@ -7539,7 +7503,7 @@ snapshots:
 
   source-map@0.5.7: {}
 
-  spinners-react-peer-deps-fix@1.0.5(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0)(react@18.2.0):
+  spinners-react-peer-deps-fix@1.0.5(@types/react-dom@18.2.6)(@types/react@18.2.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@types/react': 18.2.13
       '@types/react-dom': 18.2.6
@@ -7694,7 +7658,7 @@ snapshots:
       typescript: 5.0.3
 
   tsconfck@2.1.1(typescript@5.0.3):
-    dependencies:
+    optionalDependencies:
       typescript: 5.0.3
 
   tsconfig-paths@3.14.2:
@@ -7775,14 +7739,16 @@ snapshots:
 
   use-isomorphic-layout-effect@1.1.2(@types/react@18.2.13)(react@18.2.0):
     dependencies:
-      '@types/react': 18.2.13
       react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.13
 
   use-latest@1.2.1(@types/react@18.2.13)(react@18.2.0):
     dependencies:
-      '@types/react': 18.2.13
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.13)(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.13
 
   use-onclickoutside-peer-deps@0.3.1(@types/react@18.2.13)(react@18.2.0):
     dependencies:
@@ -7837,7 +7803,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-node-stdlib-browser@0.2.1(node-stdlib-browser@1.2.0)(rollup@3.25.1)(vite@4.3.9):
+  vite-plugin-node-stdlib-browser@0.2.1(node-stdlib-browser@1.2.0)(rollup@3.25.1)(vite@4.3.9(@types/node@20.3.1)):
     dependencies:
       '@rollup/plugin-inject': 5.0.3(rollup@3.25.1)
       node-stdlib-browser: 1.2.0
@@ -7845,11 +7811,12 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  vite-tsconfig-paths@4.2.0(typescript@5.0.3)(vite@4.3.9):
+  vite-tsconfig-paths@4.2.0(typescript@5.0.3)(vite@4.3.9(@types/node@20.3.1)):
     dependencies:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.1(typescript@5.0.3)
+    optionalDependencies:
       vite: 4.3.9(@types/node@20.3.1)
     transitivePeerDependencies:
       - supports-color
@@ -7857,11 +7824,11 @@ snapshots:
 
   vite@4.3.9(@types/node@20.3.1):
     dependencies:
-      '@types/node': 20.3.1
       esbuild: 0.17.19
       postcss: 8.4.24
       rollup: 3.25.1
     optionalDependencies:
+      '@types/node': 20.3.1
       fsevents: 2.3.2
 
   vitest@0.32.4:

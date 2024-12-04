@@ -86,7 +86,7 @@ function DelegateStackStxLayout({ client }: DelegateStackStxLayoutProps) {
   }
 
   const validationSchema = createValidationSchema({
-    availableBalanceUStx: intToBigInt(UI_IMPOSED_MAX_STACKING_AMOUNT_USTX.toString(), false),
+    availableBalanceUStx: intToBigInt(UI_IMPOSED_MAX_STACKING_AMOUNT_USTX.toString()),
     // TODO why is current burnchain block height undefined?
     currentBurnHt: getPoxInfoQuery.data.current_burnchain_block_height || 0,
     network: networkName,

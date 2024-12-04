@@ -19,7 +19,7 @@ export function StackingForUserFormContainer({
 }) {
   const { setFieldValue } = useFormikContext<PooledStackerFormValues>();
   const { network } = useStacksNetwork();
-  const client = new StackingClient(address, network);
+  const client = new StackingClient({ address, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({
     client,
