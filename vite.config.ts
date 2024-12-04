@@ -13,9 +13,9 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
-  build: {
-    rollupOptions: {
-      external: ['@leather.io/ui'],
-    },
-  },
+  // build: {
+  //   rollupOptions: {
+  //     external: ['@leather.io/ui'],
+  //   },
+  // },
 });
