@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
-import { Outlet, RouterProvider, createBrowserRouter, useSearchParams } from 'react-router-dom';
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  createHashRouter,
+  useSearchParams,
+} from 'react-router-dom';
 
 import { StacksNetworkName } from '@stacks/network';
 import { CSSReset, ThemeProvider } from '@stacks/ui';
@@ -77,7 +83,7 @@ function Root() {
   );
 }
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <Root />,
@@ -170,6 +176,6 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
-  console.log('sdlfkjsdlfkjsldkf');
+  console.log('aaaaaaaaaaaaaa');
   return <RouterProvider router={router} />;
 }
