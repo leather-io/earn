@@ -170,5 +170,6 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
+  console.log('sdlfkjsdlfkjsldkf');
   return <RouterProvider router={router} />;
 }
