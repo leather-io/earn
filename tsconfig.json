@@ -1,6 +1,4 @@
 {
-  "include": ["src", "leather-styles", "theme", "panda.config.ts", "vite.config.ts"],
-
   "compilerOptions": {
     // Type Checking
     "strict": true,
@@ -36,5 +34,6 @@
 
     // Completeness
     "skipLibCheck": true
-  }
+  },
+  "include": ["src", "leather-styles", "theme", "panda.config.ts", "vite.config.ts", "global.d.ts"]
 }

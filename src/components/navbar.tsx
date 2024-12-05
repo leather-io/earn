@@ -104,7 +104,7 @@ const NavbarRight = () => {
             background={'ink.background-primary'}
             onClick={() => signIn()}
           >
-            Connect wallet
+            Connect Leather
           </Button>
         )}
       </Box>
