@@ -12,6 +12,7 @@ import { createSearch } from '@utils/networks';
 
 import { SignedInProps } from '../types';
 import { hasExistingCommitment } from '../utils';
+import { css } from 'leather-styles/css';
 
 export function Messages({
   hasEnoughBalanceToDirectStack,
@@ -24,7 +25,7 @@ export function Messages({
   const linkColor = token('colors.blue.action-primary-default');
   const linkStyle = { color: linkColor };
   return (
-    <Stack my="space.04">
+    <Stack className={css({ mx: { base: 'space.00', xlDown: 'space.04' } })}>
       {(hasExistingDelegation || hasExistingDelegatedStacking) && (
         <Alert icon={<IconInfoCircle />}>
           <Stack>
