@@ -52,6 +52,7 @@ export function AuthProvider({ children }: Props) {
   function signOut() {
     setAddresses([]);
     localStorage.removeItem('addresses');
+    setIsSigningIn(false);
     setIsSignedIn(false);
   }
 
