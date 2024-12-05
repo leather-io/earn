@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { App } from './app';
+import { LeatherProvider } from '@leather.io/rpc';
+
+declare global {
+  interface Window {
+    LeatherProvider?: LeatherProvider;
+  }
+}
 
 // Ensures `BigInt`s don't throw errors when using `JSON.stringify`, as they are not supported by
 // the `stringify` function.

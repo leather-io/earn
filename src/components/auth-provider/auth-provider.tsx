@@ -1,28 +1,14 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-import { UserData } from '@stacks/auth';
-import { AppConfig, UserSession, disconnect, showConnect } from '@stacks/connect';
-import { validateStacksAddress as isValidStacksAddress } from '@stacks/transactions';
-import { APP_DETAILS } from 'src/constants';
-
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
-const appConfig = new AppConfig(['store_write']);
-const userSession = new UserSession({ appConfig });
+import { Address } from '@leather.io/rpc';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getAccountAddresses(userData: any, network: string) {
-  // NOTE: Although this approach to obtain the user's address is good enough for now, it is quite brittle.
-  // It relies on a variable having the same value as the object key below. Type checking is not available given the `userSession` object managed by `@stacks/connect` is typed as `any`.
-  //
-  // Should this be a source of issues, it may be worth refactoring.
-  const address: string = userData?.profile?.stxAddress?.[network];
-  const btcAddressP2tr: string = userData?.profile?.btcAddress?.p2tr?.[network];
-  const btcAddressP2wpkh: string = userData?.profile?.btcAddress?.p2wpkh?.[network];
-
-  if (!isValidStacksAddress(address)) {
-    return { address: null, btcAddressP2tr: null, btcAddressP2wpkh: null };
-  }
+function getAccountAddresses(resp: Address[]) {
+  const address = resp.find(a => a.symbol === 'STX')?.address || '';
+  const btcAddressP2tr = resp.find(a => a.symbol === 'BTC' && a.type === 'p2tr')?.address || '';
+  const btcAddressP2wpkh = resp.find(a => a.symbol === 'BTC' && a.type === 'p2wpkh')?.address || '';
 
   return { address, btcAddressP2tr, btcAddressP2wpkh };
 }
@@ -32,10 +18,9 @@ interface AuthContext {
   isSignedIn: boolean;
   signIn(): void;
   signOut(): void;
-  userData: null | UserData;
-  address: null | string;
-  btcAddressP2tr: null | string;
-  btcAddressP2wpkh: null | string;
+  address: string;
+  btcAddressP2tr: string;
+  btcAddressP2wpkh: string;
 }
 
 // The context type is non-null to avoid null checks wherever the context is used.
@@ -51,48 +36,34 @@ export function AuthProvider({ children }: Props) {
   const [hasSearchedForExistingSession, setHasSearchedForExistingSession] = useState(false);
   const { networkName } = useStacksNetwork();
 
-  function signIn() {
+  const [addresses, setAddresses] = useState([] as Address[]);
+
+  async function signIn() {
     if (isSigningIn) {
       console.warn('Attempted to sign in while sign is is in progress.');
       return;
     }
     setIsSigningIn(true);
-    showConnect({
-      userSession,
-      appDetails: APP_DETAILS,
-      onFinish() {
-        setIsSigningIn(false);
-        setIsSignedIn(true);
-      },
-      onCancel() {
-        setIsSigningIn(false);
-      },
-    });
+    const resp = await window.LeatherProvider?.request('getAddresses');
+
+    if (!resp) throw new Error('No addresses found');
+    setIsSignedIn(true);
+    setAddresses(resp.result.addresses);
   }
 
   function signOut() {
-    userSession.signUserOut();
-    disconnect();
+    setAddresses([]);
     setIsSignedIn(false);
   }
 
+  // TODO: implement session management
   if (!hasSearchedForExistingSession) {
-    if (userSession.isUserSignedIn()) {
-      setIsSignedIn(true);
-    }
-
     setHasSearchedForExistingSession(true);
     return null;
   }
 
-  let userData = null;
-  try {
-    userData = userSession.loadUserData();
-  } catch {
-    // do nothing
-  }
+  const { address, btcAddressP2tr, btcAddressP2wpkh } = getAccountAddresses(addresses);
 
-  const { address, btcAddressP2tr, btcAddressP2wpkh } = getAccountAddresses(userData, networkName);
   return (
     <>
       <AuthContext.Provider
@@ -101,7 +72,6 @@ export function AuthProvider({ children }: Props) {
           isSignedIn,
           signIn,
           signOut,
-          userData,
           address,
           btcAddressP2tr,
           btcAddressP2wpkh,
@@ -114,5 +84,9 @@ export function AuthProvider({ children }: Props) {
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const auth = useContext(AuthContext);
+  if (!auth) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return auth;
 }
