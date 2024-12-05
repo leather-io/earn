@@ -1,4 +1,3 @@
-import { IconLock, IconStairs } from '@tabler/icons-react';
 import { StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
 import { useLiquidStackingButton } from 'src/pages/choose-stacking-method/hooks';
 
@@ -7,12 +6,16 @@ import { Users } from '@components/icons/users';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
+import IconLock from '@assets/images/ic-lock.svg';
+import IconStack from '@assets/images/ic-stack.svg';
+import IconUserGroup from '@assets/images/ic-group.svg';
+
 export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
   const { isDisabled, onClick } = useLiquidStackingButton(props);
   const benefits = [
     { icon: IconLock, title: 'Interact with liquid stacking contracts' },
-    { icon: Users, title: 'A protocol stacks on your behalf' },
-    { icon: IconStairs, title: 'No minimum required' },
+    { icon: IconUserGroup, title: 'A protocol stacks on your behalf' },
+    { icon: IconStack, title: 'No minimum required' },
   ];
 
   return (

@@ -1,4 +1,3 @@
-import { IconLock, IconStairs } from '@tabler/icons-react';
 import { StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
 import { useDirectStackingButton } from 'src/pages/choose-stacking-method/hooks';
 
@@ -8,13 +7,17 @@ import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
+import IconLock from '@assets/images/ic-lock.svg';
+import IconBalance from '@assets/images/ic-balance.svg';
+import IconUser from '@assets/images/ic-user.svg';
+
 export function DirectStackingCard(props: ChooseStackingMethodLayoutProps) {
   const { isDisabled, onClick } = useDirectStackingButton(props);
   const benefits = [
     { icon: IconLock, title: 'Interact with the protocol directly' },
-    { icon: Unassignee, title: 'No intermediaries' },
+    { icon: IconUser, title: 'No intermediaries' },
     {
-      icon: IconStairs,
+      icon: IconBalance,
       title: props.isSignedIn
         ? `Dynamic minimum (currently ${toHumanReadableStx(props.stackingMinimumAmountUstx)})`
         : 'Dynamic minimum',

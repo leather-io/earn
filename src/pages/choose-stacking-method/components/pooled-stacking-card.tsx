@@ -1,5 +1,4 @@
-import { IconLock, IconStairs } from '@tabler/icons-react';
-import { StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
+import {StackingMethodCard } from 'src/pages/choose-stacking-method/components/stacking-method-card';
 import { usePooledStackingButton } from 'src/pages/choose-stacking-method/hooks';
 
 import DivingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
@@ -7,12 +6,16 @@ import { Users } from '@components/icons/users';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
+import IconLock from '@assets/images/ic-lock.svg';
+import IconStack from '@assets/images/ic-stack.svg';
+import IconUserGroup from '@assets/images/ic-group.svg';
+
 export function PooledStackingCard(props: ChooseStackingMethodLayoutProps) {
   const { isDisabled, onClick } = usePooledStackingButton(props);
   const benefits = [
     { icon: IconLock, title: 'Interact with the protocol directly' },
-    { icon: Users, title: 'A pool stacks on your behalf' },
-    { icon: IconStairs, title: 'No minimum required' },
+    { icon: IconUserGroup, title: 'A pool stacks on your behalf' },
+    { icon: IconStack, title: 'No minimum required' },
   ];
 
   return (
