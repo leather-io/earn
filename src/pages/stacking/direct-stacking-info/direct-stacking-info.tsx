@@ -1,5 +1,3 @@
-import { Text } from '@stacks/ui';
-
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import {
@@ -15,6 +13,7 @@ import { ActiveStackingInfo } from './components/active-stacking-info';
 import { NoStacking } from './components/no-stacking-info';
 import { PendingStackingInfo } from './components/pending-stacking-info';
 import { useGetHasPendingStackingTransactionQuery } from './use-get-has-pending-tx-query';
+import { styled } from 'leather-styles/jsx';
 
 export function DirectStackingInfo() {
   const { networkName } = useStacksNetwork();
@@ -64,7 +63,7 @@ export function DirectStackingInfo() {
     console.error(msg);
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>{msg}</Text>
+        <styled.p textStyle="body.01">{msg}</styled.p>
       </CenteredErrorAlert>
     );
   }

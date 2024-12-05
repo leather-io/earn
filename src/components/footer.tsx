@@ -1,10 +1,11 @@
-import { Flex, color } from '@stacks/ui';
 import { useGlobalContext } from 'src/context/use-app-context';
 
 import { figmaTheme } from '@constants/figma-theme';
 import { createSearch } from '@utils/networks';
 
 import { OpenLinkInNewTab } from './open-link-in-new-tab';
+import { Flex } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 export function Footer() {
   const { activeNetwork } = useGlobalContext();
@@ -12,34 +13,43 @@ export function Footer() {
     <Flex
       flexDirection={['column', 'column', 'row', 'row']}
       justifyContent="center"
-      py="tight"
-      px={['loose', 'loose', 'tight', 'tight']}
+      alignItems="center"
+      minHeight="100px"
+      px={['space.04', 'space.04', 'space.02', 'space.02']}
       borderTop={`1px solid ${figmaTheme.borderSubdued}`}
-      columnGap="loose"
+      columnGap="space.04"
     >
       <OpenLinkInNewTab
-        color={color('text-caption')}
+        style={{
+          color: token('colors.ink.text-primary'),
+        }}
         fontWeight={500}
         href={`${window.location.origin}/pool-admin${createSearch(activeNetwork)}`}
       >
         Pool Administration
       </OpenLinkInNewTab>
       <OpenLinkInNewTab
-        color={color('text-caption')}
+        style={{
+          color: token('colors.ink.text-primary'),
+        }}
         fontWeight={500}
         href={`${window.location.origin}/signer/generate-signature${createSearch(activeNetwork)}`}
       >
         Signer Key Signature
       </OpenLinkInNewTab>
       <OpenLinkInNewTab
-        color={color('text-caption')}
+        style={{
+          color: token('colors.ink.text-primary'),
+        }}
         fontWeight={500}
         href="https://leather.io/terms"
       >
         Terms of Service
       </OpenLinkInNewTab>
       <OpenLinkInNewTab
-        color={color('text-caption')}
+        style={{
+          color: token('colors.ink.text-primary'),
+        }}
         fontWeight={500}
         href="https://leather.io/privacy-policy"
       >

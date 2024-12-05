@@ -23,12 +23,11 @@ export const SectionHero = (props: SectionHeroProps) => {
       <Box p={['space.05', 'space.10']} maxWidth="800px">
         <styled.h1
           className={css({
-            fontFamily: 'MarcheSuperPro',
             textTransform: 'uppercase',
             color: 'ink.background-primary',
             fontSize: '44px',
-            textStyle: 'heading.01',
           })}
+          textStyle="heading.01"
         >
           {title}
         </styled.h1>

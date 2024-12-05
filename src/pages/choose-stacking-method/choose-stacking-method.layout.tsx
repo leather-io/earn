@@ -31,7 +31,7 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
         justifyContent="center"
       >
         {props.isSignedIn && (
-          <Box pt="base">
+          <Box>
             <Messages {...props} />
           </Box>
         )}
@@ -46,18 +46,15 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
 const PageTitle = () => {
   return (
     <Box
-      my="space.09"
+      mt="space.11"
+      mb="space.09"
       className={css({
-        marginLeft: { mdToXl: 'space.09', smOnly: 'space.04' },
+        marginLeft: { mdToXl: 'space.06', smOnly: 'space.04' },
         fontSize: { base: '108px', smOnly: '96px' },
       })}
     >
       <styled.section position="relative">
-        <styled.h1
-          fontFamily={'MarcheSuperPro'}
-          textTransform="uppercase"
-          style={{ lineHeight: '0.8' }}
-        >
+        <styled.h1 textStyle="display.01" textTransform="uppercase" style={{ lineHeight: '0.8' }}>
           Earn bitcoin yield with Leather
           <styled.span
             className={css({
@@ -99,7 +96,7 @@ In return, you are eligible to receive rewards in the form of BTC"
 
 const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
   return (
-    <Box my="space.09">
+    <Box mb="space.09">
       <SectionHero
         title="Earn Rewards with BTC"
         subtitle="sBTC is a 1:1 Bitcoin-backed digital asset on Stacks, the leading Bitcoin Layer 2 solution. By bridging your BTC to sBTC, you unlock Bitcoin’s potential for DeFi, NFTs, and more, earning approximately 5% Bitcoin yield* while maintaining full liquidity and self-custody. Transfer your sBTC anytime; rewards adjust accordingly. Learn more about sBTC ->"

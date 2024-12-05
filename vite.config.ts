@@ -16,21 +16,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // '@leather.io/ui': path.resolve('./node_modules/@leather.io/ui'),
       'leather-styles': path.resolve('./leather-styles'),
       'leather-styles/*': path.resolve('./leather-styles/*'),
     },
   },
-  // build: {
-  //   rollupOptions: {
-  //     external: [
-  //       'leather-styles/css',
-  //       'leather-styles/jsx',
-  //       'leather-styles/patterns',
-  //       'leather-styles/recipes',
-  //       'leather-styles/tokens',
-  //       'leather-styles/types',
-  //     ],
-  //   },
-  // },
 });
