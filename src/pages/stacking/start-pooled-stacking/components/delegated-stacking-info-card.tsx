@@ -1,4 +1,4 @@
-import { Box, FlexProps } from '@stacks/ui';
+import { Box, FlexProps } from 'leather-styles/jsx';
 import { useFormikContext } from 'formik';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
@@ -55,7 +55,7 @@ export function PoolingInfoCard(props: FlexProps) {
   return (
     <>
       <InfoCard {...props}>
-        <Box mx={['loose', 'extra-loose']} sx={{}}>
+        <Box mx={['loose', 'extra-loose']}>
           <PoolingAmountInfo title="You'll pool up to" amountText={amountText} />
 
           <Hr />

@@ -1,4 +1,4 @@
-import { Box, FlexProps } from '@stacks/ui';
+import { Box, FlexProps } from 'leather-styles/jsx';
 import { useFormikContext } from 'formik';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
@@ -36,7 +36,7 @@ export function ProtocolInfoCard(props: FlexProps) {
   return (
     <>
       <InfoCard {...props}>
-        <Box mx={['loose', 'extra-loose']} sx={{}}>
+        <Box mx={['loose', 'extra-loose']}>
           <LiquidStackingAmountInfo title="You'll liquid stack" amountText={amountText} />
 
           <Hr />

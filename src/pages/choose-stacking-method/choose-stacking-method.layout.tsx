@@ -46,18 +46,15 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
 const PageTitle = () => {
   return (
     <Box
-      my="space.11"
+      mt="space.11"
+      mb="space.09"
       className={css({
         marginLeft: { mdToXl: 'space.06', smOnly: 'space.04' },
         fontSize: { base: '108px', smOnly: '96px' },
       })}
     >
       <styled.section position="relative">
-        <styled.h1
-          fontFamily={'MarcheSuperPro'}
-          textTransform="uppercase"
-          style={{ lineHeight: '0.8' }}
-        >
+        <styled.h1 textStyle="display.01" textTransform="uppercase" style={{ lineHeight: '0.8' }}>
           Earn bitcoin yield with Leather
           <styled.span
             className={css({

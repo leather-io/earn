@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
-import { Box, color } from '@stacks/ui';
-import { IconAlertCircle } from '@tabler/icons-react';
+import { ErrorCircleIcon } from '@leather.io/ui';
+import { token } from 'leather-styles/tokens';
+import { Box, Flex } from 'leather-styles/jsx';
 
 interface Props {
   id?: string;
@@ -10,13 +11,16 @@ interface Props {
 export function ErrorAlert({ id, children }: Props) {
   return (
     <Box
-      bg={color('feedback-error')}
-      icon={<IconAlertCircle size={16} />}
+      bg={token('colors.red.background-primary')}
       title={`Error ${id ? id : ''}`}
-      color={color('text-body')}
-      px={'loose'}
+      color={token('colors.ink.text-primary')}
+      px="space.04"
     >
-      {children}
+      <Flex flexDirection="row" alignItems="center">
+        <ErrorCircleIcon variant="small" />
+        <Box width="4px" />
+        {children}
+      </Flex>
     </Box>
   );
 }

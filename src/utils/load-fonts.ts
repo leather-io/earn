@@ -13,7 +13,7 @@ function getFontAssetPath(name: string) {
 }
 
 export async function loadFonts(): Promise<void> {
-  const marche = new FontFace('MarcheSuperPro', getFontAssetPath(MarcheSuperPro), {
+  const marche = new FontFace('Marche', getFontAssetPath(MarcheSuperPro), {
     weight: '400',
   });
 
