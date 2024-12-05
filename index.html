@@ -9,5 +9,10 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if (location.pathname !== '/' && location.pathname.indexOf('.') === -1) {
+        location.href = '/lockstacks/' + location.pathname.slice(1) + location.search;
+      }
+    </script>
   </body>
 </html>
