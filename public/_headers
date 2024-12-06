@@ -1,0 +1,2 @@
+https://earn.leather.io/*
+  Content-Security-Policy: style-src 'self' 'unsafe-inline' https://earn.leather.io;
