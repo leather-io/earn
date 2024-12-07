@@ -82,7 +82,7 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
     getPoxInfoQuery.isError ||
     !getPoxInfoQuery.data ||
     getAccountExtendedBalancesQuery.isError ||
-    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'string' ||
+    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'bigint' ||
     getPoxOperationInfo.isError ||
     !getPoxOperationInfo.data
   ) {

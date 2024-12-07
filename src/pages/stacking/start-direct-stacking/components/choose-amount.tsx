@@ -35,7 +35,7 @@ export function Amount() {
 
   if (
     getAccountExtendedBalancesQuery.isError ||
-    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'string' ||
+    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'bigint' ||
     getPoxInfoQuery.isError ||
     !getPoxInfoQuery.data
   ) {

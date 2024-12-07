@@ -79,7 +79,7 @@ function DelegateStackIncreaseLayout({ client }: DelegateStackIncreaseLayoutProp
     getPoxInfoQuery.isError ||
     !getPoxInfoQuery.data ||
     getAccountExtendedBalancesQuery.isError ||
-    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'string'
+    typeof getAccountExtendedBalancesQuery.data.stx.balance !== 'bigint'
   ) {
     const msg = 'Failed to load necessary data.';
     const id = '8c12f6b2-c839-4813-8471-b0fd542b845f';
