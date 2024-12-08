@@ -27,7 +27,7 @@ export const SectionHero = (props: SectionHeroProps) => {
             color: 'ink.background-primary',
             fontSize: '44px',
           })}
-          textStyle="heading.01"
+          textStyle="heading.02"
         >
           {title}
         </styled.h1>
