@@ -20,27 +20,28 @@ import { ChooseStackingMethodLayoutProps } from './types';
 
 export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProps) {
   return (
-    <StartStackingLayout>
-      <PageTitle />
-      <Stack height="100%" gap="space.00" mb="space.11" justifyContent="center">
-        {props.isSignedIn && (
-          <Box>
-            <Messages {...props} />
-          </Box>
-        )}
+    <Box width="100%" background="ink.background-secondary">
+      <StartStackingLayout>
+        <PageTitle />
+        <Stack height="100%" gap="space.00" paddingBottom="space.11" justifyContent="center">
+          {props.isSignedIn && (
+            <Box>
+              <Messages {...props} />
+            </Box>
+          )}
 
-        {/* <EarnWithSBTCSection {...props} /> */}
-        <StackingSection {...props} />
-      </Stack>
-    </StartStackingLayout>
+          {/* <EarnWithSBTCSection {...props} /> */}
+          <StackingSection {...props} />
+        </Stack>
+      </StartStackingLayout>
+    </Box>
   );
 }
 
 const PageTitle = () => {
   return (
     <Box
-      mt="space.11"
-      mb="space.11"
+      paddingY="space.11"
       className={css({
         marginLeft: { mdToXl: 'space.06', smOnly: 'space.04' },
         fontSize: { base: '108px', smOnly: '96px' },
@@ -83,7 +84,7 @@ In return, you are eligible to receive rewards in the form of BTC"
         description="If you meet the protocol minimum, you can Stack your STX independently by directly interacting with the protocol. You also have the option to delegate your STX to a stacking pool provider."
         image={<EarnWithStackingImage />}
       />
-      <StackingOptionsCardContainer>
+      <StackingOptionsCardContainer background="ink.background-primary">
         <PooledStackingCard {...props} />
         <LiquidStackingCard {...props} />
         <DirectStackingCard {...props} />

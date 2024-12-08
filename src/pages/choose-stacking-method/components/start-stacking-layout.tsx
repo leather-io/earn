@@ -7,7 +7,6 @@ import { token } from 'leather-styles/tokens';
 
 export const StartStackingLayout: FC<BoxProps> = props => (
   <Box
-    className={css({ backgroundColor: 'ink.background-primary' })}
     style={{ maxWidth: '1400px', margin: '0 auto' }}
     {...props}
   />
