@@ -12,8 +12,8 @@ export function Layout() {
   return (
     <>
       <Flex minH="100vh" flexDirection="column">
-        <Banner />
         <Navbar />
+        <Banner />
         <PoxDisabledLayout />
         <Box flexGrow={1}>
           <Outlet />
