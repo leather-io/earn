@@ -40,7 +40,7 @@ const PageTitle = () => {
   return (
     <Box
       mt="space.11"
-      mb="space.09"
+      mb="space.11"
       className={css({
         marginLeft: { mdToXl: 'space.06', smOnly: 'space.04' },
         fontSize: { base: '108px', smOnly: '96px' },
