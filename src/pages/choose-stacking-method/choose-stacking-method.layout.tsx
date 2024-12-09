@@ -70,6 +70,11 @@ const PageTitle = () => {
       <styled.p my="space.04" textStyle="body.01" fontSize="21px">
         Earn Bitcoin yield by bridging BTC into sBTC or stacking your STX.
       </styled.p>
+      <styled.p textStyle="caption.01" color="#716A60" maxW="760px">
+        This website provides the interface to connect with the Stacking protocol or delegate to a
+        Stacking pool provider directly. We don’t provide the Stacking service ourselves. Read our
+        FAQs and review our Terms to learn more.
+      </styled.p>
     </Box>
   );
 };

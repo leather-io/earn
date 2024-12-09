@@ -1,7 +1,7 @@
 import { addSeconds, formatDistanceToNow } from 'date-fns';
+import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
 import { ClockIcon } from '@components/icons/clock';
-import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
 interface NextCycleStartTimeProps extends FlexProps {
   /**
