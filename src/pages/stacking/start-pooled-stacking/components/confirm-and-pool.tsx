@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
 import { useFormikContext } from 'formik';
+import { Box } from 'leather-styles/jsx';
+
+import { StackingDisclaimer } from '@components/stacking-disclaimer';
 
 import { Action, Step } from '../../components/stacking-form-step';
 import { StackingUserConfirm } from '../../components/stacking-user-confirm';
@@ -45,6 +48,9 @@ export function ConfirmAndSubmit({
           Confirm and start pooling
         </Action>
       )}
+      <Box mt="space.05">
+        <StackingDisclaimer />
+      </Box>
     </Step>
   );
 }
