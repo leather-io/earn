@@ -123,7 +123,7 @@ const NavbarRight = () => {
       <NavItem href="https://leather.io/blog">Blog</NavItem>
       <NavItem href="https://leather.io/learn">Learn</NavItem>
       <NavItem href="https://leather.io/guides">Guides</NavItem>
-      <NavItem href="https://leather.io/developer">Developer docs</NavItem>
+      <NavItem href="https://leather.io/developer-docs">Developer docs</NavItem>
       <NavItem href="https://leather.io/frequent-questions#stacking">FAQs</NavItem>
       {isSignedIn && <NetworkInfo />}
       <Box pr="12px">
