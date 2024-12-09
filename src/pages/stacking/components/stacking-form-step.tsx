@@ -4,7 +4,6 @@ import { Button, ButtonProps } from '@leather.io/ui';
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
 import { Box, Stack } from 'leather-styles/jsx';
 import { Flex } from 'leather-styles/jsx';
-import { token } from 'leather-styles/tokens';
 
 import { Title } from '@components/title';
 
@@ -34,7 +33,14 @@ export function Step(props: StepProps) {
   const { title, children, ...rest } = props;
   return (
     <Flex flexDirection="column" mt="space.04" {...rest}>
-      <Title fontFamily="diatype" fontWeight="500" textTransform="unset" fontSize="26px" mt="space.02" mr="space.02">
+      <Title
+        fontFamily="diatype"
+        fontWeight="500"
+        textTransform="unset"
+        fontSize="26px"
+        mt="space.02"
+        mr="space.02"
+      >
         {title}
       </Title>
       <Box>{children}</Box>
