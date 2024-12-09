@@ -27,13 +27,10 @@ export function PoolAdminIntro(props: PoolAdminIntroProps) {
   return (
     <>
       <Title>Manage your pool</Title>
-      <StackingDescription mt="base-loose">{children}</StackingDescription>
+      <StackingDescription>{children}</StackingDescription>
       <Flex alignItems="baseline">
         <NextCycleStartTime timeUntilNextCycle={timeUntilNextCycle} mt="40px" />
-        <EstimatedMinimumLabel
-          ml="extra-loose"
-          estimatedStackingMinimum={estimatedStackingMinimum}
-        />
+        <EstimatedMinimumLabel estimatedStackingMinimum={estimatedStackingMinimum} />
       </Flex>
     </>
   );

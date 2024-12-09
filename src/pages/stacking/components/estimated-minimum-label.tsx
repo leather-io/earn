@@ -1,4 +1,4 @@
-import { Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
 import { StepsIcon } from '@components/icons/steps';
 import { toHumanReadableStx } from '@utils/unit-convert';
@@ -14,30 +14,30 @@ export function EstimatedMinimumLabel({
   ...rest
 }: EstimatedMinimumLabelProps) {
   return (
-    <Flex {...rest}>
+    <Flex marginLeft="space.05" {...rest}>
       <Flex
-        width="44px"
-        height="44px"
-        background={color('bg-4')}
+        width="48px"
+        height="48px"
+        background="ink.background-secondary"
         borderRadius="50%"
         alignItems="center"
         justifyContent="center"
       >
         <StepsIcon width="14px" height="14px" />
       </Flex>
-      <Flex ml="base" flexDirection="column">
-        <Text as="h4" display="block" textStyle="body.large.medium" lineHeight="20px">
+      <Flex ml="space.04" flexDirection="column">
+        <styled.h4 display="block" textStyle="body.01" lineHeight="20px">
           Estimated minimum
-        </Text>
-        <Text
+        </styled.h4>
+        <styled.p
           display="block"
-          textStyle="body.large"
-          color={color('text-caption')}
+          textStyle="body.01"
+          color="ink.text-subdued"
           lineHeight="20px"
-          mt="extra-tight"
+          mt="space.01"
         >
           {toHumanReadableStx(estimatedStackingMinimum)}
-        </Text>
+        </styled.p>
       </Flex>
     </Flex>
   );

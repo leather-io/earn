@@ -15,6 +15,45 @@ import Logo from '../assets/images/logo.svg';
 import { useAuth } from './auth-provider/auth-provider';
 import { NetworkInfo } from './network-info';
 
+interface NavItemProps {
+  href: string;
+  children: React.ReactNode;
+  openInNewTab?: boolean;
+  isActive?: boolean;
+}
+
+const navItemStyles = css({
+  color: token('colors.ink.background-primary'),
+  cursor: 'pointer',
+  textDecoration: 'none',
+  _hover: {
+    textDecoration: 'underline',
+  },
+});
+
+function NavItem({ href, children, openInNewTab = false, isActive = false }: NavItemProps) {
+  return (
+    <styled.a
+      color="ink.background-primary"
+      href={href}
+      className={navItemStyles}
+      target={openInNewTab ? '_blank' : undefined}
+      rel={openInNewTab ? 'noopener noreferrer' : undefined}
+      textDecoration={isActive ? 'underline' : 'none'}
+      onClick={
+        openInNewTab
+          ? e => {
+              e.preventDefault();
+              openExternalLink(href);
+            }
+          : undefined
+      }
+    >
+      {children}
+    </styled.a>
+  );
+}
+
 export function Navbar() {
   return (
     <Box
@@ -56,7 +95,7 @@ const NavbarLeft = () => {
   const { activeNetwork } = useGlobalContext();
 
   return (
-    <Flex alignItems="center" flex="1 1 100%">
+    <Flex alignItems="center" flex="flex-start">
       <Link to={`/${createSearch(activeNetwork)}`}>
         <Flex alignItems="center">
           <Logo />
@@ -67,28 +106,33 @@ const NavbarLeft = () => {
 };
 
 const NavbarRight = () => {
-  const { isSignedIn, signOut, signIn, address } = useAuth();
+  const { isSignedIn, address, signOut, signIn } = useAuth();
   const [isHovered, bind] = useHover();
+
   return (
-    <Flex justify="right" alignItems="center" justifyItems={'flex-end'}>
+    <Flex
+      flex="1 1 100%"
+      justify="right"
+      alignItems="center"
+      gap="space.05"
+      justifyItems={'flex-end'}
+    >
+      <NavItem href="https://earn.leather.io/" isActive>
+        Earn
+      </NavItem>
+      <NavItem href="https://leather.io/blog">Blog</NavItem>
+      <NavItem href="https://leather.io/learn">Learn</NavItem>
+      <NavItem href="https://leather.io/guides">Guides</NavItem>
+      <NavItem href="https://leather.io/developer">Developer docs</NavItem>
+      <NavItem href="https://leather.io/frequent-questions#stacking">FAQs</NavItem>
       {isSignedIn && <NetworkInfo />}
-      <styled.a
-        style={{ color: token('colors.ink.background-primary'), cursor: 'pointer' }}
-        onClick={() => openExternalLink('https://wallet.hiro.so/wallet/faq#stacking')}
-        mx="space.04"
-      >
-        FAQ
-      </styled.a>
       <Box pr="12px">
         {isSignedIn && address ? (
           <Button
-            width="160px"
-            mr="space.00"
-            boxShadow="none"
             variant="outline"
             _hover={{ boxShadow: 'none' }}
             onClick={() => signOut()}
-            borderRadius="6px"
+            borderRadius="xs"
             background={'ink.background-primary'}
             {...bind}
           >
@@ -97,14 +141,18 @@ const NavbarRight = () => {
         ) : (
           <Button
             boxShadow="none"
-            _hover={{ boxShadow: 'none' }}
             width="160px"
             variant="outline"
-            borderRadius="6px"
-            background={'ink.background-primary'}
+            borderRadius="xs"
+            background="#f6f1ee"
+            transition="background 0.2s ease-in-out"
+            _hover={{
+              boxShadow: 'none',
+              background: 'ink.background-primary',
+            }}
             onClick={() => signIn()}
           >
-            Connect Leather
+            Connect Wallet
           </Button>
         )}
       </Box>

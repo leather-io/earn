@@ -67,7 +67,7 @@ export function PoolInfo() {
       }
       poolAdminForm={
         <>
-          <Stack gap="space.04" mt="space.04">
+          <Stack gap="space.04" mt="space.08">
             <Button onClick={() => navigate(routes.DELEGATE_STACK_STX)}>Delegate Stack STX</Button>
             <Button onClick={() => navigate(routes.DELEGATE_STACK_EXTEND)}>
               Delegate Stack Extend
