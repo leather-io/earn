@@ -33,7 +33,7 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
               right: '-1px',
               bottom: '-1px',
               borderRadius: '12px',
-              border: '2px solid #CEDAFA',
+              border: '2px solid black',
             },
           }
         : {})}

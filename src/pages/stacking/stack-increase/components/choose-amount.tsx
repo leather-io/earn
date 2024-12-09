@@ -52,6 +52,7 @@ export function Amount() {
           height="28px"
           right="12px"
           top="10px"
+          color="#12100F"
           style={{ position: 'absolute' }}
           width="80px"
           onClick={setMax}

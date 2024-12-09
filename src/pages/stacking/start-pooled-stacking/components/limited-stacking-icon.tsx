@@ -16,16 +16,16 @@ export const LimitedStackingIcon: FC<LimitedStackingIconProps> = ({ cycles }) =>
         fill="none"
         viewBox="0 0 48 48"
       >
-        <path stroke="#5546FF" strokeWidth="2" d="M1 13h46v31a3 3 0 01-3 3H4a3 3 0 01-3-3V13z" />
-        <path stroke="#5546FF" strokeWidth="2" d="M1 13h46V8a3 3 0 00-3-3H4a3 3 0 00-3 3v5z" />
-        <path stroke="#5546FF" strokeLinecap="round" strokeWidth="2" d="M12 1v6M36 1v6" />
+        <path stroke="#12100F" strokeWidth="2" d="M1 13h46v31a3 3 0 01-3 3H4a3 3 0 01-3-3V13z" />
+        <path stroke="#12100F" strokeWidth="2" d="M1 13h46V8a3 3 0 00-3-3H4a3 3 0 00-3 3v5z" />
+        <path stroke="#12100F" strokeLinecap="round" strokeWidth="2" d="M12 1v6M36 1v6" />
         <text
-          fill="#5546FF"
+          fill="#12100F"
           x="49%"
           y="62%"
           dominantBaseline="middle"
           textAnchor="middle"
-          style={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '16px' }}
+          style={{ fontFamily: 'Diatype', fontWeight: 500, fontSize: '16px' }}
         >
           {cycles}
         </text>

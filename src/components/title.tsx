@@ -6,7 +6,7 @@ type TitleProps = BoxProps;
 
 export const Title: FC<TitleProps> = ({ children, ...props }) => {
   return (
-    <styled.h1 textStyle="display.02" color="ink.text-primary" {...props}>
+    <styled.h1 textStyle="heading.03" color="ink.text-primary" mb="space.04" {...props}>
       {children}
     </styled.h1>
   );

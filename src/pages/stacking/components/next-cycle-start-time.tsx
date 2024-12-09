@@ -14,18 +14,18 @@ interface NextCycleStartTimeProps extends FlexProps {
 export function NextCycleStartTime({ timeUntilNextCycle, ...rest }: NextCycleStartTimeProps) {
   const timeUntilNextCycleText = formatDistanceToNow(addSeconds(new Date(), timeUntilNextCycle));
   return (
-    <Flex {...rest}>
+    <Flex alignItems="center" {...rest}>
       <Flex
-        width="44px"
-        height="44px"
-        background={token('colors.ink.text-primary')}
+        width="48px"
+        height="48px"
+        background="ink.background-secondary"
         borderRadius="50%"
-        alignItems="flex-start"
-        justifyContent="flex-start"
+        alignItems="center"
+        justifyContent="center"
       >
         <ClockIcon size="24px" />
       </Flex>
-      <Flex ml="base" flexDirection="column">
+      <Flex ml="space.04" flexDirection="column">
         <styled.h4 display="block" textStyle="body.01" lineHeight="20px">
           Next cycle starts in
         </styled.h4>
