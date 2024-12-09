@@ -65,6 +65,7 @@ export function ChoosePoolingAmount() {
           <Button
             variant="link"
             type="button"
+            color="#12100F"
             onClick={() => helpers.setValue(microStxToStx(totalAvailableBalance))}
           >
             {toHumanReadableStx(totalAvailableBalance)}{' '}

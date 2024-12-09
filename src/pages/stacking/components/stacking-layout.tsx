@@ -9,7 +9,7 @@ type StartStackingLayoutProps = Record<Slots, JSX.Element>;
 export function StartStackingLayout(props: StartStackingLayoutProps) {
   const { intro, stackingInfoPanel, stackingForm } = props;
   return (
-    <Screen pt="space.05" mb="space.05">
+    <Screen pt="space.10" mb="space.05">
       <Flex
         flexDirection={['column-reverse', 'column-reverse', 'row']}
         justifyContent="space-between"

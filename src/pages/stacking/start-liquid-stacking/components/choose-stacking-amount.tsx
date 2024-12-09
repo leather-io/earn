@@ -64,6 +64,7 @@ export function ChooseStackingAmount() {
               variant="outline"
               size="sm"
               type="button"
+              color="#12100F"
               onClick={() => helpers.setValue(microStxToStx(availableForStacking))}
             >
               {toHumanReadableStx(availableForStacking)}

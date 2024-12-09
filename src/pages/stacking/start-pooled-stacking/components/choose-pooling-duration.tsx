@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Box, Button, Flex, Stack, Text, color } from '@stacks/ui';
+import { Button, Flex, Stack, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
@@ -14,23 +14,19 @@ import { IndefiniteStackingIcon } from './indefinite-stacking-icon';
 import { LimitedStackingIcon } from './limited-stacking-icon';
 import { pools } from './preset-pools';
 
+import { Box, BoxProps, styled } from 'leather-styles/jsx';
+
 function RecommendedFor({ children }: { children?: React.ReactNode }) {
   return (
-    <Box background={color('bg-alt')} my="loose" py="loose" px="base-loose" borderRadius="10px">
+    <Box background="#FAF8F6" mt="space.04" py="loose" px="base-loose" borderRadius="10px">
       <Flex>
-        <Box>
-          <Text
-            fontSize="14px"
-            lineHeight="20px"
-            display="block"
-            fontWeight={500}
-            fontFamily="Open Sauce"
-            letterSpacing="-0.02em"
-            color={color('text-title')}
-            mb="base"
+        <Box p="space.04">
+          <styled.p
+            fontStyle="caption"
+            color="ink.text-primary"
           >
             Recommended for
-          </Text>
+          </styled.p>
           <Text>{children} </Text>
         </Box>
       </Flex>
