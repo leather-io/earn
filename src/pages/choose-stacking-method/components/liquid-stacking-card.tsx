@@ -14,7 +14,10 @@ export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconLock as any as React.FC, title: 'Interact with liquid stacking contracts' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    { icon: IconUserGroup as any as React.FC, title: 'Liquid staking protocol stacks on your behalf' },
+    {
+      icon: IconUserGroup as any as React.FC,
+      title: 'Liquid staking protocol stacks on your behalf',
+    },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconStack as any as React.FC, title: 'No minimum required' },
   ];
