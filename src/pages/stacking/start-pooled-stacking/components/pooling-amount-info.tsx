@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { Flex, Text, color } from '@stacks/ui';
+import { Flex, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 
 interface PoolingAmountInfoProps {
   title: string;
@@ -11,20 +12,17 @@ export const PoolingAmountInfo: FC<PoolingAmountInfoProps> = ({
   amountText,
 }: PoolingAmountInfoProps) => {
   return (
-    <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-      <Text textStyle="body.large.medium" color={color('text-caption')}>
+    <Flex flexDirection="column" pb="space.03">
+      <styled.p textStyle="body.large.medium" color="ink.text-subdued">
         {title}
-      </Text>
-      <Text
-        fontSize="24px"
-        fontFamily="Open Sauce"
-        fontWeight={500}
-        letterSpacing="-0.02em"
+      </styled.p>
+      <styled.h4
+        textStyle="heading.04"
         mt="extra-tight"
-        color={color('text-caption')}
+        color="ink.text-primary"
       >
         {amountText}
-      </Text>
+      </styled.h4>
     </Flex>
   );
 };
