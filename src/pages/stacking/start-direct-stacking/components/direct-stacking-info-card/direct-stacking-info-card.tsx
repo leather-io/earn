@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { Box, Flex, Text, color } from '@stacks/ui';
 import { BigNumber } from 'bignumber.js';
 import { useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 import { SignatureSection } from 'src/pages/stacking/signer/generate-signature/components/signature-section';
 
 import { Hr } from '@components/hr';
@@ -47,24 +47,19 @@ export function InfoPanel() {
 
   return (
     <InfoCard minHeight="84px">
-      <Box mx={['loose', 'extra-loose']}>
-        <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-          <Text textStyle="body.large.medium" color={color('text-body')}>
+      <Box>
+        <Flex flexDirection="column" pb="space.04">
+          <styled.p textStyle="body.large.medium" color="ink.text-subdued">
             You&apos;ll lock
-          </Text>
-          <Text
-            fontSize="24px"
-            mt="extra-tight"
-            fontWeight={500}
-            fontFamily="Open Sauce"
-            letterSpacing="-0.02em"
-            color={color('text-caption')}
-          >
+          </styled.p>
+          <styled.h4 textStyle="heading.04" mt="extra-tight" color="ink.text-primary">
             {createAmountText(amount ?? 0)}
-          </Text>
+          </styled.h4>
         </Flex>
+
         <Hr />
-        <Group width="100%" mt="base-loose" mb="extra-loose">
+
+        <Group width="100%">
           <Section>
             <Row>
               <Label explainer="This is the estimated number of reward slots. The minimum can change before the next cycle begins.">
