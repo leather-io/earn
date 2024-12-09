@@ -89,7 +89,7 @@ In return, you are eligible to receive rewards in the form of BTC"
         description="If you meet the protocol minimum, you can Stack your STX independently by directly interacting with the protocol. You also have the option to delegate your STX to a stacking pool provider."
         image={<EarnWithStackingImage />}
       />
-      <StackingOptionsCardContainer background="ink.background-primary">
+      <StackingOptionsCardContainer>
         <PooledStackingCard {...props} />
         <LiquidStackingCard {...props} />
         <DirectStackingCard {...props} />
