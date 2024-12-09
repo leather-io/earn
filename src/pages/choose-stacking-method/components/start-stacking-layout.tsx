@@ -20,6 +20,7 @@ export const StackingOptionsCardContainer: FC<GridProps> = props => (
   <Grid
     gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr']}
     gap="space.00"
+    background="ink.background-primary"
     {...props}
   />
 );
