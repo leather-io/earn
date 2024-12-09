@@ -14,7 +14,7 @@ export function PooledStackingCard(props: ChooseStackingMethodLayoutProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconLock as any as React.FC, title: 'Interact with the protocol directly' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    { icon: IconUserGroup as any as React.FC, title: 'A pool stacks on your behalf' },
+    { icon: IconUserGroup as any as React.FC, title: 'A pool provider stacks on your behalf' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconStack as any as React.FC, title: 'No minimum required' },
   ];

@@ -27,7 +27,7 @@ export function DirectStackingCard(props: ChooseStackingMethodLayoutProps) {
     <StackingMethodCard
       {...props}
       title="Stack independently"
-      description="When you stack Independently, you'll interact with the protocol directly. This approach could be suitable if you prefer stacking in a trustless manner and meet the minimum requirement"
+      description="When you stack Independently, you'll interact with the protocol directly. This approach could be suitable if you prefer stacking in a trustless manner and meet the minimum requirement."
       icon={<FishBowlIllustration />}
       benefits={benefits}
       onButtonPress={onClick}

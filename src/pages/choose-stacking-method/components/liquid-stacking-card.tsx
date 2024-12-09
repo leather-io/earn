@@ -14,7 +14,7 @@ export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconLock as any as React.FC, title: 'Interact with liquid stacking contracts' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    { icon: IconUserGroup as any as React.FC, title: 'A protocol stacks on your behalf' },
+    { icon: IconUserGroup as any as React.FC, title: 'Liquid staking protocol stacks on your behalf' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconStack as any as React.FC, title: 'No minimum required' },
   ];
@@ -23,7 +23,7 @@ export function LiquidStackingCard(props: ChooseStackingMethodLayoutProps) {
     <StackingMethodCard
       {...props}
       title="Liquid Stacking"
-      description="Stack with a liquid stacking protocol, enabling you to retain your liquidity in stSTX tokens and auto-compound yield in STX. The provider may charge a small commission on rewards."
+      description="Stack with a liquid stacking protocol, seamlessly enabling you to retain your liquidity in a liquid staking token. The provider may charge a small commission on rewards."
       icon={<MeltingIceIllustration />}
       benefits={benefits}
       onButtonPress={onClick}
