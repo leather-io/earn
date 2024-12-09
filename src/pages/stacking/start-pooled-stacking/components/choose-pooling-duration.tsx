@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { Button, Flex, Stack, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -14,17 +15,12 @@ import { IndefiniteStackingIcon } from './indefinite-stacking-icon';
 import { LimitedStackingIcon } from './limited-stacking-icon';
 import { pools } from './preset-pools';
 
-import { Box, BoxProps, styled } from 'leather-styles/jsx';
-
 function RecommendedFor({ children }: { children?: React.ReactNode }) {
   return (
     <Box background="#FAF8F6" mt="space.04" py="loose" px="base-loose" borderRadius="10px">
       <Flex>
         <Box p="space.04">
-          <styled.p
-            fontStyle="caption"
-            color="ink.text-primary"
-          >
+          <styled.p fontStyle="caption" color="ink.text-primary">
             Recommended for
           </styled.p>
           <Text>{children} </Text>

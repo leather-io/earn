@@ -1,15 +1,11 @@
 import { FC } from 'react';
 
 import { Button, ButtonProps, ErrorCircleIcon } from '@leather.io/ui';
-import { css } from 'leather-styles/css';
 import { Box, BoxProps, Flex, FlexProps, Grid, GridProps, styled } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
 
 export const StartStackingLayout: FC<BoxProps> = props => (
-  <Box
-    style={{ maxWidth: '1400px', margin: '0 auto' }}
-    {...props}
-  />
+  <Box style={{ maxWidth: '1400px', margin: '0 auto' }} {...props} />
 );
 
 export const EarnBTCSectionContainer: FC<GridProps> = props => (
