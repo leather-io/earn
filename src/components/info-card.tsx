@@ -13,6 +13,7 @@ import { FlexProps } from 'leather-styles/jsx';
 
 import { Hr } from '@components/hr';
 import { ExplainerTooltip } from '@components/tooltip';
+import { token } from 'leather-styles/tokens';
 
 export function InfoCard(props: FlexProps) {
   return (
@@ -21,6 +22,7 @@ export function InfoCard(props: FlexProps) {
       border="1px solid"
       borderColor="ink.border-default"
       minHeight="84px"
+      padding="space.06"
       {...props}
     />
   );
