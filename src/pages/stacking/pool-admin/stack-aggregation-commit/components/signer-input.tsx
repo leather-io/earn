@@ -18,7 +18,15 @@ export function SignerInput({ title, text, fieldName, placeholder }: Props) {
   const [field, meta, helpers] = useField(fieldName);
   return (
     <>
-      <Title fontSize="20px">{title}</Title>
+      <Title
+        fontFamily="diatype"
+        fontWeight="500"
+        textTransform="unset"
+        fontSize="26px"
+        mt="space.06"
+      >
+        {title}
+      </Title>
       {text}
       <Box position="relative" maxWidth="400px">
         <Input

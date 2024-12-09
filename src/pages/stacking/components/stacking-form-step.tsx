@@ -38,7 +38,7 @@ export function Step(props: StepProps) {
         fontWeight="500"
         textTransform="unset"
         fontSize="26px"
-        mt="space.02"
+        mt="space.04"
         mr="space.02"
       >
         {title}

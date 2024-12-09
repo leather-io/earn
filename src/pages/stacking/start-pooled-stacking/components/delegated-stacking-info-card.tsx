@@ -55,12 +55,12 @@ export function PoolingInfoCard(props: FlexProps) {
   return (
     <>
       <InfoCard {...props}>
-        <Box mx={['loose', 'extra-loose']}>
+        <Box>
           <PoolingAmountInfo title="You'll pool up to" amountText={amountText} />
 
           <Hr />
 
-          <Group mt="base-loose" mb="extra-loose">
+          <Group>
             <Section>
               <Row>
                 <Label explainer="How long you want to delegate to the pool. This is not necessarily the locking duration. However, the locking period cannot be longer than the delegation duration.">

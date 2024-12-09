@@ -30,10 +30,7 @@ export function DirectStackingIntro(props: StackingIntroProps) {
       </StackingDescription>
       <Flex alignItems="baseline">
         <NextCycleStartTime timeUntilNextCycle={timeUntilNextCycle} mt="40px" />
-        <EstimatedMinimumLabel
-          ml="extra-loose"
-          estimatedStackingMinimum={estimatedStackingMinimum}
-        />
+        <EstimatedMinimumLabel ml="space.06" estimatedStackingMinimum={estimatedStackingMinimum} />
       </Flex>
     </>
   );
