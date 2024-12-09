@@ -56,13 +56,13 @@ const PageTitle = () => {
           textTransform="uppercase"
           style={{ lineHeight: '0.8' }}
         >
-          Earn bitcoin yield with Leather
+          Earn bitcoin yield through Leather
           <styled.span
             className={css({
               position: 'absolute',
               display: { smOnly: 'none' },
-              top: { smOnly: '130px', mdOnly: '120px', lg: '50px' },
-              right: { smOnly: '120px', mdOnly: '320px' },
+              top: { smOnly: '130px', mdOnly: '128px', lg: '40px' },
+              left: { smOnly: '160px', mdOnly: '428px', lg: '942px' },
             })}
           >
             <BTCBall />
