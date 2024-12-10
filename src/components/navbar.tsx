@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 import { Button } from '@leather.io/ui';
 import { css } from 'leather-styles/css';
@@ -55,39 +57,127 @@ function NavItem({ href, children, openInNewTab = false, isActive = false }: Nav
 }
 
 export function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isSignedIn, address, signOut, signIn } = useAuth();
+  const [isHovered, bind] = useHover();
+
   return (
-    <Box
-      style={{ background: token('colors.ink.text-primary') }}
-      className={css({
-        width: '100%',
-      })}
-    >
-      <Flex
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+    <>
+      <Box
+        style={{ background: token('colors.ink.text-primary') }}
+        className={css({
+          width: '100%',
+          position: 'relative',
+          zIndex: 1000,
+        })}
       >
         <Flex
-          flex={1}
           style={{
+            flexDirection: 'row',
+            alignItems: 'center',
             justifyContent: 'center',
-            maxWidth: '1400px',
-            height: '80px',
           }}
         >
           <Flex
-            flexDirection="row"
-            alignItems="center"
-            className={css({ width: { base: '100%', smToXl: '94%' } })}
+            flex={1}
+            style={{
+              justifyContent: 'center',
+              maxWidth: '1400px',
+              height: '80px',
+            }}
           >
-            <NavbarLeft />
-            <NavbarRight />
+            <Flex
+              flexDirection="row"
+              alignItems="center"
+              width="100%"
+              px={{ base: 'space.04', md: 'space.06', '2xl': '0' }}
+              justify="space-between"
+            >
+              <NavbarLeft />
+              
+              <Box display={{ base: 'none', lg: 'block' }} flex={1}>
+                <NavLinks />
+              </Box>
+
+              <Flex gap="space.04" alignItems="center" ml={{ lg: 'space.06' }}>
+                {isSignedIn && <NetworkInfo />}
+                <Box>
+                  {isSignedIn && address ? (
+                    <Button
+                      variant="outline"
+                      _hover={{ 
+                        boxShadow: 'none'
+                      }}
+                      onClick={() => signOut()}
+                      borderRadius="xs"
+                      background={'ink.background-primary'}
+                      fontSize="13px"
+                      width="16ch"
+                      {...bind}
+                    >
+                      {isHovered ? 'Sign out' : truncateMiddle(address)}
+                    </Button>
+                  ) : (
+                    <Button
+                      boxShadow="none"
+                      variant="outline"
+                      borderRadius="xs"
+                      background="#f6f1ee"
+                      transition="background 0.2s ease-in-out"
+                      _hover={{
+                        boxShadow: 'none',
+                        background: '#ede3dd',
+                      }}
+                      onClick={() => signIn()}
+                    >
+                      Connect Wallet
+                    </Button>
+                  )}
+                </Box>
+                <Box display={{ base: 'block', lg: 'none' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    color="ink.background-primary"
+                    background="transparent"
+                    border="none"
+                    p={0}
+                    _hover={{
+                      background: 'transparent',
+                      boxShadow: 'none',
+                    }}
+                  >
+                    {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                  </Button>
+                </Box>
+              </Flex>
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
-    </Box>
+      </Box>
+
+      {/* Full-screen mobile menu */}
+      <Box
+        position="fixed"
+        top="80px"
+        left={0}
+        right={0}
+        bottom={0}
+        bg="rgba(4, 4, 4, 0.95)"
+        zIndex={999}
+        display={{ base: isMobileMenuOpen ? 'block' : 'none', lg: 'none' }}
+        backdropFilter="blur(4px)"
+      >
+        <Flex 
+          flexDirection="column" 
+          gap="space.04" 
+          p="space.06"
+          height="100%"
+        >
+          <NavLinks />
+        </Flex>
+      </Box>
+    </>
   );
 }
 
@@ -95,7 +185,7 @@ const NavbarLeft = () => {
   const { activeNetwork } = useGlobalContext();
 
   return (
-    <Flex alignItems="center" flex="flex-start">
+    <Flex alignItems="center">
       <Link to={`/${createSearch(activeNetwork)}`}>
         <Flex alignItems="center">
           <Logo />
@@ -105,17 +195,14 @@ const NavbarLeft = () => {
   );
 };
 
-const NavbarRight = () => {
-  const { isSignedIn, address, signOut, signIn } = useAuth();
-  const [isHovered, bind] = useHover();
-
+const NavLinks = () => {
   return (
     <Flex
-      flex="1 1 100%"
-      justify="right"
-      alignItems="center"
+      flex="1"
+      flexDirection={{ base: 'column', lg: 'row' }}
+      justify={{ lg: 'flex-end' }}
+      alignItems={{ base: 'flex-start', lg: 'center' }}
       gap="space.05"
-      justifyItems={'flex-end'}
     >
       <NavItem href="https://earn.leather.io/" isActive>
         Earn
@@ -125,37 +212,6 @@ const NavbarRight = () => {
       <NavItem href="https://leather.io/guides">Guides</NavItem>
       <NavItem href="https://leather.io/developer-docs">Developer docs</NavItem>
       <NavItem href="https://leather.io/frequent-questions#stacking">FAQs</NavItem>
-      {isSignedIn && <NetworkInfo />}
-      <Box pr="12px">
-        {isSignedIn && address ? (
-          <Button
-            variant="outline"
-            _hover={{ boxShadow: 'none' }}
-            onClick={() => signOut()}
-            borderRadius="xs"
-            background={'ink.background-primary'}
-            {...bind}
-          >
-            {isHovered ? 'Sign out' : truncateMiddle(address)}
-          </Button>
-        ) : (
-          <Button
-            boxShadow="none"
-            width="160px"
-            variant="outline"
-            borderRadius="xs"
-            background="#f6f1ee"
-            transition="background 0.2s ease-in-out"
-            _hover={{
-              boxShadow: 'none',
-              background: 'ink.background-primary',
-            }}
-            onClick={() => signIn()}
-          >
-            Connect Wallet
-          </Button>
-        )}
-      </Box>
     </Flex>
   );
 };
