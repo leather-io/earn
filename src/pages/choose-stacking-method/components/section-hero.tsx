@@ -20,7 +20,13 @@ export const SectionHero = (props: SectionHeroProps) => {
       alignItems="center"
       flexDirection="row"
     >
-      <Box p={['space.05', 'space.10']} maxWidth="800px">
+      <Box
+        pt={{ base: 'space.08', lg: 'space.05' }}
+        pr={{ base: 'space.05', lg: 'space.10' }}
+        pb={{ base: '0', lg: 'space.05' }}
+        pl={{ base: 'space.06', lg: 'space.10' }}
+        maxWidth="800px"
+      >
         <styled.h1
           className={css({
             textTransform: 'uppercase',
@@ -47,7 +53,7 @@ export const SectionHero = (props: SectionHeroProps) => {
           {description}
         </styled.p>
       </Box>
-      <Box className={css({ marginRight: { base: 'space.09', lgDown: 'space.04' } })}>{image}</Box>
+      <Box className={css({ margin: { base: ['space.06', 'space.06'], lgDown: 'space.04' } })}>{image}</Box>
     </Flex>
   );
 };
