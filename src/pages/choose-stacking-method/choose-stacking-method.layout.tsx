@@ -20,19 +20,12 @@ import {
 } from './components/start-stacking-layout';
 import { ChooseStackingMethodLayoutProps } from './types';
 
-export function ChooseStackingMethodLayout(
-  props: ChooseStackingMethodLayoutProps
-) {
+export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProps) {
   return (
     <Box width="100%" background="ink.background-secondary">
       <StartStackingLayout>
         <PageTitle />
-        <Stack
-          height="100%"
-          gap="space.00"
-          paddingBottom="space.11"
-          justifyContent="center"
-        >
+        <Stack height="100%" gap="space.00" paddingBottom="space.11" justifyContent="center">
           {props.isSignedIn && (
             <Box>
               <Messages {...props} />
@@ -52,7 +45,7 @@ const PageTitle = () => {
     <Box
       paddingY="space.11"
       className={css({
-        mx: { base:'space.06', '2xl': '0' },
+        mx: { base: 'space.06', '2xl': '0' },
       })}
     >
       <styled.section position="relative">
@@ -103,9 +96,7 @@ In return, you are eligible to receive rewards in the form of BTC"
   );
 };
 
-export const EarnWithSBTCSection = (
-  props: ChooseStackingMethodLayoutProps
-) => {
+export const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
   return (
     <Box mb="space.09">
       <SectionHero

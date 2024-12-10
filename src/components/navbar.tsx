@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@leather.io/ui';
 import { css } from 'leather-styles/css';
@@ -94,7 +94,7 @@ export function Navbar() {
               justify="space-between"
             >
               <NavbarLeft />
-              
+
               <Box display={{ base: 'none', lg: 'block' }} flex={1}>
                 <NavLinks />
               </Box>
@@ -105,8 +105,8 @@ export function Navbar() {
                   {isSignedIn && address ? (
                     <Button
                       variant="outline"
-                      _hover={{ 
-                        boxShadow: 'none'
+                      _hover={{
+                        boxShadow: 'none',
                       }}
                       onClick={() => signOut()}
                       borderRadius="xs"
@@ -168,12 +168,7 @@ export function Navbar() {
         display={{ base: isMobileMenuOpen ? 'block' : 'none', lg: 'none' }}
         backdropFilter="blur(4px)"
       >
-        <Flex 
-          flexDirection="column" 
-          gap="space.04" 
-          p="space.06"
-          height="100%"
-        >
+        <Flex flexDirection="column" gap="space.04" p="space.06" height="100%">
           <NavLinks />
         </Flex>
       </Box>

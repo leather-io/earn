@@ -53,7 +53,9 @@ export const SectionHero = (props: SectionHeroProps) => {
           {description}
         </styled.p>
       </Box>
-      <Box className={css({ margin: { base: ['space.06', 'space.06'], lgDown: 'space.04' } })}>{image}</Box>
+      <Box className={css({ margin: { base: ['space.06', 'space.06'], lgDown: 'space.04' } })}>
+        {image}
+      </Box>
     </Flex>
   );
 };
