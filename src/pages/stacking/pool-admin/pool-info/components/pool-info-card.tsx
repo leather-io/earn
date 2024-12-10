@@ -24,8 +24,6 @@ export function InfoPanel() {
             fontSize="24px"
             mt="extra-tight"
             fontWeight={500}
-            fontFamily="Open Sauce"
-            letterSpacing="-0.02em"
           >
             Cycles
           </Text>

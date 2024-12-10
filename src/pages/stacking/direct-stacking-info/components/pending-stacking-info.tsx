@@ -35,7 +35,6 @@ export function PendingStackingInfo({ data, transactionId, networkName }: Props)
                 textStyle="heading.02"
                 fontSize="24px"
                 fontWeight={500}
-                letterSpacing="-0.02em"
               >
                 {toHumanReadableStx(data.amountMicroStx)}
               </styled.p>

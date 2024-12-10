@@ -58,7 +58,6 @@ export function ActiveStackingInfo({
               textStyle="heading.02"
               fontSize="24px"
               fontWeight={500}
-              letterSpacing="-0.02em"
             >
               {toHumanReadableStx(lockedAmount)}
             </styled.p>

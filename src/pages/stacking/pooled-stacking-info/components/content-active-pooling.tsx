@@ -59,7 +59,6 @@ export function ActivePoolingContent({
       <Text
         fontSize="24px"
         fontWeight={500}
-        letterSpacing="-0.02em"
         mt="extra-tight"
         mb="extra-loose"
       >

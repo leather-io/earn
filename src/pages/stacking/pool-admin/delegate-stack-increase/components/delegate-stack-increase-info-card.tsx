@@ -30,8 +30,6 @@ function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: str
         fontSize="24px"
         mt="extra-tight"
         fontWeight={500}
-        fontFamily="Open Sauce"
-        letterSpacing="-0.02em"
       >
         {createAmountText(amount ?? 0)} for
       </Text>

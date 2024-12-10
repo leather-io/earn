@@ -21,7 +21,6 @@ export function SelfServiceExtendHeader({
             textStyle="heading.02"
             fontSize="24px"
             fontWeight={500}
-            letterSpacing="-0.02em"
           >
             {toHumanReadableStx(lockedBalance)}
           </styled.h2>
@@ -32,9 +31,7 @@ export function SelfServiceExtendHeader({
           <styled.h2
             textStyle="heading.02"
             fontSize="24px"
-            fontFamily="Open Sauce"
             fontWeight={500}
-            letterSpacing="-0.02em"
             mt="extra-tight"
           >
             Fast Pool
