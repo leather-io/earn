@@ -33,11 +33,7 @@ export function InfoPanel() {
       <Box mx={['loose', 'extra-loose']}>
         <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
           <Text textStyle="body.large.medium">You&apos;ll increase Stacking for</Text>
-          <Text
-            fontSize="24px"
-            mt="extra-tight"
-            fontWeight={500}
-          >
+          <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
             Cycle {rewardCycleId}
           </Text>
         </Flex>

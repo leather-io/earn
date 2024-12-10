@@ -56,12 +56,7 @@ export function ActivePoolingContent({
   return (
     <>
       <Text textStyle="body.large.medium">You&apos;re pooling</Text>
-      <Text
-        fontSize="24px"
-        fontWeight={500}
-        mt="extra-tight"
-        mb="extra-loose"
-      >
+      <Text fontSize="24px" fontWeight={500} mt="extra-tight" mb="extra-loose">
         {toHumanReadableStx(delegationInfoDetails.amount_micro_stx)}
       </Text>
 

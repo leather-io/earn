@@ -101,11 +101,7 @@ export function GenerateSignatureLayout({
               <Box mx={['loose', 'extra-loose']} maxWidth={[null, null, '400px']}>
                 <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
                   <Text textStyle="body.large.medium">Signature details</Text>
-                  <Text
-                    fontSize="24px"
-                    mt="extra-tight"
-                    fontWeight={500}
-                  >
+                  <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
                     {/* {createAmountText(amount ?? 0)} */}
                   </Text>
                 </Flex>
