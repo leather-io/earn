@@ -174,8 +174,8 @@ importers:
         specifier: 0.5.3
         version: 0.5.3(typescript@5.4.5)
       '@leather.io/rpc':
-        specifier: ^2.1.22
-        version: 2.1.22
+        specifier: ^2.4.0
+        version: 2.4.0
       '@pandacss/dev':
         specifier: ^0.48.0
         version: 0.48.0(typescript@5.4.5)
@@ -1799,8 +1799,8 @@ packages:
   '@leather.io/models@0.22.0':
     resolution: {integrity: sha512-MmFmWdKN3T+L9euo+rq8JCr5Ku0mNulzVa0mYqXclB9vLa4NyhUsGHA3lWz8e05cMW9CsrPNg+eWpVg6AKTkeQ==}
 
-  '@leather.io/models@0.24.0':
-    resolution: {integrity: sha512-WB4CI/RWag10unxQSqdN3wIlmLaww5we4KmIyVroX3QfQyRMSN98srs8b507RITc+deD2xrIGbS0M/HOPG85tw==}
+  '@leather.io/models@0.24.1':
+    resolution: {integrity: sha512-BRjiX7N/LUlg5MMe3r5mkjUGLGtGRSpd21LPgo0lhUUSO1cBMAdp7rLACGM9LFPw+/dnUw1yMpT2hURC3pe3Gg==}
 
   '@leather.io/panda-preset@0.5.3':
     resolution: {integrity: sha512-3mhe83gNSOjHOh5q5wBuUZiyx1611FQDJE0iEEa1R7CC7+lt4HPf+nMn1oVgPBmil/qTgglsIv807SioVA/p9g==}
@@ -1808,8 +1808,8 @@ packages:
   '@leather.io/rpc@2.1.20':
     resolution: {integrity: sha512-BE56W5yzdOPdVWHo2G+ZrXsEt3Jki47/noMxy+9On0sNW5B90M+pULm65szp5/vzqJuY7xIrQJ1AOyG22cd82g==}
 
-  '@leather.io/rpc@2.1.22':
-    resolution: {integrity: sha512-1LHCs251qDSOw9vWbkkhaJ7YiYbsZ8KtwDajpJFLJ9mcqBGqS8TJhqUBlWGZqe2LQEak2s7usMU6M19QR8NyqQ==}
+  '@leather.io/rpc@2.4.0':
+    resolution: {integrity: sha512-S9PYtyOnZ9LJL8ZYsEPHUWmVkVL/E7oAfNLunFY7zVI0tJUl45OXJVCOjYRRKDKOqdx2pRpdqzeUSxRZvJdyVA==}
 
   '@leather.io/tokens@0.12.1':
     resolution: {integrity: sha512-XoP9PT7uuzHIk9HFFkGTuMeG8KL94PVHQfdWtvb19qQC9YVMzwj+QSK45KUFYtXyfI+Ejsn7EFZmZ/C4vStDrg==}
@@ -3268,6 +3268,9 @@ packages:
 
   '@stacks/encryption@7.0.2':
     resolution: {integrity: sha512-3evRvxPqVzQAhcZ8uacQrVfAETUMIV8VyKkHGsd4QZroGWlvXQheLV3CFeDttFb304QcKq/oKv1clOvQ2shaAw==}
+
+  '@stacks/network@6.13.0':
+    resolution: {integrity: sha512-Ss/Da4BNyPBBj1OieM981fJ7SkevKqLPkzoI1+Yo7cYR2df+0FipIN++Z4RfpJpc8ne60vgcx7nJZXQsiGhKBQ==}
 
   '@stacks/network@6.17.0':
     resolution: {integrity: sha512-numHbfKjwco/rbkGPOEz8+FcJ2nBnS/tdJ8R422Q70h3SiA9eqk9RjSzB8p4JP8yW1SZvW+eihADHfMpBuZyfw==}
@@ -10193,7 +10196,7 @@ snapshots:
       bignumber.js: 9.1.2
       zod: 3.23.8
 
-  '@leather.io/models@0.24.0':
+  '@leather.io/models@0.24.1':
     dependencies:
       '@stacks/stacks-blockchain-api-types': 7.8.2
       bignumber.js: 9.1.2
@@ -10211,10 +10214,13 @@ snapshots:
       '@leather.io/models': 0.22.0
       zod: 3.23.8
 
-  '@leather.io/rpc@2.1.22':
+  '@leather.io/rpc@2.4.0':
     dependencies:
-      '@leather.io/models': 0.24.0
+      '@leather.io/models': 0.24.1
+      '@stacks/network': 6.13.0
       zod: 3.23.8
+    transitivePeerDependencies:
+      - encoding
 
   '@leather.io/tokens@0.12.1': {}
 
@@ -12778,6 +12784,13 @@ snapshots:
       bs58: 5.0.0
       ripemd160-min: 0.0.6
       varuint-bitcoin: 1.1.2
+
+  '@stacks/network@6.13.0':
+    dependencies:
+      '@stacks/common': 6.16.0
+      cross-fetch: 3.1.8
+    transitivePeerDependencies:
+      - encoding
 
   '@stacks/network@6.17.0':
     dependencies:

@@ -11,6 +11,7 @@ type Props = ChooseStackingMethodLayoutProps & {
   onButtonPress: () => void;
   buttonText: string;
   step: number;
+  disabled?: boolean;
 };
 
 export function BridgingStepCard(props: Props) {
@@ -41,6 +42,7 @@ export function BridgingStepCard(props: Props) {
               variant="outline"
               alignSelf="flex-start"
               fullWidth
+              disabled={props.disabled}
               onClick={props.onButtonPress}
             >
               {props.buttonText}

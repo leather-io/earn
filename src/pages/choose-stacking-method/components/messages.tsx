@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { css } from 'leather-styles/css';
 import { Stack, styled } from 'leather-styles/jsx';
+import { token } from 'leather-styles/tokens';
 import { useGlobalContext } from 'src/context/use-app-context';
 
 import { Alert } from '@components/alert';
@@ -28,10 +29,12 @@ export function Messages({
     },
   });
 
+  const icon = <IconInfoCircle color={token('colors.red.action-primary-default')} />;
+
   return (
     <Stack className={css({ mb: 'space.04', mx: { base: 'space.00', xlDown: 'space.04' } })}>
       {(hasExistingDelegation || hasExistingDelegatedStacking) && (
-        <Alert icon={<IconInfoCircle />}>
+        <Alert icon={icon}>
           <Stack>
             <styled.p textStyle="body.01">
               It appears that you&apos;re currently pooling. If you recently revoked your delegation
@@ -47,7 +50,7 @@ export function Messages({
         </Alert>
       )}
       {hasExistingDirectStacking && (
-        <Alert icon={<IconInfoCircle />}>
+        <Alert icon={icon}>
           <Stack>
             <styled.p textStyle="body.01">
               It appears that you&apos;re currently stacking. If your locking period recently ended,
@@ -62,7 +65,7 @@ export function Messages({
         </Alert>
       )}
       {!hasExistingCommitment && !hasEnoughBalanceToPool && !hasEnoughBalanceToDirectStack && (
-        <Alert icon={<IconInfoCircle />}>
+        <Alert icon={icon}>
           <Stack>
             <styled.p textStyle="body.01">
               It appears that you don&apos;t have enough funds yet. If you recently transferred

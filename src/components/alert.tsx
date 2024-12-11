@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
-import { FiInfo } from 'react-icons/fi';
 
+import { IconInfoCircle } from '@tabler/icons-react';
 import { Box, Flex, styled } from 'leather-styles/jsx';
-import { token } from 'leather-styles/tokens';
 
 interface Props {
   title?: ReactNode;
@@ -18,15 +17,10 @@ export function Alert({ title, children: body, icon }: Props) {
     bodyEl = body;
   }
   return (
-    <Box
-      style={{ backgroundColor: token('colors.ink.background-secondary') }}
-      py="space.04"
-      px="space.04"
-      borderRadius="4px"
-    >
+    <Box backgroundColor="ink.background-primary" py="space.04" px="space.04" borderRadius="4px">
       <Flex>
         <Box mr="space.02" mt="2px">
-          {icon ?? <FiInfo style={{ color: token('colors.ink.background-primary') }} />}
+          {icon ?? <IconInfoCircle />}
         </Box>
         <Box>
           {title && <styled.p textStyle="heading.01">{title}</styled.p>}
@@ -39,12 +33,7 @@ export function Alert({ title, children: body, icon }: Props) {
 
 export function AlertText({ children }: { children?: ReactNode }) {
   return (
-    <styled.a
-      textStyle="body.01"
-      style={{ color: token('colors.ink.background-primary') }}
-      lineHeight="22px"
-      mt="extra-tight"
-    >
+    <styled.a textStyle="body.01" lineHeight="22px" mt="extra-tight">
       {children}
     </styled.a>
   );

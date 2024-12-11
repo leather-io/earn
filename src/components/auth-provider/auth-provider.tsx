@@ -1,7 +1,14 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
 import { UserData } from '@stacks/auth';
-import { AppConfig, UserSession, disconnect, showConnect } from '@stacks/connect';
+import {
+  AppConfig,
+  AuthOptions,
+  DEFAULT_PROVIDERS,
+  UserSession,
+  disconnect,
+  showConnect,
+} from '@stacks/connect';
 import { validateStacksAddress as isValidStacksAddress } from '@stacks/transactions';
 import { APP_DETAILS } from 'src/constants';
 
@@ -60,6 +67,7 @@ export function AuthProvider({ children }: Props) {
     showConnect({
       userSession,
       appDetails: APP_DETAILS,
+      defaultProviders: DEFAULT_PROVIDERS.filter(provider => provider.id === 'LeatherProvider'),
       onFinish() {
         setIsSigningIn(false);
         setIsSignedIn(true);
@@ -67,7 +75,7 @@ export function AuthProvider({ children }: Props) {
       onCancel() {
         setIsSigningIn(false);
       },
-    });
+    } as AuthOptions);
   }
 
   function signOut() {
