@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { intToBigInt } from '@stacks/common';
 import { ExtendedAccountBalances, StackerInfo } from '@stacks/stacking';
-import { Box, Button, Text, color } from '@stacks/ui';
+import { Box, styled, Flex } from 'leather-styles/jsx';
+import { Button } from '@leather.io/ui';
 import { DelegationInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
@@ -55,17 +56,10 @@ export function ActivePoolingContent({
     delegationInfoDetails.delegated_to === getPoxContracts(network)[PoxContractName.WrapperRestake];
   return (
     <>
-      <Text textStyle="body.large.medium">You&apos;re pooling</Text>
-      <Text
-        fontSize="24px"
-        fontFamily="Open Sauce"
-        fontWeight={500}
-        letterSpacing="-0.02em"
-        mt="extra-tight"
-        mb="extra-loose"
-      >
+      <styled.p textStyle="body.large.medium">You&apos;re pooling</styled.p>
+      <styled.p fontSize="24px" fontWeight={500} mt="extra-tight" mb="extra-loose">
         {toHumanReadableStx(delegationInfoDetails.amount_micro_stx)}
-      </Text>
+      </styled.p>
 
       <Hr />
 
@@ -73,7 +67,7 @@ export function ActivePoolingContent({
         <Section>
           <Row>
             <Label>Status</Label>
-            <Value color={isStacking ? 'green' : color('text-caption')}>
+            <Value color={isStacking ? 'green' : 'ink.'}>
               {isStacking ? 'Active' : 'Waiting on pool'}
             </Value>
           </Row>
@@ -114,11 +108,11 @@ export function ActivePoolingContent({
               handleDelegateAgainClick={() => navigate(routes.START_POOLED_STACKING)}
             />
           ) : (
-            <Row justifyContent="space-evenly">
-              <Button mode="tertiary" onClick={() => setShowIncreasePoolingAmount(true)}>
+            <Flex>
+              <Button fullWidth variant="solid" onClick={() => setShowIncreasePoolingAmount(true)}>
                 Increase pooling amount
               </Button>
-            </Row>
+            </Flex>
           )}
         </Section>
       </Group>
@@ -128,23 +122,20 @@ export function ActivePoolingContent({
       <Group my="extra-loose">
         <Section>
           {!showIncreasePoolingAmount && (
-            <Row>
+            <Flex  justify={"center"}>
               <Label>
                 <Button
-                  variant="link"
-                  isDisabled={isContractCallExtensionPageOpen}
+                  variant="ghost"
+                  fullWidth
+                  disabled={isContractCallExtensionPageOpen}
                   onClick={() => {
                     handleStopPoolingClick();
                   }}
-                  color={color('text-caption')}
                 >
-                  <Box pr="tight">
-                    <CancelIcon />
-                  </Box>{' '}
                   Stop pooling
                 </Button>
               </Label>
-            </Row>
+            </Flex>
           )}
         </Section>
       </Group>

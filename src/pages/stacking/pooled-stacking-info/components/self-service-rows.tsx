@@ -1,4 +1,5 @@
-import { Button } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { Flex } from 'leather-styles/jsx';
 
 import {
   InfoCardLabel as Label,
@@ -40,14 +41,16 @@ export function SelfServiceRows() {
           <Value>{extendWindow.blocksUntilEnd} blocks</Value>
         </Row>
       )}
-      <Row justifyContent="space-evenly">
+      <Flex mt="space.04" gap="space.04" flex={1}>
         <Button
-          isDisabled={tooEarly || tooLate}
+          variant='outline'
+          disabled={tooEarly || tooLate}
           onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}
+          fullWidth
         >
           Extend pooled stacking
         </Button>
-      </Row>
+      </Flex>
     </>
   );
 }

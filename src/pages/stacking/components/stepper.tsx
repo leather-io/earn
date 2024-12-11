@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
+import { Flex } from 'leather-styles/jsx';
+import { Button, ButtonProps } from '@leather.io/ui';
+import { token } from 'leather-styles/tokens';
 
-import { Box, BoxProps, Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Box, BoxProps, Text, color } from '@stacks/ui';
 
 import { DecrementIcon } from '@components/icons/decrement';
 import { IncrementIcon } from '@components/icons/increment';
@@ -15,17 +18,11 @@ interface StepperProps extends BoxProps {
   onDecrement(amount: number): void;
 }
 
-const border = `1px solid ${color('border')}`;
-
-const ChangeStepButton: FC<FlexProps> = ({ children, ...props }) => (
-  <Flex
-    as="button"
-    type="button"
-    alignItems="center"
-    justifyContent="center"
+const ChangeStepButton: FC<ButtonProps> = ({ children, ...props }) => (
+  <Button
     width="52px"
     height="48px"
-    border={border}
+    variant='ghost'
     outline={0}
     zIndex={1}
     _focus={{
@@ -35,16 +32,16 @@ const ChangeStepButton: FC<FlexProps> = ({ children, ...props }) => (
     {...props}
   >
     {children}
-  </Flex>
+  </Button>
 );
 
 export const Stepper: FC<StepperProps> = props => {
   const { amount, onIncrement, onDecrement, ...rest } = props;
   return (
     <Box {...rest}>
-      <Flex>
+      <Flex display={'inline-flex'} border={'1px solid'} borderColor={'ink.border-default'} borderRadius={'sm'}>
         <ChangeStepButton
-          color={color(amount === 1 ? 'text-caption' : 'brand')}
+          color={amount === 1 ? 'ink.text-subdued' : 'ink.action-primary-default'}
           pointerEvents={amount === 1 ? 'none' : 'all'}
           onClick={() => onDecrement(decrement(amount))}
           borderRadius="6px 0 0 6px"
@@ -52,8 +49,6 @@ export const Stepper: FC<StepperProps> = props => {
           <DecrementIcon />
         </ChangeStepButton>
         <Flex
-          borderTop={border}
-          borderBottom={border}
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
@@ -64,7 +59,7 @@ export const Stepper: FC<StepperProps> = props => {
           </Text>
         </Flex>
         <ChangeStepButton
-          color={color(amount === 12 ? 'text-caption' : 'brand')}
+          color={amount === 12 ? 'ink.text-subdued' : 'ink.action-primary-default'}
           pointerEvents={amount === 12 ? 'none' : 'all'}
           onClick={() => onIncrement(increment(amount))}
           borderRadius="0 6px 6px 0"

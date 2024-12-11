@@ -61,12 +61,12 @@ interface InfoCardLabelProps extends FlexProps {
   explainer?: string;
 }
 export const InfoCardLabel: FC<InfoCardLabelProps> = ({ children, ...props }) => (
-  <Flex color="ink.text-primary" alignItems="center" {...props}>
+  <Flex color="ink.text-subdued" alignItems="center" {...props}>
     <Box mr={props.explainer ? 'space.01' : undefined}>{children}</Box>
     {props.explainer && <ExplainerTooltip>{props.explainer}</ExplainerTooltip>}
   </Flex>
 );
 
 export const InfoCardValue = (props: HTMLStyledProps<'p'>) => (
-  <styled.p textStyle="body.01" textAlign="right" color="ink.text-subdued" {...props} />
+  <styled.p textStyle="body.01" textAlign="right" color="ink.text-primary" {...props} />
 );
