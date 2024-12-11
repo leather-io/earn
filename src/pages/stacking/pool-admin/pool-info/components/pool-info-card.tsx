@@ -20,13 +20,7 @@ export function InfoPanel() {
     <InfoCard minHeight="84px">
       <Box mx={['loose', 'extra-loose']}>
         <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-          <Text
-            fontSize="24px"
-            mt="extra-tight"
-            fontWeight={500}
-            fontFamily="Open Sauce"
-            letterSpacing="-0.02em"
-          >
+          <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
             Cycles
           </Text>
         </Flex>

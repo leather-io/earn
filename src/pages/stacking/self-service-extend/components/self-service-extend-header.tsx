@@ -17,26 +17,14 @@ export function SelfServiceExtendHeader({
       {stackerInfoDetails && !showExtendForOtherUser ? (
         <>
           <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
-          <styled.h2
-            textStyle="heading.02"
-            fontSize="24px"
-            fontWeight={500}
-            letterSpacing="-0.02em"
-          >
+          <styled.h2 textStyle="heading.02" fontSize="24px" fontWeight={500}>
             {toHumanReadableStx(lockedBalance)}
           </styled.h2>
         </>
       ) : (
         <>
           <styled.h2 textStyle="heading.02">Self-service pooling with</styled.h2>
-          <styled.h2
-            textStyle="heading.02"
-            fontSize="24px"
-            fontFamily="Open Sauce"
-            fontWeight={500}
-            letterSpacing="-0.02em"
-            mt="extra-tight"
-          >
+          <styled.h2 textStyle="heading.02" fontSize="24px" fontWeight={500} mt="extra-tight">
             Fast Pool
           </styled.h2>
         </>

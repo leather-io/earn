@@ -29,14 +29,7 @@ export function RevokedWhileStackingContent({
   return (
     <>
       <Text textStyle="display.large">You&apos;re pooling</Text>
-      <Text
-        fontSize="24px"
-        fontFamily="Open Sauce"
-        fontWeight={500}
-        letterSpacing="-0.02em"
-        mt="extra-tight"
-        my="extra-loose"
-      >
+      <Text fontSize="24px" fontWeight={500} mt="extra-tight" my="extra-loose">
         {toHumanReadableStx(intToBigInt(extendedStxBalances.locked))}
       </Text>
 

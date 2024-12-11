@@ -1,6 +1,6 @@
 import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/bridging-step-card';
 
-import DivingBoardIllustration from '@assets/images/stack-in-a-pool.svg';
+import BridgeIllustration from '@assets/images/bridge.svg';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
@@ -10,8 +10,8 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
       {...props}
       step={1}
       title="Bridge BTC to sBTC"
-      description="Convert your Bitcoin to sBTC to access the rewards program. Stay liquid while earning yield on the Stacks network."
-      icon={<DivingBoardIllustration />}
+      description="Convert your bitcoin to sBTC to access the rewards program. Stay liquid while earning yield on the Stacks network."
+      icon={<BridgeIllustration />}
       onButtonPress={() => {
         // TODO: Implement bridge to sBTC
       }}

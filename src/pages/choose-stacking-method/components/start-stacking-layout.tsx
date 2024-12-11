@@ -11,6 +11,7 @@ export const StartStackingLayout: FC<BoxProps> = props => (
 export const EarnBTCSectionContainer: FC<GridProps> = props => (
   <Grid
     gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr', '1fr 1fr']}
+    background="ink.background-primary"
     gap="space.00"
     {...props}
   />

@@ -45,8 +45,7 @@ const PageTitle = () => {
     <Box
       paddingY="space.11"
       className={css({
-        marginLeft: { mdToXl: 'space.06', smOnly: 'space.04' },
-        fontSize: { base: '108px', smOnly: '96px' },
+        mx: { base: 'space.06', '2xl': '0' },
       })}
     >
       <styled.section position="relative">
@@ -56,17 +55,18 @@ const PageTitle = () => {
           textTransform="uppercase"
           style={{ lineHeight: '0.8' }}
         >
-          Earn bitcoin yield through Leather
+          Earn bitcoin{' '}
           <styled.span
             className={css({
               position: 'absolute',
               display: { smOnly: 'none' },
-              top: { smOnly: '130px', mdOnly: '128px', lg: '40px' },
-              left: { smOnly: '160px', mdOnly: '428px', lg: '942px' },
+              top: { smOnly: '130px', mdOnly: '128px', lg: '-50px' },
+              left: { smOnly: '160px', mdOnly: '428px', lg: '690px' },
             })}
           >
             <BTCBall />
-          </styled.span>
+          </styled.span>{' '}
+          yield via Leather
         </styled.h1>
       </styled.section>
       <styled.p my="space.04" textStyle="body.01" fontSize="21px">
@@ -82,7 +82,7 @@ const StackingSection = (props: ChooseStackingMethodLayoutProps) => {
     <>
       <SectionHero
         title="Earn with stacking"
-        subtitle="By stacking, you temporarily lock up your tokens in order to provide valuable information to Stacks’ consensus mechanism. 
+        subtitle="By stacking, you temporarily lock up your tokens in order to provide valuable information to Stacks' consensus mechanism. 
 In return, you are eligible to receive rewards in the form of BTC"
         description="If you meet the protocol minimum, you can Stack your STX independently by directly interacting with the protocol. You also have the option to delegate your STX to a stacking pool provider."
         image={<EarnWithStackingImage />}
@@ -101,7 +101,7 @@ export const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
     <Box mb="space.09">
       <SectionHero
         title="Earn Rewards with BTC"
-        subtitle="sBTC is a 1:1 Bitcoin-backed asset on Stacks, Bitcoin’s leading Layer 2. Bridge BTC to sBTC to access DeFi, NFTs, and ~5% Bitcoin yield* while keeping full liquidity and self-custody. Transfers adjust rewards dynamically."
+        subtitle="sBTC is a 1:1 Bitcoin-backed asset on Stacks, Bitcoin's leading Layer 2. Bridge BTC to sBTC to access DeFi, NFTs, and ~5% Bitcoin yield* while keeping full liquidity and self-custody. Transfers adjust rewards dynamically."
         description="*The rewards rate is an estimate based on current protocol parameters and may vary over time. Learn more by following the link above."
         image={<EarnWithSBTCImage />}
       />
