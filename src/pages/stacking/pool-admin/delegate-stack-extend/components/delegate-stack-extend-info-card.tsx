@@ -46,13 +46,7 @@ function StackerExtendInfo({ stacker }: { stacker: string }) {
   return (
     <>
       <Text textStyle="body.large.medium">You&apos;ll extend locking of</Text>
-      <Text
-        fontSize="24px"
-        mt="extra-tight"
-        fontWeight={500}
-        fontFamily="Open Sauce"
-        letterSpacing="-0.02em"
-      >
+      <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
         {toHumanReadableStx(amount ?? 0)} for
       </Text>
       <Address address={stacker} />

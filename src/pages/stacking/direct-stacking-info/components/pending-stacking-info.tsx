@@ -31,12 +31,7 @@ export function PendingStackingInfo({ data, transactionId, networkName }: Props)
           <Box mx={['space.04', 'space.06']}>
             <Flex flexDirection="column" pt="space.04" pb="space.04">
               <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
-              <styled.p
-                textStyle="heading.02"
-                fontSize="24px"
-                fontWeight={500}
-                letterSpacing="-0.02em"
-              >
+              <styled.p textStyle="heading.02" fontSize="24px" fontWeight={500}>
                 {toHumanReadableStx(data.amountMicroStx)}
               </styled.p>
 
