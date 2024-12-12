@@ -1,15 +1,21 @@
 import { css } from 'leather-styles/css';
 import { Box, Flex, styled } from 'leather-styles/jsx';
 
+import { OpenLinkInNewTab } from '@components/open-link-in-new-tab';
+
 interface SectionHeroProps {
   title: string;
   subtitle: string;
   description: string;
   image: React.ReactNode;
+  link?: {
+    text: string;
+    href: string;
+  };
 }
 
 export const SectionHero = (props: SectionHeroProps) => {
-  const { title, subtitle, description, image } = props;
+  const { title, subtitle, description, image, link } = props;
   return (
     <Flex
       className={css({
@@ -47,11 +53,33 @@ export const SectionHero = (props: SectionHeroProps) => {
         <styled.p
           textStyle="body.01"
           fontSize="16px"
-          color="ink.background-primary"
+          color="ink.background-secondary"
           lineHeight="24px"
         >
           {description}
         </styled.p>
+        {link && (
+          <Box mt="space.06">
+            <OpenLinkInNewTab
+              href={link.href}
+              className={css({
+                color: 'ink.background-primary',
+                textDecorationLine: 'underline',
+                textDecorationColor: 'ink.text-subdued',
+                textUnderlineOffset: '4px',
+                cursor: 'pointer',
+                _hover: {
+                  color: 'ink.background-primary',
+                  textDecorationColor: 'ink.text-subdued',
+                },
+              })}
+              textStyle="body.01"
+              fontSize="16px"
+            >
+              {link.text} →
+            </OpenLinkInNewTab>
+          </Box>
+        )}
       </Box>
       <Box className={css({ margin: { base: ['space.06', 'space.06'], lgDown: 'space.04' } })}>
         {image}

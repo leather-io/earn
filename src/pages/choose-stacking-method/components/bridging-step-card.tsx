@@ -18,7 +18,7 @@ export function BridgingStepCard(props: Props) {
     <Flex
       justifyItems="center"
       style={{
-        outline: `1px solid ${token('colors.ink.border-default')}`,
+        outline: `.5px solid ${token('colors.ink.border-default')}`,
       }}
     >
       <Flex m="space.06">
