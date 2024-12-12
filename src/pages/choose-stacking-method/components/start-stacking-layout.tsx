@@ -21,7 +21,8 @@ export const StackingOptionsCardContainer: FC<GridProps> = props => (
   <Grid
     gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr']}
     gap="space.00"
-    border="0.5px solid"
+    borderWidth="0.5px"
+    borderStyle="solid"
     borderColor="ink.border-default"
     background="ink.background-primary"
     {...props}
@@ -31,9 +32,9 @@ export const StackingOptionsCardContainer: FC<GridProps> = props => (
 export const StackingOptionCard: FC<FlexProps> = ({ children, ...props }) => (
   <Grid
     justifyItems="center"
-    style={{
-      outline: `.5px solid ${token('colors.ink.border-default')}`,
-    }}
+    borderWidth="0.5px"
+    borderStyle="solid"
+    borderColor="ink.border-default"
   >
     <Flex
       flexDirection="column"
