@@ -13,8 +13,9 @@ export function OpenLinkInNewTab({ href, children, ...props }: Props) {
     <Box
       className={css({
         cursor: 'pointer',
+        textDecoration: 'underline',
         _hover: {
-          textDecoration: 'underline',
+          textDecoration: 'none',
         },
         display: 'flex',
         outline: 0,

@@ -67,25 +67,29 @@ export function SignerDetails() {
         </Description>
         <Text mt={'loose'} color={color('text-caption')}>
           If you&apos;re interested in running your own signer, please consult{' '}
-          <OpenExternalLinkInNewTab href="https://docs.stacks.co/nakamoto-upgrade/signing-and-stacking/stacking-flow">
+          <OpenExternalLinkInNewTab
+            href="https://docs.stacks.co/nakamoto-upgrade/signing-and-stacking/stacking-flow"
+            display="inline"
+          >
             these documents
           </OpenExternalLinkInNewTab>{' '}
           on how to Stack as a signer and fill out{' '}
           <OpenLinkInNewTab
             href={`/signer/generate-signature${createSearch(activeNetwork)}`}
-            display="inline-block"
+            display="inline"
           >
             this page
           </OpenLinkInNewTab>{' '}
-          to generate a signer signature. If you prefer not to manage your own signer, we suggest{' '}
-          <OpenLinkInNewTab
-            href={`/start-pooled-stacking${createSearch(activeNetwork)}`}
-            display="inline-block"
-          >
-            Stacking using another method
-          </OpenLinkInNewTab>
-          . Users who are not running their own signer software will need to request this data from
-          the signer that you&apos;re using. Enter the data you receive here:
+          to generate a signer signature.
+        </Text>
+        <Text mt={'loose'} color={color('text-caption')}>
+          If you prefer to delegate your involvement in the consensus process to a third party and
+          to not manage your own signer, we suggest to either use the dapp created by DegenLabs for{' '}
+          <OpenExternalLinkInNewTab href="https://solo.stacking.tools/">
+            independent stacking
+          </OpenExternalLinkInNewTab>{' '}
+          without needing a signer, as DegenLabs operates a signer, or to choose a different
+          stacking method.
         </Text>
         <Input
           onPaste={fillFromClipboard}
