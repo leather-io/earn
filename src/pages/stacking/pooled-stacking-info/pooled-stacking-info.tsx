@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
-import { Box, Flex, Text } from '@stacks/ui';
+import { Text } from '@stacks/ui';
+
+import { token } from 'leather-styles/tokens';
+import { Flex, Box, BoxProps, Stack, styled } from 'leather-styles/jsx';
 
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
@@ -119,7 +122,7 @@ function PooledStackingInfoLayout({ client }: CardLayoutProps) {
   }
   return (
     <>
-      <Flex height="100%" justify="center" align="center">
+      <Flex height="100%" pt="space.10" justify="center" align="center">
         <InfoCard width="580px">
           <Box mx={['loose', 'extra-loose']}>
             <Flex flexDirection="column" pt="extra-loose" pb="base-loose">

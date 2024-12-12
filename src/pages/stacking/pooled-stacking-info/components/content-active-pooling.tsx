@@ -56,8 +56,8 @@ export function ActivePoolingContent({
     delegationInfoDetails.delegated_to === getPoxContracts(network)[PoxContractName.WrapperRestake];
   return (
     <>
-      <styled.p textStyle="body.large.medium">You&apos;re pooling</styled.p>
-      <styled.p fontSize="24px" fontWeight={500} mt="extra-tight" mb="extra-loose">
+      <styled.p textStyle="body.large.medium" color={'ink.text-subdued'}>You&apos;re pooling</styled.p>
+      <styled.p fontSize="24px" mb="space.02" fontWeight={500} mt="extra-tight">
         {toHumanReadableStx(delegationInfoDetails.amount_micro_stx)}
       </styled.p>
 
