@@ -3,6 +3,7 @@ import { useField } from 'formik';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
+import { OpenExternalLinkInNewTab } from '@components/external-link';
 import { MAX_STACKING_CYCLES, MIN_STACKING_CYCLES } from '@constants/app';
 
 import { OneCycleDescriptor } from '../../components/one-cycle-descriptor';
@@ -19,9 +20,11 @@ export function Duration() {
           <Text color={color('text-caption')}>
             Every cycle, each of your reward slots will be eligible for rewards. After your chosen
             duration, you&apos;ll need to wait one cycle before you can stack from this address
-            again.
+            again.{' '}
+            <OpenExternalLinkInNewTab href="https://docs.stacks.co/concepts/block-production/stacking">
+              Learn more about cycles.
+            </OpenExternalLinkInNewTab>
           </Text>
-          <Text href="">Learn more about cycles.</Text>
         </Description>
 
         <Stepper

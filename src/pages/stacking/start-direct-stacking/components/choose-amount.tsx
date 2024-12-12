@@ -81,12 +81,16 @@ export function Amount() {
             The estimated minimum per slot can change by multiples of 10,000 every cycle, so you may
             want to add a buffer to increase your chance of keeping the same number of slots.
           </Text>
-          <OpenExternalLinkInNewTab href={STACKING_LEARN_MORE_URL}>
-            Learn more about risks of stacking at or near the minimum
-          </OpenExternalLinkInNewTab>
-          <OpenExternalLinkInNewTab href={STACKING_MINIMIUM_FOR_NEXT_CYCLE_URL}>
-            View the minimum for next cycle
-          </OpenExternalLinkInNewTab>
+          <Text color={color('text-caption')}>
+            <OpenExternalLinkInNewTab href={STACKING_LEARN_MORE_URL}>
+              Learn more about risks of stacking at or near the minimum
+            </OpenExternalLinkInNewTab>
+          </Text>
+          <Text color={color('text-caption')}>
+            <OpenExternalLinkInNewTab href={STACKING_MINIMIUM_FOR_NEXT_CYCLE_URL}>
+              View the minimum for next cycle
+            </OpenExternalLinkInNewTab>
+          </Text>
         </Stack>
       </Description>
 
