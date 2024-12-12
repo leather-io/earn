@@ -33,7 +33,8 @@ export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps)
           <Box mx="space.04" my="space.02">
             <Flex flexDirection="column">
               <styled.p textStyle="body.01" mb="space.04" color="ink.text-primary">
-                Please note that Leather does not provide this rewards program. It is operated by Bitcoin L2 Labs. You are enrolling at your own risk.
+                Please note that Leather does not provide this rewards program. It is operated by
+                Bitcoin L2 Labs. You are enrolling at your own risk.
               </styled.p>
 
               <Flex flexDirection="column" gap="space.04" mt="space.06">
