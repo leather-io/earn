@@ -1,6 +1,6 @@
 import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
-import { StepsIcon } from '@components/icons/steps';
+import IconStack from '@assets/images/ic-stack-24.svg';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 interface EstimatedMinimumLabelProps extends FlexProps {
@@ -23,19 +23,13 @@ export function EstimatedMinimumLabel({
         alignItems="center"
         justifyContent="center"
       >
-        <StepsIcon width="14px" height="14px" />
+        <IconStack />
       </Flex>
       <Flex ml="space.04" flexDirection="column">
-        <styled.h4 display="block" textStyle="body.01" lineHeight="20px">
+        <styled.h4 color="ink.text-subdued" display="block" textStyle="body.01" lineHeight="20px">
           Estimated minimum
         </styled.h4>
-        <styled.p
-          display="block"
-          textStyle="body.01"
-          color="ink.text-subdued"
-          lineHeight="20px"
-          mt="space.01"
-        >
+        <styled.p display="block" textStyle="body.01" lineHeight="20px" mt="space.01">
           {toHumanReadableStx(estimatedStackingMinimum)}
         </styled.p>
       </Flex>

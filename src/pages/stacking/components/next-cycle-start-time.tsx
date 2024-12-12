@@ -1,7 +1,7 @@
 import { addSeconds, formatDistanceToNow } from 'date-fns';
 import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
-import { ClockIcon } from '@components/icons/clock';
+import IconHourglass from '@assets/images/ic-hourglass-24.svg';
 
 interface NextCycleStartTimeProps extends FlexProps {
   /**
@@ -22,19 +22,13 @@ export function NextCycleStartTime({ timeUntilNextCycle, ...rest }: NextCycleSta
         alignItems="center"
         justifyContent="center"
       >
-        <ClockIcon size="24px" />
+        <IconHourglass />
       </Flex>
       <Flex ml="space.04" flexDirection="column">
-        <styled.h4 display="block" textStyle="body.01" lineHeight="20px">
+        <styled.h4 color="ink.text-subdued" display="block" textStyle="body.01" lineHeight="20px">
           Next cycle starts in
         </styled.h4>
-        <styled.p
-          display="block"
-          textStyle="body.01"
-          color="ink.text-subdued"
-          lineHeight="20px"
-          mt="space.01"
-        >
+        <styled.p display="block" textStyle="body.01" lineHeight="20px" mt="space.01">
           {timeUntilNextCycleText}
         </styled.p>
       </Flex>
