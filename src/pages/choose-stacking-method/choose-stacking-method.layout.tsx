@@ -32,7 +32,7 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
             </Box>
           )}
 
-          {/* <EarnWithSBTCSection {...props} /> */}
+          <EarnWithSBTCSection {...props} />
           <StackingSection {...props} />
         </Stack>
       </StartStackingLayout>
