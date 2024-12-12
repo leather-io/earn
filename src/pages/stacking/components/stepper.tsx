@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-import { Flex } from 'leather-styles/jsx';
-import { Button, ButtonProps } from '@leather.io/ui';
-import { token } from 'leather-styles/tokens';
 
-import { Box, BoxProps, Text, color } from '@stacks/ui';
+import { Button, ButtonProps } from '@leather.io/ui';
+import { Box, BoxProps, Text } from '@stacks/ui';
+import { Flex } from 'leather-styles/jsx';
 
 import { DecrementIcon } from '@components/icons/decrement';
 import { IncrementIcon } from '@components/icons/increment';
@@ -22,7 +21,7 @@ const ChangeStepButton: FC<ButtonProps> = ({ children, ...props }) => (
   <Button
     width="52px"
     height="48px"
-    variant='ghost'
+    variant="ghost"
     outline={0}
     zIndex={1}
     _focus={{
@@ -39,7 +38,12 @@ export const Stepper: FC<StepperProps> = props => {
   const { amount, onIncrement, onDecrement, ...rest } = props;
   return (
     <Box {...rest}>
-      <Flex display={'inline-flex'} border={'1px solid'} borderColor={'ink.border-default'} borderRadius={'sm'}>
+      <Flex
+        display={'inline-flex'}
+        border={'1px solid'}
+        borderColor={'ink.border-default'}
+        borderRadius={'sm'}
+      >
         <ChangeStepButton
           color={amount === 1 ? 'ink.text-subdued' : 'ink.action-primary-default'}
           pointerEvents={amount === 1 ? 'none' : 'all'}
@@ -48,12 +52,7 @@ export const Stepper: FC<StepperProps> = props => {
         >
           <DecrementIcon />
         </ChangeStepButton>
-        <Flex
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          minWidth="100px"
-        >
+        <Flex flexDirection="column" justifyContent="center" alignItems="center" minWidth="100px">
           <Text textStyle="body.small" mb="3px" mx="base">
             {formatCycles(amount)}
           </Text>

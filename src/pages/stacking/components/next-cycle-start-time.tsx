@@ -28,12 +28,7 @@ export function NextCycleStartTime({ timeUntilNextCycle, ...rest }: NextCycleSta
         <styled.h4 color="ink.text-subdued" display="block" textStyle="body.01" lineHeight="20px">
           Next cycle starts in
         </styled.h4>
-        <styled.p
-          display="block"
-          textStyle="body.01"
-          lineHeight="20px"
-          mt="space.01"
-        >
+        <styled.p display="block" textStyle="body.01" lineHeight="20px" mt="space.01">
           {timeUntilNextCycleText}
         </styled.p>
       </Flex>

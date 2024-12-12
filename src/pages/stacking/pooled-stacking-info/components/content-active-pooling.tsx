@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
+import { Button } from '@leather.io/ui';
 import { intToBigInt } from '@stacks/common';
 import { ExtendedAccountBalances, StackerInfo } from '@stacks/stacking';
-import { Box, styled, Flex } from 'leather-styles/jsx';
-import { Button } from '@leather.io/ui';
+import { Flex, styled } from 'leather-styles/jsx';
 import { DelegationInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
 import { Hr } from '@components/hr';
-import { CancelIcon } from '@components/icons/cancel';
 import {
   InfoCardGroup as Group,
   InfoCardLabel as Label,
@@ -56,7 +55,9 @@ export function ActivePoolingContent({
     delegationInfoDetails.delegated_to === getPoxContracts(network)[PoxContractName.WrapperRestake];
   return (
     <>
-      <styled.p textStyle="body.large.medium" color={'ink.text-subdued'}>You&apos;re pooling</styled.p>
+      <styled.p textStyle="body.large.medium" color={'ink.text-subdued'}>
+        You&apos;re pooling
+      </styled.p>
       <styled.p fontSize="24px" mb="space.02" fontWeight={500} mt="extra-tight">
         {toHumanReadableStx(delegationInfoDetails.amount_micro_stx)}
       </styled.p>
@@ -122,7 +123,7 @@ export function ActivePoolingContent({
       <Group my="extra-loose">
         <Section>
           {!showIncreasePoolingAmount && (
-            <Flex  justify={"center"}>
+            <Flex justify={'center'}>
               <Label>
                 <Button
                   variant="ghost"

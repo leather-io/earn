@@ -43,7 +43,7 @@ export function SelfServiceRows() {
       )}
       <Flex mt="space.04" gap="space.04" flex={1}>
         <Button
-          variant='outline'
+          variant="outline"
           disabled={tooEarly || tooLate}
           onClick={() => navigate(routes.SELF_SERVICE_EXTEND)}
           fullWidth

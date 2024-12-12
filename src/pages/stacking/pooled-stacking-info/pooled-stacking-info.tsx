@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
 import { Text } from '@stacks/ui';
-
-import { token } from 'leather-styles/tokens';
-import { Flex, Box, BoxProps, Stack, styled } from 'leather-styles/jsx';
+import { Box, Flex } from 'leather-styles/jsx';
 
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
