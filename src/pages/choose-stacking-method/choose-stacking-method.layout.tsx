@@ -32,7 +32,7 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
             </Box>
           )}
 
-          {/* <EarnWithSBTCSection {...props} /> */}
+          <EarnWithSBTCSection {...props} />
           <StackingSection {...props} />
         </Stack>
       </StartStackingLayout>
@@ -86,6 +86,10 @@ const StackingSection = (props: ChooseStackingMethodLayoutProps) => {
 In return, you are eligible to receive rewards in the form of BTC"
         description="If you meet the protocol minimum, you can Stack your STX independently by directly interacting with the protocol. You also have the option to delegate your STX to a stacking pool provider."
         image={<EarnWithStackingImage />}
+        link={{
+          text: 'Learn more about Stacking rewards',
+          href: 'https://docs.stacks.co/docs/stacks-academy/stacking',
+        }}
       />
       <StackingOptionsCardContainer>
         <PooledStackingCard {...props} />
@@ -98,12 +102,16 @@ In return, you are eligible to receive rewards in the form of BTC"
 
 export const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
   return (
-    <Box mb="space.09">
+    <Box mb="space.09" border="1px solid" borderColor="ink.border-default">
       <SectionHero
         title="Earn Rewards with BTC"
         subtitle="sBTC is a 1:1 Bitcoin-backed asset on Stacks, Bitcoin's leading Layer 2. Bridge BTC to sBTC to access DeFi, NFTs, and ~5% Bitcoin yield* while keeping full liquidity and self-custody. Transfers adjust rewards dynamically."
         description="*The rewards rate is an estimate based on current protocol parameters and may vary over time. Learn more by following the link above."
         image={<EarnWithSBTCImage />}
+        link={{
+          text: 'Learn more about sBTC rewards',
+          href: 'https://docs.stacks.co/docs/stacks-academy/stacking',
+        }}
       />
       <EarnBTCSectionContainer>
         <BridgeToSBTCCard {...props} />
