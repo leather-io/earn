@@ -98,7 +98,7 @@ In return, you are eligible to receive rewards in the form of BTC"
 
 export const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
   return (
-    <Box mb="space.09">
+    <Box mb="space.09" border="1px solid" borderColor="ink.border-default">
       <SectionHero
         title="Earn Rewards with BTC"
         subtitle="sBTC is a 1:1 Bitcoin-backed asset on Stacks, Bitcoin's leading Layer 2. Bridge BTC to sBTC to access DeFi, NFTs, and ~5% Bitcoin yield* while keeping full liquidity and self-custody. Transfers adjust rewards dynamically."
