@@ -12,7 +12,7 @@ export function PooledStackingCard(props: ChooseStackingMethodLayoutProps) {
   const { isDisabled, onClick } = usePooledStackingButton(props);
   const benefits = [
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    { icon: IconLock as any as React.FC, title: 'Interact with the protocol directly' },
+    { icon: IconLock as any as React.FC, title: "Interact with pool operators' contracts" },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     { icon: IconUserGroup as any as React.FC, title: 'A pool provider stacks on your behalf' },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
