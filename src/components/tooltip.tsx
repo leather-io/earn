@@ -15,11 +15,12 @@ export const Tooltip: FC<TooltipProps> = ({ children, text, ...props }) => {
       zIndex={9999999}
       content={
         <Box
-          p="base-tight"
-          color="white"
-          background="black"
+          px="space.02"
+          py="space.01"
+          color="ink.background-primary"
+          background="ink.text-primary"
           borderRadius="6px"
-          textStyle="body.01"
+          textStyle="caption.01"
           whiteSpace="normal"
         >
           {text}
