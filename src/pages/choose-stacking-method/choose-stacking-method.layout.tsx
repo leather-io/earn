@@ -51,7 +51,7 @@ const PageTitle = () => {
       <styled.section position="relative">
         <styled.h1
           textStyle="display.01"
-          fontSize="108px"
+          fontSize={{ base: '48px', md: '108px' }}
           textTransform="uppercase"
           style={{ lineHeight: '0.8' }}
         >
