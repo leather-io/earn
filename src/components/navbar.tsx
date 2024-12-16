@@ -100,8 +100,8 @@ export function Navbar() {
               </Box>
 
               <Flex gap="space.04" alignItems="center" ml={{ lg: 'space.06' }}>
-                {isSignedIn && <NetworkInfo />}
-                <Box>
+                {isSignedIn && <Box display={{ base: 'none', md: 'block' }}><NetworkInfo /></Box>}
+                <Box display={{ base: 'none', md: 'block' }}>
                   {isSignedIn && address ? (
                     <Button
                       variant="outline"
