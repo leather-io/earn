@@ -72,7 +72,7 @@
     "@emotion/core": "11.0.0",
     "@esbuild-plugins/node-globals-polyfill": "0.2.3",
     "@leather.io/panda-preset": "0.5.3",
-    "@leather.io/rpc": "^2.1.22",
+    "@leather.io/rpc": "^2.4.0",
     "@pandacss/dev": "^0.48.0",
     "@stacks/prettier-config": "0.0.10",
     "@stacks/stacks-blockchain-api-types": "7.3.2",

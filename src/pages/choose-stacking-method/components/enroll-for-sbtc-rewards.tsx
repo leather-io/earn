@@ -5,23 +5,27 @@ import { Box, Flex, styled } from 'leather-styles/jsx';
 import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/bridging-step-card';
 
 import EnrollIllustration from '@assets/images/enroll.svg';
+import { useAuth } from '@components/auth-provider/auth-provider';
 import { BaseDrawer } from '@components/drawer/base-drawer';
+import { openExternalLink } from '@utils/external-links';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
 export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isSignedIn } = useAuth();
 
   return (
     <>
       <BridgingStepCard
         {...props}
         step={2}
+        disabled={!isSignedIn}
         title="Enroll and keep sBTC in your wallet"
         description="The more sBTC you hold in your wallet, the greater your rewards. Rewards are automatically distributed from the protocol, giving you more sBTC to grow your holdings."
         icon={<EnrollIllustration />}
         onButtonPress={() => setIsModalOpen(true)}
-        buttonText="Enroll"
+        buttonText={`${isSignedIn ? 'Enroll' : 'Sign in to enroll'}`}
       />
 
       <BaseDrawer
@@ -42,6 +46,7 @@ export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps)
                   onClick={() => {
                     // TODO: Implement enrollment logic with contract call
                     setIsModalOpen(false);
+                    openExternalLink('https://bitcoinismore.org');
                   }}
                 >
                   Confirm and enroll

@@ -31,8 +31,7 @@ export function ChooseStackingMethodLayout(props: ChooseStackingMethodLayoutProp
               <Messages {...props} />
             </Box>
           )}
-
-          <EarnWithSBTCSection {...props} />
+          <EarnWithSbtcSecion {...props} />
           <StackingSection {...props} />
         </Stack>
       </StartStackingLayout>
@@ -100,7 +99,7 @@ In return, you are eligible to receive rewards in the form of BTC"
   );
 };
 
-export const EarnWithSBTCSection = (props: ChooseStackingMethodLayoutProps) => {
+export const EarnWithSbtcSecion = (props: ChooseStackingMethodLayoutProps) => {
   return (
     <Box mb="space.09" border="1px solid" borderColor="ink.border-default">
       <SectionHero

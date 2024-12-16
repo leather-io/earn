@@ -60,3 +60,19 @@ export const useLiquidStackingButton = (props: ChooseStackingMethodLayoutProps) 
 
   return { isDisabled, onClick };
 };
+
+export function useLeatherSbtcBridgeButton() {
+  const leatherDetected = window.LeatherProvider !== undefined;
+  const { isSignedIn, signIn } = useAuth();
+  const leatherNotDetectedOrNotSignedIn = !leatherDetected || !isSignedIn;
+
+  return {
+    onClick: () => {
+      if (leatherNotDetectedOrNotSignedIn) {
+        signIn();
+        return;
+      }
+      window.LeatherProvider?.request('openSwap', { base: 'BTC', quote: 'sBTC' });
+    },
+  };
+}
