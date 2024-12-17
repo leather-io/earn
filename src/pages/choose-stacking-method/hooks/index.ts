@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useNavigate } from '@hooks/use-navigate';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 import { hasExistingCommitment } from '../utils';
-import { useQuery } from '@tanstack/react-query';
 
 export const usePooledStackingButton = (props: ChooseStackingMethodLayoutProps) => {
   const navigate = useNavigate();
