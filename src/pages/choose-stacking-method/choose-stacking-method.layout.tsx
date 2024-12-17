@@ -109,7 +109,7 @@ export const EarnWithSbtcSecion = (props: ChooseStackingMethodLayoutProps) => {
         image={<EarnWithSBTCImage />}
         link={{
           text: 'Learn more about sBTC rewards',
-          href: 'https://docs.stacks.co/docs/stacks-academy/stacking',
+          href: 'https://bitcoinismore.org/',
         }}
       />
       <EarnBTCSectionContainer>
