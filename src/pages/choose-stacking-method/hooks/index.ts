@@ -3,6 +3,7 @@ import { useNavigate } from '@hooks/use-navigate';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 import { hasExistingCommitment } from '../utils';
+import { useQuery } from '@tanstack/react-query';
 
 export const usePooledStackingButton = (props: ChooseStackingMethodLayoutProps) => {
   const navigate = useNavigate();
@@ -61,18 +62,38 @@ export const useLiquidStackingButton = (props: ChooseStackingMethodLayoutProps) 
   return { isDisabled, onClick };
 };
 
-export function useLeatherSbtcBridgeButton() {
+export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) => void) {
   const leatherDetected = window.LeatherProvider !== undefined;
   const { isSignedIn, signIn } = useAuth();
   const leatherNotDetectedOrNotSignedIn = !leatherDetected || !isSignedIn;
+  const leatherOpenSwapSupportedQuery = useQuery(
+    ['leather-open-swap-supported'],
+    async () => {
+      const supportedMethods = await window.LeatherProvider?.request('supportedMethods');
+      return supportedMethods?.result.methods.some(method => method.name === 'openSwap');
+    },
+    { refetchOnWindowFocus: true, enabled: isSignedIn }
+  );
 
   return {
-    onClick: () => {
+    onClick: async () => {
       if (leatherNotDetectedOrNotSignedIn) {
         signIn();
         return;
       }
-      window.LeatherProvider?.request('openSwap', { base: 'BTC', quote: 'sBTC' });
+      if (!leatherOpenSwapSupportedQuery.data) {
+        setUpdateModalOpen(true);
+        return;
+      }
+      try {
+        await window.LeatherProvider?.request('openSwap', {
+          base: 'BTC',
+          quote: 'sBTC',
+        });
+      } catch (error) {
+        console.error('Error requesting openSwap', error);
+        setUpdateModalOpen(true);
+      }
     },
   };
 }
