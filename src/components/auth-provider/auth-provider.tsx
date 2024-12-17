@@ -34,10 +34,14 @@ function getAccountAddresses(userData: any, network: string) {
   return { address, btcAddressP2tr, btcAddressP2wpkh };
 }
 
+interface SignInOptions {
+  allowAllProviders?: boolean;
+}
+
 interface AuthContext {
   isSigningIn: boolean;
   isSignedIn: boolean;
-  signIn(): void;
+  signIn({ allowAllProviders }: SignInOptions): void;
   signOut(): void;
   userData: null | UserData;
   address: null | string;
@@ -58,7 +62,7 @@ export function AuthProvider({ children }: Props) {
   const [hasSearchedForExistingSession, setHasSearchedForExistingSession] = useState(false);
   const { networkName } = useStacksNetwork();
 
-  function signIn() {
+  function signIn({ allowAllProviders }: SignInOptions = { allowAllProviders: false }) {
     if (isSigningIn) {
       console.warn('Attempted to sign in while sign is is in progress.');
       return;
@@ -67,7 +71,10 @@ export function AuthProvider({ children }: Props) {
     showConnect({
       userSession,
       appDetails: APP_DETAILS,
-      defaultProviders: DEFAULT_PROVIDERS.filter(provider => provider.id === 'LeatherProvider'),
+      defaultProviders: DEFAULT_PROVIDERS.filter(provider => {
+        if (allowAllProviders) return true;
+        return provider.id === 'LeatherProvider';
+      }),
       onFinish() {
         setIsSigningIn(false);
         setIsSignedIn(true);

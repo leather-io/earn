@@ -27,7 +27,7 @@ interface Props {
 export function StackingClientProvider({ children }: Props) {
   const { address } = useAuth();
   const { network } = useStacksNetwork();
-  console.log('network', network);
+
   let client: StackingClient | null = null;
 
   if (address !== null && isValidStacksAddress(address)) {

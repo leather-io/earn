@@ -132,7 +132,7 @@ export function Navbar() {
                         boxShadow: 'none',
                         background: '#ede3dd',
                       }}
-                      onClick={() => signIn()}
+                      onClick={() => signIn({ allowAllProviders: true })}
                     >
                       Connect Wallet
                     </Button>
