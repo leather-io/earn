@@ -17,8 +17,8 @@ export const Network = () => {
         navigate(routes.HOME);
       }}
     >
-      <Flex alignItems="center" flexDirection="column" pb={['space.04', '48px']} px="space.04">
-        <InfoCard border="none" borderColor="ink.border-default" width="420px">
+      <Flex alignItems="center" flexDirection="column" px="0">
+        <InfoCard border="none" borderColor="ink.border-default" width="100%" px="space.00">
           <NetworkItems />
         </InfoCard>
       </Flex>

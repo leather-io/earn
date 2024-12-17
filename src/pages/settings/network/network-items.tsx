@@ -9,7 +9,7 @@ import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
 import { ChainId } from '@stacks/network';
-import { IconButton, Spinner, Tooltip } from '@stacks/ui';
+import { IconButton, Spinner } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
 import { useQuery } from '@tanstack/react-query';
 import { css } from 'leather-styles/css';
@@ -21,6 +21,7 @@ import { createSearch } from '@utils/networks';
 import { ONE_MINUTE } from '@utils/query-stale-time';
 
 import { Badge } from '../../../components/badge';
+import { Tooltip } from '../../../components/tooltip';
 import { useGlobalContext } from '../../../context/use-app-context';
 import { Network, whenStacksChainId } from '../../../types/network';
 
@@ -34,13 +35,14 @@ const ItemWrapper: React.FC<ItemWrapperProps> = ({ isActive, isDisabled, ...prop
     <Flex
       opacity={isDisabled ? 0.5 : 1}
       alignItems="center"
+      px="space.05"
       justifyContent="space-between"
       position="relative"
       zIndex="999"
       bg={'ink.background-primary'}
       cursor={isDisabled ? 'not-allowed' : 'unset'}
       _hover={{
-        bg: isDisabled || isActive ? undefined : 'ink.action-primary',
+        bg: isDisabled || isActive ? undefined : 'ink.component-background-hover',
         cursor: isDisabled ? 'not-allowed' : isActive ? 'default' : 'pointer',
       }}
       {...props}
@@ -113,8 +115,6 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
       isDisabled={!!isDisabled || !!error || isInitialLoading}
       className={css({
         cursor: isDisabled ? 'not-allowed' : 'pointer',
-        borderBottom: '1px solid',
-        borderColor: 'ink.border-default',
       })}
       {...rest}
     >
@@ -136,7 +136,7 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
       </Stack>
       <Flex alignItems="center" py="16px" position={'relative'}>
         {isCustom && !isActive ? (
-          <Tooltip label="Remove network">
+          <Tooltip text="Remove network">
             <IconButton
               position="relative"
               zIndex={999}
@@ -148,17 +148,16 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
               )}
               onClick={() => removeCustomNetwork(item)}
               aria-label={'Remove network'}
-              _hover={{ bg: 'rgba(255, 255, 255, 0.25)' }}
             />
           </Tooltip>
         ) : isInitialLoading ? (
           <Spinner size="18px" opacity={0.5} color={'#666'} />
         ) : error ? (
-          <styled.p color="red.background-primary">Offline</styled.p>
+          <styled.p color="red.action-primary-default">Offline</styled.p>
         ) : isActive ? (
           <CheckmarkIcon
             className={css({
-              color: 'green.action-primary-default',
+              color: 'ink.action-primary-default',
               width: '18px',
               height: '18px',
             })}
@@ -181,6 +180,7 @@ const AddNetwork: React.FC<
     <Button
       {...rest}
       mt="space.04"
+      mx="space.05"
       onClick={e => {
         navigate(routes.ADD_NETWORK);
         onClick?.(e);
