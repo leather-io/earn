@@ -67,23 +67,11 @@ export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) =
   const leatherDetected = window.LeatherProvider !== undefined;
   const { isSignedIn, signIn } = useAuth();
   const leatherNotDetectedOrNotSignedIn = !leatherDetected || !isSignedIn;
-  const leatherOpenSwapSupportedQuery = useQuery(
-    ['leather-open-swap-supported'],
-    async () => {
-      const supportedMethods = await window.LeatherProvider?.request('supportedMethods');
-      return supportedMethods?.result.methods.some(method => method.name === 'openSwap');
-    },
-    { refetchOnWindowFocus: true, enabled: isSignedIn }
-  );
 
   return {
     onClick: async () => {
       if (leatherNotDetectedOrNotSignedIn) {
         signIn();
-        return;
-      }
-      if (!leatherOpenSwapSupportedQuery.data) {
-        setUpdateModalOpen(true);
         return;
       }
       try {
