@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Button } from '@leather.io/ui';
 import { Box, Flex, styled } from 'leather-styles/jsx';
@@ -7,26 +7,49 @@ import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/br
 import EnrollIllustration from '@assets/images/enroll.svg';
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { BaseDrawer } from '@components/drawer/base-drawer';
+import { useEnrolledStatus, useSbtcEnroll } from '@hooks/use-enroll-transaction';
 import { analytics } from '@utils/analytics';
-import { openExternalLink } from '@utils/external-links';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
-export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps) {
+export function EnrollForSbtcRewardsCard(props: ChooseStackingMethodLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasEnrolled, setHasEnrolled] = useState(false);
   const { isSignedIn } = useAuth();
+
+  const { data: enrolledQuery, refetch } = useEnrolledStatus();
+
+  const onEnrollFinish = useCallback(() => {
+    refetch();
+    setHasEnrolled(true);
+  }, [refetch]);
+
+  const { createSbtcYieldEnrollContractCall } = useSbtcEnroll({ onFinish: onEnrollFinish });
+
+  const userEnrolled = useMemo(() => {
+    return enrolledQuery?.isEnrolled || hasEnrolled;
+  }, [enrolledQuery?.isEnrolled, hasEnrolled]);
+
+  const enrolledButtonText = useMemo(() => {
+    if (userEnrolled) return `You're already enrolled in the next cycle`;
+    if (isSignedIn) return 'Enroll';
+    return 'Sign in to enroll';
+  }, [userEnrolled, isSignedIn]);
 
   return (
     <>
       <BridgingStepCard
-        {...props}
         step={2}
-        disabled={!isSignedIn}
+        disabled={userEnrolled}
         title="Enroll and keep sBTC in your wallet"
         description="The more sBTC you hold in your wallet, the greater your rewards. Rewards are automatically distributed from the protocol, giving you more sBTC to grow your holdings."
         icon={<EnrollIllustration />}
-        onButtonPress={() => setIsModalOpen(true)}
-        buttonText={`${isSignedIn ? 'Enroll' : 'Sign in to enroll'}`}
+        onButtonPress={() => {
+          if (!isSignedIn) return window.scrollTo({ top: 0, behavior: 'smooth' });
+          setIsModalOpen(true);
+        }}
+        buttonText={enrolledButtonText}
+        {...props}
       />
 
       <BaseDrawer
@@ -44,11 +67,10 @@ export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps)
 
               <Flex flexDirection="column" gap="space.04" mt="space.06">
                 <Button
-                  onClick={() => {
-                    // TODO: Implement enrollment logic with contract call
-                    setIsModalOpen(false);
+                  onClick={async () => {
                     analytics.untypedTrack('sbtc_earn_enrollment_started');
-                    openExternalLink('https://bitcoinismore.org');
+                    await createSbtcYieldEnrollContractCall();
+                    setIsModalOpen(false);
                   }}
                 >
                   Confirm and enroll

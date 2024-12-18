@@ -31,7 +31,6 @@ function getAccountAddresses(userData: any, network: string) {
   if (!isValidStacksAddress(address)) {
     return { address: null, btcAddressP2tr: null, btcAddressP2wpkh: null };
   }
-
   return { address, btcAddressP2tr, btcAddressP2wpkh };
 }
 

@@ -1,7 +1,7 @@
 import { css } from 'leather-styles/css';
 import { Box, Stack, styled } from 'leather-styles/jsx';
 import { BridgeToSBTCCard } from 'src/pages/choose-stacking-method/components/bridge-to-sbtc-card';
-import { EnrollForSBTCRewardsCard } from 'src/pages/choose-stacking-method/components/enroll-for-sbtc-rewards';
+import { EnrollForSbtcRewardsCard } from 'src/pages/choose-stacking-method/components/enroll-for-sbtc-rewards';
 import { SectionHero } from 'src/pages/choose-stacking-method/components/section-hero';
 
 import { StackingDisclaimer } from '@components/stacking-disclaimer';
@@ -114,7 +114,7 @@ export const EarnWithSbtcSecion = (props: ChooseStackingMethodLayoutProps) => {
       />
       <EarnBTCSectionContainer>
         <BridgeToSBTCCard {...props} />
-        <EnrollForSBTCRewardsCard {...props} />
+        <EnrollForSbtcRewardsCard {...props} />
       </EarnBTCSectionContainer>
     </Box>
   );

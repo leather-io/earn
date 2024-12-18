@@ -114,6 +114,7 @@ export function Navbar() {
                       background={'ink.background-primary'}
                       fontSize="13px"
                       width="18ch"
+                      whiteSpace="nowrap"
                       {...bind}
                     >
                       {isHovered ? 'Sign out' : truncateMiddle(address)}
