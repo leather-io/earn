@@ -185,11 +185,17 @@ const NavbarLeft = () => {
 
   return (
     <Flex alignItems="center">
-      <Link to={`/${createSearch(activeNetwork)}`}>
+      <styled.a
+        href="https://leather.io"
+        onClick={e => {
+          e.preventDefault();
+          window.location.href = 'https://leather.io';
+        }}
+      >
         <Flex alignItems="center">
           <Logo />
         </Flex>
-      </Link>
+      </styled.a>
     </Flex>
   );
 };
