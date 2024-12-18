@@ -9,6 +9,7 @@ import { BlockchainApiClientProvider } from '@components/blockchain-api-client-p
 import { Navigate } from '@components/navigate';
 import { StackingClientProvider } from '@components/stacking-client-provider/stacking-client-provider';
 import { NetworkModeUrlMap } from '@constants/network';
+import { initAnalytics } from '@utils/analytics';
 import { loadFonts } from '@utils/load-fonts';
 
 import { AuthGuard } from './components/auth-guard';
@@ -37,7 +38,6 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
-import { initAnalytics } from '@utils/analytics';
 
 const queryClient = new QueryClient({
   defaultOptions: {

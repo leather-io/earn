@@ -7,10 +7,10 @@ import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/br
 import EnrollIllustration from '@assets/images/enroll.svg';
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { BaseDrawer } from '@components/drawer/base-drawer';
+import { analytics } from '@utils/analytics';
 import { openExternalLink } from '@utils/external-links';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
-import { analytics } from '@utils/analytics';
 
 export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);

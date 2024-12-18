@@ -1,5 +1,7 @@
 import { StacksNetwork } from '@stacks/network';
 
+import { analytics } from '@utils/analytics';
+
 import { EditingFormValues, PoolWrapperAllowanceState } from './types';
 import { HandleAllowContractCallerArgs } from './utils-allow-contract-caller';
 import {
@@ -7,7 +9,6 @@ import {
   getPoxWrapperContract,
   requiresAllowContractCaller,
 } from './utils-preset-pools';
-import { analytics } from '@utils/analytics';
 
 interface CreateHandleSubmitArgs {
   hasUserConfirmedPoolWrapperContract: PoolWrapperAllowanceState;

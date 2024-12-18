@@ -1,6 +1,5 @@
-import { AnalyticsBrowser } from '@segment/analytics-next';
-
 import { configureAnalyticsClient } from '@leather.io/analytics';
+import { AnalyticsBrowser } from '@segment/analytics-next';
 
 const segmentClient = new AnalyticsBrowser();
 

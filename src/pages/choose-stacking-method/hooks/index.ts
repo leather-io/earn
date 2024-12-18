@@ -1,9 +1,9 @@
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useNavigate } from '@hooks/use-navigate';
+import { analytics } from '@utils/analytics';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 import { hasExistingCommitment } from '../utils';
-import { analytics } from '@utils/analytics';
 
 export const usePooledStackingButton = (props: ChooseStackingMethodLayoutProps) => {
   const navigate = useNavigate();
