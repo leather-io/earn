@@ -41,7 +41,7 @@ interface SignInOptions {
 interface AuthContext {
   isSigningIn: boolean;
   isSignedIn: boolean;
-  signIn({ allowAllProviders }: SignInOptions): void;
+  signIn(options?: SignInOptions): void;
   signOut(): void;
   userData: null | UserData;
   address: null | string;

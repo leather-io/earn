@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useNavigate } from '@hooks/use-navigate';
 
@@ -16,7 +14,7 @@ export const usePooledStackingButton = (props: ChooseStackingMethodLayoutProps) 
 
   const onClick = () => {
     if (!props.isSignedIn) {
-      signIn();
+      signIn({ allowAllProviders: true });
       return;
     }
 
@@ -35,7 +33,7 @@ export const useDirectStackingButton = (props: ChooseStackingMethodLayoutProps) 
 
   const onClick = () => {
     if (!props.isSignedIn) {
-      signIn();
+      signIn({ allowAllProviders: true });
       return;
     }
 
@@ -53,7 +51,7 @@ export const useLiquidStackingButton = (props: ChooseStackingMethodLayoutProps) 
 
   const onClick = () => {
     if (!props.isSignedIn) {
-      signIn();
+      signIn({ allowAllProviders: true });
       return;
     }
 
@@ -71,7 +69,7 @@ export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) =
   return {
     onClick: async () => {
       if (leatherNotDetectedOrNotSignedIn) {
-        signIn();
+        signIn({ allowAllProviders: true });
         return;
       }
       try {
