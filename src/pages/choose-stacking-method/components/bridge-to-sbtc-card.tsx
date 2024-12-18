@@ -36,7 +36,7 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
             <Flex flexDirection="column">
               <styled.p textStyle="body.01" mb="space.04" color="ink.text-primary">
                 The version of Leather installed does not support this feature. Please update
-                Leather (6.55+) to bridge sBTC.
+                Leather (6.56+) to bridge sBTC.
               </styled.p>
 
               <Flex flexDirection="column" gap="space.04" mt="space.06">

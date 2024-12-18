@@ -159,7 +159,7 @@ export function createHandleSubmit({
   setIsContractCallExtensionPageOpen,
   navigate,
 }: CreateHandleSubmitArgs) {
-  return async function handleSubmit(values: EditingFormValues) {
+  return async function handleSubmit(values: EditingFormValues, onFinish?: () => void) {
     // TODO: handle thrown errors
     const [poxInfo, stackingContract] = await Promise.all([
       client.getPoxInfo(),
@@ -172,6 +172,7 @@ export function createHandleSubmit({
       ...delegateStxOptions,
       onFinish() {
         setIsContractCallExtensionPageOpen(false);
+        onFinish?.();
         navigate('../pooled-stacking-info');
       },
       onCancel() {

@@ -37,6 +37,7 @@ import { StackIncrease } from './pages/stacking/stack-increase/stack-increase';
 import { StartDirectStacking } from './pages/stacking/start-direct-stacking/start-direct-stacking';
 import { StartLiquidStacking } from './pages/stacking/start-liquid-stacking/start-liquid-stacking';
 import { StartPooledStacking } from './pages/stacking/start-pooled-stacking/start-pooled-stacking';
+import { initAnalytics } from '@utils/analytics';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -49,6 +50,9 @@ const queryClient = new QueryClient({
 
 function Root() {
   useEffect(() => void loadFonts(), []);
+  useEffect(() => {
+    void initAnalytics();
+  }, []);
 
   const [searchParams] = useSearchParams();
   const chain = searchParams.get('chain');

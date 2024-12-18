@@ -7,13 +7,14 @@ import {
   getPoxWrapperContract,
   requiresAllowContractCaller,
 } from './utils-preset-pools';
+import { analytics } from '@utils/analytics';
 
 interface CreateHandleSubmitArgs {
   hasUserConfirmedPoolWrapperContract: PoolWrapperAllowanceState;
   setHasUserConfirmedPoolWrapperContract: React.Dispatch<
     React.SetStateAction<PoolWrapperAllowanceState>
   >;
-  handleDelegateStxSubmit: (val: EditingFormValues) => Promise<void>;
+  handleDelegateStxSubmit: (val: EditingFormValues, onFinish?: () => void) => Promise<void>;
   handleAllowContractCallerSubmit: ({
     poxWrapperContract,
     onFinish,
@@ -32,8 +33,23 @@ export function createHandleSubmit({
     if (values.poolName && requiresAllowContractCaller(values.poolName)) {
       const poxWrapperContract = getPoxWrapperContract(values.poolName, network);
       const networkInstance = getNetworkInstance(network);
+
+      analytics.untypedTrack('stacking_initiated', {
+        pool_or_protocol_name: values.poolName,
+        network: networkInstance,
+        stacking_type: 'pooled',
+      });
+
+      const trackStackCompleted = () => {
+        analytics.untypedTrack('stacking_completed', {
+          pool_or_protocol_name: values.poolName,
+          network: networkInstance,
+          stacking_type: 'pooled',
+        });
+      };
+
       if (hasUserConfirmedPoolWrapperContract[networkInstance]?.[poxWrapperContract]) {
-        handleDelegateStxSubmit(values);
+        handleDelegateStxSubmit(values, trackStackCompleted);
         return;
       } else {
         handleAllowContractCallerSubmit({
@@ -46,6 +62,7 @@ export function createHandleSubmit({
                 [poxWrapperContract]: true,
               },
             });
+            trackStackCompleted();
           },
         });
         return;

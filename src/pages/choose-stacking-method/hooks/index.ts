@@ -3,6 +3,7 @@ import { useNavigate } from '@hooks/use-navigate';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 import { hasExistingCommitment } from '../utils';
+import { analytics } from '@utils/analytics';
 
 export const usePooledStackingButton = (props: ChooseStackingMethodLayoutProps) => {
   const navigate = useNavigate();
@@ -77,7 +78,9 @@ export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) =
           base: 'BTC',
           quote: 'sBTC',
         });
+        analytics.untypedTrack('sbtc_bridge_requested');
       } catch (error) {
+        analytics.untypedTrack('sbtc_bridge_request_failed');
         console.error('Error requesting openSwap', error);
         setUpdateModalOpen(true);
       }

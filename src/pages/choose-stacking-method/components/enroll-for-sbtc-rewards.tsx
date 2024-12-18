@@ -10,6 +10,7 @@ import { BaseDrawer } from '@components/drawer/base-drawer';
 import { openExternalLink } from '@utils/external-links';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
+import { analytics } from '@utils/analytics';
 
 export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,6 +47,7 @@ export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps)
                   onClick={() => {
                     // TODO: Implement enrollment logic with contract call
                     setIsModalOpen(false);
+                    analytics.untypedTrack('sbtc_earn_enrollment_started');
                     openExternalLink('https://bitcoinismore.org');
                   }}
                 >
