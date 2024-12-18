@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 
 import { Button } from '@leather.io/ui';
 import { css } from 'leather-styles/css';
 import { Box, Flex, styled } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
-import { useGlobalContext } from 'src/context/use-app-context';
 import { useHover } from 'use-events';
 
 import { openExternalLink } from '@utils/external-links';
-import { createSearch } from '@utils/networks';
 import { truncateMiddle } from '@utils/tx-utils';
 
 import Logo from '../assets/images/logo.svg';
@@ -181,8 +178,6 @@ export function Navbar() {
 }
 
 const NavbarLeft = () => {
-  const { activeNetwork } = useGlobalContext();
-
   return (
     <Flex alignItems="center">
       <styled.a
