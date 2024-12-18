@@ -1,7 +1,6 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, forwardRef } from 'react';
 
 import { Button, ButtonProps } from '@leather.io/ui';
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
 import { Box, Stack } from 'leather-styles/jsx';
 import { Flex } from 'leather-styles/jsx';
 
@@ -82,10 +81,25 @@ export function Description({ children }: DescriptionProps) {
     </Stack>
   );
 }
-export const Action: ForwardRefExoticComponentWithAs<ButtonProps, 'button'> = forwardRefWithAs(
-  ({ children, ...props }, ref) => (
-    <Button size="md" mt="loose" ref={ref} {...props}>
+
+type ActionProps = ButtonProps & {
+  isLoading?: boolean;
+  isDisabled?: boolean;
+};
+
+export const Action = forwardRef<HTMLButtonElement, ActionProps>(
+  ({ children, isLoading, isDisabled, ...props }, ref) => (
+    <Button
+      size="md"
+      mt="loose"
+      aria-busy={isLoading}
+      aria-disabled={isDisabled}
+      ref={ref}
+      {...props}
+    >
       {children}
     </Button>
   )
 );
+
+Action.displayName = 'Action';

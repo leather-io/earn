@@ -9,7 +9,7 @@ import { BlockchainApiClientProvider } from '@components/blockchain-api-client-p
 import { Navigate } from '@components/navigate';
 import { StackingClientProvider } from '@components/stacking-client-provider/stacking-client-provider';
 import { NetworkModeUrlMap } from '@constants/network';
-import { initAnalytics } from '@utils/analytics';
+import { analytics, initAnalytics } from '@utils/analytics';
 import { loadFonts } from '@utils/load-fonts';
 
 import { AuthGuard } from './components/auth-guard';
@@ -174,5 +174,11 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
+  useEffect(() => {
+    router.subscribe(state => {
+      analytics.client.page(state.location.pathname);
+    });
+  }, []);
+
   return <RouterProvider router={router} />;
 }

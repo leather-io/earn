@@ -6,6 +6,7 @@ import { figmaTheme } from '@constants/figma-theme';
 import { createSearch } from '@utils/networks';
 
 import { OpenLinkInNewTab } from './open-link-in-new-tab';
+import { Link } from '@components/link';
 
 export function Footer() {
   const { activeNetwork } = useGlobalContext();
@@ -19,24 +20,26 @@ export function Footer() {
       borderTop={`1px solid ${figmaTheme.borderSubdued}`}
       columnGap="space.04"
     >
-      <OpenLinkInNewTab
+      <Link
         style={{
           color: token('colors.ink.text-primary'),
         }}
+        textDecoration="underline"
         fontWeight={500}
-        href={`${window.location.origin}/pool-admin${createSearch(activeNetwork)}`}
+        to={`/pool-admin${createSearch(activeNetwork)}`}
       >
         Pool Administration
-      </OpenLinkInNewTab>
-      <OpenLinkInNewTab
+      </Link>
+      <Link
         style={{
           color: token('colors.ink.text-primary'),
         }}
+        textDecoration="underline"
         fontWeight={500}
-        href={`${window.location.origin}/signer/generate-signature${createSearch(activeNetwork)}`}
+        to={`/signer/generate-signature${createSearch(activeNetwork)}`}
       >
         Signer Key Signature
-      </OpenLinkInNewTab>
+      </Link>
       <OpenLinkInNewTab
         style={{
           color: token('colors.ink.text-primary'),

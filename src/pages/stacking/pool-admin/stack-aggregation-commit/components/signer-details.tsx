@@ -8,13 +8,13 @@ import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/type
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { OpenExternalLinkInNewTab } from '@components/external-link';
-import { OpenLinkInNewTab } from '@components/open-link-in-new-tab';
 import { createSearch } from '@utils/networks';
 import { microStxToStxBigint } from '@utils/unit-convert';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
+import { Link } from '@components/link';
 
 export function SignerDetails() {
   const { setValues } = useFormikContext<StackAggregationCommitFormValues>();
@@ -74,12 +74,9 @@ export function SignerDetails() {
             these documents
           </OpenExternalLinkInNewTab>{' '}
           on how to Stack as a signer and fill out{' '}
-          <OpenLinkInNewTab
-            href={`/signer/generate-signature${createSearch(activeNetwork)}`}
-            display="inline"
-          >
+          <Link to={`/signer/generate-signature${createSearch(activeNetwork)}`} display="inline">
             this page
-          </OpenLinkInNewTab>{' '}
+          </Link>{' '}
           to generate a signer signature.
         </Text>
         <Text mt={'loose'} color={color('text-caption')}>
