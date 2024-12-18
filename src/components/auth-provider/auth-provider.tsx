@@ -13,6 +13,7 @@ import { validateStacksAddress as isValidStacksAddress } from '@stacks/transacti
 import { APP_DETAILS } from 'src/constants';
 
 import { useStacksNetwork } from '@hooks/use-stacks-network';
+import { analytics } from '@utils/analytics';
 
 const appConfig = new AppConfig(['store_write']);
 const userSession = new UserSession({ appConfig });
@@ -68,6 +69,13 @@ export function AuthProvider({ children }: Props) {
       return;
     }
     setIsSigningIn(true);
+
+    const provider = window.StacksProvider?.getProductInfo?.()?.name ?? 'none';
+
+    analytics.untypedTrack('earn_sign_in_started', {
+      provider,
+    });
+
     showConnect({
       userSession,
       appDetails: APP_DETAILS,
@@ -76,10 +84,17 @@ export function AuthProvider({ children }: Props) {
         return provider.id === 'LeatherProvider';
       }),
       onFinish() {
+        const provider = window.StacksProvider?.getProductInfo?.()?.name ?? 'none';
+        analytics.untypedTrack('earn_sign_in_completed', {
+          provider,
+        });
         setIsSigningIn(false);
         setIsSignedIn(true);
       },
       onCancel() {
+        analytics.untypedTrack('earn_sign_in_cancelled', {
+          provider,
+        });
         setIsSigningIn(false);
       },
     } as AuthOptions);

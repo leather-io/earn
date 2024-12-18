@@ -11,9 +11,6 @@ interface ImportMetaEnv {
    */
   readonly VITE_COMMIT_SHA?: string;
 
-  /**
-   * TODO: document where to find the key
-   */
   readonly VITE_SEGMENT_WRITE_KEY?: string;
 
   /**

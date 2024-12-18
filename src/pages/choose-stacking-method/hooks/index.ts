@@ -1,5 +1,6 @@
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useNavigate } from '@hooks/use-navigate';
+import { analytics } from '@utils/analytics';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 import { hasExistingCommitment } from '../utils';
@@ -77,7 +78,9 @@ export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) =
           base: 'BTC',
           quote: 'sBTC',
         });
+        analytics.untypedTrack('sbtc_bridge_requested');
       } catch (error) {
+        analytics.untypedTrack('sbtc_bridge_request_failed');
         console.error('Error requesting openSwap', error);
         setUpdateModalOpen(true);
       }

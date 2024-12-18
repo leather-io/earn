@@ -7,6 +7,7 @@ import { BridgingStepCard } from 'src/pages/choose-stacking-method/components/br
 import EnrollIllustration from '@assets/images/enroll.svg';
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { BaseDrawer } from '@components/drawer/base-drawer';
+import { analytics } from '@utils/analytics';
 import { openExternalLink } from '@utils/external-links';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
@@ -46,6 +47,7 @@ export function EnrollForSBTCRewardsCard(props: ChooseStackingMethodLayoutProps)
                   onClick={() => {
                     // TODO: Implement enrollment logic with contract call
                     setIsModalOpen(false);
+                    analytics.untypedTrack('sbtc_earn_enrollment_started');
                     openExternalLink('https://bitcoinismore.org');
                   }}
                 >
