@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { openContractCall } from '@stacks/connect';
 import { StacksNetworkName } from '@stacks/network';
 import {
-  AnchorMode,
   Cl,
   PostConditionMode,
   UnsignedContractCallOptions,
@@ -95,10 +94,7 @@ export function useSbtcEnroll({
             functionArgs: [Cl.some(Cl.principal(address))],
             network: network.networkName,
             fee: 14000,
-
-            anchorMode: AnchorMode.Any,
-            postConditionMode: PostConditionMode.Allow,
-
+            postConditionMode: PostConditionMode.Deny,
             onFinish: response => {
               console.log('on finish', response);
               onFinish?.();
