@@ -20,8 +20,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.1(@types/react@18.2.13)(react@18.3.1))(@types/react@18.2.13)(react@18.3.1)
       '@leather.io/analytics':
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^3.1.0
+        version: 3.1.0
       '@leather.io/tokens':
         specifier: 0.12.1
         version: 0.12.1
@@ -1799,8 +1799,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@leather.io/analytics@3.0.3':
-    resolution: {integrity: sha512-ZGcycLWi4h2nQmANx0ufy2Ah84hSllT206s8cT6zFQZUilTLtQS68L3IBIbp0GTnczKLR5Z8H2evvEI3UbEC0w==}
+  '@leather.io/analytics@3.1.0':
+    resolution: {integrity: sha512-jmbjB33h4tCtfYBczyH1h+mJ3C/ylHnz06P7WTo0as0GI6QxaB/ci8WhQQjUxPDTIwEFl1Fv38Q99UTmFJf18g==}
 
   '@leather.io/constants@0.13.5':
     resolution: {integrity: sha512-FOh/F/g8WepB8HfoTXsMB/BYcm/F6INPEpyEZc3ljzaN0mLwVLO1kwgMTFU9Pq7tQlITvyWiyGHcB7OYovLoUQ==}
@@ -10244,7 +10244,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@leather.io/analytics@3.0.3': {}
+  '@leather.io/analytics@3.1.0': {}
 
   '@leather.io/constants@0.13.5':
     dependencies:

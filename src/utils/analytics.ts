@@ -7,6 +7,7 @@ export const analytics = configureAnalyticsClient<AnalyticsBrowser>({
   client: segmentClient,
   defaultProperties: {
     platform: 'web',
+    product: 'earn',
   },
 });
 
