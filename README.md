@@ -1,15 +1,17 @@
-# BTC Web 3
+# Leather: Earn
 
-Engage with Web 3.0 using Bitcoin.
+A portal to make the most of your Bitcoin and Stacks
 
-# Quickstart
+Earn Bitcoin yield by bridging BTC into sBTC or stacking your STX.
 
-With a recent version of [Node.js 18](https://nodejs.org/de/blog/announcements/v18-release-announce/) and [pnpm](https://pnpm.io/) installed on your system, run
+## Quickstart
 
-```
+With a recent version of [Node.js 18](https://nodejs.org/de/blog/announcements/v18-release-announce/) and [pnpm](https://pnpm.io/) installed on your system, run:
+
+```sh
 pnpm install && pnpm dev
 ```
 
-# Documentation
+## Documentation
 
 This project's documentation can be found in [the `docs` folder](./docs/README.md).

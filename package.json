@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": ">=18.0.0 <22.0.0"
+  },
   "scripts": {
     "build": "vite build",
     "check:packagejson": "ts-node-esm ./scripts/packageJsonChecks.ts",
@@ -107,10 +111,6 @@
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "4.2.0",
     "vitest": "^0.32.4"
-  },
-  "packageManager": "pnpm@9.11.0",
-  "engines": {
-    "node": ">=18.0.0 <22.0.0"
   },
   "pnpm": {
     "patchedDependencies": {
