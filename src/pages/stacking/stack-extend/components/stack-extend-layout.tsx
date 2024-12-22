@@ -134,6 +134,7 @@ export function StackExtendLayout(props: StackExtendLayoutProps) {
                   <Button
                     _loading={{ opacity: 0.5 }}
                     disabled={hasErrors(errors) || isContractCallExtensionPageOpen}
+                    type="submit"
                   >
                     <Flex flexDirection="row" alignItems="center" justifyContent="center">
                       <IconLock />
