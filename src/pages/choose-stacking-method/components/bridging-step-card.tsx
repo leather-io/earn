@@ -6,7 +6,7 @@ import { ChooseStackingMethodLayoutProps } from '../types';
 
 type Props = ChooseStackingMethodLayoutProps & {
   title: string;
-  description: string;
+  description: React.ReactNode;
   icon: React.ReactNode;
   onButtonPress: () => void;
   buttonText: string;
@@ -37,7 +37,7 @@ export function BridgingStepCard(props: Props) {
             </styled.p>
           </Flex>
 
-          <Flex flexDirection="column" alignItems="flex-start">
+          <Box>
             <Button
               variant="outline"
               alignSelf="flex-start"
@@ -47,7 +47,7 @@ export function BridgingStepCard(props: Props) {
             >
               {props.buttonText}
             </Button>
-          </Flex>
+          </Box>
         </Flex>
       </Flex>
     </Flex>

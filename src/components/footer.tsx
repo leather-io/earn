@@ -2,11 +2,11 @@ import { Flex } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
 import { useGlobalContext } from 'src/context/use-app-context';
 
+import { Link } from '@components/link';
 import { figmaTheme } from '@constants/figma-theme';
 import { createSearch } from '@utils/networks';
 
 import { OpenLinkInNewTab } from './open-link-in-new-tab';
-import { Link } from '@components/link';
 
 export function Footer() {
   const { activeNetwork } = useGlobalContext();

@@ -21,10 +21,19 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
         {...props}
         step={1}
         title="Bridge BTC to sBTC"
-        description="Convert your bitcoin to sBTC to access the rewards program. Stay liquid while earning yield on the Stacks network."
+        description={
+          <>
+            Convert your bitcoin to sBTC to access the rewards program. Stay liquid while earning
+            yield on the Stacks network.
+            <styled.p textStyle="body.01" fontWeight="500" mt="space.02">
+              Bridge hard cap reached — stay tuned for the next cap.
+            </styled.p>
+          </>
+        }
         icon={<BridgeIllustration />}
         onButtonPress={onClick}
         buttonText="Bridge sBTC"
+        disabled={true}
       />
       <BaseDrawer
         title="Install Leather to bridge sBTC"

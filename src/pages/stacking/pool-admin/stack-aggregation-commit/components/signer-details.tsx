@@ -8,13 +8,13 @@ import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/type
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { OpenExternalLinkInNewTab } from '@components/external-link';
+import { Link } from '@components/link';
 import { createSearch } from '@utils/networks';
 import { microStxToStxBigint } from '@utils/unit-convert';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 import { StackAggregationCommitFormValues } from '../types';
 import { SignerInput } from './signer-input';
-import { Link } from '@components/link';
 
 export function SignerDetails() {
   const { setValues } = useFormikContext<StackAggregationCommitFormValues>();
