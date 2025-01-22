@@ -53,7 +53,7 @@ export function ActiveStackingInfo({
       <InfoCard width={['100%', '80%', '420px', '420px']} my="space.10">
         <Box mx="space.04">
           <Flex flexDirection="column" pt="space.06" pb="space.05">
-            <styled.h2 textStyle="heading.01">You&apos;re stacking</styled.h2>
+            <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
             <styled.p textStyle="heading.02" fontSize="24px" fontWeight={500}>
               {toHumanReadableStx(lockedAmount)}
             </styled.p>
