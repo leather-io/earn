@@ -50,11 +50,11 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
       '@stacks/connect':
-        specifier: 7.9.0
-        version: 7.9.0
+        specifier: 7.10.0
+        version: 7.10.0
       '@stacks/connect-react':
-        specifier: 22.6.0
-        version: 22.6.0(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        specifier: 22.6.1
+        version: 22.6.1(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
       '@stacks/network':
         specifier: 7.0.2
         version: 7.0.2
@@ -3292,17 +3292,17 @@ packages:
   '@stacks/common@7.0.2':
     resolution: {integrity: sha512-+RSecHdkxOtswmE4tDDoZlYEuULpnTQVeDIG5eZ32opK8cFxf4EugAcK9CsIsHx/Se1yTEaQ21WGATmJGK84lQ==}
 
-  '@stacks/connect-react@22.6.0':
-    resolution: {integrity: sha512-+ANQyxujO7ObrPps/Ix9y13a6yGhFbZSHbJW00bPNeYdo2YLxZHbPVCd0VWRdLO7O3y4kRi+nUH0zeWWJYHIbA==}
+  '@stacks/connect-react@22.6.1':
+    resolution: {integrity: sha512-5sv6yK9lsBIPCxdKH7jIBKJNl7E7tzOx7qXuazyZ18rd597MJaZMXB9i8g7fj4Bc9SvGMWcITu/k1ed7wG0ukg==}
     peerDependencies:
       react: ^16.x || 17.x || 18.x
       react-dom: ^16.x || 17.x || 18.x
 
-  '@stacks/connect-ui@6.5.0':
-    resolution: {integrity: sha512-iXSpl2NxrjERBqtGgkZp0tX1uJgdWZXmsNo3I0cJYYTTbieSAE/Al9nTYc1wLTPW5w5oVvZEkQKo90WIrHR8Rw==}
+  '@stacks/connect-ui@6.6.0':
+    resolution: {integrity: sha512-uc22RH99umYzB94h5LiKPtGu34IBGrwUb3TfijGb2ZMudaMCiv/Fr1jjZKfQW5MRmexnbAEmGZpFlQKinCcsUA==}
 
-  '@stacks/connect@7.9.0':
-    resolution: {integrity: sha512-UPv2UQpZwnNPYodL4bf+6Pu3kHY9BcRabAgAbmDajn3RFWvDrnOMmvLqJRGOvo5fEm8vSwxAGY8R7BSOPmlLdg==}
+  '@stacks/connect@7.10.0':
+    resolution: {integrity: sha512-h6i/cFWUVWLFyn8Y62+oDh7PJYQR5Ultrc6dEUp8rZZbHO9ldLT5Qm+rwTS0tRXzoPXJ2KNbqsG70Sqa/lRnVQ==}
 
   '@stacks/encryption@7.0.2':
     resolution: {integrity: sha512-3evRvxPqVzQAhcZ8uacQrVfAETUMIV8VyKkHGsd4QZroGWlvXQheLV3CFeDttFb304QcKq/oKv1clOvQ2shaAw==}
@@ -12856,24 +12856,24 @@ snapshots:
 
   '@stacks/common@7.0.2': {}
 
-  '@stacks/connect-react@22.6.0(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@stacks/connect-react@22.6.1(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@stacks/connect': 7.9.0
+      '@stacks/connect': 7.10.0
       jsontokens: 4.0.1
       react: 18.3.1
       react-dom: 18.2.0(react@18.3.1)
     transitivePeerDependencies:
       - encoding
 
-  '@stacks/connect-ui@6.5.0':
+  '@stacks/connect-ui@6.6.0':
     dependencies:
       '@stencil/core': 2.22.3
 
-  '@stacks/connect@7.9.0':
+  '@stacks/connect@7.10.0':
     dependencies:
       '@stacks/auth': 7.0.2
       '@stacks/common': 7.0.2
-      '@stacks/connect-ui': 6.5.0
+      '@stacks/connect-ui': 6.6.0
       '@stacks/network': 7.0.2
       '@stacks/network-v6': '@stacks/network@6.17.0'
       '@stacks/profile': 7.0.2
