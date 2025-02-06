@@ -27,7 +27,7 @@ const sbtcEnrollContractMap: Record<StacksNetworkName, EnrollContractIdenfier> =
   },
   mainnet: {
     contractAddress: 'SP804CDG3KBN9M6E00AD744K8DC697G7HBCG520Q',
-    contractName: 'sbtc-yield-rewards-v2',
+    contractName: 'sbtc-yield-rewards-v3',
   },
   mocknet: {} as EnrollContractIdenfier,
 };
