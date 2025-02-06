@@ -18,7 +18,7 @@ export function Stacker() {
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="stacker" placeholder="Stacks address" mt="loose" {...field} />
+        <Input autoComplete="off" id="stacker" placeholder="Stacks address" mt="loose" {...field} />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

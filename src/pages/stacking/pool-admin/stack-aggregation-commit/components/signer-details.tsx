@@ -89,6 +89,7 @@ export function SignerDetails() {
           stacking method.
         </Text>
         <Input
+          autoComplete="off"
           onPaste={fillFromClipboard}
           placeholder="paste signature JSON here.."
           my="base-loose"

@@ -33,7 +33,13 @@ export function StartBurnHeight() {
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="startBurnHt" placeholder="Bitcoin block" mt="loose" {...field} />
+        <Input
+          id="startBurnHt"
+          placeholder="Bitcoin block"
+          mt="loose"
+          autoComplete="off"
+          {...field}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

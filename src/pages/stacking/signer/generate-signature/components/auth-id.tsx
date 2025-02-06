@@ -21,7 +21,7 @@ export function AuthId() {
         </Text>
       </Description>
       <Box position="relative" my="loose">
-        <Input id="authId" placeholder="Authorisation id" {...field} />
+        <Input id="authId" placeholder="Authorisation id" autoComplete="off" {...field} />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

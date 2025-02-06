@@ -25,6 +25,7 @@ export function RewardCycleIndex() {
           id="rewardCycleIndex"
           placeholder="Indentifier for the cycle"
           mt="loose"
+          autoComplete="off"
           {...field}
         />
         {(meta.touched || field) && meta.error && (

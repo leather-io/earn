@@ -39,7 +39,12 @@ export function Amount() {
       </Description>
 
       <Box position="relative" my="loose">
-        <Input id="stxAmount" placeholder="Amount of additional STX to stack" {...field} />
+        <Input
+          id="stxAmount"
+          placeholder="Amount of additional STX to stack"
+          autoComplete="off"
+          {...field}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

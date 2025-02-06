@@ -69,6 +69,7 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
           placeholder="Stacks address"
           mt="loose"
           isDisabled={showPreview}
+          autoComplete="off"
           {...field}
         />
         {meta.touched && meta.error && (

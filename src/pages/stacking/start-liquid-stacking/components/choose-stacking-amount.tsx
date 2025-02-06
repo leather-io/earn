@@ -39,6 +39,7 @@ export function ChooseStackingAmount() {
 
       <Box position="relative" maxWidth="400px">
         <Input
+          autoComplete="off"
           id="stxAmount"
           mt="loose"
           placeholder="Amount of STX to Stack"

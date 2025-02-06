@@ -22,7 +22,12 @@ export function MaxAmount() {
         </Text>
       </Description>
       <Box position="relative" my="loose">
-        <Input id="maxAmount" placeholder="Maximum amount of STX to lock" {...field} />
+        <Input
+          id="maxAmount"
+          placeholder="Maximum amount of STX to lock"
+          autoComplete="off"
+          {...field}
+        />
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

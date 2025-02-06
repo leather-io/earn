@@ -30,6 +30,7 @@ export function SignerInput({ title, text, fieldName, placeholder }: Props) {
       {text}
       <Box position="relative" maxWidth="400px">
         <Input
+          autoComplete="off"
           {...field}
           mt={'loose'}
           onChange={e => {

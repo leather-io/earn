@@ -31,7 +31,7 @@ export function RewardCycle() {
       </Description>
 
       <Box position="relative" maxWidth="400px">
-        <Input id="rewardCycle" placeholder="Next cycle" mt="loose" {...field} />
+        <Input id="rewardCycle" placeholder="Next cycle" mt="loose" {...field} autoComplete="off" />
         {(meta.touched || field) && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

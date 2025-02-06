@@ -120,7 +120,7 @@ export const AddNetworkForm: React.FC = () => {
                 {({ field, form }: FieldProps<string, FormValues>) => (
                   <Box>
                     <FormLabel>URL</FormLabel>
-                    <Input {...field} placeholder="https://" />
+                    <Input autoComplete="off" {...field} placeholder="https://" />
                     {form.touched && form.errors.url && (
                       <ErrorLabel>
                         <ErrorText>{form.errors.url}</ErrorText>

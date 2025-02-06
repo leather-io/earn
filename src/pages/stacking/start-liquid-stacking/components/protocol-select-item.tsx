@@ -79,6 +79,7 @@ export function ProtocolSelectItem(props: ProtocolSelectItemProps) {
               type="radio"
               id={name}
               name="protocolName"
+              autoComplete="off"
               value={name}
               checked={name === activeProtocolName}
               style={{ transform: 'scale(1.2)', outline: 0 }}
