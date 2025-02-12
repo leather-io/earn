@@ -17,6 +17,7 @@ export const enum PoxContractName {
   WrapperOneCycle,
   WrapperFastPool,
   WrapperRestake,
+  WrapperStackingDao,
   Pox4,
 }
 
