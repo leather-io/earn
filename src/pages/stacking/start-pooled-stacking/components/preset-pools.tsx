@@ -56,25 +56,6 @@ export const pools = {
     disabled: false,
   },
 
-  Xverse: {
-    name: PoolName.Xverse,
-    description:
-      'Xverse pool is a non-custodial stacking pool service from the makers of Xverse wallet.',
-    duration: 1,
-    website: 'https://pool.xverse.app/',
-    payoutMethod: PayoutMethod.BTC,
-    poolAddress: {
-      [NetworkInstance.mainnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
-      [NetworkInstance.testnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
-      [NetworkInstance.devnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
-    },
-    poxContract: PoxContractName.WrapperOneCycle,
-    minimumDelegationAmount: 100_000_000,
-    icon: <PoolIcon src="/32x32_Xverse.png" />,
-    allowCustomRewardAddress: true,
-    disabled: false,
-  },
-
   Restake: {
     name: PoolName.Restake,
     description:
@@ -96,6 +77,48 @@ export const pools = {
     allowCustomRewardAddress: false,
     disabled: false,
   },
+
+  'Stacking DAO': {
+    name: PoolName.StackingDao,
+    description:
+      'Earn BTC rewards by pooling your tokens with Stacking DAO, the leading LST provider on Stacks.',
+    duration: 1,
+    website: 'https://app.stackingdao.com/?stackingOption=stx',
+    payoutMethod: PayoutMethod.BTC,
+    poolAddress: {
+      [NetworkInstance.mainnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperStackingDao],
+      [NetworkInstance.testnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperStackingDao],
+      [NetworkInstance.devnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperStackingDao],
+    }, // pool address is the same as pool contract
+    poxContract: PoxContractName.WrapperStackingDao,
+    minimumDelegationAmount: 500_000_000,
+    icon: <PoolIcon src="/32x32_StackingDao.png" />,
+    allowCustomRewardAddress: false,
+    disabled: false,
+  },
+
+  Xverse: {
+    name: PoolName.Xverse,
+    description:
+      'Xverse pool is a non-custodial stacking pool service from the makers of Xverse wallet.',
+    duration: 1,
+    website: 'https://pool.xverse.app/',
+    payoutMethod: PayoutMethod.BTC,
+    poolAddress: {
+      [NetworkInstance.mainnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
+      [NetworkInstance.testnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
+      [NetworkInstance.devnet]: 'SPXVRSEH2BKSXAEJ00F1BY562P45D5ERPSKR4Q33',
+    },
+    poxContract: PoxContractName.WrapperOneCycle,
+    minimumDelegationAmount: 100_000_000,
+    icon: <PoolIcon src="/32x32_Xverse.png" />,
+    allowCustomRewardAddress: true,
+    disabled: false,
+  },
+
   'Custom Pool': {
     name: PoolName.CustomPool,
     description:
