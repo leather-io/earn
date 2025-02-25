@@ -129,9 +129,9 @@ export function EnrollForSbtcRewardsCard(props: ChooseStackingMethodLayoutProps)
   }, [userEnrolled, isSignedIn]);
 
   const poolOptions = [
+    { name: 'ALEX', Logo: AlexLogo, url: 'https://app.alexlab.co/pool' },
+    { name: 'Bitflow', Logo: BitflowLogo, url: 'https://app.bitflow.finance/sbtc#earn3' },
     { name: 'Velar', Logo: VelarLogo, url: 'https://app.velar.com/pool' },
-    { name: 'Bitflow', Logo: BitflowLogo, url: 'https://bitflow.finance' },
-    { name: 'Alex', Logo: AlexLogo, url: 'https://app.alexlab.co/pool' },
   ];
 
   return (

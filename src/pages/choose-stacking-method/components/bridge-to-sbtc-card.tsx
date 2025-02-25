@@ -45,19 +45,19 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
         title="Get sBTC"
         description={
           <>
-            Convert your bitcoin or stacks tokens to sBTC to access the rewards program. Stay liquid
-            while earning yield on the Stacks network.
+            Convert your bitcoin or token on Stacks to sBTC to access the rewards program. Stay
+            liquid while earning yield on the Stacks network.
           </>
         }
         icon={<BridgeIllustration />}
       >
         <Flex flexDirection="column" gap="space.03" width="100%">
           <StyledActionButton onClick={onBtcClick}>
-            <span>Bridge Bitcoin</span>
+            <span>Bridge BTC</span>
             <BtcToSbtcIcon />
           </StyledActionButton>
           <StyledActionButton onClick={onStxClick}>
-            <span>Swap stacks token</span>
+            <span>Swap token on Stacks</span>
             <StxToSbtcIcon />
           </StyledActionButton>
         </Flex>
