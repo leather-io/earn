@@ -1,5 +1,5 @@
-import { Box } from '@stacks/ui';
 import { IconClockHour4 } from '@tabler/icons-react';
+import { Box } from 'leather-styles/jsx';
 
 import { Alert, AlertText } from '@components/alert';
 import { toHumanReadableStx } from '@utils/unit-convert';

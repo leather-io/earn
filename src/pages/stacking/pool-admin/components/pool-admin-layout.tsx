@@ -1,4 +1,4 @@
-import { Box, Flex } from '@stacks/ui';
+import { Box, Flex } from 'leather-styles/jsx';
 
 import { Screen } from '@components/screen';
 

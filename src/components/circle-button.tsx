@@ -1,21 +1,22 @@
-import { Box, BoxProps, color } from '@stacks/ui';
+import { Button, ButtonProps } from '@leather.io/ui';
 
-type CircleButtonProps = BoxProps;
+type CircleButtonProps = ButtonProps;
 
 export function CircleButton(props: CircleButtonProps) {
   return (
-    <Box
-      as="button"
-      {...{ type: 'button' }}
-      backgroundColor={color('bg-4')}
-      _hover={{ color: color('brand') }}
-      style={{ userSelect: 'none' }}
-      display="inline-block"
+    <Button
+      size="sm"
       width="28px"
       height="28px"
+      variant="ghost"
+      backgroundColor="ink.background-secondary"
+      _hover={{ color: 'ink.text-primary' }}
+      style={{ userSelect: 'none' }}
       borderRadius="50%"
       fontWeight={800}
-      outline={0}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
       {...props}
     />
   );

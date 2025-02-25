@@ -1,7 +1,7 @@
 import React, { cloneElement, isValidElement } from 'react';
 
-import { Box } from '@stacks/ui';
 import { BoxProps } from '@stacks/ui-core';
+import { Box } from 'leather-styles/jsx';
 
 import { increment } from '@utils/mutate-numbers';
 

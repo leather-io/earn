@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { Text, color } from '@stacks/ui';
-import type { BoxProps } from '@stacks/ui';
+import { BoxProps, styled } from 'leather-styles/jsx';
 
 export const ErrorText: React.FC<BoxProps> = ({ children, ...rest }) => (
-  <Text
+  <styled.span
     textAlign="left"
     lineHeight="16px"
     display="block"
     textStyle="caption"
-    color={color('feedback-error')}
+    color="red.action-primary-default"
     {...rest}
   >
     {children}
-  </Text>
+  </styled.span>
 );
