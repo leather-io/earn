@@ -62,20 +62,26 @@ export const useLiquidStackingButton = (props: ChooseStackingMethodLayoutProps) 
   return { isDisabled, onClick };
 };
 
-export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) => void) {
+export function useLeatherSbtcBridgeButton(
+  setUpdateModalOpen: (open: boolean) => void,
+  swapType: 'btc' | 'stx' = 'btc'
+) {
   const leatherDetected = window.LeatherProvider !== undefined;
   const { isSignedIn, signIn } = useAuth();
   const leatherNotDetectedOrNotSignedIn = !leatherDetected || !isSignedIn;
 
   return {
     onClick: async () => {
+      // Return early if not signed in or Leather not detected
       if (leatherNotDetectedOrNotSignedIn) {
         signIn({ allowAllProviders: true });
         return;
       }
+
       try {
+        // Note: base parameter must be either undefined or a valid value - empty string will fail
         await window.LeatherProvider?.request('openSwap', {
-          base: 'BTC',
+          ...(swapType === 'btc' ? { base: 'BTC' } : {}),
           quote: 'sBTC',
         });
         analytics.untypedTrack('sbtc_bridge_requested');
@@ -85,5 +91,6 @@ export function useLeatherSbtcBridgeButton(setUpdateModalOpen: (open: boolean) =
         setUpdateModalOpen(true);
       }
     },
+    disabled: leatherNotDetectedOrNotSignedIn,
   };
 }
