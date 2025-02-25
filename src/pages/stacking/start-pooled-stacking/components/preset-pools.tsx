@@ -87,9 +87,13 @@ export const pools = {
     payoutMethod: PayoutMethod.BTC,
     poolAddress: {
       [NetworkInstance.mainnet]:
-        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperStackingDao],
+        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][
+          PoxContractName.WrapperStackingDao
+        ],
       [NetworkInstance.testnet]:
-        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperStackingDao],
+        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][
+          PoxContractName.WrapperStackingDao
+        ],
       [NetworkInstance.devnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperStackingDao],
     }, // pool address is the same as pool contract

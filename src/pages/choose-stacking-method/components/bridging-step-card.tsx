@@ -1,4 +1,3 @@
-import { Button } from '@leather.io/ui';
 import { Box, Flex, styled } from 'leather-styles/jsx';
 import { token } from 'leather-styles/tokens';
 
@@ -8,9 +7,11 @@ type Props = ChooseStackingMethodLayoutProps & {
   title: string;
   description: React.ReactNode;
   icon: React.ReactNode;
-  onButtonPress: () => void;
-  buttonText: string;
   step: number;
+  children?: React.ReactNode;
+  // Keep old props for backward compatibility
+  onButtonPress?: () => void;
+  buttonText?: string;
   disabled?: boolean;
 };
 
@@ -37,17 +38,9 @@ export function BridgingStepCard(props: Props) {
             </styled.p>
           </Flex>
 
-          <Box>
-            <Button
-              variant="outline"
-              alignSelf="flex-start"
-              fullWidth
-              disabled={props.disabled}
-              onClick={props.onButtonPress}
-            >
-              {props.buttonText}
-            </Button>
-          </Box>
+          <Flex flexDirection="column" gap="space.03" width="100%">
+            {props.children}
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
