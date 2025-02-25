@@ -1,5 +1,5 @@
-import { Stack } from '@stacks/ui';
 import { IconCheck } from '@tabler/icons-react';
+import { Stack } from 'leather-styles/jsx';
 
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 

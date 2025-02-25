@@ -1,4 +1,4 @@
-import { Box } from '@stacks/ui';
+import { Box } from 'leather-styles/jsx';
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { Navigate } from '@components/navigate';

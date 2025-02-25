@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 
-import { Box, Flex, Spinner, Text, color } from '@stacks/ui';
+import { Spinner } from '@leather.io/ui';
 import { addSeconds, formatDistanceToNow } from 'date-fns';
 import { useField } from 'formik';
+import { Flex, HStack, styled } from 'leather-styles/jsx';
 
 import { CircleButton } from '@components/circle-button';
 import { ErrorAlert } from '@components/error-alert';
@@ -49,16 +50,17 @@ export function DurationCyclesField() {
         mt="base"
         padding="8px"
         boxShadow="low"
-        border={`1px solid ${color('border')}`}
+        border="1px solid"
+        borderColor="ink.border-default"
         borderRadius="8px"
         onClick={e => (e.stopPropagation(), e.preventDefault())}
         position="relative"
         zIndex={10}
       >
-        <Text alignItems="center" ml="tight" color={color('text-title')}>
+        <styled.span alignItems="center" ml="tight" color="ink.text-primary">
           {cycleLabels[durationWithDefault(duration) - 1]}
-        </Text>
-        <Box>
+        </styled.span>
+        <HStack gap="1">
           <CircleButton
             onClick={e => {
               e.stopPropagation();
@@ -80,7 +82,7 @@ export function DurationCyclesField() {
           >
             +
           </CircleButton>
-        </Box>
+        </HStack>
       </Flex>
     </>
   );

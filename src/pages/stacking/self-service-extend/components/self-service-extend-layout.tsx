@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { PoxInfo } from '@stacks/stacking';
-import { Box, Flex } from '@stacks/ui';
+import { Box, Flex } from 'leather-styles/jsx';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { BaseDrawer } from '@components/drawer/base-drawer';
