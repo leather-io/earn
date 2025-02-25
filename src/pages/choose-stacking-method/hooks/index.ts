@@ -73,7 +73,7 @@ export function useLeatherSbtcBridgeButton(
   return {
     onClick: async () => {
       // Return early if not signed in or Leather not detected
-      if (!leatherDetected || !isSignedIn) {
+      if (leatherNotDetectedOrNotSignedIn) {
         signIn({ allowAllProviders: true });
         return;
       }
@@ -91,5 +91,6 @@ export function useLeatherSbtcBridgeButton(
         setUpdateModalOpen(true);
       }
     },
+    disabled: leatherNotDetectedOrNotSignedIn,
   };
 }

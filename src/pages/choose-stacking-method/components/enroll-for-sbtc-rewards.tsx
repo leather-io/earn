@@ -13,10 +13,12 @@ import BitflowLogo from '@assets/images/logo-bitflow.svg';
 import VelarLogo from '@assets/images/logo-velar.svg';
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { BaseDrawer } from '@components/drawer/base-drawer';
+import { useEnrolledStatus, useSbtcEnroll } from '@hooks/use-enroll-transaction';
+import { analytics } from '@utils/analytics';
 
 import { ChooseStackingMethodLayoutProps } from '../types';
 
-const PoolOption = styled(Box, {
+const StyledPoolOption = styled('a', {
   base: {
     display: 'flex',
     alignItems: 'center',
@@ -24,6 +26,8 @@ const PoolOption = styled(Box, {
     padding: 'space.02',
     borderTop: '1px solid $border-default',
     background: 'white',
+    textDecoration: 'none',
+    color: 'inherit',
 
     '&:hover': {
       background: '$surface-surface-raised',
@@ -105,107 +109,114 @@ export function EnrollForSbtcRewardsCard(props: ChooseStackingMethodLayoutProps)
   const [hasEnrolled, setHasEnrolled] = useState(false);
   const { isSignedIn } = useAuth();
 
+  const { data: enrolledQuery, refetch } = useEnrolledStatus();
+
+  const onEnrollFinish = useCallback(() => {
+    refetch();
+    setHasEnrolled(true);
+  }, [refetch]);
+
+  const { createSbtcYieldEnrollContractCall } = useSbtcEnroll({ onFinish: onEnrollFinish });
+
+  const userEnrolled = useMemo(() => {
+    return enrolledQuery?.isEnrolled || hasEnrolled;
+  }, [enrolledQuery?.isEnrolled, hasEnrolled]);
+
   const enrolledButtonText = useMemo(() => {
-    if (hasEnrolled) return `You're already enrolled in the next cycle`;
+    if (userEnrolled) return `You're already enrolled in the next cycle`;
     if (isSignedIn) return 'Enroll';
     return 'Sign in to enroll';
-  }, [hasEnrolled, isSignedIn]);
+  }, [userEnrolled, isSignedIn]);
 
   const poolOptions = [
     { name: 'Velar', Logo: VelarLogo, url: 'https://app.velar.com/pool' },
-    { name: 'Bitflow', Logo: BitflowLogo, url: 'https://app.bitflow.finance/sbtc#earn3' },
+    { name: 'Bitflow', Logo: BitflowLogo, url: 'https://bitflow.finance' },
     { name: 'Alex', Logo: AlexLogo, url: 'https://app.alexlab.co/pool' },
   ];
 
   return (
     <Box css={{ position: 'relative' }}>
       <BridgingStepCard
+        {...props}
         step={2}
-        disabled={hasEnrolled}
+        disabled={userEnrolled}
         title="Enroll and keep sBTC in your wallet"
         description="The more sBTC you hold in your wallet, the greater your rewards. Rewards are automatically distributed from the protocol, giving you more sBTC to grow your holdings."
         icon={<EnrollIllustration />}
-        buttonText=""
-        {...props}
       >
         <StyledActionButton
           onClick={() => {
             if (!isSignedIn) return window.scrollTo({ top: 0, behavior: 'smooth' });
             setIsModalOpen(true);
           }}
-          disabled={hasEnrolled}
+          disabled={userEnrolled}
+          variant="ghost"
+          css={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 'space.02',
+            background: 'white',
+            '&:hover': {
+              background: '',
+            },
+          }}
         >
           <span>{enrolledButtonText}</span>
           <EnrollIcon />
         </StyledActionButton>
 
         <ExpandableButton>
-          <Button
-            variant="ghost"
-            css={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: 'space.02',
-              background: 'white',
-              '&:hover': {
-                background: '',
-              },
-            }}
+          <StyledActionButton
             onClick={() => setIsPoolExpanded(!isPoolExpanded)}
+            css={{
+              border: 'none',
+              borderRadius: '0',
+            }}
           >
-            <Flex css={{ alignItems: 'center', gap: '$1' }}>
-              <span>Explore Pools</span>
+            <Flex alignItems="center" gap="space.02">
+              <span>Explore pools</span>
               <ChevronWrapper expanded={isPoolExpanded}>
                 <ChevronDownIcon />
               </ChevronWrapper>
             </Flex>
             {!isPoolExpanded && <PoolLogosIcon />}
-          </Button>
+          </StyledActionButton>
 
           {isPoolExpanded && (
-            <>
-              {poolOptions.map(pool => (
-                <a
-                  key={pool.name}
-                  href={pool.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                  }}
-                >
-                  <PoolOption>
-                    <span>{pool.name}</span>
-                    <LogoWrapper>
-                      <pool.Logo />
-                    </LogoWrapper>
-                  </PoolOption>
-                </a>
+            <Box>
+              {poolOptions.map(({ name, Logo, url }) => (
+                <StyledPoolOption key={name} href={url} target="_blank" rel="noopener noreferrer">
+                  <span>{name}</span>
+                  <LogoWrapper>
+                    <Logo />
+                  </LogoWrapper>
+                </StyledPoolOption>
               ))}
-            </>
+            </Box>
           )}
         </ExpandableButton>
       </BridgingStepCard>
 
       <BaseDrawer
-        title="Enroll for sBTC rewards"
+        title="Enroll in sBTC Rewards"
         isShowing={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       >
         <Flex alignItems="center" flexDirection="column" p="space.04">
           <Box mx="space.04" my="space.02">
             <Flex flexDirection="column">
-              <Box textStyle="body.01" mb="space.04" color="ink.text-primary">
-                Please note that Leather does not provide this rewards program. It is operated by
-                Bitcoin L2 Labs. You are enrolling at your own risk.
-              </Box>
+              <styled.p textStyle="body.01" mb="space.04" color="ink.text-primary">
+                Enroll in the sBTC rewards program to start earning yield on your sBTC holdings.
+                Rewards are distributed automatically from the protocol.
+              </styled.p>
 
               <Flex flexDirection="column" gap="space.04" mt="space.06">
                 <Button
                   onClick={async () => {
+                    analytics.untypedTrack('sbtc_earn_enrollment_started');
+                    await createSbtcYieldEnrollContractCall();
                     setIsModalOpen(false);
                   }}
                 >
