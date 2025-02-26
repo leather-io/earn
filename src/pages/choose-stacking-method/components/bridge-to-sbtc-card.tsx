@@ -72,7 +72,7 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
             <BtcToSbtcIcon />
           </StyledActionButton>
           <StyledActionButton onClick={onStxClick} disabled={isBridgingDisabled}>
-            <span>Swap token on Stacks</span>
+            <span>Swap tokens on Stacks</span>
             <StxToSbtcIcon />
           </StyledActionButton>
         </Flex>
