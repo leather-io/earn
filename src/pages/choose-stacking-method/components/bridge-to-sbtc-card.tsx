@@ -29,6 +29,13 @@ const StyledActionButton = styled(Button, {
     '&:hover': {
       background: '',
     },
+
+    '&:disabled': {
+      opacity: 0.5,
+      cursor: 'not-allowed',
+      background: '$surface-surface-subdued',
+      borderColor: '$border-default',
+    },
   },
 });
 
@@ -36,6 +43,9 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { onClick: onBtcClick } = useLeatherSbtcBridgeButton(setIsModalOpen, 'btc');
   const { onClick: onStxClick } = useLeatherSbtcBridgeButton(setIsModalOpen, 'stx');
+
+  // This could come from props or a context if needed
+  const isBridgingDisabled = true;
 
   return (
     <>
@@ -47,16 +57,21 @@ export function BridgeToSBTCCard(props: ChooseStackingMethodLayoutProps) {
           <>
             Convert your bitcoin or token on Stacks to sBTC to access the rewards program. Stay
             liquid while earning yield on the Stacks network.
+            {isBridgingDisabled && (
+              <styled.p textStyle="body.01" fontWeight="500" mt="space.02">
+                Bridge hard cap reached — stay tuned for the next cap.
+              </styled.p>
+            )}
           </>
         }
         icon={<BridgeIllustration />}
       >
         <Flex flexDirection="column" gap="space.03" width="100%">
-          <StyledActionButton onClick={onBtcClick}>
+          <StyledActionButton onClick={onBtcClick} disabled={isBridgingDisabled}>
             <span>Bridge BTC</span>
             <BtcToSbtcIcon />
           </StyledActionButton>
-          <StyledActionButton onClick={onStxClick}>
+          <StyledActionButton onClick={onStxClick} disabled={isBridgingDisabled}>
             <span>Swap token on Stacks</span>
             <StxToSbtcIcon />
           </StyledActionButton>

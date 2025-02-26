@@ -20,7 +20,8 @@ export function BridgingStepCard(props: Props) {
     <Flex
       justifyItems="center"
       style={{
-        outline: `.5px solid ${token('colors.ink.border-default')}`,
+        borderLeft: `.5px solid ${token('colors.ink.border-default')}`,
+        borderRight: `.5px solid ${token('colors.ink.border-default')}`,
       }}
     >
       <Flex m="space.06">
