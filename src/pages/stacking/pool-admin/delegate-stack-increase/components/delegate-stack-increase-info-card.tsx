@@ -1,8 +1,8 @@
 import { IntegerType, intToBigInt } from '@stacks/common';
 import { StackingClient } from '@stacks/stacking';
 import { validateStacksAddress } from '@stacks/transactions';
-import { Box, Flex, Text } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 import { createAmountText } from 'src/pages/stacking/utils/create-amount-text';
 
 import { Address } from '@components/address';
@@ -25,10 +25,10 @@ import { DelegateStackIncreaseFormValues } from '../types';
 function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: string }) {
   return (
     <>
-      <Text textStyle="body.large.medium">You&apos;ll lock</Text>
-      <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
+      <styled.p>You&apos;ll lock</styled.p>
+      <styled.p fontSize="24px" mt="extra-tight" fontWeight={500}>
         {createAmountText(amount ?? 0)} for
-      </Text>
+      </styled.p>
       <Address address={stacker} />
     </>
   );
@@ -46,8 +46,8 @@ export function StackerDuration({ stacker }: { stacker: string }) {
   if (lockedAmount === null || lockedAmount === 0n) {
     return (
       <>
-        <Text textStyle="body.large.medium">Pool member must be locked first.</Text>
-        <Text textStyle="body.large.medium">Locked amount: 0 STX</Text>
+        <styled.p>Pool member must be locked first.</styled.p>
+        <styled.p>Locked amount: 0 STX</styled.p>
         <Address address={stacker} />
       </>
     );
@@ -81,7 +81,7 @@ export function InfoPanel() {
           {isValidStacker ? (
             <StackerIncreaseInfo stacker={stacker} amount={amount} />
           ) : (
-            <Text textStyle="body.large.medium">Choose pool member first!</Text>
+            <styled.span>Choose pool member first!</styled.span>
           )}
         </Flex>
         <Hr />

@@ -1,8 +1,8 @@
 import { intToBigInt } from '@stacks/common';
 import { StackingClient } from '@stacks/stacking';
 import { validateStacksAddress } from '@stacks/transactions';
-import { Box, Flex, Text } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { Address } from '@components/address';
 import { Hr } from '@components/hr';
@@ -36,8 +36,8 @@ function StackerExtendInfo({ stacker }: { stacker: string }) {
   if (amount === null || amount === 0n) {
     return (
       <>
-        <Text textStyle="body.large.medium">Pool member can&apos;t be extended</Text>
-        <Text textStyle="body.large.medium">Locked amount: 0 STX</Text>
+        <styled.p>Pool member can&apos;t be extended</styled.p>
+        <styled.p>Locked amount: 0 STX</styled.p>
         <Address address={stacker} />
       </>
     );
@@ -45,10 +45,10 @@ function StackerExtendInfo({ stacker }: { stacker: string }) {
 
   return (
     <>
-      <Text textStyle="body.large.medium">You&apos;ll extend locking of</Text>
-      <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
+      <styled.p>You&apos;ll extend locking of</styled.p>
+      <styled.p fontSize="24px" mt="extra-tight" fontWeight={500}>
         {toHumanReadableStx(amount ?? 0)} for
-      </Text>
+      </styled.p>
       <Address address={stacker} />
     </>
   );
@@ -67,7 +67,7 @@ export function InfoPanel() {
           {isValidStacker ? (
             <StackerExtendInfo stacker={stacker} />
           ) : (
-            <Text textStyle="body.large.medium">Choose pool member first!</Text>
+            <styled.p>Choose pool member first!</styled.p>
           )}
         </Flex>
         <Hr />

@@ -1,9 +1,9 @@
-import { BoxProps, Text, color } from '@stacks/ui';
+import { BoxProps, styled } from 'leather-styles/jsx';
 
 export function StackingDescription({ children, ...props }: BoxProps) {
   return (
-    <Text textStyle="body.large" display="block" color={color('text-caption')} {...props}>
+    <styled.p textStyle="body.large" display="block" color="ink.text-subdued" {...props}>
       {children}
-    </Text>
+    </styled.p>
   );
 }

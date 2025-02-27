@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Spinner } from '@leather.io/ui';
+import { Spinner } from '@stacks/ui';
 import { addSeconds, formatDistanceToNow } from 'date-fns';
 import { useField } from 'formik';
 import { Flex, HStack, styled } from 'leather-styles/jsx';

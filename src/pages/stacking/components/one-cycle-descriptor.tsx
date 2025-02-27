@@ -1,13 +1,12 @@
 import { FC } from 'react';
 
-import { BoxProps, Spinner, Text, color } from '@stacks/ui';
+import { Spinner } from '@leather.io/ui';
+import { BoxProps, styled } from 'leather-styles/jsx';
 
 import { ErrorAlert } from '@components/error-alert';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 
-type OneCycleDescriptorProps = BoxProps;
-
-export const OneCycleDescriptor: FC<OneCycleDescriptorProps> = props => {
+export const OneCycleDescriptor: FC<BoxProps> = props => {
   const q = useGetPoxInfoQuery();
 
   if (q.isLoading) {
@@ -23,8 +22,8 @@ export const OneCycleDescriptor: FC<OneCycleDescriptorProps> = props => {
   }
 
   return (
-    <Text display="block" textStyle="body.small" color={color('text-caption')} {...props}>
+    <styled.p display="block" textStyle="body.small" color="ink.text-subdued" {...props}>
       Cycles last {q.data.reward_cycle_length} Bitcoin blocks.
-    </Text>
+    </styled.p>
   );
 };
