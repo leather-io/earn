@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { Box, Button, ButtonProps, Flex, FlexProps } from '@stacks/ui';
+import { Button, ButtonProps } from '@leather.io/ui';
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
+import { Box, Flex, FlexProps } from 'leather-styles/jsx';
 
 import { Title } from '@components/title';
 

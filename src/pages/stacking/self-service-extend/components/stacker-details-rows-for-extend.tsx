@@ -1,5 +1,5 @@
 import { DelegationInfo } from '@stacks/stacking';
-import { Text } from '@stacks/ui';
+import { styled } from 'leather-styles/jsx';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
@@ -52,7 +52,9 @@ export function StackerDetailsRowsForUserExtend({
     : undefined;
 
   if (!requiresExtension) {
-    return <Text>User is already stacking for the next cycle. No need to lock again now.</Text>;
+    return (
+      <styled.p>User is already stacking for the next cycle. No need to lock again now.</styled.p>
+    );
   }
   return (
     <>
@@ -81,7 +83,7 @@ export function StackerDetailsRowsForUserExtend({
 
           <Hr />
 
-          <Text>Lock their delegated STX for 1 more cycle.</Text>
+          <styled.p>Lock their delegated STX for 1 more cycle.</styled.p>
         </>
       ) : (
         <Alert>

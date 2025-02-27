@@ -1,5 +1,5 @@
-import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -10,15 +10,15 @@ export function CustomPoolAddressInput() {
   const [field, meta] = useField('poolAddress');
   return (
     <>
-      <Text
-        textStyle="body.small"
-        color={color('text-caption')}
+      <styled.p
+        textStyle="body.02"
+        color="ink.text-subdued"
         mt="tight"
         display="inline-block"
         lineHeight="18px"
       >
         The pool will provide this address for you.
-      </Text>
+      </styled.p>
       <CryptoAddressInput
         fieldName="poolAddress"
         addressType="STX"

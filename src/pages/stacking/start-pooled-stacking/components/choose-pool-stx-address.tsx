@@ -1,5 +1,5 @@
-import { Text } from '@stacks/ui';
 import { useField } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -13,14 +13,14 @@ export function ChoosePoolAddress() {
   return (
     <Step title="Pool address">
       <Description>
-        <Text>
+        <styled.p>
           Enter the STX address of the pool with which you&apos;d like to Stack without your STX
           leaving your wallet.
-        </Text>
-        <Text>
+        </styled.p>
+        <styled.p>
           The pool will provide this address for you. Pools can have different addresses that
           correspond to particular durations.
-        </Text>
+        </styled.p>
         <OpenExternalLinkInNewTab href="https://stacks.co/stacking#services">
           Discover pools on stacks.co
         </OpenExternalLinkInNewTab>

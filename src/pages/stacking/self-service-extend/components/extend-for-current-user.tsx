@@ -1,6 +1,7 @@
+import { Button } from '@leather.io/ui';
 import { PoxInfo, StackingClient } from '@stacks/stacking';
-import { Box, Button, Text } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
+import { Box, styled } from 'leather-styles/jsx';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { CenteredSpinner } from '@components/centered-spinner';
@@ -50,7 +51,7 @@ export function ExtendForCurrentUser({
   if (!delegationStatus.delegated) {
     return (
       <>
-        <Text py="loose">You are not part of a pool.</Text>
+        <styled.p py="space.0">You are not part of a pool.</styled.p>
         <Row m="loose" justifyContent="space-evenly">
           <Button onClick={() => setShowExtendForOtherUser(true)}>
             Lock for other pool members
@@ -67,22 +68,22 @@ export function ExtendForCurrentUser({
           <Hr />
         </>
       )}
-      <Text py="loose">
+      <styled.p py="space.0">
         {requiresExtension
           ? 'Lock your STX for 1 more cycle.'
           : 'Your are already stacking for the next cycle.'}
-      </Text>
-      <Row m="loose" justifyContent="space-between">
-        <Button mode="tertiary" onClick={onClose}>
+      </styled.p>
+      <Row m="space.02" justifyContent="space-between">
+        <Button variant="outline" onClick={onClose}>
           Cancel
         </Button>
 
         <Button
           type="submit"
-          isLoading={isContractCallExtensionPageOpen}
-          isDisabled={!requiresExtension}
+          aria-busy={isContractCallExtensionPageOpen}
+          disabled={!requiresExtension}
         >
-          <Box mr="loose">
+          <Box mr="space.02">
             <IconLock />
           </Box>
           Lock STX
@@ -90,7 +91,7 @@ export function ExtendForCurrentUser({
       </Row>
       <Row m="loose" justifyContent="space-evenly">
         <Button
-          mode={!requiresExtension ? 'primary' : 'tertiary'}
+          variant={!requiresExtension ? 'solid' : 'outline'}
           onClick={() => setShowExtendForOtherUser(true)}
         >
           Lock for other pool members

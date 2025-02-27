@@ -1,5 +1,5 @@
-import { Text } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { Description, Step } from '../../components/stacking-form-step';
 import { EditingFormValues } from '../types';
@@ -16,11 +16,13 @@ export function PresetPoolingRewardAddressInfo() {
     <Step title="Reward address">
       <Description>
         {payoutMethod === PayoutMethod.STX ? (
-          <Text>
+          <styled.p>
             The address where you&apos;ll receive your STX rewards is your current account.
-          </Text>
+          </styled.p>
         ) : (
-          <Text>The address where you&apos;ll receive rewards is determined by the pool.</Text>
+          <styled.p>
+            The address where you&apos;ll receive rewards is determined by the pool.
+          </styled.p>
         )}
       </Description>
     </Step>

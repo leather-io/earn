@@ -1,5 +1,5 @@
-import { Stack, Text } from '@stacks/ui';
 import { useField } from 'formik';
+import { Stack, styled } from 'leather-styles/jsx';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
 
@@ -22,15 +22,15 @@ export function ChoosePoolingPool({ onPoolChange }: ChoosePoolingPoolProps) {
   return (
     <Step title="Pool">
       <Description>
-        <Text>
+        <styled.p>
           Select a pool to start stacking or{' '}
           <OpenExternalLinkInNewTab display="inline" href="https://www.stacks.co/learn/stacking">
             discover others on stacks.co.
           </OpenExternalLinkInNewTab>
-        </Text>
+        </styled.p>
       </Description>
 
-      <Stack spacing="base" mt="extra-loose">
+      <Stack gap="space.02" mt="extra-loose">
         {(Object.keys(pools) as PoolName[]).map((poolName: PoolName, index: number) => {
           const p = pools[poolName];
           if (p.disabled) return null;

@@ -58,14 +58,13 @@ export function ChooseStackingAmount() {
           <Spinner />
         ) : availableForStacking ? (
           <>
-            <styled.p mt="space.03" color="ink.text-primary">
+            <styled.span mt="space.03" color="ink.text-primary">
               Available balance:{' '}
-            </styled.p>
+            </styled.span>
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               type="button"
-              color="#12100F"
               onClick={() => helpers.setValue(microStxToStx(availableForStacking))}
             >
               {toHumanReadableStx(availableForStacking)}
