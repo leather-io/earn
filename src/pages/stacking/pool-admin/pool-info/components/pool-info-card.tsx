@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@stacks/ui';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { Hr } from '@components/hr';
 import {
@@ -20,9 +20,9 @@ export function InfoPanel() {
     <InfoCard minHeight="84px">
       <Box mx={['loose', 'extra-loose']}>
         <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-          <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
+          <styled.p fontSize="24px" mt="extra-tight" fontWeight={500}>
             Cycles
-          </Text>
+          </styled.p>
         </Flex>
         <Hr />
         <Group width="100%" mt="base-loose" mb="extra-loose">

@@ -1,5 +1,5 @@
-import { Box, color } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { styled } from 'leather-styles/jsx';
 import { PooledStackerFormValues } from 'src/types/stacking';
 
 import { toHumanReadableStx } from '@utils/unit-convert';
@@ -15,15 +15,15 @@ export function Balances() {
 
   return (
     <>
-      <Box textStyle="body.small" color={color('text-caption')} mt="base-tight">
+      <styled.p color="ink.text-subdued" mt="base-tight">
         Available balance: {toHumanReadableStx(totalAmount)}
-      </Box>
-      <Box textStyle="body.small" color={color('text-caption')} mt="base-tight">
+      </styled.p>
+      <styled.p color="ink.text-subdued" mt="base-tight">
         Locked amount: {toHumanReadableStx(lockedAmount)}
-      </Box>
-      <Box textStyle="body.small" color={color('text-caption')} mt="base-tight">
+      </styled.p>
+      <styled.p color="ink.text-subdued" mt="base-tight">
         Delegated amount: {toHumanReadableStx(delegatedAmount)}
-      </Box>
+      </styled.p>
     </>
   );
 }

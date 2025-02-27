@@ -43,7 +43,7 @@ export const InfoCardGroup = ({ children, ...props }: Props) => {
         key: index,
         mb: index === parsedChildren.length ? '280px' : undefined,
       }),
-      index !== parsedChildren.length - 1 && <Hr my="loose" key={index.toString() + '-hr'} />,
+      index !== parsedChildren.length - 1 && <Hr my="space.06" key={index.toString() + '-hr'} />,
     ];
   });
   return <Box {...props}>{infoGroup}</Box>;

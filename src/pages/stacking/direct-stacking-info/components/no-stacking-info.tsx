@@ -1,5 +1,5 @@
-import { Flex, Stack, Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
+import { Flex, Stack, styled } from 'leather-styles/jsx';
 
 import { Alert } from '@components/alert';
 import { InfoCard } from '@components/info-card';
@@ -11,11 +11,11 @@ export function NoStackingInfo() {
       <InfoCard width="420px">
         <Alert icon={<IconInfoCircle />}>
           <Stack>
-            <Text>
+            <styled.p>
               It appears that you&apos;re not stacking yet. If you recently started to stack, your
               stacking info will appear here in a few seconds.
-            </Text>
-            <Text>
+            </styled.p>
+            <styled.p>
               You may want to{' '}
               <Link
                 to="../start-direct-stacking"
@@ -33,7 +33,7 @@ export function NoStackingInfo() {
                 choose your stacking method
               </Link>
               .
-            </Text>
+            </styled.p>
           </Stack>
         </Alert>
       </InfoCard>

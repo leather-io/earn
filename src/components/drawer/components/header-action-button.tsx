@@ -1,9 +1,8 @@
 import { SVGAttributes } from 'react';
 
-import { Box as StacksBox, color } from '@stacks/ui';
+import { IconButton } from '@leather.io/ui';
 import { css } from 'leather-styles/css';
 import { Box, Grid } from 'leather-styles/jsx';
-import { token } from 'leather-styles/tokens';
 import { useHover } from 'use-events';
 
 const transition = 'all 0.2s cubic-bezier(0.23, 1, 0.32, 1)';
@@ -22,7 +21,7 @@ interface HeaderActionButtonProps {
   onAction?(): void;
 }
 export function HeaderActionButton(props: HeaderActionButtonProps) {
-  const { icon, isWaitingOnPerformedAction, onAction } = props;
+  const { icon: IconComponent, isWaitingOnPerformedAction, onAction } = props;
   const [isHovered, bind] = useHover();
 
   return (
@@ -44,9 +43,9 @@ export function HeaderActionButton(props: HeaderActionButtonProps) {
       zIndex={9}
       {...bind}
     >
-      <StacksBox as={icon} size="20px" color={token('colors.ink.text-subdued')} />
+      {IconComponent && <IconButton icon={<IconComponent />} color="ink.text-subdued"></IconButton>}
       <Box
-        bg={color('invert')}
+        bg="ink.background-secondary"
         borderRadius="100%"
         left={0}
         opacity={isHovered && !isWaitingOnPerformedAction ? 0.12 : 0}

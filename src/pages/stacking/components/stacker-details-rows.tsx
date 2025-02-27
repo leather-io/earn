@@ -1,4 +1,3 @@
-import { color } from '@stacks/ui';
 import { StackerInfoDetails } from 'src/types/stacking';
 
 import { Address } from '@components/address';
@@ -33,7 +32,7 @@ export function StackerDetailsRows({ stackerInfoDetails, poxAddress }: StackerDe
         >
           Rewards active?
         </Label>
-        <Value color={hasStarted ? color('feedback-success') : color('feedback-alert')}>
+        <Value color={hasStarted ? 'green.text-primary' : 'yellow.text-primary'}>
           {hasStarted ? 'Yes' : 'No'}
         </Value>
       </Row>
@@ -51,9 +50,7 @@ export function StackerDetailsRows({ stackerInfoDetails, poxAddress }: StackerDe
         >
           End
         </Label>
-        <Value color={requiresExtension ? color('feedback-error') : undefined}>
-          Cycle {lastCycle}
-        </Value>
+        <Value color={requiresExtension ? 'red.text-primary' : undefined}>Cycle {lastCycle}</Value>
       </Row>
 
       <Row>

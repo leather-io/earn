@@ -118,9 +118,7 @@ export function ActivePoolingContent({
         </Section>
       </Group>
 
-      <Hr />
-
-      <Group my="extra-loose">
+      <Group mt="space.02">
         <Section>
           {!showIncreasePoolingAmount && (
             <Flex justify={'center'}>

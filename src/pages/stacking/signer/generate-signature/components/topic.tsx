@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Box, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 
 import { Description, Step } from '../../../components/stacking-form-step';
 
@@ -18,9 +18,9 @@ export function Topic() {
   return (
     <Step title="Topic">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-subdued">
           Select the topic (stacking method) for this signature
-        </Text>
+        </styled.p>
       </Description>
       <Box
         border="1px solid var(--colors-border)"
@@ -36,7 +36,7 @@ export function Topic() {
           style={{
             background: 'none',
             width: '100%',
-            color: color('text-caption'),
+            color: 'ink.text-subdued',
             fontSize: '14px',
           }}
         >

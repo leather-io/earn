@@ -1,7 +1,7 @@
-import { Box, BoxProps, color } from '@stacks/ui';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 export function Hr(props: BoxProps) {
   return (
-    <Box height="1px" mb="base-loose" width="100%" backgroundColor={color('border')} {...props} />
+    <Box height="1px" mb="space.06" width="100%" backgroundColor="ink.border-default" {...props} />
   );
 }

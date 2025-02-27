@@ -4,16 +4,15 @@ import React from 'react';
 import { TbTrash } from 'react-icons/tb';
 import { useNavigate as useNavigateRouterDom } from 'react-router-dom';
 
-import { Button, ButtonProps, CheckmarkIcon } from '@leather.io/ui';
+import { Button, ButtonProps, CheckmarkIcon, IconButton } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
 import { ChainId } from '@stacks/network';
-import { IconButton, Spinner } from '@stacks/ui';
-import { BoxProps } from '@stacks/ui-core';
+import { Spinner } from '@stacks/ui';
 import { useQuery } from '@tanstack/react-query';
 import { css } from 'leather-styles/css';
-import { Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
+import { BoxProps, Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';
 
 import routes from '@constants/routes';
 import { useNavigate } from '@hooks/use-navigate';
@@ -140,12 +139,8 @@ const Item = ({ item, isActive, isDisabled, onClick, isCustom, ...rest }: ItemPr
             <IconButton
               position="relative"
               zIndex={999}
-              size={'21px'}
-              icon={() => (
-                <span>
-                  <TbTrash size={'21px'} />
-                </span>
-              )}
+              size="sm"
+              icon={<TbTrash size={'21px'} />}
               onClick={() => removeCustomNetwork(item)}
               aria-label={'Remove network'}
             />
