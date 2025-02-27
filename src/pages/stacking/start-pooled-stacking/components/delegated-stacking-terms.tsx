@@ -1,5 +1,5 @@
-import { Stack, StackProps, Text } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
+import { Stack, StackProps, styled } from 'leather-styles/jsx';
 
 import { Stacks } from '@components/icons/stacks';
 import { StepsIcon } from '@components/icons/steps';
@@ -17,7 +17,7 @@ export function DelegatedStackingTerms({
   return (
     <Stack
       textStyle={['body.small', 'body.large']}
-      spacing="base-loose"
+      gap="space.02"
       pl="base"
       {...pseudoBorderLeft('feedback-alert')}
       {...rest}
@@ -26,26 +26,26 @@ export function DelegatedStackingTerms({
         title="This transaction can’t be reversed"
         icon={<IconLock width="16px" height="16px" />}
       >
-        <Text>
+        <styled.p>
           There will be no way to unlock your STX once the pool has started stacking them. You will
           need to wait until they unlock at the end of the pool&apos;s chosen number of cycles.
-        </Text>
+        </styled.p>
       </StackingTermItem>
       <StackingTermItem title="Research your pool" icon={<StepsIcon width="16px" height="16px" />}>
-        <Text>
+        <styled.p>
           Paying out rewards is at the discretion of the pool. Make sure you’ve researched and trust
           the pool you’re using.
-        </Text>
+        </styled.p>
       </StackingTermItem>
       {showPoxWrapperTermItem && (
         <StackingTermItem
           title="Stacking with Pool Contract"
           icon={<Stacks width="16px" height="16px" />}
         >
-          <Text>
+          <styled.p>
             The pool uses a smart contract that handles your stacking. By allowing the contract to
             call Stacking functions, you agree to the rules of the Pool contract.
-          </Text>
+          </styled.p>
         </StackingTermItem>
       )}
     </Stack>

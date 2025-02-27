@@ -1,5 +1,6 @@
 import { SignatureData } from '@stacks/connect';
-import { Flex, Text } from '@stacks/ui';
+import { styled } from 'leather-styles/jsx';
+import { Flex } from 'leather-styles/jsx';
 
 import {
   InfoCardLabel as Label,
@@ -21,15 +22,15 @@ export function SignatureSection({ signatureData }: Props) {
         <Row>
           <Label>
             <Flex alignItems={'center'} justifyContent={'center'}>
-              <Text>Public Key</Text>
+              <styled.p>Public Key</styled.p>
             </Flex>
           </Label>
         </Row>
         <Row>
           <Value>
-            <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+            <styled.p color="ink.text-subdued" overflowWrap="anywhere" fontFamily={'monospace'}>
               {signatureData ? `0x${signatureData.publicKey}` : '—'}
-            </Text>
+            </styled.p>
           </Value>
         </Row>
       </Section>
@@ -37,15 +38,15 @@ export function SignatureSection({ signatureData }: Props) {
         <Row>
           <Label>
             <Flex alignItems={'center'} justifyContent={'center'}>
-              <Text>Signature</Text>
+              <styled.p>Signature</styled.p>
             </Flex>
           </Label>
         </Row>
         <Row>
           <Value>
-            <Text textStyle="caption" overflowWrap={'anywhere'} fontFamily={'monospace'}>
+            <styled.p color="ink.text-subdued" overflowWrap={'anywhere'} fontFamily={'monospace'}>
               {signatureData ? `0x${signatureData.signature}` : '—'}
-            </Text>
+            </styled.p>
           </Value>
         </Row>
       </Section>
@@ -53,13 +54,13 @@ export function SignatureSection({ signatureData }: Props) {
         <Row>
           <Label>Max Amount</Label>
           <Value>
-            <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+            <styled.p color="ink.text-subdued" overflowWrap="anywhere" fontFamily={'monospace'}>
               {signatureData && signatureData.maxAmount
                 ? signatureData.maxAmount === MAX_U128
                   ? 'MAX'
                   : signatureData.maxAmount
                 : '—'}
-            </Text>
+            </styled.p>
           </Value>
         </Row>
       </Section>
@@ -67,9 +68,9 @@ export function SignatureSection({ signatureData }: Props) {
         <Row>
           <Label>Auth ID</Label>
           <Value>
-            <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+            <styled.p color="ink.text-subdued" overflowWrap="anywhere" fontFamily={'monospace'}>
               {signatureData ? signatureData.authId : '—'}
-            </Text>
+            </styled.p>
           </Value>
         </Row>
       </Section>

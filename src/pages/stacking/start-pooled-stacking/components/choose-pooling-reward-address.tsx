@@ -1,5 +1,5 @@
-import { Box, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -17,9 +17,9 @@ export function ChoosePoolingRewardAddress({ editable }: Props) {
   return (
     <Step title="Bitcoin address">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-subdued">
           Enter the Bitcoin address where you&apos;d like to receive your rewards.
-        </Text>
+        </styled.p>
       </Description>
 
       <Box position="relative" maxWidth="400px">
@@ -37,14 +37,14 @@ export function ChoosePoolingRewardAddress({ editable }: Props) {
         </CryptoAddressInput>
       </Box>
       {editable ? (
-        <Box textStyle="body.small" color={color('feedback-alert')} mt="base-tight">
+        <styled.p textStyle="body.small" color="yellow.action-primary-default" mt="base-tight">
           Make sure you control this BTC address. It is written on-chain and pool operators use the
           address as is.
-        </Box>
+        </styled.p>
       ) : (
-        <Box textStyle="body.small" color={color('text-caption')} mt="base-tight">
+        <styled.p textStyle="body.small" color="ink.text-subdued" mt="base-tight">
           This is your BTC address.
-        </Box>
+        </styled.p>
       )}
     </Step>
   );

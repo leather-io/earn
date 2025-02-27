@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Box, BoxProps } from '@stacks/ui';
+import { Box, BoxProps } from 'leather-styles/jsx';
 
 export const IndefiniteStackingIcon: FC<BoxProps> = props => {
   return (

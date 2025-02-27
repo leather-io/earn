@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Box, Flex, HTMLStyledProps, styled } from 'leather-styles/jsx';
 import { useFocus } from 'use-events';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
@@ -6,7 +6,7 @@ import { figmaTheme } from '@constants/figma-theme';
 
 import { ProtocolName } from '../types-preset-protocols';
 
-interface ProtocolSelectItemProps extends Omit<FlexProps, 'onChange'> {
+interface ProtocolSelectItemProps extends Omit<HTMLStyledProps<'label'>, 'onChange'> {
   name: ProtocolName;
   description: string;
   url: string;
@@ -26,13 +26,15 @@ export function ProtocolSelectItem(props: ProtocolSelectItemProps) {
       _hover={{ cursor: 'pointer' }}
       borderStyle="solid"
     >
-      <Flex
+      <styled.label
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
         minHeight="72px"
-        p="base-loose"
-        as="label"
-        border={`1px solid ${color('border')}`}
+        p="space.04"
+        border="1px solid"
+        borderColor="ink.border-default"
         borderRadius="12px"
-        _hover={{ cursor: 'pointer' }}
         position="relative"
         {...rest}
       >
@@ -40,31 +42,31 @@ export function ProtocolSelectItem(props: ProtocolSelectItemProps) {
           <Box position="relative" top="-3px">
             {icon}
           </Box>
-          <Flex ml="base-loose" width="100%" flexDirection={['column', 'row']}>
+          <Flex ml="space.04" width="100%" flexDirection={['column', 'row']}>
             <Box>
-              <Text
+              <styled.p
                 textStyle="body.small"
                 fontWeight={500}
                 display="block"
                 style={{ wordBreak: 'break-all' }}
               >
                 {name}
-              </Text>
-              <Text
+              </styled.p>
+              <styled.p
                 textStyle="body.small"
-                color={color('text-caption')}
+                color="ink.text-subdued"
                 mt="tight"
                 display="inline-block"
                 lineHeight="18px"
               >
                 {description}
-              </Text>
+              </styled.p>
 
               {url && (
                 <OpenExternalLinkInNewTab
                   href={url}
                   textStyle="body.small"
-                  color={color('text-caption')}
+                  color="ink.text-subdued"
                   mt="tight"
                   display="inline-block"
                   lineHeight="18px"
@@ -88,7 +90,7 @@ export function ProtocolSelectItem(props: ProtocolSelectItemProps) {
             />
           </Flex>
         </Flex>
-      </Flex>
+      </styled.label>
     </Box>
   );
 }

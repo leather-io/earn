@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { Text } from '@stacks/ui';
 import { Form, Formik } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
@@ -46,7 +46,7 @@ export function SelfServiceExtend() {
   if (stacker === null) {
     return (
       <CenteredErrorAlert>
-        <Text> Authentication required</Text>
+        <styled.p> Authentication required</styled.p>
       </CenteredErrorAlert>
     );
   }
@@ -66,7 +66,7 @@ export function SelfServiceExtend() {
     console.error(msg);
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>{msg}</Text>
+        <styled.p>{msg}</styled.p>
       </CenteredErrorAlert>
     );
   }
@@ -94,7 +94,7 @@ export function SelfServiceExtend() {
   if (delegatedTo === undefined) {
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>Not pooling with a self-service pool</Text>
+        <styled.p>Not pooling with a self-service pool</styled.p>
       </CenteredErrorAlert>
     );
   }

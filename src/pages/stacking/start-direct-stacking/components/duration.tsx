@@ -1,5 +1,5 @@
-import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -17,14 +17,14 @@ export function Duration() {
     <>
       <Step title="Duration">
         <Description>
-          <Text color={color('text-caption')}>
+          <styled.p color="ink.text-subdued">
             Every cycle, each of your reward slots will be eligible for rewards. After your chosen
             duration, you&apos;ll need to wait one cycle before you can stack from this address
             again.{' '}
             <OpenExternalLinkInNewTab href="https://docs.stacks.co/concepts/block-production/stacking">
               Learn more about cycles.
             </OpenExternalLinkInNewTab>
-          </Text>
+          </styled.p>
         </Description>
 
         <Stepper

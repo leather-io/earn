@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Button, Flex, Stack, Text, color } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
 import { useField } from 'formik';
-import { Box, styled } from 'leather-styles/jsx';
+import { Box, Flex, Stack, styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -23,7 +23,7 @@ function RecommendedFor({ children }: { children?: React.ReactNode }) {
           <styled.p fontStyle="caption" color="ink.text-primary">
             Recommended for
           </styled.p>
-          <Text>{children} </Text>
+          <styled.p>{children} </styled.p>
         </Box>
       </Flex>
     </Box>
@@ -41,16 +41,16 @@ export function ChoosePoolingDuration() {
   return !customDuration && duration > 0 ? (
     <Step title="Duration">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-subdued">
           The pool looks your STX for {duration} cycle{duration > 1 ? 's' : ''} at the time. You can
           revoke the pool permission at any time and your STX will be unlocked after the end of the
           next cycle.
-        </Text>
-        <Text color={color('text-caption')}>
+        </styled.p>
+        <styled.p color="ink.text-caption">
           By default, you will be part of the pool until you revoke (indefinite duration). You can
           set a limit to leave the pool automatically{' '}
           <Button
-            variant="link"
+            variant="ghost"
             type="button"
             onClick={() => {
               helpersDelegationDurationType.setValue('limited');
@@ -60,19 +60,19 @@ export function ChoosePoolingDuration() {
             here
           </Button>
           .
-        </Text>
+        </styled.p>
       </Description>
     </Step>
   ) : (
     <Step title="Duration">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-caption">
           Choose whether you want to pool with a limited duration, or give the pool indefinite
           permission. Each cycles lasts around 15 days.
-        </Text>
+        </styled.p>
       </Description>
 
-      <Stack spacing="base" mt="extra-loose">
+      <Stack gap="space.02" mt="extra-loose">
         <DurationSelectItem
           title="Indefinite permission"
           icon={<IndefiniteStackingIcon />}
@@ -80,11 +80,11 @@ export function ChoosePoolingDuration() {
           activeDelegationType={fieldDelegationDurationType.value}
           onChange={val => helpersDelegationDurationType.setValue(val)}
         >
-          <Text>
+          <styled.p>
             Allow the pool to stack on your behalf for a max of 12 cycles at a time. You can unlock
             them at any moment by revoking the pool permission but keep in mind that your STX will
             be locked until completing the duration initially set by the pool.
-          </Text>
+          </styled.p>
           <RecommendedFor>
             Users who wish to stack continuously and, when wishing to access STX again, understand
             revocation must be done before funds are re-stacked by pool.
@@ -97,20 +97,20 @@ export function ChoosePoolingDuration() {
           activeDelegationType={fieldDelegationDurationType.value}
           onChange={val => helpersDelegationDurationType.setValue(val)}
         >
-          <Text>
+          <styled.p>
             Set a limit between 1 and 12 cycles for how long the pool can stack on your behalf. Make
             sure you don&apos;t set it lower than the number of cycles your pool intends to stack.
-          </Text>
+          </styled.p>
           {fieldDelegationDurationType.value === 'limited' && <DurationCyclesField />}
           <RecommendedFor>
             Users who want to guarantee funds are not locked beyond a certain period.
           </RecommendedFor>
         </DurationSelectItem>
         {duration > 0 && (
-          <Text>
+          <styled.p>
             Reset to default indefinite duration{' '}
             <Button
-              variant="link"
+              variant="ghost"
               type="button"
               onClick={() => {
                 helpersDelegationDurationType.setValue('indefinite');
@@ -120,7 +120,7 @@ export function ChoosePoolingDuration() {
               here
             </Button>
             .
-          </Text>
+          </styled.p>
         )}
       </Stack>
 

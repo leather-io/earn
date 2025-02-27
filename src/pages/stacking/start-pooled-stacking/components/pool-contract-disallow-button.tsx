@@ -1,4 +1,4 @@
-import { Button } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
 
 import { WrapperPrincipal } from '../types-preset-pools';
 
@@ -12,7 +12,7 @@ export function PoolContractDisallowButton({
   return (
     <>
       <Button
-        variant="link"
+        variant="ghost"
         size="sm"
         mx="extra-tight"
         onClick={() => handleSubmit(wrapperPrincipal)}

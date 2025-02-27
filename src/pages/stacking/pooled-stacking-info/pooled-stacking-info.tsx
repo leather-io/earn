@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
-import { Text } from '@stacks/ui';
-import { Box, Flex } from 'leather-styles/jsx';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
@@ -76,7 +75,7 @@ function PooledStackingInfoLayout({ client }: CardLayoutProps) {
     console.error(msg);
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>{msg}</Text>
+        <styled.p>{msg}</styled.p>
       </CenteredErrorAlert>
     );
   }

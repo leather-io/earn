@@ -1,4 +1,5 @@
-import { Box, Button, Flex } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { Box, Flex } from 'leather-styles/jsx';
 
 import { Screen } from '@components/screen';
 import { Title } from '@components/title';
@@ -19,7 +20,7 @@ export function SignerInfoLayout() {
             Stackers can add their Stacked STX to your signing service. For that, you need to
             provide a signature for each stacker.
           </Box>
-          <Button mt={'loose'} onClick={() => navigate('./generate-signature')}>
+          <Button mt={'space.02'} onClick={() => navigate('./generate-signature')}>
             Generate Signatures
           </Button>
         </Box>

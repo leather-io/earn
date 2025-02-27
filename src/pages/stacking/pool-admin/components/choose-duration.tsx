@@ -1,5 +1,5 @@
-import { Text, color } from '@stacks/ui';
 import { useField } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -15,9 +15,9 @@ export function Duration({ fieldName, description }: { fieldName?: string; descr
     <>
       <Step title="Duration">
         <Description>
-          <Text color={color('text-caption')}>
+          <styled.p color="ink.text-subdued">
             {description || 'Number of cycles to lock STX for this stacker'}
-          </Text>
+          </styled.p>
         </Description>
 
         <Stepper

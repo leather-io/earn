@@ -39,7 +39,7 @@ export const StackingOptionCard: FC<FlexProps> = ({ children, ...props }) => (
     <Flex
       flexDirection="column"
       maxWidth={[null, null, '320px', '420px']}
-      style={{ padding: token('spacing.space.03') }}
+      style={{ padding: 'space.03' }}
       {...props}
     >
       {children}

@@ -1,5 +1,5 @@
-import { Stack, Text } from '@stacks/ui';
 import { useField } from 'formik';
+import { Stack, styled } from 'leather-styles/jsx';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
 
@@ -20,15 +20,15 @@ export function ChooseStackingProtocol({ onProtocolChange }: ChooseStackingProto
   return (
     <Step title="Liquid Stacking">
       <Description>
-        <Text>
+        <styled.p>
           Select a protocol to start liquid stacking or{' '}
           <OpenExternalLinkInNewTab display="inline" href="https://www.stacks.co/learn/stacking">
             discover others on stacks.co.
           </OpenExternalLinkInNewTab>
-        </Text>
+        </styled.p>
       </Description>
 
-      <Stack spacing="base" mt="extra-loose">
+      <Stack gap="space.02" mt="extra-loose">
         {(Object.keys(protocols) as ProtocolName[]).map(
           (protocolName: ProtocolName, index: number) => {
             const p = protocols[protocolName];

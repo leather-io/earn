@@ -1,9 +1,10 @@
-import { Box, Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Box, Flex, HTMLStyledProps } from 'leather-styles/jsx';
+import { styled } from 'leather-styles/jsx';
 import { useFocus } from 'use-events';
 
 type DelegationTypes = 'limited' | 'indefinite';
 
-interface DurationSelectItemProps extends Omit<FlexProps, 'onChange'> {
+interface DurationSelectItemProps extends Omit<HTMLStyledProps<'label'>, 'onChange'> {
   title: string;
   delegationType: DelegationTypes;
   activeDelegationType: DelegationTypes | null;
@@ -14,13 +15,14 @@ interface DurationSelectItemProps extends Omit<FlexProps, 'onChange'> {
 export function DurationSelectItem(props: DurationSelectItemProps) {
   const { title, icon, delegationType, activeDelegationType, onChange, children, ...rest } = props;
   const [isFocused, bind] = useFocus();
+
   return (
-    <Flex
+    <styled.label
       minHeight="72px"
       p="base-loose"
-      as="label"
       htmlFor={delegationType}
-      border={`1px solid ${color('border')}`}
+      border="1px solid"
+      borderColor="ink.border-default"
       borderRadius="12px"
       position="relative"
       {...(isFocused
@@ -45,23 +47,23 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
         </Box>
         <Flex ml="base-loose" width="100%" flexDirection={['column', 'row']}>
           <Box>
-            <Text
-              textStyle="body.small"
+            <styled.p
+              textStyle="body.02"
               fontWeight={500}
               display="block"
               style={{ wordBreak: 'break-all' }}
             >
               {title}
-            </Text>
-            <Text
-              textStyle="body.small"
-              color={color('text-caption')}
+            </styled.p>
+            <styled.p
+              textStyle="body.02"
+              color="ink.text-subdued"
               mt="tight"
               display="inline-block"
               lineHeight="18px"
             >
               {children}
-            </Text>
+            </styled.p>
           </Box>
         </Flex>
         <Flex ml="loose" alignItems="center">
@@ -77,6 +79,6 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
           />
         </Flex>
       </Flex>
-    </Flex>
+    </styled.label>
   );
 }
