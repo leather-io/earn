@@ -30,7 +30,7 @@ export function ChoosePoolingPool({ onPoolChange }: ChoosePoolingPoolProps) {
         </styled.p>
       </Description>
 
-      <Stack gap="space.02" mt="extra-loose">
+      <Stack gap="space.02" mt="space.05">
         {(Object.keys(pools) as PoolName[]).map((poolName: PoolName, index: number) => {
           const p = pools[poolName];
           if (p.disabled) return null;

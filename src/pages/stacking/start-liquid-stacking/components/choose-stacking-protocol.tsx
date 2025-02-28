@@ -28,7 +28,7 @@ export function ChooseStackingProtocol({ onProtocolChange }: ChooseStackingProto
         </styled.p>
       </Description>
 
-      <Stack gap="space.02" mt="extra-loose">
+      <Stack gap="space.02" mt="space.05">
         {(Object.keys(protocols) as ProtocolName[]).map(
           (protocolName: ProtocolName, index: number) => {
             const p = protocols[protocolName];
