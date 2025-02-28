@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
+import { useClipboard } from '@leather.io/ui';
 import { SignatureData } from '@stacks/connect';
-import { Box, Flex, Text, color, useClipboard } from '@stacks/ui';
 import { IconCopy } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { Hr } from '@components/hr';
 import {
@@ -63,13 +64,13 @@ export function GenerateSignatureLayout({
         flexDirection={['column-reverse', 'column-reverse', 'row']}
         justifyContent="space-between"
       >
-        <Box maxWidth={[null, null, '544px']} mr={[null, null, 'extra-loose']}>
+        <Box maxWidth={[null, null, '544px']} mr={[null, null, 'space.04']}>
           <Title>Generate a signer key signature</Title>
-          <Text textStyle="body.large" display="block" color={color('text-caption')} mt={4}>
+          <styled.p textStyle="body.03" display="block" color="ink.text-subdued" mt="space.02">
             When making certain Stacking transactions, it&apos;s required that you provide a
             signature and other information to ensure that the signer you&apos;re using is
             authorizing the transaction.
-          </Text>
+          </styled.p>
           <StackingFormContainer>
             <RewardCycle />
             <PoxAddress
@@ -100,10 +101,10 @@ export function GenerateSignatureLayout({
             <InfoCard minHeight="84px">
               <Box mx={['loose', 'extra-loose']} maxWidth={[null, null, '400px']}>
                 <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-                  <Text textStyle="body.large.medium">Signature details</Text>
-                  <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
+                  <styled.p fontWeight={500}>Signature details</styled.p>
+                  <styled.p fontSize="24px" mt="extra-tight" fontWeight={500}>
                     {/* {createAmountText(amount ?? 0)} */}
-                  </Text>
+                  </styled.p>
                 </Flex>
                 <Hr />
                 <Group width="100%" mt="base-loose" mb="extra-loose">
@@ -121,7 +122,7 @@ export function GenerateSignatureLayout({
                     <Row>
                       <Label>Topic</Label>
                       <Value>
-                        <Text fontFamily={'monospace'}>{topic}</Text>
+                        <styled.p fontFamily={'monospace'}>{topic}</styled.p>
                       </Value>
                     </Row>
                   </Section>
@@ -150,9 +151,13 @@ export function GenerateSignatureLayout({
                         Max Amount
                       </Label>
                       <Value>
-                        <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+                        <styled.p
+                          color="ink.text-subdued"
+                          overflowWrap="anywhere"
+                          fontFamily={'monospace'}
+                        >
                           {maxAmount === MAX_U128 ? 'MAX' : maxAmount}
-                        </Text>
+                        </styled.p>
                       </Value>
                     </Row>
                   </Section>
@@ -161,9 +166,13 @@ export function GenerateSignatureLayout({
                     <Row>
                       <Label>Auth ID</Label>
                       <Value>
-                        <Text textStyle="caption" overflowWrap="anywhere" fontFamily={'monospace'}>
+                        <styled.p
+                          color="ink.text-subdued"
+                          overflowWrap="anywhere"
+                          fontFamily={'monospace'}
+                        >
                           {authId}
-                        </Text>
+                        </styled.p>
                       </Value>
                     </Row>
                   </Section>

@@ -1,5 +1,5 @@
-import { Box, Flex, Text } from '@stacks/ui';
 import { useFormikContext } from 'formik';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { Hr } from '@components/hr';
 import {
@@ -30,12 +30,12 @@ export function InfoPanel() {
 
   return (
     <InfoCard minHeight="84px">
-      <Box mx={['loose', 'extra-loose']}>
-        <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
-          <Text textStyle="body.large.medium">You&apos;ll increase Stacking for</Text>
-          <Text fontSize="24px" mt="extra-tight" fontWeight={500}>
+      <Box mx={['space.03', 'space.04']}>
+        <Flex flexDirection="column" pt="space.04" pb="space.02">
+          <styled.p>You&apos;ll increase Stacking for</styled.p>
+          <styled.p fontSize="24px" mt="extra-tight" fontWeight={500}>
             Cycle {rewardCycleId}
-          </Text>
+          </styled.p>
         </Flex>
         <Hr />
         <Group width="100%" mt="base-loose" mb="extra-loose">

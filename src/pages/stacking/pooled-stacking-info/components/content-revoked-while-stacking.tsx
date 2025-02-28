@@ -1,7 +1,7 @@
 import { intToBigInt } from '@stacks/common';
 import { ExtendedAccountBalances } from '@stacks/stacking';
-import { Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
+import { styled } from 'leather-styles/jsx';
 
 import { Address } from '@components/address';
 import { Alert } from '@components/alert';
@@ -28,10 +28,10 @@ export function RevokedWhileStackingContent({
 }: RevokedWhileStackingContentProps) {
   return (
     <>
-      <Text textStyle="display.large">You&apos;re pooling</Text>
-      <Text fontSize="24px" fontWeight={500} mt="extra-tight" my="extra-loose">
+      <styled.h2 textStyle="heading.02">You&apos;re pooling</styled.h2>
+      <styled.p fontSize="24px" fontWeight={500} mt="extra-tight" my="extra-loose">
         {toHumanReadableStx(intToBigInt(extendedStxBalances.locked))}
-      </Text>
+      </styled.p>
 
       <Hr />
 

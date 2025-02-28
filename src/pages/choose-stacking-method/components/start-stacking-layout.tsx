@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { Button, ButtonProps, ErrorCircleIcon } from '@leather.io/ui';
 import { Box, BoxProps, Flex, FlexProps, Grid, GridProps, styled } from 'leather-styles/jsx';
-import { token } from 'leather-styles/tokens';
 
 export const StartStackingLayout: FC<BoxProps> = props => (
   <Box style={{ maxWidth: '1400px', margin: '0 auto' }} {...props} />
@@ -79,9 +78,9 @@ export const StackingOptionCardButton: FC<ButtonProps> = props => (
 );
 
 export const InsufficientStackingBalanceWarning: FC<FlexProps> = props => (
-  <Flex color={token('colors.red.border')} alignItems="center" {...props} mt="space.02">
+  <Flex color="red.border" alignItems="center" {...props} mt="space.02">
     <Box mr="space.02">
-      <ErrorCircleIcon variant="small" color={token('colors.red.action-primary-default')} />
+      <ErrorCircleIcon variant="small" color="red.action-primary-default" />
     </Box>
     <styled.span textStyle="label.02" textAlign={'bottom'} marginLeft="loose">
       Insufficient balance

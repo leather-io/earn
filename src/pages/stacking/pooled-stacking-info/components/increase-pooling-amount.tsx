@@ -1,4 +1,5 @@
-import { Box, Button, Flex, Stack, Text } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { Box, Flex, Stack, styled } from 'leather-styles/jsx';
 
 import { InfoCard } from '@components/info-card';
 
@@ -16,33 +17,35 @@ export function IncreasePoolingAmount({
 }: IncreasePoolingAmountProps) {
   return (
     <InfoCard>
-      <Box mx={['loose', 'extra-loose']}>
-        <Flex flexDirection="column" pt="loose" pb="base-loose">
-          <Text textStyle="body.large.medium">Increase pooling amount</Text>
+      <Box mx={['space.03', 'space.04']}>
+        <Flex flexDirection="column" pt="space.03" pb="space.02">
+          <styled.p>Increase pooling amount</styled.p>
           {isSelfService ? (
             <>
-              <Text py="loose">
+              <styled.p py="space.03">
                 To increase the amount of STX you can just delegate a higher amount for the next
                 cycle.
-              </Text>
+              </styled.p>
               <Stack>
-                <Button mode="tertiary" onClick={handleKeepPoolingClick}>
+                <Button variant="outline" onClick={handleKeepPoolingClick}>
                   Keep same amount
                 </Button>
-                <Button onClick={handleDelegateAgainClick}>Delegate again</Button>
+                <Button variant="outline" onClick={handleDelegateAgainClick}>
+                  Delegate again
+                </Button>
               </Stack>
             </>
           ) : (
             <>
-              <Text py="loose">
+              <styled.p py="space.03">
                 To increase the amount of STX you must first stop the current pool and start pooling
                 again, your pool operator can then lock a higher amount for the next cycles.
-              </Text>
+              </styled.p>
               <Stack>
-                <Button mode="tertiary" onClick={handleKeepPoolingClick}>
+                <Button variant="outline" onClick={handleKeepPoolingClick}>
                   Keep pooling
                 </Button>
-                <Button onClick={handleStopPoolingClick}>
+                <Button variant="outline" onClick={handleStopPoolingClick}>
                   I understand I want to stop pooling
                 </Button>
               </Stack>
