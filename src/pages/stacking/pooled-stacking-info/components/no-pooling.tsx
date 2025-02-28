@@ -1,5 +1,5 @@
-import { Flex, Stack, Text } from '@stacks/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
+import { Flex, Stack, styled } from 'leather-styles/jsx';
 
 import { Alert } from '@components/alert';
 import { InfoCard } from '@components/info-card';
@@ -11,11 +11,11 @@ export function NoPooling() {
       <InfoCard p="extra-loose" width={['360px', '360px', '360px', '420px']}>
         <Alert icon={<IconInfoCircle />}>
           <Stack>
-            <Text>
+            <styled.p>
               It appears that you&apos;re not pooling yet. If you recently started to pool, your
               pooling info will appear here in a few seconds.
-            </Text>
-            <Text>
+            </styled.p>
+            <styled.p>
               You may want to{' '}
               <Link
                 display="inline"
@@ -35,7 +35,7 @@ export function NoPooling() {
                 choose your stacking method
               </Link>
               .
-            </Text>
+            </styled.p>
           </Stack>
         </Alert>
       </InfoCard>

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
+import { Button } from '@leather.io/ui';
 import { ExtendedAccountBalances } from '@stacks/stacking';
-import { Box, Button, Flex } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
-import { styled } from 'leather-styles/jsx';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { BaseDrawer } from '@components/drawer/base-drawer';
 import { Hr } from '@components/hr';
@@ -42,10 +42,10 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
   };
   return (
     <BaseDrawer title={title} isShowing={!poxDisabled} onClose={onClose}>
-      <Flex alignItems="center" flexDirection="column" pb={['loose', '48px']} px="loose">
+      <Flex alignItems="center" flexDirection="column" pb={['space.03', '48px']} px="space.03">
         <InfoCard width="420px">
-          <Box mx={['loose', 'extra-loose']}>
-            <Flex flexDirection="column" pt="extra-loose" pb="base-loose">
+          <Box mx={['space.03', 'space.04']}>
+            <Flex flexDirection="column" pt="space.04" pb="space.02">
               <styled.h2 textStyle="heading.02">You&apos;re stacking</styled.h2>
               <styled.p fontSize="24px" fontWeight={500} letterSpacing="-0.02em">
                 {toHumanReadableStx(extendedStxBalances.locked.toString())}
@@ -67,14 +67,11 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
                 <SignerDetails />
 
                 <Row m="loose" justifyContent="space-between">
-                  <Button mode="tertiary" onClick={onClose}>
+                  <Button variant="outline" onClick={onClose}>
                     Cancel
                   </Button>
-                  <Button
-                    isLoading={isContractCallExtensionPageOpen}
-                    isDisabled={hasErrors(errors)}
-                  >
-                    <Box mr="loose">
+                  <Button aria-busy={isContractCallExtensionPageOpen} disabled={hasErrors(errors)}>
+                    <Box mr="space.03">
                       <IconLock />
                     </Box>
                     Confirm Increase

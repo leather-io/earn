@@ -1,4 +1,4 @@
-import { useClipboard } from '@stacks/ui';
+import { useClipboard } from '@leather.io/ui';
 import { IconCopy } from '@tabler/icons-react';
 import { Box, Flex, styled } from 'leather-styles/jsx';
 

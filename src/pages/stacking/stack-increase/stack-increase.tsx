@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Text } from '@stacks/ui';
 import { Form, Formik } from 'formik';
+import { styled } from 'leather-styles/jsx';
 
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
@@ -58,7 +58,7 @@ export function StackIncrease() {
     console.error(msg);
     return (
       <CenteredErrorAlert id="0abc083b-06c7-4795-8491-68264595f1b4">
-        <Text>{msg}</Text>
+        <styled.p>{msg}</styled.p>
       </CenteredErrorAlert>
     );
   }
@@ -66,7 +66,7 @@ export function StackIncrease() {
   if (!getStatusQuery.data.stacked) {
     return (
       <CenteredErrorAlert>
-        <Text>Not stacking</Text>
+        <styled.p>Not stacking</styled.p>
       </CenteredErrorAlert>
     );
   }
