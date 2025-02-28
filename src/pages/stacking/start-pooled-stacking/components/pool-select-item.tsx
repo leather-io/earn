@@ -28,6 +28,9 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
       borderStyle="solid"
     >
       <styled.label
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
         minHeight="72px"
         p="space.05"
         border="1px solid"
@@ -41,7 +44,7 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
           <Box position="relative" top="-3px">
             {icon}
           </Box>
-          <Flex ml="base-loose" width="100%" flexDirection={['column', 'row']}>
+          <Flex ml="space.02" width="100%" flexDirection={['column', 'row']}>
             <Box>
               <styled.p
                 textStyle="body.02"
@@ -79,7 +82,7 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
               )}
             </Box>
           </Flex>
-          <Flex ml="loose" alignItems="center">
+          <Flex ml="space.03" alignItems="center">
             <input
               type="radio"
               id={name}

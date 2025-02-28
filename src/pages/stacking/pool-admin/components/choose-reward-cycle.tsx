@@ -1,4 +1,4 @@
-import { Input } from '@stacks/ui';
+import { Input } from '@leather.io/ui';
 import { useField } from 'formik';
 import { Box, Stack, styled } from 'leather-styles/jsx';
 
@@ -31,8 +31,11 @@ export function RewardCycle() {
         </Stack>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input id="rewardCycle" placeholder="Next cycle" mt="loose" {...field} autoComplete="off" />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Next cycle</Input.Label>
+          <Input.Field id="rewardCycle" autoComplete="off" {...field} />
+        </Input.Root>
         {(meta.touched || field) && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

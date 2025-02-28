@@ -13,8 +13,8 @@ interface StackingFormStepProps extends FlexProps {
 export const StackingStep: FC<StackingFormStepProps> = props => {
   const { title, children, ...rest } = props;
   return (
-    <Flex flexDirection="column" mt="extra-loose" {...rest}>
-      <Title fontSize="24px" mt="extra-tight" mr="tight">
+    <Flex flexDirection="column" mt="space.05" {...rest}>
+      <Title fontSize="24px" mt="space.01" mr="space.03">
         {title}
       </Title>
       <Box>{children}</Box>
@@ -24,7 +24,7 @@ export const StackingStep: FC<StackingFormStepProps> = props => {
 
 export const StackingStepAction: ForwardRefExoticComponentWithAs<ButtonProps, 'button'> =
   forwardRefWithAs(({ children, ...props }, ref) => (
-    <Button size="md" mt="loose" ref={ref} {...props}>
+    <Button size="md" mt="space.05" ref={ref} {...props}>
       {children}
     </Button>
   ));

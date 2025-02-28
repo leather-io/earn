@@ -65,7 +65,7 @@ export const StackingOptionCardBenefit: FC<StackingOptionCardBenefitProps> = pro
   const { icon: Icon, ...rest } = props;
   return (
     <Flex alignItems="center" mb="space.03">
-      <Flex width="32px" justifyContent="center" alignItems="center" mr="tight">
+      <Flex width="32px" justifyContent="center" alignItems="center" mr="space.01">
         <Icon />
       </Flex>
       <styled.p display="block" textStyle="body.01" color="ink.text-primary" {...rest} />
@@ -74,7 +74,7 @@ export const StackingOptionCardBenefit: FC<StackingOptionCardBenefitProps> = pro
 };
 
 export const StackingOptionCardButton: FC<ButtonProps> = props => (
-  <Button variant="solid" alignSelf="flex-start" mt="base" {...props} />
+  <Button variant="solid" alignSelf="flex-start" mt="space.02" {...props} />
 );
 
 export const InsufficientStackingBalanceWarning: FC<FlexProps> = props => (
@@ -82,7 +82,7 @@ export const InsufficientStackingBalanceWarning: FC<FlexProps> = props => (
     <Box mr="space.02">
       <ErrorCircleIcon variant="small" color="red.action-primary-default" />
     </Box>
-    <styled.span textStyle="label.02" textAlign={'bottom'} marginLeft="loose">
+    <styled.span textStyle="label.02" textAlign={'bottom'} marginLeft="space.03">
       Insufficient balance
     </styled.span>
   </Flex>

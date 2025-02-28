@@ -1,5 +1,6 @@
-import { Box, Input, Stack, Text } from '@stacks/ui';
+import { Input } from '@leather.io/ui';
 import { useField } from 'formik';
+import { Box, Stack, styled } from 'leather-styles/jsx';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -23,23 +24,20 @@ export function StartBurnHeight() {
   return (
     <Step title="Choose start burn height">
       <Description>
-        <Stack alignItems="flex-start" spacing="base">
-          <Text>
+        <Stack alignItems="flex-start" gap="space.02">
+          <styled.p>
             Current burn height is {getPoxInfoQuery.data.current_burnchain_block_height}. The value
             must be in the future and before the anchor block of the next cycle. Add for example 10
             blocks.
-          </Text>
+          </styled.p>
         </Stack>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input
-          id="startBurnHt"
-          placeholder="Bitcoin block"
-          mt="loose"
-          autoComplete="off"
-          {...field}
-        />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Bitcoin block</Input.Label>
+          <Input.Field id="startBurnHt" autoComplete="off" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

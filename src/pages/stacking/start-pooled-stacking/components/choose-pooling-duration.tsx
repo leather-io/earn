@@ -72,7 +72,7 @@ export function ChoosePoolingDuration() {
         </styled.p>
       </Description>
 
-      <Stack gap="space.02" mt="extra-loose">
+      <Stack gap="space.02" mt="space.05">
         <DurationSelectItem
           title="Indefinite permission"
           icon={<IndefiniteStackingIcon />}

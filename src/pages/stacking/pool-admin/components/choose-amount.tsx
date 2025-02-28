@@ -1,5 +1,7 @@
-import { Box, Input, Stack, Text } from '@stacks/ui';
+import { Input } from '@leather.io/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
+import { Stack } from 'leather-styles/jsx';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -23,21 +25,18 @@ export function Amount() {
   return (
     <Step title="Choose amount">
       <Description>
-        <Stack alignItems="flex-start" spacing="base">
-          <Text>
+        <Stack alignItems="flex-start" gap="space.02">
+          <styled.p>
             Must be less than or equal to the delegated amount and the stacker&apos;s balance.
-          </Text>
+          </styled.p>
         </Stack>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input
-          id="stxAmount"
-          placeholder="Amount of STX to Stack"
-          mt="loose"
-          {...field}
-          autoComplete="off"
-        />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Amount of STX to Stack</Input.Label>
+          <Input.Field id="stxAmount" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

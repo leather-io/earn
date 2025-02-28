@@ -19,7 +19,7 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
   return (
     <styled.label
       minHeight="72px"
-      p="base-loose"
+      p="space.05"
       htmlFor={delegationType}
       border="1px solid"
       borderColor="ink.border-default"
@@ -45,7 +45,7 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
         <Box position="relative" top="-3px">
           {icon}
         </Box>
-        <Flex ml="base-loose" width="100%" flexDirection={['column', 'row']}>
+        <Flex ml="space.03" width="100%" flexDirection={['column', 'row']}>
           <Box>
             <styled.p
               textStyle="body.02"
@@ -58,7 +58,7 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
             <styled.p
               textStyle="body.02"
               color="ink.text-subdued"
-              mt="tight"
+              mt="space.01"
               display="inline-block"
               lineHeight="18px"
             >
@@ -66,7 +66,7 @@ export function DurationSelectItem(props: DurationSelectItemProps) {
             </styled.p>
           </Box>
         </Flex>
-        <Flex ml="loose" alignItems="center">
+        <Flex ml="space.04" alignItems="center">
           <input
             type="radio"
             id={delegationType}
