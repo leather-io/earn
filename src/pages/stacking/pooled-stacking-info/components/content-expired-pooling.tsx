@@ -1,4 +1,5 @@
-import { Box, Button, Text } from '@stacks/ui';
+import { Button } from '@leather.io/ui';
+import { Box, styled } from 'leather-styles/jsx';
 
 interface ExpiredPoolingContentProps {
   isContractCallExtensionPageOpen: boolean;
@@ -10,10 +11,10 @@ export function ExpiredPoolingContent({
 }: ExpiredPoolingContentProps) {
   return (
     <>
-      <Text textStyle="display.large">You&apos;ve finished pooling</Text>
-      <Text pb="base-loose">
+      <styled.h2 textStyle="heading.02">You&apos;ve finished pooling</styled.h2>
+      <styled.p pb="space.02">
         Revoke the pool&apos;s permission to stack on your behalf to start stacking again.
-      </Text>
+      </styled.p>
       <Box>
         <Button
           disabled={isContractCallExtensionPageOpen}

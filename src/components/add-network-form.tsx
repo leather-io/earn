@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@leather.io/ui';
+import { Button, Input } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { ChainId } from '@stacks/network';
-import { FormLabel, Input } from '@stacks/ui';
 import { Field, FieldProps, Form, Formik, FormikErrors } from 'formik';
 import { Box, Stack } from 'leather-styles/jsx';
 import { string } from 'yup';
@@ -106,8 +105,11 @@ export const AddNetworkForm: React.FC = () => {
               <Field name="label">
                 {({ field, form }: FieldProps<string, FormValues>) => (
                   <Box>
-                    <FormLabel>Name</FormLabel>
-                    <Input {...field} placeholder="My Stacks API" />
+                    <Input.Root>
+                      <Input.Label>Name</Input.Label>
+
+                      <Input.Field id="label" {...field} />
+                    </Input.Root>
                     {form.touched && form.errors.label && (
                       <ErrorLabel>
                         <ErrorText>{form.errors.label}</ErrorText>
@@ -119,8 +121,10 @@ export const AddNetworkForm: React.FC = () => {
               <Field name="url">
                 {({ field, form }: FieldProps<string, FormValues>) => (
                   <Box>
-                    <FormLabel>URL</FormLabel>
-                    <Input autoComplete="off" {...field} placeholder="https://" />
+                    <Input.Root>
+                      <Input.Label>URL</Input.Label>
+                      <Input.Field id="url" {...field} />
+                    </Input.Root>
                     {form.touched && form.errors.url && (
                       <ErrorLabel>
                         <ErrorText>{form.errors.url}</ErrorText>
@@ -142,7 +146,7 @@ export const AddNetworkForm: React.FC = () => {
               )}
             </Field>
             <Box>
-              <Button variant="outline" disabled={form.isValidating} width="100%" type="submit">
+              <Button variant="solid" disabled={form.isValidating} width="100%" type="submit">
                 Add and select
               </Button>
             </Box>

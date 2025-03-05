@@ -1,7 +1,8 @@
 import { ClipboardEvent, useState } from 'react';
 
-import { Input, Text, color } from '@stacks/ui';
+import { Input } from '@leather.io/ui';
 import { useFormikContext } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 import { useGlobalContext } from 'src/context/use-app-context';
 import { SignatureJSON } from 'src/pages/stacking/signer/generate-signature/types';
 
@@ -56,16 +57,16 @@ export function SignerDetails() {
     <>
       <Step title="Signer Information">
         <Description>
-          <Text color={color('text-caption')}>
+          <styled.p color="ink.text-subdued">
             When you engage in Stacking, you&apos;re associating your locked STX with a signer
             actively involved in the Stacks network&apos;s consensus process. With the{' '}
             <OpenExternalLinkInNewTab href="https://www.nakamoto.run/">
               Nakamoto Release
             </OpenExternalLinkInNewTab>
             , Stackers who choose to stack independently will need to run their own signer software.
-          </Text>
+          </styled.p>
         </Description>
-        <Text mt={'loose'} color={color('text-caption')}>
+        <styled.p mt="space.05" color="ink.text-subdued">
           If you&apos;re interested in running your own signer, please consult{' '}
           <OpenExternalLinkInNewTab
             href="https://docs.stacks.co/nakamoto-upgrade/signing-and-stacking/stacking-flow"
@@ -78,8 +79,8 @@ export function SignerDetails() {
             this page
           </Link>{' '}
           to generate a signer signature.
-        </Text>
-        <Text mt={'loose'} color={color('text-caption')}>
+        </styled.p>
+        <styled.p mt="space.05" color="ink.text-subdued">
           If you prefer to delegate your involvement in the consensus process to a third party and
           to not manage your own signer, we suggest to either use the dapp created by DegenLabs for{' '}
           <OpenExternalLinkInNewTab href="https://solo.stacking.tools/">
@@ -87,28 +88,28 @@ export function SignerDetails() {
           </OpenExternalLinkInNewTab>{' '}
           without needing a signer, as DegenLabs operates a signer, or to choose a different
           stacking method.
-        </Text>
-        <Input
-          autoComplete="off"
-          onPaste={fillFromClipboard}
-          placeholder="paste signature JSON here.."
-          my="base-loose"
-        />
+        </styled.p>
+        <Box my="space.05">
+          <Input.Root>
+            <Input.Label>Paste signature JSON here..</Input.Label>
+            <Input.Field autoComplete="off" onPaste={fillFromClipboard} />
+          </Input.Root>
+        </Box>
         {error && (
           <ErrorLabel>
             <ErrorText>{error}</ErrorText>
           </ErrorLabel>
         )}
-        <Text mb="base" color={color('text-caption')}>
+        <styled.p mb="space.05" color="ink.text-subdued">
           Alternatively, enter the information manually.
-        </Text>
+        </styled.p>
 
         <SignerInput
           title="Signer Public Key"
           text={
-            <Text color={color('text-caption')}>
+            <styled.p color="ink.text-subdued">
               Enter the signer&apos;s public key in hexadecimal format:
-            </Text>
+            </styled.p>
           }
           placeholder="public key 0x1234..ef"
           fieldName="signerKey"
@@ -116,11 +117,11 @@ export function SignerDetails() {
         <SignerInput
           title="Signer Signature (optional)"
           text={
-            <Text color={color('text-caption')}>
+            <styled.p color="ink.text-subdued">
               Enter the hexadecimal signature from the signer enabling you to Stack with their key.
               Leave this field blank if the signature is universal for all Stackers who use this
               signer:
-            </Text>
+            </styled.p>
           }
           placeholder="signature 0x1234..0123..ef"
           fieldName="signerSignature"
@@ -128,9 +129,9 @@ export function SignerDetails() {
         <SignerInput
           title="Max Amount"
           text={
-            <Text color={color('text-caption')}>
+            <styled.p color="ink.text-subdued">
               Enter the maximum amount of STX that can be locked while using this signature:
-            </Text>
+            </styled.p>
           }
           placeholder="Maximum amount of STX to lock"
           fieldName="maxAmount"
@@ -138,10 +139,10 @@ export function SignerDetails() {
         <SignerInput
           title="Auth ID"
           text={
-            <Text color={color('text-caption')}>
+            <styled.p color="ink.text-subdued">
               Enter the signer&apos;s Auth ID, a randomly generated number that prevents signer
               signature reuse:
-            </Text>
+            </styled.p>
           }
           placeholder="value provided by signer"
           fieldName="authId"

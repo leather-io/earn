@@ -1,9 +1,8 @@
-import { Button } from '@leather.io/ui';
+import { Button, Input } from '@leather.io/ui';
 import { intToBigInt } from '@stacks/common';
-import { Input, Spinner } from '@stacks/ui';
+import { Spinner } from '@stacks/ui';
 import { useField } from 'formik';
 import { Box, styled } from 'leather-styles/jsx';
-import { token } from 'leather-styles/tokens';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -37,15 +36,11 @@ export function ChooseStackingAmount() {
         </styled.p>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input
-          autoComplete="off"
-          id="stxAmount"
-          mt="loose"
-          placeholder="Amount of STX to Stack"
-          {...field}
-          backgroundColor={token('colors.ink.background-primary')}
-        />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Amount of STX to Stack</Input.Label>
+          <Input.Field id="stxAmount" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

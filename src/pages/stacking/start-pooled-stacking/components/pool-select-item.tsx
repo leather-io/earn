@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Text, color } from '@stacks/ui';
+import { Box, Flex, HTMLStyledProps, styled } from 'leather-styles/jsx';
 import { useFocus } from 'use-events';
 
 import { OpenExternalLinkInNewTab } from '@components/external-link';
@@ -7,7 +7,7 @@ import { figmaTheme } from '@constants/figma-theme';
 import { PoolName } from '../types-preset-pools';
 import { CustomPoolAddressInput } from './custom-pool-address-input';
 
-interface PoolSelectItemProps extends Omit<FlexProps, 'onChange'> {
+interface PoolSelectItemProps extends Omit<HTMLStyledProps<'label'>, 'onChange'> {
   name: PoolName;
   description: string;
   url: string;
@@ -27,11 +27,14 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
       _hover={{ cursor: 'pointer' }}
       borderStyle="solid"
     >
-      <Flex
+      <styled.label
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
         minHeight="72px"
-        p="base-loose"
-        as="label"
-        border={`1px solid ${color('border')}`}
+        p="space.05"
+        border="1px solid"
+        borderColor="ink.border-default"
         borderRadius="12px"
         _hover={{ cursor: 'pointer' }}
         position="relative"
@@ -41,25 +44,25 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
           <Box position="relative" top="-3px">
             {icon}
           </Box>
-          <Flex ml="base-loose" width="100%" flexDirection={['column', 'row']}>
+          <Flex ml="space.02" width="100%" flexDirection={['column', 'row']}>
             <Box>
-              <Text
-                textStyle="body.small"
+              <styled.p
+                textStyle="body.02"
                 fontWeight={500}
                 display="block"
                 style={{ wordBreak: 'break-all' }}
               >
                 {name}
-              </Text>
-              <Text
-                textStyle="body.small"
-                color={color('text-caption')}
+              </styled.p>
+              <styled.p
+                textStyle="body.02"
+                color="ink.text-subdued"
                 mt="tight"
                 display="inline-block"
                 lineHeight="18px"
               >
                 {description}
-              </Text>
+              </styled.p>
 
               {name == PoolName.CustomPool ? (
                 <CustomPoolAddressInput />
@@ -67,8 +70,8 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
                 url && (
                   <OpenExternalLinkInNewTab
                     href={url}
-                    textStyle="body.small"
-                    color={color('text-caption')}
+                    textStyle="body.02"
+                    color="ink.text-subdued"
                     mt="tight"
                     display="inline-block"
                     lineHeight="18px"
@@ -79,7 +82,7 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
               )}
             </Box>
           </Flex>
-          <Flex ml="loose" alignItems="center">
+          <Flex ml="space.03" alignItems="center">
             <input
               type="radio"
               id={name}
@@ -92,7 +95,7 @@ export function PoolSelectItem(props: PoolSelectItemProps) {
             />
           </Flex>
         </Flex>
-      </Flex>
+      </styled.label>
     </Box>
   );
 }
