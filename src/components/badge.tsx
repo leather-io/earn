@@ -1,7 +1,8 @@
-import { forwardRefWithAs } from '@stacks/ui-core';
+import { forwardRef } from 'react';
+
 import { Flex, FlexProps, styled } from 'leather-styles/jsx';
 
-export const Badge = forwardRefWithAs<FlexProps, 'div'>(({ children, ...rest }, ref) => (
+export const Badge = forwardRef<HTMLDivElement, FlexProps>(({ children, ...rest }, ref) => (
   <Flex
     ref={ref}
     alignItems="center"
@@ -24,3 +25,5 @@ export const Badge = forwardRefWithAs<FlexProps, 'div'>(({ children, ...rest }, 
     </styled.p>
   </Flex>
 ));
+
+Badge.displayName = 'Badge';

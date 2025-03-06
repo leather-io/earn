@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
+import { Button, Input } from '@leather.io/ui';
 import { StackingClient } from '@stacks/stacking';
-import { Box, Button, Input, Text } from '@stacks/ui';
 import { IconLock } from '@tabler/icons-react';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 
 import { CenteredSpinner } from '@components/centered-spinner';
 import { ErrorLabel } from '@components/error-label';
@@ -58,20 +59,16 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
           requiresExtension={requiresExtension}
         />
       ) : (
-        <Text>
+        <styled.p>
           Enter the Stacks address of a pool member to lock their delegated STX for 1 more cycle.
-        </Text>
+        </styled.p>
       )}
 
-      <Box position="relative" maxWidth="400px">
-        <Input
-          id="stacker"
-          placeholder="Stacks address"
-          mt="loose"
-          isDisabled={showPreview}
-          autoComplete="off"
-          {...field}
-        />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Stacks address</Input.Label>
+          <Input.Field id="stacker" disabled={showPreview} autoComplete="off" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -80,16 +77,14 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
       </Box>
 
       <Row m="loose" justifyContent="space-between">
-        <Button mode="tertiary" onClick={onClose}>
-          Cancel
-        </Button>
+        <Button onClick={onClose}>Cancel</Button>
         {showPreview ? (
           <Button
             type="submit"
-            isLoading={isContractCallExtensionPageOpen}
-            isDisabled={!requiresExtension || !delegationStatus.delegated}
+            aria-busy={isContractCallExtensionPageOpen}
+            disabled={!requiresExtension || !delegationStatus.delegated}
           >
-            <Box mr="loose">
+            <Box mr="space.05">
               <IconLock />
             </Box>
             Lock STX

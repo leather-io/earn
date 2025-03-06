@@ -13,7 +13,7 @@ export const DirectStackingTerms: FC<StackProps> = props => (
     textStyle={['body.02', 'body.03']}
     gap="space.02"
     pl="space.03"
-    {...pseudoBorderLeft('feedback-alert')}
+    className={pseudoBorderLeft('red.action-primary-default')}
     {...props}
   >
     <StackingTermItem

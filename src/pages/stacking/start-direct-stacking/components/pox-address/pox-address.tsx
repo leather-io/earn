@@ -1,5 +1,6 @@
-import { Spinner, Text, color } from '@stacks/ui';
+import { Spinner } from '@leather.io/ui';
 import { useField } from 'formik';
+import { styled } from 'leather-styles/jsx';
 import { CryptoAddressInput } from 'src/pages/stacking/components/crypto-address-form';
 
 import { ErrorAlert } from '@components/error-alert';
@@ -35,11 +36,11 @@ export function PoxAddress({ description }: Props) {
       <Step title="Bitcoin address">
         <Description>
           {description ? (
-            <Text color={color('text-caption')}>{description}</Text>
+            <styled.p color="ink.text-subdued">{description}</styled.p>
           ) : (
-            <Text color={color('text-caption')}>
+            <styled.p color="ink.text-subdued">
               Enter the Bitcoin address where you&apos;d like to receive your rewards.
-            </Text>
+            </styled.p>
           )}
         </Description>
         <CryptoAddressInput fieldName="poxAddress" addressType="BTC" {...field}>

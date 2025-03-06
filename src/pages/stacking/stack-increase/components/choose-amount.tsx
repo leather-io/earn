@@ -1,6 +1,7 @@
-import { Box, Button, Input, Stack, Text } from '@stacks/ui';
+import { Button, Input } from '@leather.io/ui';
 import BigNumber from 'bignumber.js';
 import { useField } from 'formik';
+import { Box, Stack, styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -31,20 +32,18 @@ export function Amount() {
   return (
     <Stack>
       <Description>
-        <Stack alignItems="flex-start" spacing="base">
-          <Text>
+        <Stack alignItems="flex-start" gap="space.04">
+          <styled.p>
             Choose how much you want to add to the current value you are already stacking.
-          </Text>
+          </styled.p>
         </Stack>
       </Description>
 
-      <Box position="relative" my="loose">
-        <Input
-          id="stxAmount"
-          placeholder="Amount of additional STX to stack"
-          autoComplete="off"
-          {...field}
-        />
+      <Box position="relative" my="space.05">
+        <Input.Root>
+          <Input.Label>Amount of additional STX to stack</Input.Label>
+          <Input.Field id="stxAmount" autoComplete="off" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -52,16 +51,16 @@ export function Amount() {
         )}
         <Button
           type="button"
-          mode="tertiary"
           size="sm"
           height="28px"
           right="12px"
-          top="10px"
-          color="#12100F"
+          top="18px"
           style={{ position: 'absolute' }}
           width="80px"
           onClick={setMax}
-          isDisabled={!maxAmountUstx}
+          disabled={!maxAmountUstx}
+          fontSize="12px"
+          zIndex={10}
         >
           Stack max
         </Button>

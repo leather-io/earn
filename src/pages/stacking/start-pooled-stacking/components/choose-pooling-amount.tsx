@@ -1,7 +1,7 @@
+import { Button, Input, Spinner } from '@leather.io/ui';
 import { intToBigInt } from '@stacks/common';
-import { Box, Button, Flex, Input, Spinner, Text, color } from '@stacks/ui';
 import { useField } from 'formik';
-import { token } from 'leather-styles/tokens';
+import { Box, Flex, styled } from 'leather-styles/jsx';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -24,27 +24,24 @@ export function ChoosePoolingAmount() {
   return (
     <Step title="Amount">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-subdued">
           Choose how much you&apos;ll pool. Your pool may require a minimum.
-        </Text>
-        <Text color={color('text-caption')}>
+        </styled.p>
+        <styled.p color="ink.text-subdued">
           The pooled amount can be higher than your current balance to allow the pool to stack more
           in the future.
-        </Text>
-        <Text color={color('text-caption')}>
+        </styled.p>
+        <styled.p color="ink.text-subdued">
           The pool may stack less than the delegated amount to leave some change to pay for
           transaction fees.
-        </Text>
+        </styled.p>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input
-          id="stxAmount"
-          mt="loose"
-          placeholder="Amount of STX to Stack"
-          backgroundColor={token('colors.ink.background-primary')}
-          {...field}
-        />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Amount of STX to Stack</Input.Label>
+          <Input.Field id="stxAmount" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -53,9 +50,9 @@ export function ChoosePoolingAmount() {
       </Box>
 
       <Box
-        textStyle="body.small"
-        color={color('text-caption')}
-        mt="base-tight"
+        textStyle="body.02"
+        color="ink.text-subdued"
+        mt="space.03"
         aria-busy={queryGetAccountExtendedBalances.isLoading}
       >
         Available balance:{' '}
@@ -63,7 +60,8 @@ export function ChoosePoolingAmount() {
           <Spinner />
         ) : totalAvailableBalance ? (
           <Button
-            variant="link"
+            variant="ghost"
+            size="sm"
             type="button"
             color="#12100F"
             onClick={() => helpers.setValue(microStxToStx(totalAvailableBalance))}
@@ -78,29 +76,31 @@ export function ChoosePoolingAmount() {
       {lockedBalance ? (
         <>
           <Box
-            textStyle="body.small"
-            color={color('text-caption')}
-            mt="base-tight"
+            textStyle="body.02"
+            color="ink.text-subdued"
+            mt="space.03"
             aria-busy={queryGetAccountExtendedBalances.isLoading}
           >
             Minimum amount:{' '}
             <Button
-              variant="link"
+              variant="ghost"
+              size="sm"
               type="button"
+              color="#12100F"
               onClick={() => helpers.setValue(microStxToStx(lockedBalance))}
             >
               {toHumanReadableStx(lockedBalance)}{' '}
             </Button>
           </Box>
           <Box
-            background={color('bg-alt')}
-            my="tight"
-            py="tight"
-            px="base-loose"
+            background="ink.background-secondary"
+            my="space.02"
+            py="space.02"
+            px="20px"
             borderRadius="10px"
           >
             <Flex>
-              <Box textStyle="body.small" color={color('text-caption')}>
+              <Box textStyle="body.02" color="ink.text-subdued">
                 The minimum amount is what is already stacked. For continuous stacking, you will
                 have to pool this amount or more.
               </Box>
