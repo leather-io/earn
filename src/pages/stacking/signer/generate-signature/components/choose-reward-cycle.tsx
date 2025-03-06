@@ -1,5 +1,6 @@
-import { Box, Input, Stack, Text, color } from '@stacks/ui';
+import { Input } from '@leather.io/ui';
 import { useField } from 'formik';
+import { Box, Stack, styled } from 'leather-styles/jsx';
 import { Description, Step } from 'src/pages/stacking/components/stacking-form-step';
 
 import { ErrorAlert } from '@components/error-alert';
@@ -23,15 +24,18 @@ export function RewardCycle() {
   return (
     <Step title="Choose reward cycle">
       <Description>
-        <Stack alignItems="flex-start" spacing="base">
-          <Text color={color('text-caption')}>
+        <Stack alignItems="flex-start" gap="space.04">
+          <styled.p color="ink.text-subdued">
             Next cycle is {getPoxInfoQuery.data.reward_cycle_id + 1}
-          </Text>
+          </styled.p>
         </Stack>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input id="rewardCycle" placeholder="Next cycle" mt="loose" autoComplete="off" {...field} />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Next cycle</Input.Label>
+          <Input.Field id="rewardCycle" autoComplete="off" {...field} />
+        </Input.Root>
         {(meta.touched || topicMeta.touched) && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>

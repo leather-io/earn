@@ -1,6 +1,7 @@
-import { Box, Button, Input, Spinner, Stack, Text, color } from '@stacks/ui';
+import { Button, Input, Spinner } from '@leather.io/ui';
 import { BigNumber } from 'bignumber.js';
 import { useField } from 'formik';
+import { Box, Stack, styled } from 'leather-styles/jsx';
 
 import { ErrorAlert } from '@components/error-alert';
 import { ErrorLabel } from '@components/error-label';
@@ -50,7 +51,7 @@ export function Amount() {
 
   const ustxAmount = stxToMicroStx(field.value || 0);
 
-  const showStackingWarningCard = ustxAmount.isGreaterThanOrEqualTo(minimumAmountUstx);
+  const showStackingWarningCard = true; //ustxAmount.isGreaterThanOrEqualTo(minimumAmountUstx);
 
   let maxAmountUstx = new BigNumberFloorRound(
     new BigNumber(availableBalance.toString()).minus(STACKING_CONTRACT_CALL_TX_BYTES).toString()
@@ -73,29 +74,32 @@ export function Amount() {
   return (
     <Step title="Choose amount">
       <Description>
-        <Stack alignItems="flex-start" spacing="base">
-          <Text color={color('text-caption')}>
+        <Stack alignItems="flex-start" gap="space.04">
+          <styled.p color="ink.text-subdued">
             You&apos;ll be eligible for one reward slot for every multiple of the minimum you stack.
-          </Text>
-          <Text color={color('text-caption')}>
+          </styled.p>
+          <styled.p color="ink.text-subdued">
             The estimated minimum per slot can change by multiples of 10,000 every cycle, so you may
             want to add a buffer to increase your chance of keeping the same number of slots.
-          </Text>
-          <Text color={color('text-caption')}>
+          </styled.p>
+          <styled.p color="ink.text-subdued">
             <OpenExternalLinkInNewTab href={STACKING_LEARN_MORE_URL}>
               Learn more about risks of stacking at or near the minimum
             </OpenExternalLinkInNewTab>
-          </Text>
-          <Text color={color('text-caption')}>
+          </styled.p>
+          <styled.p color="ink.text-subdued">
             <OpenExternalLinkInNewTab href={STACKING_MINIMIUM_FOR_NEXT_CYCLE_URL}>
               View the minimum for next cycle
             </OpenExternalLinkInNewTab>
-          </Text>
+          </styled.p>
         </Stack>
       </Description>
 
-      <Box position="relative" maxWidth="400px">
-        <Input id="stxAmount" placeholder="Amount of STX to Stack" mt="loose" {...field} />
+      <Box position="relative" maxWidth="400px" mt="space.05">
+        <Input.Root>
+          <Input.Label>Amount of STX to Stack</Input.Label>
+          <Input.Field id="stxAmount" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -103,14 +107,14 @@ export function Amount() {
         )}
         <Button
           type="button"
-          mode="tertiary"
           size="sm"
           height="28px"
           right="12px"
-          top="10px"
+          top="18px"
           style={{ position: 'absolute' }}
           width="80px"
           onClick={setMax}
+          zIndex={10}
         >
           Stack max
         </Button>
@@ -118,34 +122,33 @@ export function Amount() {
 
       {showStackingWarningCard && (
         <>
-          <Stack textStyle="body.small" color={color('text-caption')} spacing="base" mt="base">
-            <Text>
+          <Stack textStyle="body.small" gap="space.04" mt="space.04">
+            <styled.p color="ink.text-subdued">
               This entered amount would get you {numberOfRewardSlots.toString()} reward slot
               {numberOfRewardSlots.toNumber() === 1 ? '' : 's'} with a{' '}
               {toHumanReadableStx(buffer || 0)} buffer at the current minimum. However, that minimum
               is subject to change and there is no guarantee you will get any reward slots.
-            </Text>
+            </styled.p>
           </Stack>
 
           {buffer !== null && buffer.isEqualTo(0) && (
             <Box
-              textStyle="body.small"
-              color={color('text-body')}
+              textStyle="body.02"
+              color="ink.text-primary"
               border="1px solid"
-              p="loose"
-              mt="base"
+              p="space.05"
+              mt="space.04"
               borderRadius="6px"
-              borderColor={color('border')}
-              {...pseudoBorderLeft('feedback-alert')}
+              borderColor="ink.border-default"
+              className={pseudoBorderLeft('red.action-primary-default')}
             >
               Add a buffer for a higher chance (though no guarantee) of keeping the same number of
               reward slots should the minimum increase. If you can’t add a buffer, consider Stacking
               in a pool instead.
               <Button
-                variant="link"
                 type="button"
                 display="block"
-                mt="tight"
+                mt="space.02"
                 onClick={() => helpers.setValue(new BigNumber(field.value).plus(10000).toString())}
               >
                 Add 10,000 STX buffer

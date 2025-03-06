@@ -1,4 +1,4 @@
-import { Spinner } from '@stacks/ui';
+import { Spinner } from '@leather.io/ui';
 import { Flex } from 'leather-styles/jsx';
 
 export function CenteredSpinner() {

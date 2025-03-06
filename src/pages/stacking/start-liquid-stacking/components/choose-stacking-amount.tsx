@@ -1,6 +1,5 @@
-import { Button, Input } from '@leather.io/ui';
+import { Button, Input, Spinner } from '@leather.io/ui';
 import { intToBigInt } from '@stacks/common';
-import { Spinner } from '@stacks/ui';
 import { useField } from 'formik';
 import { Box, styled } from 'leather-styles/jsx';
 

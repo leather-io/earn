@@ -1,6 +1,5 @@
-import { ReactNode, Suspense, memo, useCallback, useRef } from 'react';
+import { ReactNode, Suspense, memo, useCallback, useEffect, useRef } from 'react';
 
-import { useEventListener } from '@stacks/ui';
 import { css } from 'leather-styles/css';
 import { Box, Flex, FlexProps } from 'leather-styles/jsx';
 
@@ -15,7 +14,7 @@ function useDrawer(isShowing: boolean, onClose: () => void, pause?: boolean) {
   const ref = useRef(null);
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: KeyboardEvent) => {
       if (isShowing && e.key === 'Escape') {
         onClose();
       }
@@ -24,7 +23,14 @@ function useDrawer(isShowing: boolean, onClose: () => void, pause?: boolean) {
   );
 
   useOnClickOutside(ref, !pause && isShowing ? onClose : null);
-  useEventListener('keydown', handleKeyDown);
+
+  useEffect(() => {
+    addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return ref;
 }

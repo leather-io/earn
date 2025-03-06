@@ -26,7 +26,7 @@ export function ChoosePoolingRewardAddress({ editable }: Props) {
         <CryptoAddressInput
           fieldName="poxAddress"
           addressType="BTC"
-          isDisabled={!editable}
+          disabled={!editable}
           {...field}
         >
           {meta.touched && meta.error && (

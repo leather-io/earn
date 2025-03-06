@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter, useSearchParams } from 'react-router-dom';
 
+import '@leather.io/ui/styles';
 import { StacksNetworkName } from '@stacks/network';
-import { ThemeProvider } from '@stacks/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { BlockchainApiClientProvider } from '@components/blockchain-api-client-provider';
@@ -70,9 +70,7 @@ function Root() {
         <AuthProvider>
           <StackingClientProvider>
             <BlockchainApiClientProvider>
-              <ThemeProvider>
-                <Outlet />
-              </ThemeProvider>
+              <Outlet />
             </BlockchainApiClientProvider>
           </StackingClientProvider>
         </AuthProvider>

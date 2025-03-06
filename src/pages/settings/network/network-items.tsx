@@ -4,12 +4,11 @@ import React from 'react';
 import { TbTrash } from 'react-icons/tb';
 import { useNavigate as useNavigateRouterDom } from 'react-router-dom';
 
-import { Button, ButtonProps, CheckmarkIcon, IconButton } from '@leather.io/ui';
+import { Button, ButtonProps, CheckmarkIcon, IconButton, Spinner } from '@leather.io/ui';
 import { Configuration, InfoApi } from '@stacks/blockchain-api-client';
 import { CoreNodeInfoResponse } from '@stacks/blockchain-api-client/src/generated/models';
 import { StacksNetworkName } from '@stacks/network';
 import { ChainId } from '@stacks/network';
-import { Spinner } from '@stacks/ui';
 import { useQuery } from '@tanstack/react-query';
 import { css } from 'leather-styles/css';
 import { BoxProps, Flex, FlexProps, Stack, styled } from 'leather-styles/jsx';

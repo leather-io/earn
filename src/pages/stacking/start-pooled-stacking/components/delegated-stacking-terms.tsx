@@ -19,7 +19,7 @@ export function DelegatedStackingTerms({
       textStyle={['body.small', 'body.large']}
       gap="space.02"
       pl="base"
-      {...pseudoBorderLeft('feedback-alert')}
+      className={pseudoBorderLeft('red.action-primary-default')}
       {...rest}
     >
       <StackingTermItem

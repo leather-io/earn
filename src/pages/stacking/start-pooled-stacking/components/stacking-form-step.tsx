@@ -1,7 +1,6 @@
-import { FC } from 'react';
+import { FC, ForwardRefExoticComponent, forwardRef } from 'react';
 
 import { Button, ButtonProps } from '@leather.io/ui';
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
 import { Box, Flex, FlexProps } from 'leather-styles/jsx';
 
 import { Title } from '@components/title';
@@ -22,9 +21,13 @@ export const StackingStep: FC<StackingFormStepProps> = props => {
   );
 };
 
-export const StackingStepAction: ForwardRefExoticComponentWithAs<ButtonProps, 'button'> =
-  forwardRefWithAs(({ children, ...props }, ref) => (
-    <Button size="md" mt="loose" ref={ref} {...props}>
-      {children}
-    </Button>
-  ));
+export const StackingStepAction: ForwardRefExoticComponent<ButtonProps> = forwardRef<
+  HTMLButtonElement,
+  ButtonProps
+>(({ children, ...props }, ref) => (
+  <Button size="md" mt="loose" ref={ref} {...props}>
+    {children}
+  </Button>
+));
+
+StackingStepAction.displayName = 'StackingStepAction';

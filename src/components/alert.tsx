@@ -23,7 +23,7 @@ export function Alert({ title, children: body, icon }: Props) {
           {icon ?? <IconInfoCircle />}
         </Box>
         <Box>
-          {title && <styled.p textStyle="heading.01">{title}</styled.p>}
+          {title && <styled.p textStyle="heading.04">{title}</styled.p>}
           {body && bodyEl}
         </Box>
       </Flex>

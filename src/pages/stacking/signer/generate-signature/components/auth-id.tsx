@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Box, Button, Input, Text, color } from '@stacks/ui';
+import { Button, Input } from '@leather.io/ui';
 import { useField } from 'formik';
+import { Box, styled } from 'leather-styles/jsx';
 
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
@@ -16,12 +17,15 @@ export function AuthId() {
   return (
     <Step title="Auth ID">
       <Description>
-        <Text color={color('text-caption')}>
+        <styled.p color="ink.text-subdued">
           A random number that is used to prevent re-use of the signature
-        </Text>
+        </styled.p>
       </Description>
-      <Box position="relative" my="loose">
-        <Input id="authId" placeholder="Authorisation id" autoComplete="off" {...field} />
+      <Box position="relative" my="space.05">
+        <Input.Root>
+          <Input.Label>Authorisation id</Input.Label>
+          <Input.Field id="authId" autoComplete="off" {...field} />
+        </Input.Root>
         {meta.touched && meta.error && (
           <ErrorLabel>
             <ErrorText>{meta.error}</ErrorText>
@@ -29,15 +33,15 @@ export function AuthId() {
         )}
         <Button
           type="button"
-          mode="tertiary"
           size="sm"
           height="28px"
           right="12px"
-          top="10px"
+          top="18px"
           style={{ position: 'absolute' }}
           width="110px"
           onClick={setRandom}
           // isDisabled={field.value === MAX_U128.toString()}
+          zIndex={10}
         >
           Random
         </Button>

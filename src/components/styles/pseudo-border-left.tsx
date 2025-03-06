@@ -1,7 +1,11 @@
-import { ColorsStringLiteral, color } from '@stacks/ui';
+import { css } from 'leather-styles/css';
+import { ColorToken } from 'leather-styles/tokens';
+import { AnyString, ConditionalValue } from 'leather-styles/types';
 
-export function pseudoBorderLeft(themeColor: ColorsStringLiteral, borderWidth = '4px') {
-  return {
+type ThemeColorType = ConditionalValue<readonly string[] | AnyString | ColorToken | undefined>;
+
+export function pseudoBorderLeft(themeColor: ThemeColorType, borderWidth = '4px') {
+  return css({
     position: 'relative',
     _before: {
       content: '""',
@@ -11,7 +15,7 @@ export function pseudoBorderLeft(themeColor: ColorsStringLiteral, borderWidth = 
       width: borderWidth,
       height: '100%',
       position: 'absolute',
-      background: color(themeColor),
+      background: themeColor,
     },
-  } as const;
+  });
 }
