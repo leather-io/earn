@@ -113,11 +113,11 @@ export const pools = {
     poolAddress: {
       [NetworkInstance.mainnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][
-        PoxContractName.WrapperStackingDao
+          PoxContractName.WrapperStackingDao
         ],
       [NetworkInstance.testnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.testnet][
-        PoxContractName.WrapperStackingDao
+          PoxContractName.WrapperStackingDao
         ],
       [NetworkInstance.devnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperStackingDao],
