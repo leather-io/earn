@@ -63,6 +63,7 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
 
       if (
         transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperFastPool] ||
+        transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperFastPoolV2] ||
         transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperRestake]
       ) {
         untilBurnHeight = undefined;
@@ -79,6 +80,9 @@ function getDelegationStatusFromTransaction(network: StacksNetwork) {
       const delegatedTo =
         transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperFastPool]
           ? poxContracts[PoxContractName.WrapperFastPool]
+          : transaction.contract_call.contract_id ===
+            poxContracts[PoxContractName.WrapperFastPoolV2]
+          ? poxContracts[PoxContractName.WrapperFastPoolV2]
           : transaction.contract_call.contract_id === poxContracts[PoxContractName.WrapperRestake]
           ? poxContracts[PoxContractName.WrapperRestake]
           : safeDelegateToCVToString(delegatedToCV);

@@ -99,6 +99,9 @@ function StartPooledStackingLayout({
   const getAllowanceContractCallersFastPoolQuery = useGetAllowanceContractCallersQuery(
     poxContracts[PoxContractName.WrapperFastPool]
   );
+  const getAllowanceContractCallersFastPoolV2Query = useGetAllowanceContractCallersQuery(
+    poxContracts[PoxContractName.WrapperFastPoolV2]
+  );
   const getAllowanceContractCallersRestakeQuery = useGetAllowanceContractCallersQuery(
     poxContracts[PoxContractName.WrapperRestake]
   );
@@ -117,6 +120,8 @@ function StartPooledStackingLayout({
           [poxContracts[PoxContractName.Pox4]]: true,
           [poxContracts[PoxContractName.WrapperFastPool]]:
             getAllowanceContractCallersFastPoolQuery?.data?.type === ClarityType.OptionalSome,
+          [poxContracts[PoxContractName.WrapperFastPoolV2]]:
+            getAllowanceContractCallersFastPoolV2Query?.data?.type === ClarityType.OptionalSome,
           [poxContracts[PoxContractName.WrapperRestake]]:
             getAllowanceContractCallersRestakeQuery?.data?.type === ClarityType.OptionalSome,
           [poxContracts[PoxContractName.WrapperOneCycle]]:
@@ -128,6 +133,7 @@ function StartPooledStackingLayout({
     poxContracts,
     networkInstance,
     getAllowanceContractCallersFastPoolQuery?.data?.type,
+    getAllowanceContractCallersFastPoolV2Query?.data?.type,
     getAllowanceContractCallersRestakeQuery?.data?.type,
     getAllowanceContractCallersOneCycleQuery?.data?.type,
     setHasUserConfirmedPoolWrapperContract,

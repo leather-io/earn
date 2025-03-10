@@ -84,6 +84,9 @@ export function SelfServiceExtend() {
     case poxContracts[PoxContractName.WrapperFastPool]:
       delegatedTo = PoxContractName.WrapperFastPool;
       break;
+    case poxContracts[PoxContractName.WrapperFastPoolV2]:
+      delegatedTo = PoxContractName.WrapperFastPoolV2;
+      break;
     case poxContracts[PoxContractName.WrapperRestake]:
       delegatedTo = PoxContractName.WrapperRestake;
       break;
