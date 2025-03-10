@@ -4,7 +4,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { PoxInfo, StackingClient, poxAddressToTuple } from '@stacks/stacking';
-import { ClarityValue, noneCV, principalCV, someCV, uintCV } from '@stacks/transactions';
+import { bufferCV, ClarityValue, noneCV, principalCV, someCV, uintCV } from '@stacks/transactions';
 import * as yup from 'yup';
 
 import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
@@ -129,6 +129,12 @@ function getOptions(
           noneCV(),
           poxAddressToTuple(values.rewardAddress),
           noneCV(),
+        ];
+        break;
+      case PoxContractName.WrapperFastPoolV2:
+        functionArgs = [
+          uintCV(stxToMicroStx(values.amount).toString()),
+          bufferCV(new Uint8Array(0)),
         ];
         break;
       case PoxContractName.WrapperFastPool:
