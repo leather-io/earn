@@ -4,7 +4,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
 import { StacksNetwork, StacksNetworkName } from '@stacks/network';
 import { PoxInfo, StackingClient, poxAddressToTuple } from '@stacks/stacking';
-import { bufferCV, ClarityValue, noneCV, principalCV, someCV, uintCV } from '@stacks/transactions';
+import { ClarityValue, bufferCV, noneCV, principalCV, someCV, uintCV } from '@stacks/transactions';
 import * as yup from 'yup';
 
 import { UI_IMPOSED_MAX_STACKING_AMOUNT_USTX } from '@constants/app';
