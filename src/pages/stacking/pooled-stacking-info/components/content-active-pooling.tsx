@@ -51,7 +51,9 @@ export function ActivePoolingContent({
   const { network } = useStacksNetwork();
   const isSelfService =
     delegationInfoDetails.delegated_to ===
-      getPoxContracts(network)[PoxContractName.WrapperFastPool] ||
+    getPoxContracts(network)[PoxContractName.WrapperFastPool] ||
+    delegationInfoDetails.delegated_to ===
+    getPoxContracts(network)[PoxContractName.WrapperFastPoolV2] ||
     delegationInfoDetails.delegated_to === getPoxContracts(network)[PoxContractName.WrapperRestake];
   return (
     <>

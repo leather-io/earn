@@ -37,6 +37,31 @@ export const pools = {
     allowCustomRewardAddress: false,
     disabled: false,
   },
+  'FAST Pool v2': {
+    name: PoolName.FastPoolV2,
+    description:
+      'Enjoy better swim experience in the upgraded pool.' +
+      ' ' +
+      'You can increase the locking amount for the next cycle.' +
+      ' ' +
+      'Locked STX will unlock 1 day after the end of the cycle.',
+    duration: 1,
+    website: 'https://fastpool.org',
+    payoutMethod: PayoutMethod.STX,
+    poolAddress: {
+      [NetworkInstance.mainnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][PoxContractName.WrapperFastPoolV2],
+      [NetworkInstance.testnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.testnet][PoxContractName.WrapperFastPoolV2],
+      [NetworkInstance.devnet]:
+        NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperFastPoolV2],
+    }, // pool address is the same as pool contract
+    poxContract: PoxContractName.WrapperFastPoolV2,
+    minimumDelegationAmount: 40_000_000,
+    icon: <PoolIcon src="/32x32_FastPool.png" />,
+    allowCustomRewardAddress: false,
+    disabled: false,
+  },
 
   PlanBetter: {
     name: PoolName.PlanBetter,
@@ -88,11 +113,11 @@ export const pools = {
     poolAddress: {
       [NetworkInstance.mainnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.mainnet][
-          PoxContractName.WrapperStackingDao
+        PoxContractName.WrapperStackingDao
         ],
       [NetworkInstance.testnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.testnet][
-          PoxContractName.WrapperStackingDao
+        PoxContractName.WrapperStackingDao
         ],
       [NetworkInstance.devnet]:
         NetworkInstanceToPoxContractMap[NetworkInstance.devnet][PoxContractName.WrapperStackingDao],

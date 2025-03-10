@@ -6,6 +6,7 @@ export const enum NetworkInstance {
 
 export const enum PoolName {
   FastPool = 'FAST Pool',
+  FastPoolV2 = 'FAST Pool v2',
   Xverse = 'Xverse',
   PlanBetter = 'PlanBetter',
   Restake = 'Restake',
@@ -16,6 +17,7 @@ export const enum PoolName {
 export const enum PoxContractName {
   WrapperOneCycle,
   WrapperFastPool,
+  WrapperFastPoolV2,
   WrapperRestake,
   WrapperStackingDao,
   Pox4,
@@ -27,6 +29,8 @@ export const NetworkInstanceToPoxContractMap = {
     [PoxContractName.WrapperOneCycle]: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.pox4-pools',
     [PoxContractName.WrapperFastPool]:
       'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.pox4-self-service',
+    [PoxContractName.WrapperFastPoolV2]:
+      'ST2PABAF9FTAJYNFZH93XENAJ8FVY99RRM4DF2YCW.pox4-self-service',
     [PoxContractName.WrapperRestake]: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.pox4-self-service',
     [PoxContractName.WrapperStackingDao]:
       'SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.native-stacking-pool-v1',
@@ -35,6 +39,8 @@ export const NetworkInstanceToPoxContractMap = {
     [PoxContractName.Pox4]: 'ST000000000000000000002AMW42H.pox-4',
     [PoxContractName.WrapperOneCycle]: 'ST2PABAF9FTAJYNFZH93XENAJ8FVY99RRM4DF2YCW.pox4-pools',
     [PoxContractName.WrapperFastPool]:
+      'ST2PABAF9FTAJYNFZH93XENAJ8FVY99RRM4DF2YCW.pox4-self-service',
+    [PoxContractName.WrapperFastPoolV2]:
       'ST2PABAF9FTAJYNFZH93XENAJ8FVY99RRM4DF2YCW.pox4-self-service',
     [PoxContractName.WrapperRestake]: 'ST2PABAF9FTAJYNFZH93XENAJ8FVY99RRM4DF2YCW.pox4-self-service',
     [PoxContractName.WrapperStackingDao]:
@@ -45,6 +51,8 @@ export const NetworkInstanceToPoxContractMap = {
     [PoxContractName.WrapperOneCycle]: 'SP001SFSMC2ZY76PD4M68P3WGX154XCH7NE3TYMX.pox4-pools',
     [PoxContractName.WrapperFastPool]:
       'SP21YTSM60CAY6D011EZVEVNKXVW8FVZE198XEFFP.pox4-fast-pool-v3',
+    [PoxContractName.WrapperFastPoolV2]:
+      'SPMPMA1V6P430M8C91QS1G9XJ95S59JS1TZFZ4Q4.pox4-multi-pool-v1',
     [PoxContractName.WrapperRestake]:
       'SPZV5RJN5XTJHA76E0VHEFB0WPEH7E11NZZ4CGBK.restake-self-service-pool-v1',
     [PoxContractName.WrapperStackingDao]:
