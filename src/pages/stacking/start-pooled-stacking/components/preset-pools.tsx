@@ -40,7 +40,7 @@ export const pools = {
   'FAST Pool v2': {
     name: PoolName.FastPoolV2,
     description:
-      'Enjoy better swim experience in the upgraded pool.' +
+      'Enjoy a better swim experience in the upgraded pool.' +
       ' ' +
       'You can increase the locking amount for the next cycle.' +
       ' ' +
