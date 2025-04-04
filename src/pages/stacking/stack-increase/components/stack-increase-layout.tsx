@@ -67,7 +67,7 @@ export function StackIncreaseLayout(props: StackIncreaseLayoutProps) {
                 <SignerDetails />
 
                 <Row m="loose" justifyContent="space-between">
-                  <Button variant="outline" onClick={onClose}>
+                  <Button variant="outline" onClick={onClose} type="submit">
                     Cancel
                   </Button>
                   <Button aria-busy={isContractCallExtensionPageOpen} disabled={hasErrors(errors)}>
