@@ -7,6 +7,7 @@ import { StackingClient } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
 
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
 import { stxToMicroStx } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
@@ -15,7 +16,6 @@ import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 
 import { DelegateStackIncreaseFormValues } from './types';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 interface CreateValidationSchemaArgs {
   /**
