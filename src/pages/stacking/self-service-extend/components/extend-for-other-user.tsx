@@ -15,7 +15,7 @@ import {
   useGetStatusWithClientQuery,
 } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
-
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useDelegationStatusForUserQuery } from '../../pooled-stacking-info/use-delegation-status-query';
 import { isAtEndOfStackingPeriod } from '../utils';
 import { StackerDetailsRowsForUserExtend } from './stacker-details-rows-for-extend';
@@ -29,7 +29,7 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
   const [field, meta] = useField('stacker');
   const { network } = useStacksNetwork();
   const address = field.value;
-  const client = new StackingClient({ address, network });
+  const client = new StackingClient({ address, network, client: { fetch: fetchFn } });
   const getStatusQuery = useGetStatusWithClientQuery(client);
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });
