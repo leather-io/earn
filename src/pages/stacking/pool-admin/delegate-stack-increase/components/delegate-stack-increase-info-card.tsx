@@ -21,6 +21,7 @@ import { truncateMiddle } from '@utils/tx-utils';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { DelegateStackIncreaseFormValues } from '../types';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: string }) {
   return (
@@ -36,7 +37,7 @@ function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: str
 
 export function StackerDuration({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address: stacker, network });
+  const client = new StackingClient({ address: stacker, network, client: { fetch: fetchFn } });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
 
   let lockedAmount: bigint | null = null;
@@ -56,7 +57,11 @@ export function StackerDuration({ stacker }: { stacker: string }) {
 
 function IncreaseByValue({ stacker, amount }: { stacker: string; amount: IntegerType }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address: stacker, network });
+  const client = new StackingClient({
+    address: stacker,
+    network,
+    client: { fetch: fetchFn },
+  });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
   if (getAccountExtendedBalancesQuery.isError || !getAccountExtendedBalancesQuery.data) {
     return <Value>0 STX</Value>;
