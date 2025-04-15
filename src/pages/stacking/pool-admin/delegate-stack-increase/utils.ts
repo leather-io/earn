@@ -15,6 +15,7 @@ import { stxPrincipalSchema } from '@utils/validators/stx-address-validator';
 import { stxAmountSchema } from '@utils/validators/stx-amount-validator';
 
 import { DelegateStackIncreaseFormValues } from './types';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 interface CreateValidationSchemaArgs {
   /**
@@ -64,7 +65,11 @@ export function createHandleSubmit({
 }: CreateHandleSubmitArgs) {
   return async function handleSubmit(values: DelegateStackIncreaseFormValues) {
     if (values.amount === null) throw new Error('Expected a non-null amount to be submitted.');
-    const stackerClient = new StackingClient({ address: values.stacker, network });
+    const stackerClient = new StackingClient({
+      address: values.stacker,
+      network,
+      client: { fetch: fetchFn },
+    });
     const balances = await stackerClient.getAccountExtendedBalances();
     const increaseBy =
       intToBigInt(stxToMicroStx(values.amount).toString()) - intToBigInt(balances.stx.locked);
