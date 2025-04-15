@@ -13,6 +13,7 @@ import { getPoxContracts } from 'src/pages/stacking/start-pooled-stacking/utils-
 
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
+
 import { fetchFn } from './fetch-fn';
 
 interface StackingClientContext {
