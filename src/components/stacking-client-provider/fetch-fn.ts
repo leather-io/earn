@@ -6,7 +6,7 @@ export async function fetchFn(input: RequestInfo | URL, init?: RequestInit) {
         ...init,
         headers: {
           ...init?.headers,
-          'x-hiro-product': 'Leather',
+          'x-partner': 'Leather',
         },
       }
     : init;
