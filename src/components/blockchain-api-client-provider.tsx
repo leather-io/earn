@@ -45,12 +45,7 @@ interface Props {
 }
 export function BlockchainApiClientProvider({ children }: Props) {
   const { network } = useStacksNetwork();
-  const config = new Configuration({
-    basePath: network.client.baseUrl,
-    headers: {
-      'x-partner': 'Leather',
-    },
-  });
+  const config = new Configuration({ basePath: network.client.baseUrl });
 
   return (
     <Context.Provider

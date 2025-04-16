@@ -10,7 +10,6 @@ import { CenteredSpinner } from '@components/centered-spinner';
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { InfoCardRow as Row } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import {
   useGetPoxInfoQuery,
   useGetStatusWithClientQuery,
@@ -30,7 +29,7 @@ export function ExtendForOtherUser({ onClose, isContractCallExtensionPageOpen }:
   const [field, meta] = useField('stacker');
   const { network } = useStacksNetwork();
   const address = field.value;
-  const client = new StackingClient({ address, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address, network });
   const getStatusQuery = useGetStatusWithClientQuery(client);
   const getPoxInfoQuery = useGetPoxInfoQuery();
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });

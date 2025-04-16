@@ -59,7 +59,7 @@ export function createHandleSubmit({
       extendCount: values.extendCount,
     });
 
-    delegateStackExtendOptions.client = undefined;
+    console.log(delegateStackExtendOptions);
 
     showContractCall({
       // Type coercion necessary because the `network` property returned by

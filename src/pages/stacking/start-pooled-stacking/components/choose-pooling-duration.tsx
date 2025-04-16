@@ -42,7 +42,7 @@ export function ChoosePoolingDuration() {
     <Step title="Duration">
       <Description>
         <styled.p color="ink.text-subdued">
-          The pool locks your STX for {duration} cycle{duration > 1 ? 's' : ''} at the time. You can
+          The pool looks your STX for {duration} cycle{duration > 1 ? 's' : ''} at the time. You can
           revoke the pool permission at any time and your STX will be unlocked after the end of the
           next cycle.
         </styled.p>

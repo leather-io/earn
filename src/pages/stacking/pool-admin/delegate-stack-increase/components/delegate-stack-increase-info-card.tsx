@@ -15,7 +15,6 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useGetAccountExtendedBalancesWithClientQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { truncateMiddle } from '@utils/tx-utils';
@@ -37,7 +36,7 @@ function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: str
 
 export function StackerDuration({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address: stacker, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
 
   let lockedAmount: bigint | null = null;
@@ -57,11 +56,7 @@ export function StackerDuration({ stacker }: { stacker: string }) {
 
 function IncreaseByValue({ stacker, amount }: { stacker: string; amount: IntegerType }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({
-    address: stacker,
-    network,
-    client: { fetch: fetchFn },
-  });
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
   if (getAccountExtendedBalancesQuery.isError || !getAccountExtendedBalancesQuery.data) {
     return <Value>0 STX</Value>;

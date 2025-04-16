@@ -7,7 +7,6 @@ import { StackingClient } from '@stacks/stacking';
 import BigNumber from 'bignumber.js';
 import * as yup from 'yup';
 
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { validateDecimalPrecision } from '@utils/form/validate-decimals';
 import { stxToMicroStx } from '@utils/unit-convert';
 import { createBtcAddressSchema } from '@utils/validators/btc-address-validator';
@@ -65,11 +64,7 @@ export function createHandleSubmit({
 }: CreateHandleSubmitArgs) {
   return async function handleSubmit(values: DelegateStackIncreaseFormValues) {
     if (values.amount === null) throw new Error('Expected a non-null amount to be submitted.');
-    const stackerClient = new StackingClient({
-      address: values.stacker,
-      network,
-      client: { fetch: fetchFn },
-    });
+    const stackerClient = new StackingClient({ address: values.stacker, network });
     const balances = await stackerClient.getAccountExtendedBalances();
     const increaseBy =
       intToBigInt(stxToMicroStx(values.amount).toString()) - intToBigInt(balances.stx.locked);
@@ -82,7 +77,6 @@ export function createHandleSubmit({
       increaseBy: increaseBy.toString(),
       poxAddress: values.poxAddress,
     });
-    delegateStackStxOptions.client = undefined;
 
     showContractCall({
       // Type coercion necessary because the `network` property returned by

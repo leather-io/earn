@@ -7,7 +7,6 @@ import { StackerInfoDetails } from 'src/types/stacking';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { Hr } from '@components/hr';
 import { InfoCardRow as Row } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 
@@ -33,7 +32,7 @@ export function ExtendForCurrentUser({
   setShowExtendForOtherUser,
 }: Props) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address, network });
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });
 
   if (getDelegationStatusQuery.isError || !getDelegationStatusQuery.data) {
