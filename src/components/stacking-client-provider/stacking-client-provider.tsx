@@ -14,6 +14,8 @@ import { getPoxContracts } from 'src/pages/stacking/start-pooled-stacking/utils-
 import { useAuth } from '@components/auth-provider/auth-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
+import { fetchFn } from './fetch-fn';
+
 interface StackingClientContext {
   client: null | StackingClient;
 }
@@ -31,7 +33,7 @@ export function StackingClientProvider({ children }: Props) {
   let client: StackingClient | null = null;
 
   if (address !== null && isValidStacksAddress(address)) {
-    client = new StackingClient({ address, network });
+    client = new StackingClient({ address, network, client: { fetch: fetchFn } });
   }
 
   return (
