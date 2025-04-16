@@ -18,12 +18,11 @@ export const CryptoAddressInput = forwardRef<HTMLInputElement, CryptoAddressInpu
         <Box mt="space.05" maxWidth="400px">
           <Input.Root>
             <Input.Label>
-              {placeholder ? placeholder :
-                addressType === 'BTC'
-                  ? 'Bitcoin address (Legacy, Native SegWit or Taproot)'
-                  : addressType === 'STX'
-                    ? 'Stacks address'
-                    : undefined}
+              {placeholder || addressType === 'BTC'
+                ? 'Bitcoin address (Legacy, Native SegWit or Taproot)'
+                : addressType === 'STX'
+                ? 'Stacks address'
+                : undefined}
             </Input.Label>
             <Input.Field
               id={fieldName}
