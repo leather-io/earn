@@ -152,7 +152,6 @@ export function createHandleSubmit({
       maxAmount,
       authId,
     });
-    stackAggregationCommitOptions.client = undefined;
 
     showContractCall({
       // Type coercion necessary because the `network` property returned by

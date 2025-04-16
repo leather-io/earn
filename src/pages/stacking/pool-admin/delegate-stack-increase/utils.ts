@@ -82,7 +82,6 @@ export function createHandleSubmit({
       increaseBy: increaseBy.toString(),
       poxAddress: values.poxAddress,
     });
-    delegateStackStxOptions.client = undefined;
 
     showContractCall({
       // Type coercion necessary because the `network` property returned by
