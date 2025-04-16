@@ -230,6 +230,8 @@ export function createHandleSubmit({
       authId,
     });
 
+    stackOptions.client = undefined;
+
     showContractCall({
       // Type coercion necessary because the `network` property returned by
       // `client.getStackingContract()` has a wider type than allowed by `showContractCall`. Despite
