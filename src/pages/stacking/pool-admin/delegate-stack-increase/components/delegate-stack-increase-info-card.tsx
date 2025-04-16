@@ -15,13 +15,13 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useGetAccountExtendedBalancesWithClientQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { truncateMiddle } from '@utils/tx-utils';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { DelegateStackIncreaseFormValues } from '../types';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 function StackerIncreaseInfo({ stacker, amount }: { stacker: string; amount: string }) {
   return (

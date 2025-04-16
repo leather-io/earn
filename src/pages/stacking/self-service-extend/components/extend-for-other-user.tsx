@@ -10,13 +10,12 @@ import { CenteredSpinner } from '@components/centered-spinner';
 import { ErrorLabel } from '@components/error-label';
 import { ErrorText } from '@components/error-text';
 import { InfoCardRow as Row } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import {
   useGetPoxInfoQuery,
   useGetStatusWithClientQuery,
 } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
-
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useDelegationStatusForUserQuery } from '../../pooled-stacking-info/use-delegation-status-query';
 import { isAtEndOfStackingPeriod } from '../utils';
 import { StackerDetailsRowsForUserExtend } from './stacker-details-rows-for-extend';

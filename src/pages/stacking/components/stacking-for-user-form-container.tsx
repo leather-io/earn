@@ -4,12 +4,12 @@ import { StackingClient } from '@stacks/stacking';
 import { useFormikContext } from 'formik';
 import { PooledStackerFormValues } from 'src/types/stacking';
 
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useGetAccountExtendedBalancesWithClientQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 
 import { useDelegationStatusForUserQuery } from '../pooled-stacking-info/use-delegation-status-query';
 import { StackingFormChild, StackingFormContainer } from './stacking-form-container';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 export function StackingForUserFormContainer({
   address,

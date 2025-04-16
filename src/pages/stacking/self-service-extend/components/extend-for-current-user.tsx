@@ -7,13 +7,13 @@ import { StackerInfoDetails } from 'src/types/stacking';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { Hr } from '@components/hr';
 import { InfoCardRow as Row } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { formatPoxAddressToNetwork } from '@utils/stacking';
 
 import { StackerDetailsRows } from '../../components/stacker-details-rows';
 import { useDelegationStatusForUserQuery } from '../../pooled-stacking-info/use-delegation-status-query';
 import { isAtEndOfStackingPeriod } from '../utils';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 interface Props {
   poxInfo: PoxInfo;

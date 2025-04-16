@@ -14,7 +14,6 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 import {
   useGetAccountExtendedBalancesWithClientQuery,
   useGetPoxInfoQuery,
@@ -24,6 +23,7 @@ import { truncateMiddle } from '@utils/tx-utils';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { DelegateStackExtendFormValues } from '../types';
+import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 function StackerExtendInfo({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
