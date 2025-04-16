@@ -79,7 +79,7 @@ export function createHandleSubmit({
       poxAddress: values.poxAddress,
       burnBlockHeight: values.startBurnHt,
     });
-
+    delegateStackStxOptions.client = undefined;
     showContractCall({
       // Type coercion necessary because the `network` property returned by
       // `client.getStackingContract()` has a wider type than allowed by `showContractCall`. Despite
