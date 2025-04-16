@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { useClipboard } from '@leather.io/ui';
+import { SignatureData } from '@stacks/connect';
 import { IconCopy } from '@tabler/icons-react';
 import { useFormikContext } from 'formik';
 import { Box, Flex, styled } from 'leather-styles/jsx';
@@ -17,7 +18,6 @@ import {
 import { Screen } from '@components/screen';
 import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stacking-client-provider';
 import { Title } from '@components/title';
-import { SignMessageResult } from '@hooks/use-generate-signature';
 import { truncateMiddle } from '@utils/tx-utils';
 import { stxToMicroStxBigint } from '@utils/unit-convert';
 
@@ -36,7 +36,7 @@ import { Topic } from './topic';
 export function GenerateSignatureLayout({
   signatureData,
 }: {
-  signatureData: SignMessageResult | null;
+  signatureData: SignatureData | null;
 }) {
   const { values: formValues, isValid } = useFormikContext<GenerateSignatureFields>();
   const { poxAddress, topic, period, rewardCycleId, authId, maxAmount } = formValues;

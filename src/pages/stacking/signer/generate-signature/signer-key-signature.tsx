@@ -1,6 +1,7 @@
 import React, { createContext, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { SignatureData } from '@stacks/connect';
 import { Pox4SignatureTopic } from '@stacks/stacking';
 import { Form, Formik } from 'formik';
 
@@ -11,10 +12,7 @@ import { useGetPoxInfoQuery } from '@components/stacking-client-provider/stackin
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { parseNumber, stxToMicroStxBigint } from '@utils/unit-convert';
 
-import {
-  SignMessageResult,
-  useGenerateStackingSignature,
-} from '../../../../hooks/use-generate-signature';
+import { useGenerateStackingSignature } from '../../../../hooks/use-generate-signature';
 import { GenerateSignatureLayout } from './components/generate-signature-layout';
 import { GenerateSignatureFields, MAX_U128 } from './types';
 import { createValidationSchema } from './utils';
@@ -28,7 +26,7 @@ const initialFormValues: GenerateSignatureFields = {
   authId: '',
 };
 
-const _SignatureDataContext = createContext<{ signature: SignMessageResult | null }>({
+const _SignatureDataContext = createContext<{ signature: SignatureData | null }>({
   signature: null,
 });
 

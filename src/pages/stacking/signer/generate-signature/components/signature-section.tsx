@@ -1,3 +1,4 @@
+import { SignatureData } from '@stacks/connect';
 import { styled } from 'leather-styles/jsx';
 import { Flex } from 'leather-styles/jsx';
 
@@ -7,12 +8,11 @@ import {
   InfoCardSection as Section,
   InfoCardValue as Value,
 } from '@components/info-card';
-import { SignMessageResult } from '@hooks/use-generate-signature';
 
 import { MAX_U128 } from '../types';
 
 interface Props {
-  signatureData: (SignMessageResult & { maxAmount: string; authId: string }) | undefined;
+  signatureData: (SignatureData & { maxAmount: string; authId: string }) | undefined;
 }
 
 export function SignatureSection({ signatureData }: Props) {

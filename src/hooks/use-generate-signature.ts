@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import { IntegerType } from '@stacks/common';
-import { MethodResult, request } from '@stacks/connect';
+import { SignatureData, openStructuredDataSignatureRequestPopup } from '@stacks/connect';
 import {
   Pox4SignatureTopic,
   pox4SignatureMessage,
@@ -21,11 +21,9 @@ export interface GenerateSignatureOptions {
   authId: IntegerType;
 }
 
-export type SignMessageResult = MethodResult<'stx_signStructuredMessage'>;
-
 export function useGenerateStackingSignature() {
   const _stackingClient = useStackingClient();
-  const [signatureData, setSignatureData] = useState<SignMessageResult | null>(null);
+  const [signatureData, setSignatureData] = useState<SignatureData | null>(null);
   const network = useStacksNetwork();
   const openSignatureRequest = useCallback(
     async (options: GenerateSignatureOptions) => {
@@ -39,23 +37,28 @@ export function useGenerateStackingSignature() {
         authId: options.authId,
       });
 
-      const data = await request('stx_signStructuredMessage', { message, domain });
-      console.log('signature done', data);
-      const isValid = verifyPox4SignatureHash({
-        topic: options.topic,
-        period: options.period,
-        network: network.network,
-        rewardCycle: options.rewardCycle,
-        poxAddress: options.poxAddress,
-        signature: data.signature,
-        publicKey: data.publicKey,
-        maxAmount: options.maxAmount,
-        authId: options.authId,
+      await openStructuredDataSignatureRequestPopup({
+        domain,
+        message,
+        onFinish: data => {
+          console.log('signature done', data);
+          const isValid = verifyPox4SignatureHash({
+            topic: options.topic,
+            period: options.period,
+            network: network.network,
+            rewardCycle: options.rewardCycle,
+            poxAddress: options.poxAddress,
+            signature: data.signature,
+            publicKey: data.publicKey,
+            maxAmount: options.maxAmount,
+            authId: options.authId,
+          });
+          console.log(isValid);
+          setSignatureData(data);
+        },
       });
-      console.log(isValid);
-      setSignatureData(data);
     },
-    [network.network]
+    [network.network, setSignatureData]
   );
 
   return {

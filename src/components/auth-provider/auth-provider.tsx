@@ -1,53 +1,37 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
+import { UserData } from '@stacks/auth';
 import {
+  AppConfig,
+  AuthOptions,
   DEFAULT_PROVIDERS,
-  StorageData,
-  connect,
+  UserSession,
   disconnect,
-  getLocalStorage,
-  isConnected,
+  showConnect,
 } from '@stacks/connect';
-import { NetworkString } from '@stacks/connect/dist/types/methods';
 import { validateStacksAddress as isValidStacksAddress } from '@stacks/transactions';
-import useLocalStorage from 'use-local-storage';
+import { APP_DETAILS } from 'src/constants';
 
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { analytics } from '@utils/analytics';
 
-type AuthData = Pick<StorageData, 'addresses'>;
+const appConfig = new AppConfig(['store_write']);
+const userSession = new UserSession({ appConfig });
 
-/**
- * NOTE: For security reasons, the `8.x.x` release only returns
- * the current network's address (where previously both mainnet and testnet addresses were returned).
- * @see https://github.com/hirosystems/connect/tree/main/packages/connect
- */
-function getAccountAddresses(authData: AuthData | null) {
-  const address = authData?.addresses?.stx?.find(stx => stx.symbol === 'STX')?.address ?? null;
-  const btcAddressP2tr =
-    authData?.addresses?.btc?.find(btc => ('type' in btc ? btc.type === 'p2tr' : false))?.address ??
-    null;
-  const btcAddressP2wpkh =
-    authData?.addresses?.btc?.find(btc => ('type' in btc ? btc.type === 'p2wpkh' : false))
-      ?.address ?? null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getAccountAddresses(userData: any, network: string) {
+  // NOTE: Although this approach to obtain the user's address is good enough for now, it is quite brittle.
+  // It relies on a variable having the same value as the object key below. Type checking is not available given the `userSession` object managed by `@stacks/connect` is typed as `any`.
+  //
+  // Should this be a source of issues, it may be worth refactoring.
+  const address: string = userData?.profile?.stxAddress?.[network];
+  const btcAddressP2tr: string = userData?.profile?.btcAddress?.p2tr?.[network];
+  const btcAddressP2wpkh: string = userData?.profile?.btcAddress?.p2wpkh?.[network];
 
-  if (!address || !isValidStacksAddress(address)) {
+  if (!isValidStacksAddress(address)) {
     return { address: null, btcAddressP2tr: null, btcAddressP2wpkh: null };
   }
-
   return { address, btcAddressP2tr, btcAddressP2wpkh };
-}
-
-function getAuthData() {
-  try {
-    const connected = isConnected();
-    if (connected) {
-      return getLocalStorage();
-    }
-  } catch {
-    // do nothing
-  }
-  return null;
 }
 
 interface SignInOptions {
@@ -57,11 +41,12 @@ interface SignInOptions {
 interface AuthContext {
   isSigningIn: boolean;
   isSignedIn: boolean;
-  signIn(options: SignInOptions): void;
+  signIn(options?: SignInOptions): void;
   signOut(): void;
-  address: string | null;
-  btcAddressP2tr: string | null;
-  btcAddressP2wpkh: string | null;
+  userData: null | UserData;
+  address: null | string;
+  btcAddressP2tr: null | string;
+  btcAddressP2wpkh: null | string;
 }
 
 // The context type is non-null to avoid null checks wherever the context is used.
@@ -71,77 +56,81 @@ const AuthContext = createContext<AuthContext>(null!);
 interface Props {
   children: ReactNode;
 }
-
 export function AuthProvider({ children }: Props) {
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [hasSearchedForExistingSession, setHasSearchedForExistingSession] = useState(false);
   const { networkName } = useStacksNetwork();
 
-  const [savedNetworkName, setSavedNetworkName] = useLocalStorage<NetworkString | undefined>(
-    'earn/auth/savedNetworkName',
-    undefined,
-    { syncData: false }
-  );
-
-  const [authData, setAuthData] = useState<AuthData | null>(getAuthData);
-
-  async function signIn({ allowAllProviders }: SignInOptions) {
+  function signIn({ allowAllProviders }: SignInOptions = { allowAllProviders: false }) {
     if (isSigningIn) {
       console.warn('Attempted to sign in while sign is is in progress.');
       return;
     }
     setIsSigningIn(true);
 
-    const providers = DEFAULT_PROVIDERS.filter(provider => {
-      if (allowAllProviders) return true;
-      return provider.id === 'LeatherProvider';
+    const provider = window.StacksProvider?.getProductInfo?.()?.name ?? 'none';
+
+    analytics.untypedTrack('earn_sign_in_started', {
+      provider,
     });
-    const providerNames = providers.map(provider => provider.name).join(',');
 
-    analytics.untypedTrack('earn_sign_in_started', { provider: providerNames });
-
-    try {
-      // same as connect, but allows set forceWalletSelect
-      await connect({
-        defaultProviders: providers,
-        network: networkName,
-        enableLocalStorage: true,
-      });
-      analytics.untypedTrack('earn_sign_in_completed', { provider: providerNames });
-      setAuthData(getAuthData());
-      setSavedNetworkName(networkName);
-    } catch (error) {
-      console.error(error);
-      analytics.untypedTrack('earn_sign_in_cancelled', { provider: providerNames });
-    } finally {
-      setIsSigningIn(false);
-    }
+    showConnect({
+      userSession,
+      appDetails: APP_DETAILS,
+      defaultProviders: DEFAULT_PROVIDERS.filter(provider => {
+        if (allowAllProviders) return true;
+        return provider.id === 'LeatherProvider';
+      }),
+      onFinish() {
+        const provider = window.StacksProvider?.getProductInfo?.()?.name ?? 'none';
+        analytics.untypedTrack('earn_sign_in_completed', {
+          provider,
+        });
+        setIsSigningIn(false);
+        setIsSignedIn(true);
+      },
+      onCancel() {
+        analytics.untypedTrack('earn_sign_in_cancelled', {
+          provider,
+        });
+        setIsSigningIn(false);
+      },
+    } as AuthOptions);
   }
 
   function signOut() {
+    userSession.signUserOut();
     disconnect();
-    setAuthData(null);
-    setSavedNetworkName(undefined);
+    setIsSignedIn(false);
   }
 
-  useEffect(() => {
-    const connected = isConnected();
-    // TODO: is there a better way to force @stacks/connect update network?
-    if (connected && savedNetworkName && networkName !== savedNetworkName) {
-      signOut();
-      signIn({ allowAllProviders: true });
+  if (!hasSearchedForExistingSession) {
+    if (userSession.isUserSignedIn()) {
+      setIsSignedIn(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [networkName, savedNetworkName]);
 
-  const { address, btcAddressP2tr, btcAddressP2wpkh } = getAccountAddresses(authData);
+    setHasSearchedForExistingSession(true);
+    return null;
+  }
+
+  let userData = null;
+  try {
+    userData = userSession.loadUserData();
+  } catch {
+    // do nothing
+  }
+
+  const { address, btcAddressP2tr, btcAddressP2wpkh } = getAccountAddresses(userData, networkName);
   return (
     <>
       <AuthContext.Provider
         value={{
           isSigningIn,
-          isSignedIn: Boolean(authData),
+          isSignedIn,
           signIn,
           signOut,
+          userData,
           address,
           btcAddressP2tr,
           btcAddressP2wpkh,
