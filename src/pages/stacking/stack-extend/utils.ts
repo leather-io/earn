@@ -63,6 +63,7 @@ export function createHandleSubmit({
       maxAmount,
       authId: parseInt(authId),
     });
+    stackExtendOptions.client = undefined;
     setIsContractCallExtensionPageOpen(true);
     showContractCall({
       // Type coercion necessary because the `network` property returned by
