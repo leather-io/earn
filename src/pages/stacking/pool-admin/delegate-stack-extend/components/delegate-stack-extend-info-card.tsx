@@ -23,11 +23,10 @@ import { truncateMiddle } from '@utils/tx-utils';
 import { toHumanReadableStx } from '@utils/unit-convert';
 
 import { DelegateStackExtendFormValues } from '../types';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 function StackerExtendInfo({ stacker }: { stacker: string }) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address: stacker, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address: stacker, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
 
   let amount: bigint | null = null;

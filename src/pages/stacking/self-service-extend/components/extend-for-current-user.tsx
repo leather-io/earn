@@ -13,7 +13,6 @@ import { formatPoxAddressToNetwork } from '@utils/stacking';
 import { StackerDetailsRows } from '../../components/stacker-details-rows';
 import { useDelegationStatusForUserQuery } from '../../pooled-stacking-info/use-delegation-status-query';
 import { isAtEndOfStackingPeriod } from '../utils';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 interface Props {
   poxInfo: PoxInfo;
@@ -33,7 +32,7 @@ export function ExtendForCurrentUser({
   setShowExtendForOtherUser,
 }: Props) {
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address, network });
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({ client, address, network });
 
   if (getDelegationStatusQuery.isError || !getDelegationStatusQuery.data) {

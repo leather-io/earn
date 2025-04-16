@@ -9,7 +9,6 @@ import { useStacksNetwork } from '@hooks/use-stacks-network';
 
 import { useDelegationStatusForUserQuery } from '../pooled-stacking-info/use-delegation-status-query';
 import { StackingFormChild, StackingFormContainer } from './stacking-form-container';
-import { fetchFn } from '@components/stacking-client-provider/fetch-fn';
 
 export function StackingForUserFormContainer({
   address,
@@ -20,7 +19,7 @@ export function StackingForUserFormContainer({
 }) {
   const { setFieldValue } = useFormikContext<PooledStackerFormValues>();
   const { network } = useStacksNetwork();
-  const client = new StackingClient({ address, network, client: { fetch: fetchFn } });
+  const client = new StackingClient({ address, network });
   const getAccountExtendedBalancesQuery = useGetAccountExtendedBalancesWithClientQuery(client);
   const getDelegationStatusQuery = useDelegationStatusForUserQuery({
     client,
