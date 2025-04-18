@@ -14,6 +14,7 @@ import useLocalStorage from 'use-local-storage';
 
 import { useStacksNetwork } from '@hooks/use-stacks-network';
 import { analytics } from '@utils/analytics';
+import { makeUUID4 } from '@stacks/common';
 
 type AuthData = Pick<StorageData, 'addresses'>;
 
@@ -98,6 +99,7 @@ export function AuthProvider({ children }: Props) {
     const providerNames = providers.map(provider => provider.name).join(',');
 
     analytics.untypedTrack('earn_sign_in_started', { provider: providerNames });
+    console.log({ providerNames });
 
     try {
       // same as connect, but allows set forceWalletSelect
@@ -123,8 +125,29 @@ export function AuthProvider({ children }: Props) {
     setSavedNetworkName(undefined);
   }
 
+  function completeZealyConnectTask() {
+    const { address } = getAccountAddresses(authData);
+    if (networkName === 'mainnet') {
+      fetch('https://staging.api.leather.io/v1/quests/default/complete-task', {
+        method: 'POST',
+        headers: {
+          'x-client-id': makeUUID4(),
+        },
+        body: JSON.stringify({
+          task: 'connect-earn',
+          address,
+        }),
+      });
+    }
+  }
+
   useEffect(() => {
     const connected = isConnected();
+
+    if (connected) {
+      completeZealyConnectTask();
+    }
+
     // TODO: is there a better way to force @stacks/connect update network?
     if (connected && savedNetworkName && networkName !== savedNetworkName) {
       signOut();
