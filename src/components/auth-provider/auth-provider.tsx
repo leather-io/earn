@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
+import { makeUUID4 } from '@stacks/common';
 import {
   DEFAULT_PROVIDERS,
   StorageData,
@@ -98,6 +99,7 @@ export function AuthProvider({ children }: Props) {
     const providerNames = providers.map(provider => provider.name).join(',');
 
     analytics.untypedTrack('earn_sign_in_started', { provider: providerNames });
+    console.log({ providerNames });
 
     try {
       // same as connect, but allows set forceWalletSelect
@@ -123,8 +125,29 @@ export function AuthProvider({ children }: Props) {
     setSavedNetworkName(undefined);
   }
 
+  function completeZealyConnectTask() {
+    const { address } = getAccountAddresses(authData);
+    if (networkName === 'mainnet') {
+      fetch('https://api.leather.io/v1/quests/connect-earn/complete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-client-id': makeUUID4(),
+        },
+        body: JSON.stringify({
+          address,
+        }),
+      });
+    }
+  }
+
   useEffect(() => {
     const connected = isConnected();
+
+    if (connected) {
+      completeZealyConnectTask();
+    }
+
     // TODO: is there a better way to force @stacks/connect update network?
     if (connected && savedNetworkName && networkName !== savedNetworkName) {
       signOut();
