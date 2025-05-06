@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ContractCallRegularOptions, showContractCall } from '@stacks/connect';
+import { ContractCallRegularOptions, openContractCall } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
 import { Box, Flex, styled } from 'leather-styles/jsx';
 
@@ -97,25 +97,28 @@ function PooledStackingInfoLayout({ client }: CardLayoutProps) {
     delegationStatusQuery.data.details.until_burn_ht < getCoreInfoQuery.data.burn_block_height;
 
   async function handleStopPoolingClick() {
-    const stackingContract = await client.getStackingContract();
-    const revokeDelegationOptions = client.getRevokeDelegateStxOptions(stackingContract);
-    setIsContractCallExtensionPageOpen(true);
-    showContractCall({
-      // Type coercion necessary because the `network` property returned by
-      // `client.getStackingContract()` has a wider type than allowed by `showContractCall`. Despite
-      // the wider type, the actual value of `network` is always of the type `StacksNetwork`
-      // expected by `showContractCall`.
-      //
-      // See
-      // https://github.com/hirosystems/stacks.js/blob/0e1f9f19dfa45788236c9e481f9a476d9948d86d/packages/stacking/src/index.ts#L1054
-      ...(revokeDelegationOptions as ContractCallRegularOptions),
-      onCancel() {
-        setIsContractCallExtensionPageOpen(false);
-      },
-      onFinish() {
-        setIsContractCallExtensionPageOpen(false);
-      },
-    });
+    try {
+      const stackingContract = await client.getStackingContract();
+      const revokeDelegationOptions = client.getRevokeDelegateStxOptions(stackingContract);
+
+      // Serialisation inside Connect breaks when we pass fns
+      const { client: _client, ...txConfig } = revokeDelegationOptions;
+
+      setIsContractCallExtensionPageOpen(true);
+      openContractCall({
+        // Type coercion necessary because the `network` property returned by
+        // `client.getStackingContract()` has a wider type than allowed by `openContractCall`. Despite
+        // the wider type, the actual value of `network` is always of the type `StacksNetwork`
+        // expected by `openContractCall`.
+        //
+        // See
+        // https://github.com/hirosystems/stacks.js/blob/0e1f9f19dfa45788236c9e481f9a476d9948d86d/packages/stacking/src/index.ts#L1054
+        ...(txConfig as ContractCallRegularOptions),
+      });
+    } catch (error) {
+      console.error('Error while opening the contract call extension', error);
+      setIsContractCallExtensionPageOpen(false);
+    }
   }
   return (
     <>
@@ -134,14 +137,13 @@ function PooledStackingInfoLayout({ client }: CardLayoutProps) {
                   handleStopPoolingClick={handleStopPoolingClick}
                 />
               )}
-
+              ),
               {delegationStatusQuery.data.delegated && isExpired && (
                 <ExpiredPoolingContent
                   isContractCallExtensionPageOpen={isContractCallExtensionPageOpen}
                   handleStopPoolingClick={handleStopPoolingClick}
                 />
               )}
-
               {!delegationStatusQuery.data.delegated &&
                 isStacking && ( // all cases covered by now
                   <RevokedWhileStackingContent
