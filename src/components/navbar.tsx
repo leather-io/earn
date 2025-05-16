@@ -30,7 +30,7 @@ const navItemStyles = css({
   },
 });
 
-function NavItem({ href, children, openInNewTab = false, isActive = false }: NavItemProps) {
+export function NavItem({ href, children, openInNewTab = false, isActive = false }: NavItemProps) {
   return (
     <styled.a
       color="ink.background-primary"
@@ -204,15 +204,6 @@ const NavLinks = () => {
       justify={{ lg: 'flex-end' }}
       alignItems={{ base: 'flex-start', lg: 'center' }}
       gap="space.05"
-    >
-      <NavItem href="https://earn.leather.io/" isActive>
-        Earn
-      </NavItem>
-      <NavItem href="https://leather.io/blog">Blog</NavItem>
-      <NavItem href="https://leather.io/learn">Learn</NavItem>
-      <NavItem href="https://leather.io/guides">Guides</NavItem>
-      <NavItem href="https://leather.io/developer-docs">Developer docs</NavItem>
-      <NavItem href="https://leather.io/frequent-questions#stacking">FAQs</NavItem>
-    </Flex>
+    ></Flex>
   );
 };
