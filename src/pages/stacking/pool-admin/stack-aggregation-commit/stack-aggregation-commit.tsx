@@ -4,7 +4,6 @@ import { FinishedTxData } from '@stacks/connect';
 import { StackingClient } from '@stacks/stacking';
 import { Form, Formik } from 'formik';
 
-import { useAuth } from '@components/auth-provider/auth-provider';
 import { CenteredErrorAlert } from '@components/centered-error-alert';
 import { CenteredSpinner } from '@components/centered-spinner';
 import { FinishedTxResultInfo } from '@components/finished-tx-result-info';
@@ -60,7 +59,6 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
   const [txResult, setTxResult] = useState<FinishedTxData | undefined>();
 
   const network = useStacksNetwork();
-  const { btcAddressP2wpkh } = useAuth();
 
   const getSecondsUntilNextCycleQuery = useGetSecondsUntilNextCycleQuery();
   const getPoxInfoQuery = useGetPoxInfoQuery();
@@ -104,7 +102,6 @@ function StackAggregationCommitLayout({ client }: StackAggregationCommitLayoutPr
     <Formik
       initialValues={{
         ...initialFormValues,
-        poxAddress: btcAddressP2wpkh ?? '',
         rewardCycleId: getPoxInfoQuery.data.reward_cycle_id + 1,
       }}
       onSubmit={values => {
