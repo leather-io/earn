@@ -3,7 +3,7 @@ import { Box, Flex } from 'leather-styles/jsx';
 
 export function Banner() {
   return (
-    <Box width="100%" background="ink.text-non-interactive">
+    <Box width="100%" background="blue.background-secondary">
       <Flex
         maxWidth="1216px"
         mx="auto"
