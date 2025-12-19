@@ -15,10 +15,13 @@
     "check:format:fix": "prettier --write . --plugin-search-dir=./node_modules --plugin=@trivago/prettier-plugin-sort-imports",
     "check:lint": "eslint .",
     "check:lint:fix": "eslint . --fix",
-    "check:all": "pnpm check:types && pnpm check:format && pnpm check:lint",
+    "check:all": "pnpm check:types && pnpm check:format && pnpm check:lint && pnpm test",
     "dev": "vite",
     "prepare": "panda codegen",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@emotion/react": "11.11.1",
@@ -79,6 +82,9 @@
     "@pandacss/dev": "^0.48.0",
     "@stacks/prettier-config": "0.0.10",
     "@stacks/stacks-blockchain-api-types": "7.3.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/jest": "29.5.2",
     "@types/node": "20.3.1",
@@ -88,6 +94,8 @@
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
     "@vitejs/plugin-react": "4.0.0",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "@vue/compiler-sfc": "3.3.4",
     "esbuild": "0.18.4",
     "eslint": "8.43.0",
@@ -96,6 +104,7 @@
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
+    "jsdom": "^27.3.0",
     "node-stdlib-browser": "1.2.0",
     "postcss": "^8.4.49",
     "prettier": "2.8.8",
@@ -107,6 +116,6 @@
     "vite-compatible-readable-stream": "3.6.1",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "4.2.0",
-    "vitest": "^0.32.4"
+    "vitest": "^4.0.16"
   }
 }
